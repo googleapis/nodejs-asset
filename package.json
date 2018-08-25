@@ -1,6 +1,6 @@
 {
-  "repository": "googleapis/nodejs-asset",
-  "name": "@google-cloud/asset",
+  "repository": "GoogleCloudPlatform/google-cloud-node",
+  "name": "asset",
   "version": "0.1.0",
   "author": "Google LLC",
   "description": "Cloud Asset API client for Node.js",
@@ -25,12 +25,12 @@
     "Cloud Asset API"
   ],
   "dependencies": {
-    "google-gax": "^0.18.0",
+    "google-gax": "^0.17.1",
     "lodash.merge": "^4.6.0",
     "protobufjs": "^6.8.0"
   },
   "devDependencies": {
-    "mocha": "^5.2.0",
+    "mocha": "^3.2.0",
     "through2": "^2.0.3"
   },
   "scripts": {
