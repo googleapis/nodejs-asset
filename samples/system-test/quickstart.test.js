@@ -1,5 +1,5 @@
 /**
- * Copyright 2018, Google, Inc.
+ * Copyright 2018, Google, LLC.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -42,9 +42,9 @@ test.beforeEach(tools.stubConsole);
 test.afterEach.always(tools.restoreConsole);
 
 test.serial(`should export assets to specified path`, async t => {
-  var dumpFilePath = util.format('gs://%s/my-assets.txt', bucketName);
+  const dumpFilePath = util.format('gs://%s/my-assets.txt', bucketName);
   await tools.runAsyncWithIO(`${cmd} export-assets ${dumpFilePath}`, cwd);
-  var file = await bucket.file('my-assets.txt');
+  const file = await bucket.file('my-assets.txt');
   const [exists] = await file.exists();
   t.true(exists);
   file.delete();

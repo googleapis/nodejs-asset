@@ -1,5 +1,5 @@
 /**
- * Copyright 2018, Google, Inc.
+ * Copyright 2018, Google, LLC.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -19,21 +19,21 @@
 async function exportAssets(dumpFilePath) {
   // [START asset_quickstart_exportassets]
   const asset = require('@google-cloud/asset');
-  var client = new asset.v1beta1.AssetServiceClient({
+  const client = new asset.v1beta1.AssetServiceClient({
     // optional auth parameters.
   });
 
   // Your Google Cloud Platform project ID
   const projectId = process.env.GCLOUD_PROJECT;
-  var projectResource = client.projectPath(projectId);
+  const projectResource = client.projectPath(projectId);
 
   // var dumpFilePath = 'Dump file path, e.g.: gs://<my_bucket>/<my_asset_file>'
-  var outputConfig = {
+  const outputConfig = {
     gcsDestination: {
       uri: dumpFilePath,
     },
   };
-  var request = {
+  const request = {
     parent: projectResource,
     outputConfig: outputConfig,
   };
@@ -42,13 +42,13 @@ async function exportAssets(dumpFilePath) {
   client
     .exportAssets(request)
     .then(responses => {
-      var operation = responses[0];
+      const operation = responses[0];
       // Operation#promise starts polling for the completion of the operation.
       return operation.promise();
     })
     .then(responses => {
       // The final result of the operation.
-      var result = responses[0];
+      const result = responses[0];
       // The metadata value of the completed operation.
       // var metadata = responses[1];
       // The response of the api call returning the complete operation.
