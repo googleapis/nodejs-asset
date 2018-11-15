@@ -15,7 +15,6 @@
 
 'use strict';
 
-// Imports the Google APIs client library
 async function exportAssets(dumpFilePath) {
   // [START asset_quickstart_exportassets]
   const asset = require('@google-cloud/asset');
@@ -39,26 +38,18 @@ async function exportAssets(dumpFilePath) {
   };
 
   // Handle the operation using the promise pattern.
-  client
-    .exportAssets(request)
-    .then(responses => {
-      const operation = responses[0];
-      // Operation#promise starts polling for the completion of the operation.
-      return operation.promise();
-    })
-    .then(responses => {
-      // The final result of the operation.
-      const result = responses[0];
-      // The metadata value of the completed operation.
-      // var metadata = responses[1];
-      // The response of the api call returning the complete operation.
-      // var finalApiResponse = responses[2];
-      // Do things with with the response.
-      console.log(result);
-    })
-    .catch(err => {
-      console.error(err);
-    });
+  let responses = await client.exportAssets(request);
+  const operation = responses[0];
+  // Operation#promise starts polling for the completion of the operation.
+  responses = await operation.promise();
+  // The final result of the operation.
+  const result = responses[0];
+  // The metadata value of the completed operation.
+  // var metadata = responses[1];
+  // The response of the api call returning the complete operation.
+  // var finalApiResponse = responses[2];
+  // Do things with with the response.
+  console.log(result);
   // [END asset_quickstart_exportassets]
 }
 

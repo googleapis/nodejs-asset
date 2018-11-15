@@ -47,5 +47,5 @@ test.serial(`should export assets to specified path`, async t => {
   const file = await bucket.file('my-assets.txt');
   const [exists] = await file.exists();
   t.true(exists);
-  file.delete();
+  await file.delete();
 });
