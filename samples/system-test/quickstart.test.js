@@ -15,6 +15,7 @@
 
 'use strict';
 
+const assert = require('assert');
 const path = require('path');
 const test = require('mocha');
 const tools = require('@google-cloud/nodejs-repo-tools');
@@ -29,7 +30,7 @@ const storage = new Storage();
 const bucketName = `asset-nodejs-${uuid.v4()}`;
 const bucket = storage.bucket(bucketName);
 
-test.describe('quickstart sample tests', assert => {
+test.describe('quickstart sample tests', () => {
   test.before(tools.checkCredentials);
   test.before(async () => {
     await bucket.create();
