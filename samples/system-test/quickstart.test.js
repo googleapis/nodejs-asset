@@ -29,17 +29,17 @@ const storage = new Storage();
 const bucketName = `asset-nodejs-${uuid.v4()}`;
 const bucket = storage.bucket(bucketName);
 
-describe('quickstart sample tests', () => {
-  before(tools.checkCredentials);
-  before(async () => {
+test.describe('quickstart sample tests', assert => {
+  test.before(tools.checkCredentials);
+  test.before(async () => {
     await bucket.create();
-  }); 
+  });
 
-  after(async () => {
+  test.after(async () => {
     await bucket.delete();
   });
 
-  it('should export assets to specified path', async () => {
+  test.it('should export assets to specified path', async () => {
     const dumpFilePath = util.format('gs://%s/my-assets.txt', bucketName);
     await tools.runAsyncWithIO(`${cmd} export-assets ${dumpFilePath}`, cwd);
     const file = await bucket.file('my-assets.txt');
