@@ -44,7 +44,7 @@ describe('quickstart sample tests', () => {
     await tools.runAsyncWithIO(`${cmd} export-assets ${dumpFilePath}`, cwd);
     const file = await bucket.file('my-assets.txt');
     const [exists] = await file.exists();
-    asset.ok(exists);
+    assert.ok(exists);
     await file.delete();
   });
 });
