@@ -29,23 +29,22 @@ const storage = new Storage();
 const bucketName = `asset-nodejs-${uuid.v4()}`;
 const bucket = storage.bucket(bucketName);
 
-before(tools.checkCredentials);
-before(async () => {
-  await bucket.create();
-});
+describe('quickstart sample tests', () => {
+  before(tools.checkCredentials);
+  before(async () => {
+    await bucket.create();
+  }); 
 
-after(async () => {
-  await bucket.delete();
-});
+  after(async () => {
+    await bucket.delete();
+  });
 
-test.beforeEach(tools.stubConsole);
-test.afterEach(tools.restoreConsole);
-
-it('should export assets to specified path', async t => {
-  const dumpFilePath = util.format('gs://%s/my-assets.txt', bucketName);
-  await tools.runAsyncWithIO(`${cmd} export-assets ${dumpFilePath}`, cwd);
-  const file = await bucket.file('my-assets.txt');
-  const [exists] = await file.exists();
-  asset.ok(exists);
-  await file.delete();
+  it('should export assets to specified path', async () => {
+    const dumpFilePath = util.format('gs://%s/my-assets.txt', bucketName);
+    await tools.runAsyncWithIO(`${cmd} export-assets ${dumpFilePath}`, cwd);
+    const file = await bucket.file('my-assets.txt');
+    const [exists] = await file.exists();
+    asset.ok(exists);
+    await file.delete();
+  });
 });
