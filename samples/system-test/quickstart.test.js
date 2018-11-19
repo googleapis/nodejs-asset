@@ -15,37 +15,37 @@
 
 'use strict';
 
-const path = require(`path`);
-const test = require(`ava`);
-const tools = require(`@google-cloud/nodejs-repo-tools`);
-const util = require(`util`);
-const uuid = require(`uuid`);
-const cwd = path.join(__dirname, `..`);
-const cmd = `node quickstart.js`;
+const path = require('path');
+const test = require('mocha');
+const tools = require('@google-cloud/nodejs-repo-tools');
+const util = require('util');
+const uuid = require('uuid');
+const cwd = path.join(__dirname, '..');
+const cmd = 'node quickstart.js';
 
-const {Storage} = require(`@google-cloud/storage`, {});
+const {Storage} = require('@google-cloud/storage');
 
 const storage = new Storage();
 const bucketName = `asset-nodejs-${uuid.v4()}`;
 const bucket = storage.bucket(bucketName);
 
-test.before(tools.checkCredentials);
-test.before(async () => {
+before(tools.checkCredentials);
+before(async () => {
   await bucket.create();
 });
 
-test.after.always(async () => {
+after(async () => {
   await bucket.delete();
 });
 
 test.beforeEach(tools.stubConsole);
-test.afterEach.always(tools.restoreConsole);
+test.afterEach(tools.restoreConsole);
 
-test.serial(`should export assets to specified path`, async t => {
+it('should export assets to specified path', async t => {
   const dumpFilePath = util.format('gs://%s/my-assets.txt', bucketName);
   await tools.runAsyncWithIO(`${cmd} export-assets ${dumpFilePath}`, cwd);
   const file = await bucket.file('my-assets.txt');
   const [exists] = await file.exists();
-  t.true(exists);
+  asset.ok(exists);
   await file.delete();
 });

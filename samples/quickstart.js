@@ -38,16 +38,9 @@ async function exportAssets(dumpFilePath) {
   };
 
   // Handle the operation using the promise pattern.
-  let responses = await client.exportAssets(request);
-  const operation = responses[0];
+  const [operation] = await client.exportAssets(request);
   // Operation#promise starts polling for the completion of the operation.
-  responses = await operation.promise();
-  // The final result of the operation.
-  const result = responses[0];
-  // The metadata value of the completed operation.
-  // var metadata = responses[1];
-  // The response of the api call returning the complete operation.
-  // var finalApiResponse = responses[2];
+  const [result] = await operation.promise();
   // Do things with with the response.
   console.log(result);
   // [END asset_quickstart_exportassets]
@@ -56,19 +49,19 @@ async function exportAssets(dumpFilePath) {
 const cli = require('yargs')
   .demand(1)
   .command(
-    `export-assets <dumpFilePath>`,
-    `Export asserts to specified dump file path.`,
+    'export-assets <dumpFilePath>',
+    'Export asserts to specified dump file path.',
     {},
     opts => exportAssets(opts.dumpFilePath)
   )
   .example(
-    `node $0 export-assets gs://my-bucket/my-assets.txt`,
-    `Export assets to gs://my-bucket/my-assets.txt.`
+    'node $0 export-assets gs://my-bucket/my-assets.txt',
+    'Export assets to gs://my-bucket/my-assets.txt.'
   )
   .wrap(10)
   .recommendCommands()
   .epilogue(
-    `https://cloud.google.com/resource-manager/docs/cloud-asset-inventory/overview`
+    'https://cloud.google.com/resource-manager/docs/cloud-asset-inventory/overview'
   )
   .help()
   .strict();

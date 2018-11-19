@@ -15,7 +15,7 @@
     ]
   },
   "scripts": {
-    "test": "repo-tools test run --cmd mocha system-test/*.test.js"
+    "test": "mocha system-test --timeout 20000"
   },
   "dependencies": {
     "@google-cloud/asset": "^0.1.0",
