@@ -17,7 +17,6 @@
 
 const assert = require('assert');
 const path = require('path');
-const test = require('mocha');
 const tools = require('@google-cloud/nodejs-repo-tools');
 const util = require('util');
 const uuid = require('uuid');
