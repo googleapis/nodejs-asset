@@ -18,7 +18,6 @@
 const assert = require('assert');
 const path = require('path');
 const tools = require('@google-cloud/nodejs-repo-tools');
-const util = require('util');
 const uuid = require('uuid');
 const cwd = path.join(__dirname, '..');
 const cmd = 'node quickstart.js';
