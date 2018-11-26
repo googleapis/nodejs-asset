@@ -29,13 +29,15 @@ const storage = new Storage();
 const bucketName = `asset-nodejs-${uuid.v4()}`;
 const bucket = storage.bucket(bucketName);
 
-describe('Quickstart sample tests', () => {
+describe('quickstart sample tests', () => {
+  before(tools.checkCredentials);
   before(async () => {
-    tools.checkCredentials();
     await bucket.create();
   });
 
-  after(async () => await bucket.delete());
+  after(async () => {
+    await bucket.delete();
+  });
 
   it('should export assets to specified path', async () => {
     const dumpFilePath = util.format('gs://%s/my-assets.txt', bucketName);
@@ -44,5 +46,16 @@ describe('Quickstart sample tests', () => {
     const [exists] = await file.exists();
     assert.ok(exists);
     await file.delete();
+  });
+
+  it('should get assets history successfully', async () => {
+    const assetName = util.format('//storage.googleapis.com/%s', bucketName);
+    const output = await tools.runAsyncWithIO(
+      `${cmd} batch-get-history ${assetName}`,
+      cwd
+    );
+    if (output.stdout) {
+      assert.ok(output.stdout.includes(assetName));
+    }
   });
 });
