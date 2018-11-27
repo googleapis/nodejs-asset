@@ -39,16 +39,16 @@ describe('quickstart sample tests', () => {
   });
 
   it('should export assets to specified path', async () => {
-    const [dumpFilePath] = `gs://${bucketName}/my-assets.txt`;
+    const dumpFilePath = `gs://${bucketName}/my-assets.txt`;
     await tools.runAsyncWithIO(`${cmd} export-assets ${dumpFilePath}`, cwd);
     const file = await bucket.file('my-assets.txt');
-    const [exists] = await file.exists();
+    const exists = await file.exists();
     assert.ok(exists);
     await file.delete();
   });
 
   it('should get assets history successfully', async () => {
-    const [assetName] = `//storage.googleapis.com/${bucketName}`;
+    const assetName = `//storage.googleapis.com/${bucketName}`;
     const output = await tools.runAsyncWithIO(
       `${cmd} batch-get-history ${assetName}`,
       cwd
