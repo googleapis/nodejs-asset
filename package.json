@@ -1,7 +1,7 @@
 {
   "name": "@google-cloud/asset",
   "description": "Cloud Asset API client for Node.js",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "Apache-2.0",
   "author": "Google LLC",
   "engines": {
@@ -29,14 +29,12 @@
     "Cloud Asset API"
   ],
   "scripts": {
-    "cover": "nyc --reporter=lcov mocha test/*.js && nyc report",
     "docs": "jsdoc -c .jsdoc.js",
     "generate-scaffolding": "repo-tools generate all && repo-tools generate lib_samples_readme -l samples/ --config ../.cloud-repo-tools.json",
     "lint": "eslint '**/*.js'",
     "samples-test": "cd samples/ && npm link ../ && npm test && cd ../",
     "system-test": "mocha system-test/*.js smoke-test/*.js --timeout 600000",
-    "test-no-cover": "mocha test/*.js",
-    "test": "npm run cover",
+    "test": "nyc mocha",
     "fix": "eslint --fix '**/*.js'"
   },
   "dependencies": {
