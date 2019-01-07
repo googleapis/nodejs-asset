@@ -51,7 +51,7 @@ const gapic = Object.freeze({
  *     - `AssetServiceClient` - Reference to
  *       {@link v1beta1.AssetServiceClient}
  *
- * @module {object} asset
+ * @module {object} @google-cloud/asset
  * @alias nodejs-asset
  *
  * @example <caption>Install the client library with <a href="https://www.npmjs.com/">npm</a>:</caption>
