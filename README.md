@@ -66,6 +66,11 @@
 The [Cloud Asset Node.js Client API Reference][client-docs] documentation
 also contains samples.
 
+[projects]: https://console.cloud.google.com/project
+[billing]: https://support.google.com/cloud/answer/6293499#enable-billing
+[enable_api]: https://console.cloud.google.com/flows/enableapi?apiid=cloudasset.googleapis.com
+[auth]: https://cloud.google.com/docs/authentication/getting-started
+
 ## Versioning
 
 This library follows [Semantic Versioning](http://semver.org/).
@@ -102,7 +107,3 @@ Google APIs Client Libraries, in [Client Libraries Explained][explained].
 [client-docs]: 
 [product-docs]: https://cloud.google.com/resource-manager/docs/cloud-asset-inventory/overview
 [shell_img]: https://gstatic.com/cloudssh/images/open-btn.png
-[projects]: https://console.cloud.google.com/project
-[billing]: https://support.google.com/cloud/answer/6293499#enable-billing
-[enable_api]: https://console.cloud.google.com/flows/enableapi?apiid=cloudasset.googleapis.com
-[auth]: https://cloud.google.com/docs/authentication/getting-started
