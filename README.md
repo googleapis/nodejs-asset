@@ -41,7 +41,6 @@
 
   // Your Google Cloud Platform project ID
   const projectId = await client.getProjectId();
-  console.log(projectId);
   const projectResource = client.projectPath(projectId);
 
   // var dumpFilePath = 'Dump file path, e.g.: gs://<my_bucket>/<my_asset_file>'
