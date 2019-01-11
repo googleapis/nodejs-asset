@@ -23,7 +23,7 @@ async function exportAssets(dumpFilePath) {
   });
 
   // Your Google Cloud Platform project ID
-  const projectId = process.env.GCLOUD_PROJECT;
+  const projectId = await client.getProjectId();
   const projectResource = client.projectPath(projectId);
 
   // var dumpFilePath = 'Dump file path, e.g.: gs://<my_bucket>/<my_asset_file>'
@@ -55,7 +55,7 @@ async function batchGetAssetsHistory(assetNames) {
   });
 
   // Your Google Cloud Platform project ID
-  const projectId = process.env.GCLOUD_PROJECT;
+  const projectId = await client.getProjectId();
   const projectResource = client.projectPath(projectId);
   // Your asset names, such as //storage.googleapis.com/[YOUR_BUCKET_NAME].
   // var assetNames = ['ASSET_NAME1', 'ASSET_NAME2', ...];
