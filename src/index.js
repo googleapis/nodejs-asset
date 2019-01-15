@@ -33,6 +33,9 @@
 /**
  * @namespace google.type
  */
+/**
+ * @namespace google.iam.v1
+ */
 
 'use strict';
 
