@@ -10,9 +10,9 @@
 
 This release ships the v1 version of the backend API.
 
-Example usage:
+Create the v1 client:
 
-```
+```javascript
 const asset = require('@google-cloud/asset');
 const client = new asset.v1.AssetServiceClient();
 ```
