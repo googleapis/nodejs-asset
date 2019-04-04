@@ -48,10 +48,7 @@ describe('quickstart sample tests', () => {
 
   it('should get assets history successfully', async () => {
     const assetName = `//storage.googleapis.com/${bucketName}`;
-    const stdout = execSync(
-      `${cmd} batch-get-history ${assetName}`,
-      {cwd}
-    );
+    const stdout = execSync(`${cmd} batch-get-history ${assetName}`, {cwd});
     assert.match(stdout, new RegExp(assetName));
   });
 });
