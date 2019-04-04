@@ -18,7 +18,7 @@
 const {assert} = require('chai');
 const path = require('path');
 const uuid = require('uuid');
-const execa = require('execa');
+const {execSync} = require('child_process');
 const {Storage} = require('@google-cloud/storage');
 
 const cwd = path.join(__dirname, '..');
@@ -48,7 +48,7 @@ describe('quickstart sample tests', () => {
 
   it('should get assets history successfully', async () => {
     const assetName = `//storage.googleapis.com/${bucketName}`;
-    const {stdout} = await execa.shell(
+    const stdout = execSync(
       `${cmd} batch-get-history ${assetName}`,
       {cwd}
     );
