@@ -16,41 +16,41 @@
 'use strict';
 
 // sample-metadata:
-//   title: Asset History Quickstart
-//   description: Batch get history of assets.
-//   usage: node getBatchAssetHistory "//storage.googleapis.com/<BUCKET_NAME>"
+//   title: Export Assets
+//   description: Export asserts to specified dump file path.
+//   usage: node exportAssets.js <gs://my-bucket/my-assets.txt>
 
-async function main(assetNames) {
-  // [START asset_quickstart]
-  const util = require('util');
+async function main(dumpFilePath) {
+  // [START asset_quickstart_export_assets]
   const {AssetServiceClient} = require('@google-cloud/asset');
-
   const client = new AssetServiceClient();
 
-  async function quickstart() {
+  async function exportAssets() {
     const projectId = await client.getProjectId();
     const projectResource = client.projectPath(projectId);
-    // TODO(developer): Choose asset names, such as //storage.googleapis.com/[YOUR_BUCKET_NAME].
-    // const assetNames = ['ASSET_NAME1', 'ASSET_NAME2', ...];
+
+    // TODO(developer): choose the dump file path
+    // const dumpFilePath = 'Dump file path, e.g.: gs://<my_bucket>/<my_asset_file>'
 
     const request = {
       parent: projectResource,
-      assetNames: assetNames,
-      contentType: 'RESOURCE',
-      readTimeWindow: {
-        startTime: {
-          seconds: Math.floor(new Date().getTime() / 1000),
+      outputConfig: {
+        gcsDestination: {
+          uri: dumpFilePath,
         },
       },
     };
 
     // Handle the operation using the promise pattern.
-    const result = await client.batchGetAssetsHistory(request);
-    // Do things with with the response.
-    console.log(util.inspect(result, {depth: null}));
-    // [END asset_quickstart]
-  }
-  quickstart();
-}
+    const [operation] = await client.exportAssets(request);
 
+    // Operation#promise starts polling for the completion of the operation.
+    const [result] = await operation.promise();
+
+    // Do things with with the response.
+    console.log(result);
+  }
+  exportAssets();
+  // [END asset_quickstart_export_assets]
+}
 main(...process.argv.slice(2));
