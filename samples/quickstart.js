@@ -35,7 +35,7 @@ async function main(assetNames) {
 
     const request = {
       parent: projectResource,
-      assetNames: assetNames,
+      assetNames: assetNames.split(','),
       contentType: 'RESOURCE',
       readTimeWindow: {
         startTime: {
