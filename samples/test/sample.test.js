@@ -37,9 +37,10 @@ describe('quickstart sample tests', () => {
 
   it('should export assets to specified path', async () => {
     const dumpFilePath = `gs://${bucketName}/my-assets.txt`;
-    execSync(`node exportAssets ${dumpFilePath}`);
+    const stdout = execSync(`node exportAssets ${dumpFilePath}`);
     const file = await bucket.file('my-assets.txt');
     const exists = await file.exists();
+    console.info('>> export >>', stdout);
     assert.ok(exists);
     await file.delete();
   });
@@ -47,6 +48,7 @@ describe('quickstart sample tests', () => {
   it('should get assets history successfully', async () => {
     const assetName = `//storage.googleapis.com/${bucketName}`;
     const stdout = execSync(`node getBatchAssetHistory ${assetName}`);
+    console.info('>> get >>', stdout);
     assert.include(stdout, assetName);
   });
 

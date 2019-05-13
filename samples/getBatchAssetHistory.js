@@ -53,4 +53,7 @@ async function main(assetNames) {
   batchGetAssetsHistory();
 }
 
-main(...process.argv.slice(2));
+main(...process.argv.slice(2)).catch(err => {
+  console.error(err.message);
+  process.exitCode = 1;
+});

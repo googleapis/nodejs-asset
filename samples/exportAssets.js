@@ -53,4 +53,8 @@ async function main(dumpFilePath) {
   exportAssets();
   // [END asset_quickstart_export_assets]
 }
-main(...process.argv.slice(2));
+
+main(...process.argv.slice(2)).catch(err => {
+  console.error(err.message);
+  process.exitCode = 1;
+});
