@@ -37,7 +37,7 @@ describe('quickstart sample tests', () => {
 
   it('should export assets to specified path', async () => {
     const dumpFilePath = `gs://${bucketName}/my-assets.txt`;
-    const stdout = execSync(`node exportAssets ${dumpFilePath}`);
+    execSync(`node exportAssets ${dumpFilePath}`);
     const file = await bucket.file('my-assets.txt');
     const exists = await file.exists();
     assert.ok(exists);
