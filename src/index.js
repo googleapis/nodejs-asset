@@ -49,6 +49,7 @@
 const gapic = Object.freeze({
   v1beta1: require('./v1beta1'),
   v1: require('./v1'),
+  v1p2beta1: require('./v1p2beta1'),
 });
 
 /**
@@ -86,6 +87,13 @@ const gapic = Object.freeze({
  *   Reference to {@link v1beta1.AssetServiceClient}
  */
 module.exports = gapic.v1;
+
+/**
+ * @type {object}
+ * @property {constructor} AssetServiceClient
+ *   Reference to {@link v1beta1.AssetServiceClient}
+ */
+module.exports.v1p2beta1 = gapic.v1p2beta1;
 
 /**
  * @type {object}
