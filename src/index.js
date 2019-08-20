@@ -42,6 +42,9 @@
 /**
  * @namespace google.longrunning
  */
+/**
+ * @namespace google.cloud.asset.v1p2beta1
+ */
 
 'use strict';
 
