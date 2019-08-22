@@ -28,7 +28,6 @@ async function main(feedName) {
   const client = new AssetServiceClient();
 
   async function deleteFeed() {
-    
     const request = {
       name: feedName,
     };

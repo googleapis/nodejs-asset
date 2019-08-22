@@ -28,19 +28,18 @@ async function main(feedName, topicName) {
   const client = new AssetServiceClient();
 
   async function updateFeed() {
-    
     const request = {
       feed: {
         name: feedName,
         feedOutputConfig: {
           pubsubDestination: {
-            topic: topicName
-          }
-        }
+            topic: topicName,
+          },
+        },
       },
       updateMask: {
-        paths: ["feed_output_config.pubsub_destination.topic"]
-      }
+        paths: ['feed_output_config.pubsub_destination.topic'],
+      },
     };
 
     // Handle the operation using the promise pattern.

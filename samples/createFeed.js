@@ -39,10 +39,10 @@ async function main(feedId, assetNames, topicName) {
         assetNames: assetNames.split(','),
         feedOutputConfig: {
           pubsubDestination: {
-            topic: topicName
-          }
-        }
-      } 
+            topic: topicName,
+          },
+        },
+      },
     };
 
     // Handle the operation using the promise pattern.
