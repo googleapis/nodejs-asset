@@ -4,6 +4,13 @@
 
 [1]: https://www.npmjs.com/package/@google-cloud/asset?activeTab=versions
 
+### [1.2.2](https://www.github.com/googleapis/nodejs-asset/compare/v1.2.1...v1.2.2) (2019-09-03)
+
+
+### Bug Fixes
+
+* **docs:** remove reference-docs anchor ([812bdc4](https://www.github.com/googleapis/nodejs-asset/commit/812bdc4))
+
 ### [1.2.1](https://www.github.com/googleapis/nodejs-asset/compare/v1.2.0...v1.2.1) (2019-08-26)
 
 
