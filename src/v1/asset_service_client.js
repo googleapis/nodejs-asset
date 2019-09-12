@@ -121,13 +121,6 @@ class AssetServiceClient {
       opts.fallback ? require('../../protos/protos.json') : nodejsProtoPath
     );
 
-    // This API contains "path templates"; forward-slash-separated
-    // identifiers to uniquely identify resources within the API.
-    // Create useful helper objects for these.
-    this._pathTemplates = {
-      projectPathTemplate: new gaxModule.PathTemplate('projects/{project}'),
-    };
-
     const protoFilesRoot = opts.fallback
       ? gaxModule.protobuf.Root.fromJSON(require('../../protos/protos.json'))
       : gaxModule.protobuf.loadSync(nodejsProtoPath);
@@ -268,8 +261,8 @@ class AssetServiceClient {
    *   This object should have the same structure as [Timestamp]{@link google.protobuf.Timestamp}
    * @param {string[]} [request.assetTypes]
    *   A list of asset types of which to take a snapshot for. For example:
-   *   "compute.googleapis.com/Disk". If specified, only matching assets will be returned.
-   *   See [Introduction to Cloud Asset
+   *   "compute.googleapis.com/Disk". If specified, only matching assets will be
+   *   returned. See [Introduction to Cloud Asset
    *   Inventory](https://cloud.google.com/resource-manager/docs/cloud-asset-inventory/overview)
    *   for all supported asset types.
    * @param {number} [request.contentType]
@@ -416,7 +409,8 @@ class AssetServiceClient {
    *   `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
    *   See [Resource
    *   Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
-   *   and [Resource Name Format](https://cloud.google.com/resource-manager/docs/cloud-asset-inventory/resource-name-format)
+   *   and [Resource Name
+   *   Format](https://cloud.google.com/resource-manager/docs/cloud-asset-inventory/resource-name-format)
    *   for more info.
    *
    *   The request becomes a no-op if the asset name list is empty, and the max
@@ -477,33 +471,6 @@ class AssetServiceClient {
       options,
       callback
     );
-  }
-
-  // --------------------
-  // -- Path templates --
-  // --------------------
-
-  /**
-   * Return a fully-qualified project resource name string.
-   *
-   * @param {String} project
-   * @returns {String}
-   */
-  projectPath(project) {
-    return this._pathTemplates.projectPathTemplate.render({
-      project: project,
-    });
-  }
-
-  /**
-   * Parse the projectName from a project resource.
-   *
-   * @param {String} projectName
-   *   A fully-qualified path representing a project resources.
-   * @returns {String} - A string representing the project.
-   */
-  matchProjectFromProjectName(projectName) {
-    return this._pathTemplates.projectPathTemplate.match(projectName).project;
   }
 }
 

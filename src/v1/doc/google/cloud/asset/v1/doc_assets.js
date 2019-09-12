@@ -87,6 +87,22 @@ const TimeWindow = {
  *
  *   This object should have the same structure as [Policy]{@link google.iam.v1.Policy}
  *
+ * @property {Object[]} orgPolicy
+ *   Representation of the Cloud Organization Policy set on an asset. For each
+ *   asset, there could be multiple Organization policies with different
+ *   constraints.
+ *
+ *   This object should have the same structure as [Policy]{@link google.cloud.orgpolicy.v1.Policy}
+ *
+ * @property {Object} accessPolicy
+ *   This object should have the same structure as [AccessPolicy]{@link google.identity.accesscontextmanager.v1.AccessPolicy}
+ *
+ * @property {Object} accessLevel
+ *   This object should have the same structure as [AccessLevel]{@link google.identity.accesscontextmanager.v1.AccessLevel}
+ *
+ * @property {Object} servicePerimeter
+ *   This object should have the same structure as [ServicePerimeter]{@link google.identity.accesscontextmanager.v1.ServicePerimeter}
+ *
  * @typedef Asset
  * @memberof google.cloud.asset.v1
  * @see [google.cloud.asset.v1.Asset definition in proto format]{@link https://github.com/googleapis/googleapis/blob/master/google/cloud/asset/v1/assets.proto}
