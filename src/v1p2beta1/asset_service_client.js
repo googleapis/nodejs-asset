@@ -69,7 +69,9 @@ class AssetServiceClient {
     const gaxModule = !global.isBrowser && opts.fallback ? gax.fallback : gax;
 
     const servicePath =
-      opts.servicePath || opts.apiEndpoint || this.constructor.servicePath;
+      opts.servicePath ||
+      opts.apiEndpoint ||
+      this.constructor.servicePath;
 
     // Ensure that options include the service address and port.
     opts = Object.assign(
@@ -110,15 +112,11 @@ class AssetServiceClient {
     // For Node.js, pass the path to JSON proto file.
     // For browsers, pass the JSON content.
 
-    const nodejsProtoPath = path.join(
-      __dirname,
-      '..',
-      '..',
-      'protos',
-      'protos.json'
-    );
+    const nodejsProtoPath = path.join(__dirname, '..', '..', 'protos', 'protos.json');
     const protos = gaxGrpc.loadProto(
-      opts.fallback ? require('../../protos/protos.json') : nodejsProtoPath
+      opts.fallback ?
+        require("../../protos/protos.json") :
+        nodejsProtoPath
     );
 
     // This API contains "path templates"; forward-slash-separated
@@ -130,9 +128,9 @@ class AssetServiceClient {
       ),
     };
 
-    const protoFilesRoot = opts.fallback
-      ? gaxModule.protobuf.Root.fromJSON(require('../../protos/protos.json'))
-      : gaxModule.protobuf.loadSync(nodejsProtoPath);
+    const protoFilesRoot = opts.fallback ?
+      gaxModule.protobuf.Root.fromJSON(require("../../protos/protos.json")) :
+      gaxModule.protobuf.loadSync(nodejsProtoPath);
 
     // This API contains "long-running operations", which return a
     // an Operation object that allows for tracking of the operation,
@@ -173,9 +171,9 @@ class AssetServiceClient {
     // Put together the "service stub" for
     // google.cloud.asset.v1p2beta1.AssetService.
     const assetServiceStub = gaxGrpc.createStub(
-      opts.fallback
-        ? protos.lookupService('google.cloud.asset.v1p2beta1.AssetService')
-        : protos.google.cloud.asset.v1p2beta1.AssetService,
+      opts.fallback ?
+        protos.lookupService('google.cloud.asset.v1p2beta1.AssetService') :
+        protos.google.cloud.asset.v1p2beta1.AssetService,
       opts
     );
 
@@ -234,7 +232,9 @@ class AssetServiceClient {
    * in this service.
    */
   static get scopes() {
-    return ['https://www.googleapis.com/auth/cloud-platform'];
+    return [
+      'https://www.googleapis.com/auth/cloud-platform',
+    ];
   }
 
   /**
@@ -383,11 +383,10 @@ class AssetServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      parent: request.parent,
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'parent': request.parent
+      });
 
     return this._innerApiCalls.exportAssets(request, options, callback);
   }
@@ -474,17 +473,12 @@ class AssetServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      parent: request.parent,
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'parent': request.parent
+      });
 
-    return this._innerApiCalls.batchGetAssetsHistory(
-      request,
-      options,
-      callback
-    );
+    return this._innerApiCalls.batchGetAssetsHistory(request, options, callback);
   }
 
   /**
@@ -555,11 +549,10 @@ class AssetServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      parent: request.parent,
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'parent': request.parent
+      });
 
     return this._innerApiCalls.createFeed(request, options, callback);
   }
@@ -612,11 +605,10 @@ class AssetServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      name: request.name,
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'name': request.name
+      });
 
     return this._innerApiCalls.getFeed(request, options, callback);
   }
@@ -668,11 +660,10 @@ class AssetServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      parent: request.parent,
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'parent': request.parent
+      });
 
     return this._innerApiCalls.listFeeds(request, options, callback);
   }
@@ -739,11 +730,10 @@ class AssetServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      'feed.name': request.feed.name,
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'feed.name': request.feed.name
+      });
 
     return this._innerApiCalls.updateFeed(request, options, callback);
   }
@@ -788,11 +778,10 @@ class AssetServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      name: request.name,
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'name': request.name
+      });
 
     return this._innerApiCalls.deleteFeed(request, options, callback);
   }
@@ -823,7 +812,9 @@ class AssetServiceClient {
    * @returns {String} - A string representing the project.
    */
   matchProjectFromFeedName(feedName) {
-    return this._pathTemplates.feedPathTemplate.match(feedName).project;
+    return this._pathTemplates.feedPathTemplate
+      .match(feedName)
+      .project;
   }
 
   /**
@@ -834,8 +825,11 @@ class AssetServiceClient {
    * @returns {String} - A string representing the feed.
    */
   matchFeedFromFeedName(feedName) {
-    return this._pathTemplates.feedPathTemplate.match(feedName).feed;
+    return this._pathTemplates.feedPathTemplate
+      .match(feedName)
+      .feed;
   }
 }
+
 
 module.exports = AssetServiceClient;
