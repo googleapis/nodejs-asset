@@ -26,22 +26,42 @@ const storage = new Storage();
 const bucketName = `asset-nodejs-${uuid.v4()}`;
 const bucket = storage.bucket(bucketName);
 
+const {BigQuery} = require('@google-cloud/bigquery');
+const bigquery = new BigQuery();
+const options = {
+      location: 'US',
+    };
+const datasetName = `asset_nodejs_${uuid.v4()}`.replace(/-/gi, '_');
+
 describe('quickstart sample tests', () => {
   before(async () => {
     await bucket.create();
+    await bigquery.createDataset(datasetName, options);
+    await bigquery.dataset(datasetName).exists();
   });
 
   after(async () => {
     await bucket.delete();
+    await bigquery
+      .dataset(datasetName)
+      .delete({force: true})
+      .catch(console.warn);
   });
 
   it('should export assets to specified path', async () => {
     const dumpFilePath = `gs://${bucketName}/my-assets.txt`;
-    execSync(`node exportAssets ${dumpFilePath}`);
+    const dataSet = `datasets/${datasetName}`;
+    const table = 'asset_nodejs';
+    execSync(`node exportAssets ${dumpFilePath} ${dataSet} ${table}`);
     const file = await bucket.file('my-assets.txt');
     const exists = await file.exists();
     assert.ok(exists);
     await file.delete();
+    const bqTable = await bigquery
+      .dataset(datasetName)
+      .table(table)
+      .exists();
+    assert.ok(bqTable);
   });
 
   it('should get assets history successfully', async () => {

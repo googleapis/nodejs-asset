@@ -20,7 +20,7 @@
 //   description: Export asserts to specified dump file path.
 //   usage: node exportAssets.js <gs://my-bucket/my-assets.txt>
 
-async function main(dumpFilePath) {
+async function main(dumpFilePath, dataSet, table) {
   // [START asset_quickstart_export_assets]
   const {AssetServiceClient} = require('@google-cloud/asset');
   const client = new AssetServiceClient();
@@ -50,7 +50,38 @@ async function main(dumpFilePath) {
     // Do things with with the response.
     console.log(result);
   }
+
+  async function exportAssetsBigquery() {
+    const projectId = await client.getProjectId();
+    const projectResource = client.projectPath(projectId);
+    const dataset = dataSet;
+
+    // TODO(developer): choose the dump file path
+    // const dumpFilePath = 'Dump file path, e.g.: gs://<my_bucket>/<my_asset_file>'
+
+    const request = {
+      parent: projectResource,
+      outputConfig: {
+        bigqueryDestination: {
+          dataset: `projects/${projectId}/${dataset}`,
+          table: table,
+          force: true
+        },
+      },
+    };
+
+    // Handle the operation using the promise pattern.
+    const [operation] = await client.exportAssets(request);
+
+    // Operation#promise starts polling for the completion of the operation.
+    const [result] = await operation.promise();
+
+    // Do things with with the response.
+    console.log(result);
+  }
+
   exportAssets();
+  exportAssetsBigquery();
   // [END asset_quickstart_export_assets]
 }
 
