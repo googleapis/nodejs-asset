@@ -1,5 +1,5 @@
 /**
- * Copyright 2018, Google, LLC.
+ * Copyright 2019, Google, LLC.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,27 +16,27 @@
 'use strict';
 
 // sample-metadata:
-//   title: Export Assets
-//   description: Export asserts to specified dump file path.
-//   usage: node exportAssets.js <gs://my-bucket/my-assets.txt>
+//   title: Export Assets To BigQuery
+//   description: Export asserts to specified BigQuery table.
+//   usage: node exportAssetsBigquery.js <projects/project_id/datasets/dataset_id> <table_name>
 
-async function main(dumpFilePath) {
-  // [START asset_quickstart_export_assets]
+async function main(dataSet, table) {
+  // [START asset_quickstart_export_assets_bigquery]
   const {AssetServiceClient} = require('@google-cloud/asset');
   const client = new AssetServiceClient();
 
-  async function exportAssets() {
+  async function exportAssetsBigquery() {
     const projectId = await client.getProjectId();
     const projectResource = client.projectPath(projectId);
-
-    // TODO(developer): choose the dump file path
-    // const dumpFilePath = 'Dump file path, e.g.: gs://<my_bucket>/<my_asset_file>'
+    const dataset = dataSet;
 
     const request = {
       parent: projectResource,
       outputConfig: {
-        gcsDestination: {
-          uri: dumpFilePath,
+        bigqueryDestination: {
+          dataset: `projects/${projectId}/${dataset}`,
+          table: table,
+          force: true,
         },
       },
     };
@@ -51,8 +51,8 @@ async function main(dumpFilePath) {
     console.log(result);
   }
 
-  exportAssets();
-  // [END asset_quickstart_export_assets]
+  exportAssetsBigquery();
+  // [END asset_quickstart_export_assets_bigquery]
 }
 
 main(...process.argv.slice(2)).catch(err => {

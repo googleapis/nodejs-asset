@@ -1,5 +1,5 @@
 /**
- * Copyright 2019, Google, LLC.
+ * Copyright 2018, Google, LLC.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -29,8 +29,8 @@ const bucket = storage.bucket(bucketName);
 const {BigQuery} = require('@google-cloud/bigquery');
 const bigquery = new BigQuery();
 const options = {
-      location: 'US',
-    };
+  location: 'US',
+};
 const datasetName = `asset_nodejs_${uuid.v4()}`.replace(/-/gi, '_');
 
 describe('quickstart sample tests', () => {
@@ -57,6 +57,17 @@ describe('quickstart sample tests', () => {
     const exists = await file.exists();
     assert.ok(exists);
     await file.delete();
+    const bqTable = await bigquery
+      .dataset(datasetName)
+      .table(table)
+      .exists();
+    assert.ok(bqTable);
+  });
+
+  it('should export assets to specified BigQuery table', async () => {
+    const dataSet = `datasets/${datasetName}`;
+    const table = 'asset_nodejs';
+    execSync(`node exportAssetsBigquery ${dataSet} ${table}`);
     const bqTable = await bigquery
       .dataset(datasetName)
       .table(table)
