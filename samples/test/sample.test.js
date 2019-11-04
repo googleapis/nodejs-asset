@@ -57,11 +57,6 @@ describe('quickstart sample tests', () => {
     const exists = await file.exists();
     assert.ok(exists);
     await file.delete();
-    const bqTable = await bigquery
-      .dataset(datasetName)
-      .table(table)
-      .exists();
-    assert.ok(bqTable);
   });
 
   it('should export assets to specified BigQuery table', async () => {
@@ -70,9 +65,10 @@ describe('quickstart sample tests', () => {
     execSync(`node exportAssetsBigquery ${dataSet} ${table}`);
     const bqTable = await bigquery
       .dataset(datasetName)
-      .table(table)
-      .exists();
-    assert.ok(bqTable);
+      .table(table);
+    const table_exists = await bqTable.exists();
+    assert.ok(table_exists);
+    await bqTable.delete();
   });
 
   it('should get assets history successfully', async () => {
