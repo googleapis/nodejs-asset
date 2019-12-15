@@ -4,6 +4,29 @@
 
 [1]: https://www.npmjs.com/package/@google-cloud/asset?activeTab=versions
 
+## [1.5.0](https://www.github.com/googleapis/nodejs-asset/compare/v1.4.2...v1.5.0) (2019-12-06)
+
+
+### Features
+
+* add plural and singular resource descriptor ([93c314d](https://www.github.com/googleapis/nodejs-asset/commit/93c314deee5e4b1a165f5126ca42a6b1568be148))
+* adds CreateFeed, GetFeed, ListFeeds, UpdateFeed, DeleteFeed methods ([13903ae](https://www.github.com/googleapis/nodejs-asset/commit/13903aebf37840973a7bf2b7c0d35f36880bf612))
+
+
+### Bug Fixes
+
+* **deps:** pin TypeScript below 3.7.0 ([10472c9](https://www.github.com/googleapis/nodejs-asset/commit/10472c9e4be30a9ad61ace224943808cb32c8813))
+* **deps:** update dependency yargs to v15 ([#222](https://www.github.com/googleapis/nodejs-asset/issues/222)) ([a7beda9](https://www.github.com/googleapis/nodejs-asset/commit/a7beda95d9fdf6b55c019128a74e62f1410eeae4))
+
+### [1.4.2](https://www.github.com/googleapis/nodejs-asset/compare/v1.4.1...v1.4.2) (2019-11-13)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @google-cloud/storage to v4 ([#207](https://www.github.com/googleapis/nodejs-asset/issues/207)) ([1b67b50](https://www.github.com/googleapis/nodejs-asset/commit/1b67b5022ee6cdf59e51614e911c5e45e00efdf2))
+* import long into proto ts declaration file ([#218](https://www.github.com/googleapis/nodejs-asset/issues/218)) ([00bc96e](https://www.github.com/googleapis/nodejs-asset/commit/00bc96e2944444b8ef5f61251202f42f5d54db72))
+* **docs:** snippets are now replaced in jsdoc comments ([#217](https://www.github.com/googleapis/nodejs-asset/issues/217)) ([bec38ad](https://www.github.com/googleapis/nodejs-asset/commit/bec38ad74dc50251cfdc5f4ab1c37e7d3ab9704f))
+
 ### [1.4.1](https://www.github.com/googleapis/nodejs-asset/compare/v1.4.0...v1.4.1) (2019-10-22)
 
 
