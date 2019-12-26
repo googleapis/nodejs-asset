@@ -31,7 +31,8 @@
   "scripts": {
     "docs": "jsdoc -c .jsdoc.js",
     "lint": "eslint '**/*.js'",
-    "samples-test": "cd samples/ && npm link ../ && npm test && cd ../",
+    "samples-test": "c8 npm run samples-test-suite",
+    "samples-test-suite": "cd samples/ && npm link ../ && npm test && cd ../",
     "system-test": "mocha system-test/*.js smoke-test/*.js --timeout 600000",
     "test": "c8 mocha",
     "fix": "eslint --fix '**/*.js'",
