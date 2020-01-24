@@ -1,6 +1,6 @@
 {
   "interfaces": {
-    "google.cloud.asset.v1.AssetService": {
+    "google.cloud.asset.v1p1beta1.AssetService": {
       "retry_codes": {
         "non_idempotent": [],
         "idempotent": [
@@ -20,33 +20,19 @@
         }
       },
       "methods": {
-        "ExportAssets": {
-          "timeout_millis": 60000,
+        "SearchResources": {
           "retry_codes_name": "non_idempotent",
           "retry_params_name": "default"
         },
-        "BatchGetAssetsHistory": {
-          "timeout_millis": 60000,
-          "retry_codes_name": "idempotent",
-          "retry_params_name": "default"
-        },
-        "CreateFeed": {
+        "SearchIamPolicies": {
           "retry_codes_name": "non_idempotent",
           "retry_params_name": "default"
         },
-        "GetFeed": {
+        "SearchAllResources": {
           "retry_codes_name": "non_idempotent",
           "retry_params_name": "default"
         },
-        "ListFeeds": {
-          "retry_codes_name": "non_idempotent",
-          "retry_params_name": "default"
-        },
-        "UpdateFeed": {
-          "retry_codes_name": "non_idempotent",
-          "retry_params_name": "default"
-        },
-        "DeleteFeed": {
+        "SearchAllIamPolicies": {
           "retry_codes_name": "non_idempotent",
           "retry_params_name": "default"
         }

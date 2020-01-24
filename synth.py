@@ -20,16 +20,39 @@ import logging
 
 logging.basicConfig(level=logging.DEBUG)
 
-# run the gapic generator
-gapic = gcp.GAPICGenerator()
+gapic = gcp.GAPICMicrogenerator()
 versions = ['v1beta1', 'v1', 'v1p2beta1']
+name = 'asset'
 for version in versions:
-  library = gapic.node_library(
-    'asset',
-    version,
-    config_path=f"artman_cloudasset_{version}.yaml",
-    artman_output_name=f"asset-{version}")
-  s.copy(library, excludes=['src/index.js', 'README.md', 'package.json'])
+    library = gapic.typescript_library(
+        name,
+        proto_path=f'google/cloud/{name}/{version}',
+        generator_args={
+            'grpc-service-config': f'google/cloud/{name}/{version}/cloud{name}_grpc_service_config.json',
+            'package-name': f'@google-cloud/{name}'
+        },
+        version=version)
+    # skip index, protos, package.json, and README.md
+    s.copy(
+        library,
+        excludes=['package.json', 'src/index.ts']
+    )
+
+versions = ['v1p1beta1']
+name = 'asset'
+for version in versions:
+    library = gapic.typescript_library(
+        name,
+        proto_path=f'google/cloud/{name}/{version}',
+        generator_args={
+            'package-name': f'@google-cloud/{name}'
+        },
+        version=version)
+    # skip index, protos, package.json, and README.md
+    s.copy(
+        library,
+        excludes=['package.json', 'src/index.ts']
+    )
 
 # Copy common templates
 common_templates = gcp.CommonTemplates()
@@ -50,7 +73,6 @@ s.replace('**/doc/google/protobuf/doc_timestamp.js',
         'toISOString\]',
         'toISOString)')
 # [END fix-dead-link]
-
 
 # Node.js specific cleanup
 subprocess.run(['npm', 'install'])
