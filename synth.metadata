@@ -1,5 +1,6 @@
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
   "updateTime": "2020-01-28T12:09:25.073655Z",
   "sources": [
     {
@@ -9,13 +10,20 @@
         "dockerImage": "googleapis/artman@sha256:62b8b29acaae54b06a4183aa772e65b106e92d4bc466eb4db07953ab78bdb90c"
 =======
   "updateTime": "2020-01-24T23:47:20.605516Z",
+=======
+  "updateTime": "2020-01-25T00:00:44.766659Z",
+>>>>>>> chore: run generator
   "sources": [
     {
       "git": {
         "name": ".",
         "remote": "git@github.com:googleapis/nodejs-asset.git",
+<<<<<<< HEAD
         "sha": "01ec02b45863ce91e0a0fcd7144c75bd2a2d37cf"
 >>>>>>> feat!: converts library to TypeScript adding v1p1beta1 surface
+=======
+        "sha": "1efeaa951c43a34519fc97b13951d5d6fd0846fe"
+>>>>>>> chore: run generator
       }
     },
     {
@@ -371,9 +379,6 @@
       "path": "src/v1/asset_service_client.js"
 =======
       "path": "samples/README.md"
-    },
-    {
-      "path": "src/index.ts"
     },
     {
       "path": "src/v1/asset_service_client.ts"

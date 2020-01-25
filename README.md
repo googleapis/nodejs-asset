@@ -11,7 +11,7 @@
 
 
 
-Asset client for Node.js
+Cloud Asset API client for Node.js
 
 
 * [Cloud Asset Inventory Node.js Client API Reference][client-docs]
