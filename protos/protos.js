@@ -6534,6 +6534,7 @@
                          * @memberof google.cloud.asset.v1beta1
                          * @interface IGcsDestination
                          * @property {string|null} [uri] GcsDestination uri
+                         * @property {string|null} [uriPrefix] GcsDestination uriPrefix
                          */
     
                         /**
@@ -6559,17 +6560,25 @@
                          */
                         GcsDestination.prototype.uri = "";
     
+                        /**
+                         * GcsDestination uriPrefix.
+                         * @member {string} uriPrefix
+                         * @memberof google.cloud.asset.v1beta1.GcsDestination
+                         * @instance
+                         */
+                        GcsDestination.prototype.uriPrefix = "";
+    
                         // OneOf field names bound to virtual getters and setters
                         var $oneOfFields;
     
                         /**
                          * GcsDestination objectUri.
-                         * @member {"uri"|undefined} objectUri
+                         * @member {"uri"|"uriPrefix"|undefined} objectUri
                          * @memberof google.cloud.asset.v1beta1.GcsDestination
                          * @instance
                          */
                         Object.defineProperty(GcsDestination.prototype, "objectUri", {
-                            get: $util.oneOfGetter($oneOfFields = ["uri"]),
+                            get: $util.oneOfGetter($oneOfFields = ["uri", "uriPrefix"]),
                             set: $util.oneOfSetter($oneOfFields)
                         });
     
@@ -6599,6 +6608,8 @@
                                 writer = $Writer.create();
                             if (message.uri != null && message.hasOwnProperty("uri"))
                                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.uri);
+                            if (message.uriPrefix != null && message.hasOwnProperty("uriPrefix"))
+                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.uriPrefix);
                             return writer;
                         };
     
@@ -6635,6 +6646,9 @@
                                 switch (tag >>> 3) {
                                 case 1:
                                     message.uri = reader.string();
+                                    break;
+                                case 2:
+                                    message.uriPrefix = reader.string();
                                     break;
                                 default:
                                     reader.skipType(tag & 7);
@@ -6677,6 +6691,13 @@
                                 if (!$util.isString(message.uri))
                                     return "uri: string expected";
                             }
+                            if (message.uriPrefix != null && message.hasOwnProperty("uriPrefix")) {
+                                if (properties.objectUri === 1)
+                                    return "objectUri: multiple values";
+                                properties.objectUri = 1;
+                                if (!$util.isString(message.uriPrefix))
+                                    return "uriPrefix: string expected";
+                            }
                             return null;
                         };
     
@@ -6694,6 +6715,8 @@
                             var message = new $root.google.cloud.asset.v1beta1.GcsDestination();
                             if (object.uri != null)
                                 message.uri = String(object.uri);
+                            if (object.uriPrefix != null)
+                                message.uriPrefix = String(object.uriPrefix);
                             return message;
                         };
     
@@ -6714,6 +6737,11 @@
                                 object.uri = message.uri;
                                 if (options.oneofs)
                                     object.objectUri = "uri";
+                            }
+                            if (message.uriPrefix != null && message.hasOwnProperty("uriPrefix")) {
+                                object.uriPrefix = message.uriPrefix;
+                                if (options.oneofs)
+                                    object.objectUri = "uriPrefix";
                             }
                             return object;
                         };

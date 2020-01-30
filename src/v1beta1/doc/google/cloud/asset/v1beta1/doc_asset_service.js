@@ -105,7 +105,7 @@ const ExportAssetsResponse = {
  *   size of the asset name list is 100 in one request.
  *
  * @property {number} contentType
- *   Required. The content type.
+ *   Optional. The content type.
  *
  *   The number should be among the values of [ContentType]{@link google.cloud.asset.v1beta1.ContentType}
  *
@@ -168,6 +168,16 @@ const OutputConfig = {
  *   Editing Object
  *   Metadata](https://cloud.google.com/storage/docs/viewing-editing-metadata)
  *   for more information.
+ *
+ * @property {string} uriPrefix
+ *   The uri prefix of all generated Cloud Storage objects. For example:
+ *   "gs://bucket_name/object_name_prefix". Each object uri is in format:
+ *   "gs://bucket_name/object_name_prefix/<asset type>/<shard number> and only
+ *   contains assets for that type. <shard number> starts from 0. For example:
+ *   "gs://bucket_name/object_name_prefix/google.compute.disk/0" is the first
+ *   shard of output objects containing all google.compute.disk assets.
+ *   An INVALID_ARGUMENT error will be returned if file with the same name
+ *   "gs://bucket_name/object_name_prefix" already exists.
  *
  * @typedef GcsDestination
  * @memberof google.cloud.asset.v1beta1

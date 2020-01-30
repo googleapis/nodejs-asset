@@ -2777,6 +2777,9 @@ export namespace google {
 
                     /** GcsDestination uri */
                     uri?: (string|null);
+
+                    /** GcsDestination uriPrefix */
+                    uriPrefix?: (string|null);
                 }
 
                 /** Represents a GcsDestination. */
@@ -2791,8 +2794,11 @@ export namespace google {
                     /** GcsDestination uri. */
                     public uri: string;
 
+                    /** GcsDestination uriPrefix. */
+                    public uriPrefix: string;
+
                     /** GcsDestination objectUri. */
-                    public objectUri?: "uri";
+                    public objectUri?: ("uri"|"uriPrefix");
 
                     /**
                      * Creates a new GcsDestination instance using the specified properties.

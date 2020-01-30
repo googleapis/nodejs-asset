@@ -480,10 +480,15 @@
                     "java_multiple_files": true,
                     "java_outer_classname": "AssetProto",
                     "java_package": "com.google.cloud.asset.v1beta1",
-                    "php_namespace": "Google\\Cloud\\Asset\\V1beta1"
+                    "php_namespace": "Google\\Cloud\\Asset\\V1beta1",
+                    "cc_enable_arenas": true
                   },
                   "nested": {
                     "AssetService": {
+                      "options": {
+                        "(google.api.default_host)": "cloudasset.googleapis.com",
+                        "(google.api.oauth_scopes)": "https://www.googleapis.com/auth/cloud-platform"
+                      },
                       "methods": {
                         "ExportAssets": {
                           "requestType": "ExportAssetsRequest",
@@ -492,7 +497,9 @@
                             "(google.api.http).post": "/v1beta1/{parent=projects/*}:exportAssets",
                             "(google.api.http).body": "*",
                             "(google.api.http).additional_bindings.post": "/v1beta1/{parent=organizations/*}:exportAssets",
-                            "(google.api.http).additional_bindings.body": "*"
+                            "(google.api.http).additional_bindings.body": "*",
+                            "(google.longrunning.operation_info).response_type": "google.cloud.asset.v1beta1.ExportAssetsResponse",
+                            "(google.longrunning.operation_info).metadata_type": "google.cloud.asset.v1beta1.ExportAssetsRequest"
                           }
                         },
                         "BatchGetAssetsHistory": {
@@ -509,7 +516,11 @@
                       "fields": {
                         "parent": {
                           "type": "string",
-                          "id": 1
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).child_type": "cloudasset.googleapis.com/Asset"
+                          }
                         },
                         "readTime": {
                           "type": "google.protobuf.Timestamp",
@@ -526,7 +537,10 @@
                         },
                         "outputConfig": {
                           "type": "OutputConfig",
-                          "id": 5
+                          "id": 5,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
                         }
                       }
                     },
@@ -546,7 +560,11 @@
                       "fields": {
                         "parent": {
                           "type": "string",
-                          "id": 1
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).child_type": "cloudasset.googleapis.com/Asset"
+                          }
                         },
                         "assetNames": {
                           "rule": "repeated",
@@ -555,11 +573,17 @@
                         },
                         "contentType": {
                           "type": "ContentType",
-                          "id": 3
+                          "id": 3,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
                         },
                         "readTimeWindow": {
                           "type": "TimeWindow",
-                          "id": 4
+                          "id": 4,
+                          "options": {
+                            "(google.api.field_behavior)": "OPTIONAL"
+                          }
                         }
                       }
                     },
@@ -591,7 +615,8 @@
                       "oneofs": {
                         "objectUri": {
                           "oneof": [
-                            "uri"
+                            "uri",
+                            "uriPrefix"
                           ]
                         }
                       },
@@ -599,6 +624,10 @@
                         "uri": {
                           "type": "string",
                           "id": 1
+                        },
+                        "uriPrefix": {
+                          "type": "string",
+                          "id": 2
                         }
                       }
                     },
@@ -638,6 +667,10 @@
                       }
                     },
                     "Asset": {
+                      "options": {
+                        "(google.api.resource).type": "cloudasset.googleapis.com/Asset",
+                        "(google.api.resource).pattern": "*"
+                      },
                       "fields": {
                         "name": {
                           "type": "string",
