@@ -31,6 +31,7 @@ for version in versions:
             'grpc-service-config': f'google/cloud/{name}/{version}/cloud{name}_grpc_service_config.json',
             'package-name': f'@google-cloud/{name}'
         },
+        extra_proto_files=['google/cloud/common_resources.proto'],
         version=version)
     # skip index, protos, package.json, and README.md
     s.copy(

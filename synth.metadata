@@ -1,12 +1,12 @@
 {
-  "updateTime": "2020-01-30T00:56:05.783070Z",
+  "updateTime": "2020-01-30T01:12:53.281806Z",
   "sources": [
     {
       "git": {
         "name": ".",
         "remote": "git@github.com:googleapis/nodejs-asset.git",
-        "sha": "14c20a8a12fef10d9dc471ea0a964c6f4c345228",
-        "log": "14c20a8a12fef10d9dc471ea0a964c6f4c345228\nchore: rebase\n\n"
+        "sha": "887578b24e5449ebe7aac9f8d935984c2fa8945d",
+        "log": "887578b24e5449ebe7aac9f8d935984c2fa8945d\nchore: fix up package.json\n\n"
       }
     },
     {
@@ -14,8 +14,7 @@
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
         "sha": "b491d07cadaae7cde5608321f913e5ca1459b32d",
-        "internalRef": "292245373",
-        "log": "b491d07cadaae7cde5608321f913e5ca1459b32d\nRevert accidental local_repository change\n\nPiperOrigin-RevId: 292245373\n\n"
+        "internalRef": "292245373"
       }
     },
     {
@@ -239,6 +238,9 @@
       "path": "protos/google/cloud/asset/v1p2beta1/assets.proto"
     },
     {
+      "path": "protos/google/cloud/common_resources.proto"
+    },
+    {
       "path": "protos/protos.d.ts"
     },
     {
@@ -252,9 +254,6 @@
     },
     {
       "path": "samples/README.md"
-    },
-    {
-      "path": "src/index.ts"
     },
     {
       "path": "src/v1/asset_service_client.ts"
@@ -335,5 +334,5 @@
       "path": "webpack.config.js"
     }
   ],
-  "combinedCommitLog": "Changes in .:\n14c20a8a12fef10d9dc471ea0a964c6f4c345228\nchore: rebase\n\n\nChanges in googleapis:\nb491d07cadaae7cde5608321f913e5ca1459b32d\nRevert accidental local_repository change\n\nPiperOrigin-RevId: 292245373\n\n"
+  "combinedCommitLog": "Changes in .:\n887578b24e5449ebe7aac9f8d935984c2fa8945d\nchore: fix up package.json\n\n"
 }
