@@ -1,12 +1,11 @@
 {
-  "updateTime": "2020-01-30T01:12:53.281806Z",
+  "updateTime": "2020-01-30T01:31:20.020996Z",
   "sources": [
     {
       "git": {
         "name": ".",
         "remote": "git@github.com:googleapis/nodejs-asset.git",
-        "sha": "887578b24e5449ebe7aac9f8d935984c2fa8945d",
-        "log": "887578b24e5449ebe7aac9f8d935984c2fa8945d\nchore: fix up package.json\n\n"
+        "sha": "ace5ee1abd127302bffb25ac0197e44d04b85319"
       }
     },
     {
@@ -44,7 +43,7 @@
       "client": {
         "source": "googleapis",
         "apiName": "asset",
-        "apiVersion": "v1p2beta1",
+        "apiVersion": "v1p1beta1",
         "language": "typescript",
         "generator": "gapic-generator-typescript"
       }
@@ -53,7 +52,7 @@
       "client": {
         "source": "googleapis",
         "apiName": "asset",
-        "apiVersion": "v1p1beta1",
+        "apiVersion": "v1p2beta1",
         "language": "typescript",
         "generator": "gapic-generator-typescript"
       }
@@ -333,6 +332,5 @@
     {
       "path": "webpack.config.js"
     }
-  ],
-  "combinedCommitLog": "Changes in .:\n887578b24e5449ebe7aac9f8d935984c2fa8945d\nchore: fix up package.json\n\n"
+  ]
 }

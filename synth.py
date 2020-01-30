@@ -21,7 +21,7 @@ import logging
 logging.basicConfig(level=logging.DEBUG)
 
 gapic = gcp.GAPICMicrogenerator()
-versions = ['v1beta1', 'v1', 'v1p2beta1']
+versions = ['v1beta1', 'v1', 'v1p1beta1', 'v1p2beta1']
 name = 'asset'
 for version in versions:
     library = gapic.typescript_library(
@@ -32,22 +32,6 @@ for version in versions:
             'package-name': f'@google-cloud/{name}'
         },
         extra_proto_files=['google/cloud/common_resources.proto'],
-        version=version)
-    # skip index, protos, package.json, and README.md
-    s.copy(
-        library,
-        excludes=['package.json', 'src/index.ts']
-    )
-
-versions = ['v1p1beta1']
-name = 'asset'
-for version in versions:
-    library = gapic.typescript_library(
-        name,
-        proto_path=f'google/cloud/{name}/{version}',
-        generator_args={
-            'package-name': f'@google-cloud/{name}'
-        },
         version=version)
     # skip index, protos, package.json, and README.md
     s.copy(
