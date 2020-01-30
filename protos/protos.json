@@ -1071,10 +1071,6 @@
                           "type": "google.iam.v1.Policy",
                           "id": 4
                         },
-                        "iamPolicyName": {
-                          "type": "bytes",
-                          "id": 5
-                        },
                         "ancestors": {
                           "rule": "repeated",
                           "type": "string",
@@ -1107,10 +1103,6 @@
                         "data": {
                           "type": "google.protobuf.Struct",
                           "id": 6
-                        },
-                        "internalData": {
-                          "type": "google.protobuf.Any",
-                          "id": 7
                         }
                       }
                     },
@@ -1120,41 +1112,29 @@
                         "(google.api.oauth_scopes)": "https://www.googleapis.com/auth/cloud-platform"
                       },
                       "methods": {
-                        "ExportAssets": {
-                          "requestType": "ExportAssetsRequest",
-                          "responseType": "google.longrunning.Operation",
-                          "options": {
-                            "(google.api.http).post": "/v1p2beta1/{parent=*/*}:exportAssets",
-                            "(google.api.http).body": "*"
-                          }
-                        },
-                        "BatchGetAssetsHistory": {
-                          "requestType": "BatchGetAssetsHistoryRequest",
-                          "responseType": "BatchGetAssetsHistoryResponse",
-                          "options": {
-                            "(google.api.http).get": "/v1p2beta1/{parent=*/*}:batchGetAssetsHistory"
-                          }
-                        },
                         "CreateFeed": {
                           "requestType": "CreateFeedRequest",
                           "responseType": "Feed",
                           "options": {
                             "(google.api.http).post": "/v1p2beta1/{parent=*/*}/feeds",
-                            "(google.api.http).body": "*"
+                            "(google.api.http).body": "*",
+                            "(google.api.method_signature)": "parent"
                           }
                         },
                         "GetFeed": {
                           "requestType": "GetFeedRequest",
                           "responseType": "Feed",
                           "options": {
-                            "(google.api.http).get": "/v1p2beta1/{name=*/*/feeds/*}"
+                            "(google.api.http).get": "/v1p2beta1/{name=*/*/feeds/*}",
+                            "(google.api.method_signature)": "name"
                           }
                         },
                         "ListFeeds": {
                           "requestType": "ListFeedsRequest",
                           "responseType": "ListFeedsResponse",
                           "options": {
-                            "(google.api.http).get": "/v1p2beta1/{parent=*/*}/feeds"
+                            "(google.api.http).get": "/v1p2beta1/{parent=*/*}/feeds",
+                            "(google.api.method_signature)": "parent"
                           }
                         },
                         "UpdateFeed": {
@@ -1162,82 +1142,17 @@
                           "responseType": "Feed",
                           "options": {
                             "(google.api.http).patch": "/v1p2beta1/{feed.name=*/*/feeds/*}",
-                            "(google.api.http).body": "*"
+                            "(google.api.http).body": "*",
+                            "(google.api.method_signature)": "feed"
                           }
                         },
                         "DeleteFeed": {
                           "requestType": "DeleteFeedRequest",
                           "responseType": "google.protobuf.Empty",
                           "options": {
-                            "(google.api.http).delete": "/v1p2beta1/{name=*/*/feeds/*}"
+                            "(google.api.http).delete": "/v1p2beta1/{name=*/*/feeds/*}",
+                            "(google.api.method_signature)": "name"
                           }
-                        }
-                      }
-                    },
-                    "ExportAssetsRequest": {
-                      "fields": {
-                        "parent": {
-                          "type": "string",
-                          "id": 1
-                        },
-                        "readTime": {
-                          "type": "google.protobuf.Timestamp",
-                          "id": 2
-                        },
-                        "assetTypes": {
-                          "rule": "repeated",
-                          "type": "string",
-                          "id": 3
-                        },
-                        "contentType": {
-                          "type": "ContentType",
-                          "id": 4
-                        },
-                        "outputConfig": {
-                          "type": "OutputConfig",
-                          "id": 5
-                        }
-                      }
-                    },
-                    "ExportAssetsResponse": {
-                      "fields": {
-                        "readTime": {
-                          "type": "google.protobuf.Timestamp",
-                          "id": 1
-                        },
-                        "outputConfig": {
-                          "type": "OutputConfig",
-                          "id": 2
-                        }
-                      }
-                    },
-                    "BatchGetAssetsHistoryRequest": {
-                      "fields": {
-                        "parent": {
-                          "type": "string",
-                          "id": 1
-                        },
-                        "assetNames": {
-                          "rule": "repeated",
-                          "type": "string",
-                          "id": 2
-                        },
-                        "contentType": {
-                          "type": "ContentType",
-                          "id": 3
-                        },
-                        "readTimeWindow": {
-                          "type": "TimeWindow",
-                          "id": 4
-                        }
-                      }
-                    },
-                    "BatchGetAssetsHistoryResponse": {
-                      "fields": {
-                        "assets": {
-                          "rule": "repeated",
-                          "type": "TemporalAsset",
-                          "id": 1
                         }
                       }
                     },
@@ -1245,15 +1160,24 @@
                       "fields": {
                         "parent": {
                           "type": "string",
-                          "id": 1
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
                         },
                         "feedId": {
                           "type": "string",
-                          "id": 2
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
                         },
                         "feed": {
                           "type": "Feed",
-                          "id": 3
+                          "id": 3,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
                         }
                       }
                     },
@@ -1261,7 +1185,11 @@
                       "fields": {
                         "name": {
                           "type": "string",
-                          "id": 1
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).type": "cloudasset.googleapis.com/Feed"
+                          }
                         }
                       }
                     },
@@ -1269,7 +1197,10 @@
                       "fields": {
                         "parent": {
                           "type": "string",
-                          "id": 1
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
                         }
                       }
                     },
@@ -1286,11 +1217,17 @@
                       "fields": {
                         "feed": {
                           "type": "Feed",
-                          "id": 1
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
                         },
                         "updateMask": {
                           "type": "google.protobuf.FieldMask",
-                          "id": 2
+                          "id": 2,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
                         }
                       }
                     },
@@ -1298,7 +1235,11 @@
                       "fields": {
                         "name": {
                           "type": "string",
-                          "id": 1
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED",
+                            "(google.api.resource_reference).type": "cloudasset.googleapis.com/Feed"
+                          }
                         }
                       }
                     },
@@ -1306,8 +1247,7 @@
                       "oneofs": {
                         "destination": {
                           "oneof": [
-                            "gcsDestination",
-                            "bigqueryDestination"
+                            "gcsDestination"
                           ]
                         }
                       },
@@ -1315,10 +1255,6 @@
                         "gcsDestination": {
                           "type": "GcsDestination",
                           "id": 1
-                        },
-                        "bigqueryDestination": {
-                          "type": "BigQueryDestination",
-                          "id": 2
                         }
                       }
                     },
@@ -1326,8 +1262,7 @@
                       "oneofs": {
                         "objectUri": {
                           "oneof": [
-                            "uri",
-                            "uriPrefix"
+                            "uri"
                           ]
                         }
                       },
@@ -1335,26 +1270,6 @@
                         "uri": {
                           "type": "string",
                           "id": 1
-                        },
-                        "uriPrefix": {
-                          "type": "string",
-                          "id": 2
-                        }
-                      }
-                    },
-                    "BigQueryDestination": {
-                      "fields": {
-                        "dataset": {
-                          "type": "string",
-                          "id": 1
-                        },
-                        "table": {
-                          "type": "string",
-                          "id": 2
-                        },
-                        "force": {
-                          "type": "bool",
-                          "id": 3
                         }
                       }
                     },
@@ -1364,16 +1279,6 @@
                           "type": "string",
                           "id": 1
                         }
-                      }
-                    },
-                    "ContentType": {
-                      "values": {
-                        "CONTENT_TYPE_UNSPECIFIED": 0,
-                        "RESOURCE": 1,
-                        "IAM_POLICY": 2,
-                        "IAM_POLICY_NAME": 3,
-                        "ORG_POLICY": 4,
-                        "ACCESS_POLICY": 5
                       }
                     },
                     "FeedOutputConfig": {
@@ -1392,10 +1297,18 @@
                       }
                     },
                     "Feed": {
+                      "options": {
+                        "(google.api.resource).type": "cloudasset.googleapis.com/Feed",
+                        "(google.api.resource).pattern": "organizations/{organization}/feeds/{feed}",
+                        "(google.api.resource).history": "ORIGINALLY_SINGLE_PATTERN"
+                      },
                       "fields": {
                         "name": {
                           "type": "string",
-                          "id": 1
+                          "id": 1,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
                         },
                         "assetNames": {
                           "rule": "repeated",
@@ -1413,8 +1326,18 @@
                         },
                         "feedOutputConfig": {
                           "type": "FeedOutputConfig",
-                          "id": 5
+                          "id": 5,
+                          "options": {
+                            "(google.api.field_behavior)": "REQUIRED"
+                          }
                         }
+                      }
+                    },
+                    "ContentType": {
+                      "values": {
+                        "CONTENT_TYPE_UNSPECIFIED": 0,
+                        "RESOURCE": 1,
+                        "IAM_POLICY": 2
                       }
                     }
                   }

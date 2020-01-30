@@ -41,23 +41,8 @@ for version in versions:
 
 # Copy common templates
 common_templates = gcp.CommonTemplates()
-templates = common_templates.node_library()
+templates = common_templates.node_library(source_location='build/src')
 s.copy(templates)
-
-# [START fix-dead-link]
-discovery_url = 'https://www.googleapis.com/discovery/v1/apis/compute/v1/rest'
-s.replace('**/doc/google/cloud/asset/*/doc_assets.js',
-        f'`"{discovery_url}"`',
-        f'[`"{discovery_url}"`]({discovery_url})')
-
-s.replace('**/doc/google/protobuf/doc_timestamp.js',
-        'https:\/\/cloud\.google\.com[\s\*]*http:\/\/(.*)[\s\*]*\)',
-        r"https://\1)")
-
-s.replace('**/doc/google/protobuf/doc_timestamp.js',
-        'toISOString\]',
-        'toISOString)')
-# [END fix-dead-link]
 
 # Node.js specific cleanup
 subprocess.run(['npm', 'install'])

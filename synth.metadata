@@ -1,19 +1,20 @@
 {
-  "updateTime": "2020-01-30T01:31:20.020996Z",
+  "updateTime": "2020-01-30T19:19:18.903592Z",
   "sources": [
     {
       "git": {
         "name": ".",
         "remote": "git@github.com:googleapis/nodejs-asset.git",
-        "sha": "ace5ee1abd127302bffb25ac0197e44d04b85319"
+        "sha": "603d73dabc4a5979b6b4bec3412b145c9994c8f2"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "b491d07cadaae7cde5608321f913e5ca1459b32d",
-        "internalRef": "292245373"
+        "sha": "3ca2c014e24eb5111c8e7248b1e1eb833977c83d",
+        "internalRef": "292382559",
+        "log": "3ca2c014e24eb5111c8e7248b1e1eb833977c83d\nbazel: Add --flaky_test_attempts=3 argument to prevent CI failures caused by flaky tests\n\nPiperOrigin-RevId: 292382559\n\n9933347c1f677e81e19a844c2ef95bfceaf694fe\nbazel:Integrate latest protoc-java-resource-names-plugin changes (fix for PyYAML dependency in bazel rules)\n\nPiperOrigin-RevId: 292376626\n\nb835ab9d2f62c88561392aa26074c0b849fb0bd3\nasset: v1p2beta1 add client config annotations\n\n* remove unintentionally exposed RPCs\n* remove messages relevant to removed RPCs\n\nPiperOrigin-RevId: 292369593\n\nc1246a29e22b0f98e800a536b5b0da2d933a55f2\nUpdating v1 protos with the latest inline documentation (in comments) and config options. Also adding a per-service .yaml file.\n\nPiperOrigin-RevId: 292310790\n\n"
       }
     },
     {
@@ -332,5 +333,6 @@
     {
       "path": "webpack.config.js"
     }
-  ]
+  ],
+  "combinedCommitLog": "Changes in googleapis:\n3ca2c014e24eb5111c8e7248b1e1eb833977c83d\nbazel: Add --flaky_test_attempts=3 argument to prevent CI failures caused by flaky tests\n\nPiperOrigin-RevId: 292382559\n\n9933347c1f677e81e19a844c2ef95bfceaf694fe\nbazel:Integrate latest protoc-java-resource-names-plugin changes (fix for PyYAML dependency in bazel rules)\n\nPiperOrigin-RevId: 292376626\n\nb835ab9d2f62c88561392aa26074c0b849fb0bd3\nasset: v1p2beta1 add client config annotations\n\n* remove unintentionally exposed RPCs\n* remove messages relevant to removed RPCs\n\nPiperOrigin-RevId: 292369593\n\nc1246a29e22b0f98e800a536b5b0da2d933a55f2\nUpdating v1 protos with the latest inline documentation (in comments) and config options. Also adding a per-service .yaml file.\n\nPiperOrigin-RevId: 292310790\n\n"
 }

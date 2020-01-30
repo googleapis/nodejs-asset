@@ -39,6 +39,7 @@ const version = require('../../../package.json').version;
 export class AssetServiceClient {
   private _descriptors: Descriptors = {page: {}, stream: {}, longrunning: {}};
   private _innerApiCalls: {[name: string]: Function};
+  private _pathTemplates: {[name: string]: gax.PathTemplate};
   private _terminated = false;
   auth: gax.GoogleAuth;
   assetServiceStub: Promise<{[name: string]: Function}>;
@@ -134,6 +135,21 @@ export class AssetServiceClient {
       opts.fallback ? require('../../protos/protos.json') : nodejsProtoPath
     );
 
+    // This API contains "path templates"; forward-slash-separated
+    // identifiers to uniquely identify resources within the API.
+    // Create useful helper objects for these.
+    this._pathTemplates = {
+      projectFeedPathTemplate: new gaxModule.PathTemplate(
+        'projects/{project}/feeds/{feed}'
+      ),
+      folderFeedPathTemplate: new gaxModule.PathTemplate(
+        'folders/{folder}/feeds/{feed}'
+      ),
+      organizationFeedPathTemplate: new gaxModule.PathTemplate(
+        'organizations/{organization}/feeds/{feed}'
+      ),
+    };
+
     // Put together the default options sent with requests.
     const defaults = gaxGrpc.constructSettings(
       'google.cloud.asset.v1p2beta1.AssetService',
@@ -162,8 +178,6 @@ export class AssetServiceClient {
     // Iterate over each of the methods that the service provides
     // and create an API call method for each.
     const assetServiceStubMethods = [
-      'exportAssets',
-      'batchGetAssetsHistory',
       'createFeed',
       'getFeed',
       'listFeeds',
@@ -252,211 +266,6 @@ export class AssetServiceClient {
   // -------------------
   // -- Service calls --
   // -------------------
-  exportAssets(
-    request: protosTypes.google.cloud.asset.v1p2beta1.IExportAssetsRequest,
-    options?: gax.CallOptions
-  ): Promise<
-    [
-      protosTypes.google.longrunning.IOperation,
-      protosTypes.google.cloud.asset.v1p2beta1.IExportAssetsRequest | undefined,
-      {} | undefined
-    ]
-  >;
-  exportAssets(
-    request: protosTypes.google.cloud.asset.v1p2beta1.IExportAssetsRequest,
-    options: gax.CallOptions,
-    callback: Callback<
-      protosTypes.google.longrunning.IOperation,
-      protosTypes.google.cloud.asset.v1p2beta1.IExportAssetsRequest | undefined,
-      {} | undefined
-    >
-  ): void;
-  /**
-   * Exports assets with time and resource types to a given Cloud Storage
-   * location. The output format is newline-delimited JSON.
-   * This API implements the [google.longrunning.Operation][google.longrunning.Operation] API allowing you
-   * to keep track of the export.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.parent
-   *   Required. The relative name of the root asset. This can only be an
-   *   organization number (such as "organizations/123"), a project ID (such as
-   *   "projects/my-project-id"), or a project number (such as "projects/12345").
-   * @param {google.protobuf.Timestamp} request.readTime
-   *   Timestamp to take an asset snapshot. This can only be set to a timestamp
-   *   between 2018-10-02 UTC (inclusive) and the current time. If not specified,
-   *   the current time will be used. Due to delays in resource data collection
-   *   and indexing, there is a volatile window during which running the same
-   *   query may get different results.
-   * @param {string[]} request.assetTypes
-   *   A list of asset types of which to take a snapshot for. For example:
-   *   "compute.googleapis.com/Disk". If specified, only matching assets will be
-   *   returned. See [Introduction to Cloud Asset
-   *   Inventory](https://cloud.google.com/resource-manager/docs/cloud-asset-inventory/overview)
-   *   for all supported asset types.
-   * @param {google.cloud.asset.v1p2beta1.ContentType} request.contentType
-   *   Asset content type. If not specified, no content but the asset name will be
-   *   returned.
-   * @param {google.cloud.asset.v1p2beta1.OutputConfig} request.outputConfig
-   *   Required. Output configuration indicating where the results will be output
-   *   to. All results will be in newline delimited JSON format.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing [Operation]{@link google.longrunning.Operation}.
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
-   */
-  exportAssets(
-    request: protosTypes.google.cloud.asset.v1p2beta1.IExportAssetsRequest,
-    optionsOrCallback?:
-      | gax.CallOptions
-      | Callback<
-          protosTypes.google.longrunning.IOperation,
-          | protosTypes.google.cloud.asset.v1p2beta1.IExportAssetsRequest
-          | undefined,
-          {} | undefined
-        >,
-    callback?: Callback<
-      protosTypes.google.longrunning.IOperation,
-      protosTypes.google.cloud.asset.v1p2beta1.IExportAssetsRequest | undefined,
-      {} | undefined
-    >
-  ): Promise<
-    [
-      protosTypes.google.longrunning.IOperation,
-      protosTypes.google.cloud.asset.v1p2beta1.IExportAssetsRequest | undefined,
-      {} | undefined
-    ]
-  > | void {
-    request = request || {};
-    let options: gax.CallOptions;
-    if (typeof optionsOrCallback === 'function' && callback === undefined) {
-      callback = optionsOrCallback;
-      options = {};
-    } else {
-      options = optionsOrCallback as gax.CallOptions;
-    }
-    options = options || {};
-    options.otherArgs = options.otherArgs || {};
-    options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      parent: request.parent || '',
-    });
-    return this._innerApiCalls.exportAssets(request, options, callback);
-  }
-  batchGetAssetsHistory(
-    request: protosTypes.google.cloud.asset.v1p2beta1.IBatchGetAssetsHistoryRequest,
-    options?: gax.CallOptions
-  ): Promise<
-    [
-      protosTypes.google.cloud.asset.v1p2beta1.IBatchGetAssetsHistoryResponse,
-      (
-        | protosTypes.google.cloud.asset.v1p2beta1.IBatchGetAssetsHistoryRequest
-        | undefined
-      ),
-      {} | undefined
-    ]
-  >;
-  batchGetAssetsHistory(
-    request: protosTypes.google.cloud.asset.v1p2beta1.IBatchGetAssetsHistoryRequest,
-    options: gax.CallOptions,
-    callback: Callback<
-      protosTypes.google.cloud.asset.v1p2beta1.IBatchGetAssetsHistoryResponse,
-      | protosTypes.google.cloud.asset.v1p2beta1.IBatchGetAssetsHistoryRequest
-      | undefined,
-      {} | undefined
-    >
-  ): void;
-  /**
-   * Batch gets the update history of assets that overlap a time window.
-   * For RESOURCE content, this API outputs history with asset in both
-   * non-delete or deleted status.
-   * For IAM_POLICY content, this API outputs history when the asset and its
-   * attached IAM POLICY both exist. This can create gaps in the output history.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.parent
-   *   Required. The relative name of the root asset. It can only be an
-   *   organization number (such as "organizations/123"), a project ID (such as
-   *   "projects/my-project-id")", or a project number (such as "projects/12345").
-   * @param {string[]} request.assetNames
-   *   A list of the full names of the assets. For example:
-   *   `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
-   *   See [Resource
-   *   Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
-   *   and [Resource Name
-   *   Format](https://cloud.google.com/resource-manager/docs/cloud-asset-inventory/resource-name-format)
-   *   for more info.
-   *
-   *   The request becomes a no-op if the asset name list is empty, and the max
-   *   size of the asset name list is 100 in one request.
-   * @param {google.cloud.asset.v1p2beta1.ContentType} request.contentType
-   *   Required. The content type.
-   * @param {google.cloud.asset.v1p2beta1.TimeWindow} request.readTimeWindow
-   *   Optional. The time window for the asset history. Both start_time and
-   *   end_time are optional and if set, it must be after 2018-10-02 UTC. If
-   *   end_time is not set, it is default to current timestamp. If start_time is
-   *   not set, the snapshot of the assets at end_time will be returned. The
-   *   returned results contain all temporal assets whose time window overlap with
-   *   read_time_window.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing [BatchGetAssetsHistoryResponse]{@link google.cloud.asset.v1p2beta1.BatchGetAssetsHistoryResponse}.
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
-   */
-  batchGetAssetsHistory(
-    request: protosTypes.google.cloud.asset.v1p2beta1.IBatchGetAssetsHistoryRequest,
-    optionsOrCallback?:
-      | gax.CallOptions
-      | Callback<
-          protosTypes.google.cloud.asset.v1p2beta1.IBatchGetAssetsHistoryResponse,
-          | protosTypes.google.cloud.asset.v1p2beta1.IBatchGetAssetsHistoryRequest
-          | undefined,
-          {} | undefined
-        >,
-    callback?: Callback<
-      protosTypes.google.cloud.asset.v1p2beta1.IBatchGetAssetsHistoryResponse,
-      | protosTypes.google.cloud.asset.v1p2beta1.IBatchGetAssetsHistoryRequest
-      | undefined,
-      {} | undefined
-    >
-  ): Promise<
-    [
-      protosTypes.google.cloud.asset.v1p2beta1.IBatchGetAssetsHistoryResponse,
-      (
-        | protosTypes.google.cloud.asset.v1p2beta1.IBatchGetAssetsHistoryRequest
-        | undefined
-      ),
-      {} | undefined
-    ]
-  > | void {
-    request = request || {};
-    let options: gax.CallOptions;
-    if (typeof optionsOrCallback === 'function' && callback === undefined) {
-      callback = optionsOrCallback;
-      options = {};
-    } else {
-      options = optionsOrCallback as gax.CallOptions;
-    }
-    options = options || {};
-    options.otherArgs = options.otherArgs || {};
-    options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      parent: request.parent || '',
-    });
-    return this._innerApiCalls.batchGetAssetsHistory(
-      request,
-      options,
-      callback
-    );
-  }
   createFeed(
     request: protosTypes.google.cloud.asset.v1p2beta1.ICreateFeedRequest,
     options?: gax.CallOptions
@@ -492,7 +301,7 @@ export class AssetServiceClient {
    *   Required. This is the client-assigned asset feed identifier and it needs to
    *   be unique under a specific parent project/folder/organization.
    * @param {google.cloud.asset.v1p2beta1.Feed} request.feed
-   *   The feed details. The field `name` must be empty and it will be generated
+   *   Required. The feed details. The field `name` must be empty and it will be generated
    *   in the format of:
    *   projects/project_number/feeds/feed_id
    *   folders/folder_number/feeds/feed_id
@@ -568,7 +377,7 @@ export class AssetServiceClient {
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.name
-   *   The name of the Feed and it must be in the format of:
+   *   Required. The name of the Feed and it must be in the format of:
    *   projects/project_number/feeds/feed_id
    *   folders/folder_number/feeds/feed_id
    *   organizations/organization_number/feeds/feed_id
@@ -716,13 +525,13 @@ export class AssetServiceClient {
    * @param {Object} request
    *   The request object that will be sent.
    * @param {google.cloud.asset.v1p2beta1.Feed} request.feed
-   *   The new values of feed details. It must match an existing feed and the
+   *   Required. The new values of feed details. It must match an existing feed and the
    *   field `name` must be in the format of:
    *   projects/project_number/feeds/feed_id or
    *   folders/folder_number/feeds/feed_id or
    *   organizations/organization_number/feeds/feed_id.
    * @param {google.protobuf.FieldMask} request.updateMask
-   *   Only updates the `feed` fields indicated by this mask.
+   *   Required. Only updates the `feed` fields indicated by this mask.
    *   The field mask must not be empty, and it must not contain fields that
    *   are immutable or only set by the server.
    * @param {object} [options]
@@ -796,7 +605,7 @@ export class AssetServiceClient {
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.name
-   *   The name of the feed and it must be in the format of:
+   *   Required. The name of the feed and it must be in the format of:
    *   projects/project_number/feeds/feed_id
    *   folders/folder_number/feeds/feed_id
    *   organizations/organization_number/feeds/feed_id
@@ -845,6 +654,126 @@ export class AssetServiceClient {
       name: request.name || '',
     });
     return this._innerApiCalls.deleteFeed(request, options, callback);
+  }
+
+  // --------------------
+  // -- Path templates --
+  // --------------------
+
+  /**
+   * Return a fully-qualified projectFeed resource name string.
+   *
+   * @param {string} project
+   * @param {string} feed
+   * @returns {string} Resource name string.
+   */
+  projectFeedPath(project: string, feed: string) {
+    return this._pathTemplates.projectFeedPathTemplate.render({
+      project,
+      feed,
+    });
+  }
+
+  /**
+   * Parse the project from ProjectFeed resource.
+   *
+   * @param {string} projectFeedName
+   *   A fully-qualified path representing project_feed resource.
+   * @returns {string} A string representing the project.
+   */
+  matchProjectFromProjectFeedName(projectFeedName: string) {
+    return this._pathTemplates.projectFeedPathTemplate.match(projectFeedName)
+      .project;
+  }
+
+  /**
+   * Parse the feed from ProjectFeed resource.
+   *
+   * @param {string} projectFeedName
+   *   A fully-qualified path representing project_feed resource.
+   * @returns {string} A string representing the feed.
+   */
+  matchFeedFromProjectFeedName(projectFeedName: string) {
+    return this._pathTemplates.projectFeedPathTemplate.match(projectFeedName)
+      .feed;
+  }
+
+  /**
+   * Return a fully-qualified folderFeed resource name string.
+   *
+   * @param {string} folder
+   * @param {string} feed
+   * @returns {string} Resource name string.
+   */
+  folderFeedPath(folder: string, feed: string) {
+    return this._pathTemplates.folderFeedPathTemplate.render({
+      folder,
+      feed,
+    });
+  }
+
+  /**
+   * Parse the folder from FolderFeed resource.
+   *
+   * @param {string} folderFeedName
+   *   A fully-qualified path representing folder_feed resource.
+   * @returns {string} A string representing the folder.
+   */
+  matchFolderFromFolderFeedName(folderFeedName: string) {
+    return this._pathTemplates.folderFeedPathTemplate.match(folderFeedName)
+      .folder;
+  }
+
+  /**
+   * Parse the feed from FolderFeed resource.
+   *
+   * @param {string} folderFeedName
+   *   A fully-qualified path representing folder_feed resource.
+   * @returns {string} A string representing the feed.
+   */
+  matchFeedFromFolderFeedName(folderFeedName: string) {
+    return this._pathTemplates.folderFeedPathTemplate.match(folderFeedName)
+      .feed;
+  }
+
+  /**
+   * Return a fully-qualified organizationFeed resource name string.
+   *
+   * @param {string} organization
+   * @param {string} feed
+   * @returns {string} Resource name string.
+   */
+  organizationFeedPath(organization: string, feed: string) {
+    return this._pathTemplates.organizationFeedPathTemplate.render({
+      organization,
+      feed,
+    });
+  }
+
+  /**
+   * Parse the organization from OrganizationFeed resource.
+   *
+   * @param {string} organizationFeedName
+   *   A fully-qualified path representing organization_feed resource.
+   * @returns {string} A string representing the organization.
+   */
+  matchOrganizationFromOrganizationFeedName(organizationFeedName: string) {
+    return this._pathTemplates.organizationFeedPathTemplate.match(
+      organizationFeedName
+    ).organization;
+  }
+
+  /**
+   * Parse the feed from OrganizationFeed resource.
+   *
+   * @param {string} organizationFeedName
+   *   A fully-qualified path representing organization_feed resource.
+   * @returns {string} A string representing the feed.
+   */
+  matchFeedFromOrganizationFeedName(organizationFeedName: string) {
+    return this._pathTemplates.organizationFeedPathTemplate.match(
+      organizationFeedName
+    ).feed;
   }
 
   /**
