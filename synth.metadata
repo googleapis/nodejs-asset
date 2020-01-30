@@ -1,19 +1,21 @@
 {
-  "updateTime": "2020-01-30T00:43:09.789391Z",
+  "updateTime": "2020-01-30T00:56:05.783070Z",
   "sources": [
     {
       "git": {
         "name": ".",
         "remote": "git@github.com:googleapis/nodejs-asset.git",
-        "sha": "87d7dad69f2ac514c5041de8bf98157394725074"
+        "sha": "14c20a8a12fef10d9dc471ea0a964c6f4c345228",
+        "log": "14c20a8a12fef10d9dc471ea0a964c6f4c345228\nchore: rebase\n\n"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "af3400a8cb6110025198b59a0f7d018ae3cda700",
-        "internalRef": "292243997"
+        "sha": "b491d07cadaae7cde5608321f913e5ca1459b32d",
+        "internalRef": "292245373",
+        "log": "b491d07cadaae7cde5608321f913e5ca1459b32d\nRevert accidental local_repository change\n\nPiperOrigin-RevId: 292245373\n\n"
       }
     },
     {
@@ -252,6 +254,9 @@
       "path": "samples/README.md"
     },
     {
+      "path": "src/index.ts"
+    },
+    {
       "path": "src/v1/asset_service_client.ts"
     },
     {
@@ -329,5 +334,6 @@
     {
       "path": "webpack.config.js"
     }
-  ]
+  ],
+  "combinedCommitLog": "Changes in .:\n14c20a8a12fef10d9dc471ea0a964c6f4c345228\nchore: rebase\n\n\nChanges in googleapis:\nb491d07cadaae7cde5608321f913e5ca1459b32d\nRevert accidental local_repository change\n\nPiperOrigin-RevId: 292245373\n\n"
 }

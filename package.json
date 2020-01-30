@@ -8,12 +8,10 @@
     "node": ">=8.10.0"
   },
   "repository": "googleapis/nodejs-asset",
-  "main": "src/index.js",
+  "main": "build/src/index.js",
   "files": [
-    "protos",
-    "src",
-    "AUTHORS",
-    "COPYING"
+    "build/src",
+    "build/protos"
   ],
   "keywords": [
     "google apis client",
@@ -44,7 +42,7 @@
     "test": "c8 mocha build/test"
   },
   "dependencies": {
-    "google-gax": "^1.7.5",
+    "google-gax": "^1.14.1",
     "protobufjs": "^6.8.0"
   },
   "devDependencies": {

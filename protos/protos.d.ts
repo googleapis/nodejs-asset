@@ -642,7 +642,7 @@ export namespace google {
                     assetTypes?: (string[]|null);
 
                     /** ExportAssetsRequest contentType */
-                    contentType?: (google.cloud.asset.v1.ContentType|null);
+                    contentType?: (google.cloud.asset.v1.ContentType|keyof typeof google.cloud.asset.v1.ContentType|null);
 
                     /** ExportAssetsRequest outputConfig */
                     outputConfig?: (google.cloud.asset.v1.IOutputConfig|null);
@@ -667,7 +667,7 @@ export namespace google {
                     public assetTypes: string[];
 
                     /** ExportAssetsRequest contentType. */
-                    public contentType: google.cloud.asset.v1.ContentType;
+                    public contentType: (google.cloud.asset.v1.ContentType|keyof typeof google.cloud.asset.v1.ContentType);
 
                     /** ExportAssetsRequest outputConfig. */
                     public outputConfig?: (google.cloud.asset.v1.IOutputConfig|null);
@@ -849,7 +849,7 @@ export namespace google {
                     assetNames?: (string[]|null);
 
                     /** BatchGetAssetsHistoryRequest contentType */
-                    contentType?: (google.cloud.asset.v1.ContentType|null);
+                    contentType?: (google.cloud.asset.v1.ContentType|keyof typeof google.cloud.asset.v1.ContentType|null);
 
                     /** BatchGetAssetsHistoryRequest readTimeWindow */
                     readTimeWindow?: (google.cloud.asset.v1.ITimeWindow|null);
@@ -871,7 +871,7 @@ export namespace google {
                     public assetNames: string[];
 
                     /** BatchGetAssetsHistoryRequest contentType. */
-                    public contentType: google.cloud.asset.v1.ContentType;
+                    public contentType: (google.cloud.asset.v1.ContentType|keyof typeof google.cloud.asset.v1.ContentType);
 
                     /** BatchGetAssetsHistoryRequest readTimeWindow. */
                     public readTimeWindow?: (google.cloud.asset.v1.ITimeWindow|null);
@@ -2100,7 +2100,7 @@ export namespace google {
                     assetTypes?: (string[]|null);
 
                     /** Feed contentType */
-                    contentType?: (google.cloud.asset.v1.ContentType|null);
+                    contentType?: (google.cloud.asset.v1.ContentType|keyof typeof google.cloud.asset.v1.ContentType|null);
 
                     /** Feed feedOutputConfig */
                     feedOutputConfig?: (google.cloud.asset.v1.IFeedOutputConfig|null);
@@ -2125,7 +2125,7 @@ export namespace google {
                     public assetTypes: string[];
 
                     /** Feed contentType. */
-                    public contentType: google.cloud.asset.v1.ContentType;
+                    public contentType: (google.cloud.asset.v1.ContentType|keyof typeof google.cloud.asset.v1.ContentType);
 
                     /** Feed feedOutputConfig. */
                     public feedOutputConfig?: (google.cloud.asset.v1.IFeedOutputConfig|null);
@@ -2710,7 +2710,7 @@ export namespace google {
                     assetTypes?: (string[]|null);
 
                     /** ExportAssetsRequest contentType */
-                    contentType?: (google.cloud.asset.v1beta1.ContentType|null);
+                    contentType?: (google.cloud.asset.v1beta1.ContentType|keyof typeof google.cloud.asset.v1beta1.ContentType|null);
 
                     /** ExportAssetsRequest outputConfig */
                     outputConfig?: (google.cloud.asset.v1beta1.IOutputConfig|null);
@@ -2735,7 +2735,7 @@ export namespace google {
                     public assetTypes: string[];
 
                     /** ExportAssetsRequest contentType. */
-                    public contentType: google.cloud.asset.v1beta1.ContentType;
+                    public contentType: (google.cloud.asset.v1beta1.ContentType|keyof typeof google.cloud.asset.v1beta1.ContentType);
 
                     /** ExportAssetsRequest outputConfig. */
                     public outputConfig?: (google.cloud.asset.v1beta1.IOutputConfig|null);
@@ -2917,7 +2917,7 @@ export namespace google {
                     assetNames?: (string[]|null);
 
                     /** BatchGetAssetsHistoryRequest contentType */
-                    contentType?: (google.cloud.asset.v1beta1.ContentType|null);
+                    contentType?: (google.cloud.asset.v1beta1.ContentType|keyof typeof google.cloud.asset.v1beta1.ContentType|null);
 
                     /** BatchGetAssetsHistoryRequest readTimeWindow */
                     readTimeWindow?: (google.cloud.asset.v1beta1.ITimeWindow|null);
@@ -2939,7 +2939,7 @@ export namespace google {
                     public assetNames: string[];
 
                     /** BatchGetAssetsHistoryRequest contentType. */
-                    public contentType: google.cloud.asset.v1beta1.ContentType;
+                    public contentType: (google.cloud.asset.v1beta1.ContentType|keyof typeof google.cloud.asset.v1beta1.ContentType);
 
                     /** BatchGetAssetsHistoryRequest readTimeWindow. */
                     public readTimeWindow?: (google.cloud.asset.v1beta1.ITimeWindow|null);
@@ -4684,7 +4684,7 @@ export namespace google {
                     iamPolicy?: (google.iam.v1.IPolicy|null);
 
                     /** Asset iamPolicyName */
-                    iamPolicyName?: (Uint8Array|null);
+                    iamPolicyName?: (Uint8Array|string|null);
 
                     /** Asset ancestors */
                     ancestors?: (string[]|null);
@@ -4712,7 +4712,7 @@ export namespace google {
                     public iamPolicy?: (google.iam.v1.IPolicy|null);
 
                     /** Asset iamPolicyName. */
-                    public iamPolicyName: Uint8Array;
+                    public iamPolicyName: (Uint8Array|string);
 
                     /** Asset ancestors. */
                     public ancestors: string[];
@@ -5098,7 +5098,7 @@ export namespace google {
                     assetTypes?: (string[]|null);
 
                     /** ExportAssetsRequest contentType */
-                    contentType?: (google.cloud.asset.v1p2beta1.ContentType|null);
+                    contentType?: (google.cloud.asset.v1p2beta1.ContentType|keyof typeof google.cloud.asset.v1p2beta1.ContentType|null);
 
                     /** ExportAssetsRequest outputConfig */
                     outputConfig?: (google.cloud.asset.v1p2beta1.IOutputConfig|null);
@@ -5123,7 +5123,7 @@ export namespace google {
                     public assetTypes: string[];
 
                     /** ExportAssetsRequest contentType. */
-                    public contentType: google.cloud.asset.v1p2beta1.ContentType;
+                    public contentType: (google.cloud.asset.v1p2beta1.ContentType|keyof typeof google.cloud.asset.v1p2beta1.ContentType);
 
                     /** ExportAssetsRequest outputConfig. */
                     public outputConfig?: (google.cloud.asset.v1p2beta1.IOutputConfig|null);
@@ -5305,7 +5305,7 @@ export namespace google {
                     assetNames?: (string[]|null);
 
                     /** BatchGetAssetsHistoryRequest contentType */
-                    contentType?: (google.cloud.asset.v1p2beta1.ContentType|null);
+                    contentType?: (google.cloud.asset.v1p2beta1.ContentType|keyof typeof google.cloud.asset.v1p2beta1.ContentType|null);
 
                     /** BatchGetAssetsHistoryRequest readTimeWindow */
                     readTimeWindow?: (google.cloud.asset.v1p2beta1.ITimeWindow|null);
@@ -5327,7 +5327,7 @@ export namespace google {
                     public assetNames: string[];
 
                     /** BatchGetAssetsHistoryRequest contentType. */
-                    public contentType: google.cloud.asset.v1p2beta1.ContentType;
+                    public contentType: (google.cloud.asset.v1p2beta1.ContentType|keyof typeof google.cloud.asset.v1p2beta1.ContentType);
 
                     /** BatchGetAssetsHistoryRequest readTimeWindow. */
                     public readTimeWindow?: (google.cloud.asset.v1p2beta1.ITimeWindow|null);
@@ -6557,7 +6557,7 @@ export namespace google {
                     assetTypes?: (string[]|null);
 
                     /** Feed contentType */
-                    contentType?: (google.cloud.asset.v1p2beta1.ContentType|null);
+                    contentType?: (google.cloud.asset.v1p2beta1.ContentType|keyof typeof google.cloud.asset.v1p2beta1.ContentType|null);
 
                     /** Feed feedOutputConfig */
                     feedOutputConfig?: (google.cloud.asset.v1p2beta1.IFeedOutputConfig|null);
@@ -6582,7 +6582,7 @@ export namespace google {
                     public assetTypes: string[];
 
                     /** Feed contentType. */
-                    public contentType: google.cloud.asset.v1p2beta1.ContentType;
+                    public contentType: (google.cloud.asset.v1p2beta1.ContentType|keyof typeof google.cloud.asset.v1p2beta1.ContentType);
 
                     /** Feed feedOutputConfig. */
                     public feedOutputConfig?: (google.cloud.asset.v1p2beta1.IFeedOutputConfig|null);
@@ -6677,7 +6677,7 @@ export namespace google {
             nameField?: (string|null);
 
             /** ResourceDescriptor history */
-            history?: (google.api.ResourceDescriptor.History|null);
+            history?: (google.api.ResourceDescriptor.History|keyof typeof google.api.ResourceDescriptor.History|null);
 
             /** ResourceDescriptor plural */
             plural?: (string|null);
@@ -6705,7 +6705,7 @@ export namespace google {
             public nameField: string;
 
             /** ResourceDescriptor history. */
-            public history: google.api.ResourceDescriptor.History;
+            public history: (google.api.ResourceDescriptor.History|keyof typeof google.api.ResourceDescriptor.History);
 
             /** ResourceDescriptor plural. */
             public plural: string;
@@ -7934,10 +7934,10 @@ export namespace google {
             number?: (number|null);
 
             /** FieldDescriptorProto label */
-            label?: (google.protobuf.FieldDescriptorProto.Label|null);
+            label?: (google.protobuf.FieldDescriptorProto.Label|keyof typeof google.protobuf.FieldDescriptorProto.Label|null);
 
             /** FieldDescriptorProto type */
-            type?: (google.protobuf.FieldDescriptorProto.Type|null);
+            type?: (google.protobuf.FieldDescriptorProto.Type|keyof typeof google.protobuf.FieldDescriptorProto.Type|null);
 
             /** FieldDescriptorProto typeName */
             typeName?: (string|null);
@@ -7974,10 +7974,10 @@ export namespace google {
             public number: number;
 
             /** FieldDescriptorProto label. */
-            public label: google.protobuf.FieldDescriptorProto.Label;
+            public label: (google.protobuf.FieldDescriptorProto.Label|keyof typeof google.protobuf.FieldDescriptorProto.Label);
 
             /** FieldDescriptorProto type. */
-            public type: google.protobuf.FieldDescriptorProto.Type;
+            public type: (google.protobuf.FieldDescriptorProto.Type|keyof typeof google.protobuf.FieldDescriptorProto.Type);
 
             /** FieldDescriptorProto typeName. */
             public typeName: string;
@@ -8752,7 +8752,7 @@ export namespace google {
             javaStringCheckUtf8?: (boolean|null);
 
             /** FileOptions optimizeFor */
-            optimizeFor?: (google.protobuf.FileOptions.OptimizeMode|null);
+            optimizeFor?: (google.protobuf.FileOptions.OptimizeMode|keyof typeof google.protobuf.FileOptions.OptimizeMode|null);
 
             /** FileOptions goPackage */
             goPackage?: (string|null);
@@ -8828,7 +8828,7 @@ export namespace google {
             public javaStringCheckUtf8: boolean;
 
             /** FileOptions optimizeFor. */
-            public optimizeFor: google.protobuf.FileOptions.OptimizeMode;
+            public optimizeFor: (google.protobuf.FileOptions.OptimizeMode|keyof typeof google.protobuf.FileOptions.OptimizeMode);
 
             /** FileOptions goPackage. */
             public goPackage: string;
@@ -9077,13 +9077,13 @@ export namespace google {
         interface IFieldOptions {
 
             /** FieldOptions ctype */
-            ctype?: (google.protobuf.FieldOptions.CType|null);
+            ctype?: (google.protobuf.FieldOptions.CType|keyof typeof google.protobuf.FieldOptions.CType|null);
 
             /** FieldOptions packed */
             packed?: (boolean|null);
 
             /** FieldOptions jstype */
-            jstype?: (google.protobuf.FieldOptions.JSType|null);
+            jstype?: (google.protobuf.FieldOptions.JSType|keyof typeof google.protobuf.FieldOptions.JSType|null);
 
             /** FieldOptions lazy */
             lazy?: (boolean|null);
@@ -9114,13 +9114,13 @@ export namespace google {
             constructor(properties?: google.protobuf.IFieldOptions);
 
             /** FieldOptions ctype. */
-            public ctype: google.protobuf.FieldOptions.CType;
+            public ctype: (google.protobuf.FieldOptions.CType|keyof typeof google.protobuf.FieldOptions.CType);
 
             /** FieldOptions packed. */
             public packed: boolean;
 
             /** FieldOptions jstype. */
-            public jstype: google.protobuf.FieldOptions.JSType;
+            public jstype: (google.protobuf.FieldOptions.JSType|keyof typeof google.protobuf.FieldOptions.JSType);
 
             /** FieldOptions lazy. */
             public lazy: boolean;
@@ -9619,7 +9619,7 @@ export namespace google {
             deprecated?: (boolean|null);
 
             /** MethodOptions idempotencyLevel */
-            idempotencyLevel?: (google.protobuf.MethodOptions.IdempotencyLevel|null);
+            idempotencyLevel?: (google.protobuf.MethodOptions.IdempotencyLevel|keyof typeof google.protobuf.MethodOptions.IdempotencyLevel|null);
 
             /** MethodOptions uninterpretedOption */
             uninterpretedOption?: (google.protobuf.IUninterpretedOption[]|null);
@@ -9647,7 +9647,7 @@ export namespace google {
             public deprecated: boolean;
 
             /** MethodOptions idempotencyLevel. */
-            public idempotencyLevel: google.protobuf.MethodOptions.IdempotencyLevel;
+            public idempotencyLevel: (google.protobuf.MethodOptions.IdempotencyLevel|keyof typeof google.protobuf.MethodOptions.IdempotencyLevel);
 
             /** MethodOptions uninterpretedOption. */
             public uninterpretedOption: google.protobuf.IUninterpretedOption[];
@@ -9743,16 +9743,16 @@ export namespace google {
             identifierValue?: (string|null);
 
             /** UninterpretedOption positiveIntValue */
-            positiveIntValue?: (number|Long|null);
+            positiveIntValue?: (number|Long|string|null);
 
             /** UninterpretedOption negativeIntValue */
-            negativeIntValue?: (number|Long|null);
+            negativeIntValue?: (number|Long|string|null);
 
             /** UninterpretedOption doubleValue */
             doubleValue?: (number|null);
 
             /** UninterpretedOption stringValue */
-            stringValue?: (Uint8Array|null);
+            stringValue?: (Uint8Array|string|null);
 
             /** UninterpretedOption aggregateValue */
             aggregateValue?: (string|null);
@@ -9774,16 +9774,16 @@ export namespace google {
             public identifierValue: string;
 
             /** UninterpretedOption positiveIntValue. */
-            public positiveIntValue: (number|Long);
+            public positiveIntValue: (number|Long|string);
 
             /** UninterpretedOption negativeIntValue. */
-            public negativeIntValue: (number|Long);
+            public negativeIntValue: (number|Long|string);
 
             /** UninterpretedOption doubleValue. */
             public doubleValue: number;
 
             /** UninterpretedOption stringValue. */
-            public stringValue: Uint8Array;
+            public stringValue: (Uint8Array|string);
 
             /** UninterpretedOption aggregateValue. */
             public aggregateValue: string;
@@ -10373,7 +10373,7 @@ export namespace google {
             type_url?: (string|null);
 
             /** Any value */
-            value?: (Uint8Array|null);
+            value?: (Uint8Array|string|null);
         }
 
         /** Represents an Any. */
@@ -10389,7 +10389,7 @@ export namespace google {
             public type_url: string;
 
             /** Any value. */
-            public value: Uint8Array;
+            public value: (Uint8Array|string);
 
             /**
              * Creates a new Any instance using the specified properties.
@@ -10556,7 +10556,7 @@ export namespace google {
         interface IValue {
 
             /** Value nullValue */
-            nullValue?: (google.protobuf.NullValue|null);
+            nullValue?: (google.protobuf.NullValue|keyof typeof google.protobuf.NullValue|null);
 
             /** Value numberValue */
             numberValue?: (number|null);
@@ -10584,7 +10584,7 @@ export namespace google {
             constructor(properties?: google.protobuf.IValue);
 
             /** Value nullValue. */
-            public nullValue: google.protobuf.NullValue;
+            public nullValue: (google.protobuf.NullValue|keyof typeof google.protobuf.NullValue);
 
             /** Value numberValue. */
             public numberValue: number;
@@ -10774,7 +10774,7 @@ export namespace google {
         interface ITimestamp {
 
             /** Timestamp seconds */
-            seconds?: (number|Long|null);
+            seconds?: (number|Long|string|null);
 
             /** Timestamp nanos */
             nanos?: (number|null);
@@ -10790,7 +10790,7 @@ export namespace google {
             constructor(properties?: google.protobuf.ITimestamp);
 
             /** Timestamp seconds. */
-            public seconds: (number|Long);
+            public seconds: (number|Long|string);
 
             /** Timestamp nanos. */
             public nanos: number;
@@ -10870,7 +10870,7 @@ export namespace google {
         interface IDuration {
 
             /** Duration seconds */
-            seconds?: (number|Long|null);
+            seconds?: (number|Long|string|null);
 
             /** Duration nanos */
             nanos?: (number|null);
@@ -10886,7 +10886,7 @@ export namespace google {
             constructor(properties?: google.protobuf.IDuration);
 
             /** Duration seconds. */
-            public seconds: (number|Long);
+            public seconds: (number|Long|string);
 
             /** Duration nanos. */
             public nanos: number;
@@ -11153,7 +11153,7 @@ export namespace google {
                 bindings?: (google.iam.v1.IBinding[]|null);
 
                 /** Policy etag */
-                etag?: (Uint8Array|null);
+                etag?: (Uint8Array|string|null);
             }
 
             /** Represents a Policy. */
@@ -11172,7 +11172,7 @@ export namespace google {
                 public bindings: google.iam.v1.IBinding[];
 
                 /** Policy etag. */
-                public etag: Uint8Array;
+                public etag: (Uint8Array|string);
 
                 /**
                  * Creates a new Policy instance using the specified properties.
@@ -11447,7 +11447,7 @@ export namespace google {
             interface IBindingDelta {
 
                 /** BindingDelta action */
-                action?: (google.iam.v1.BindingDelta.Action|null);
+                action?: (google.iam.v1.BindingDelta.Action|keyof typeof google.iam.v1.BindingDelta.Action|null);
 
                 /** BindingDelta role */
                 role?: (string|null);
@@ -11469,7 +11469,7 @@ export namespace google {
                 constructor(properties?: google.iam.v1.IBindingDelta);
 
                 /** BindingDelta action. */
-                public action: google.iam.v1.BindingDelta.Action;
+                public action: (google.iam.v1.BindingDelta.Action|keyof typeof google.iam.v1.BindingDelta.Action);
 
                 /** BindingDelta role. */
                 public role: string;
@@ -11565,7 +11565,7 @@ export namespace google {
             interface IAuditConfigDelta {
 
                 /** AuditConfigDelta action */
-                action?: (google.iam.v1.AuditConfigDelta.Action|null);
+                action?: (google.iam.v1.AuditConfigDelta.Action|keyof typeof google.iam.v1.AuditConfigDelta.Action|null);
 
                 /** AuditConfigDelta service */
                 service?: (string|null);
@@ -11587,7 +11587,7 @@ export namespace google {
                 constructor(properties?: google.iam.v1.IAuditConfigDelta);
 
                 /** AuditConfigDelta action. */
-                public action: google.iam.v1.AuditConfigDelta.Action;
+                public action: (google.iam.v1.AuditConfigDelta.Action|keyof typeof google.iam.v1.AuditConfigDelta.Action);
 
                 /** AuditConfigDelta service. */
                 public service: string;

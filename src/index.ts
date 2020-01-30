@@ -17,7 +17,7 @@
 // ** All changes to this file may be overwritten. **
 
 import * as v1 from './v1';
-import * as v1beta1 from './v1beta1'
+import * as v1beta1 from './v1beta1';
 import * as v1p1beta1 from './v1p1beta1';
 import * as v1p2beta1 from './v1p2beta1';
 const AssetServiceClient = v1.AssetServiceClient;
