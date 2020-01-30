@@ -16,12 +16,4 @@
 // ** https://github.com/googleapis/gapic-generator-typescript **
 // ** All changes to this file may be overwritten. **
 
-import * as v1 from './v1';
-import * as v1beta1 from './v1beta1'
-import * as v1p1beta1 from './v1p1beta1';
-import * as v1p2beta1 from './v1p2beta1';
-const AssetServiceClient = v1.AssetServiceClient;
-export {v1, v1beta1, v1p1beta1, v1p2beta1, AssetServiceClient};
-// For compatibility with JavaScript libraries we need to provide this default export:
-// tslint:disable-next-line no-default-export
-export default {v1, AssetServiceClient};
+export {AssetServiceClient} from './asset_service_client';

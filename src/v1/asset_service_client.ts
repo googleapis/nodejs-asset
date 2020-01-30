@@ -142,8 +142,14 @@ export class AssetServiceClient {
     // Create useful helper objects for these.
     this._pathTemplates = {
       assetPathTemplate: new gaxModule.PathTemplate('*'),
-      feedPathTemplate: new gaxModule.PathTemplate(
-        'projects/{project}/feeds/{feed},folders/{folder}/feeds/{feed},organizations/{organization}/feeds/{feed}'
+      projectFeedPathTemplate: new gaxModule.PathTemplate(
+        'projects/{project}/feeds/{feed}'
+      ),
+      folderFeedPathTemplate: new gaxModule.PathTemplate(
+        'folders/{folder}/feeds/{feed}'
+      ),
+      organizationFeedPathTemplate: new gaxModule.PathTemplate(
+        'organizations/{organization}/feeds/{feed}'
       ),
     };
 
@@ -915,39 +921,119 @@ export class AssetServiceClient {
   }
 
   /**
-   * Return a fully-qualified feed resource name string.
+   * Return a fully-qualified projectFeed resource name string.
    *
    * @param {string} project
    * @param {string} feed
    * @returns {string} Resource name string.
    */
-  feedPath(project: string, feed: string) {
-    return this._pathTemplates.feedPathTemplate.render({
+  projectFeedPath(project: string, feed: string) {
+    return this._pathTemplates.projectFeedPathTemplate.render({
       project,
       feed,
     });
   }
 
   /**
-   * Parse the project from Feed resource.
+   * Parse the project from ProjectFeed resource.
    *
-   * @param {string} feedName
-   *   A fully-qualified path representing Feed resource.
+   * @param {string} projectFeedName
+   *   A fully-qualified path representing project_feed resource.
    * @returns {string} A string representing the project.
    */
-  matchProjectFromFeedName(feedName: string) {
-    return this._pathTemplates.feedPathTemplate.match(feedName).project;
+  matchProjectFromProjectFeedName(projectFeedName: string) {
+    return this._pathTemplates.projectFeedPathTemplate.match(projectFeedName)
+      .project;
   }
 
   /**
-   * Parse the feed from Feed resource.
+   * Parse the feed from ProjectFeed resource.
    *
-   * @param {string} feedName
-   *   A fully-qualified path representing Feed resource.
+   * @param {string} projectFeedName
+   *   A fully-qualified path representing project_feed resource.
    * @returns {string} A string representing the feed.
    */
-  matchFeedFromFeedName(feedName: string) {
-    return this._pathTemplates.feedPathTemplate.match(feedName).feed;
+  matchFeedFromProjectFeedName(projectFeedName: string) {
+    return this._pathTemplates.projectFeedPathTemplate.match(projectFeedName)
+      .feed;
+  }
+
+  /**
+   * Return a fully-qualified folderFeed resource name string.
+   *
+   * @param {string} folder
+   * @param {string} feed
+   * @returns {string} Resource name string.
+   */
+  folderFeedPath(folder: string, feed: string) {
+    return this._pathTemplates.folderFeedPathTemplate.render({
+      folder,
+      feed,
+    });
+  }
+
+  /**
+   * Parse the folder from FolderFeed resource.
+   *
+   * @param {string} folderFeedName
+   *   A fully-qualified path representing folder_feed resource.
+   * @returns {string} A string representing the folder.
+   */
+  matchFolderFromFolderFeedName(folderFeedName: string) {
+    return this._pathTemplates.folderFeedPathTemplate.match(folderFeedName)
+      .folder;
+  }
+
+  /**
+   * Parse the feed from FolderFeed resource.
+   *
+   * @param {string} folderFeedName
+   *   A fully-qualified path representing folder_feed resource.
+   * @returns {string} A string representing the feed.
+   */
+  matchFeedFromFolderFeedName(folderFeedName: string) {
+    return this._pathTemplates.folderFeedPathTemplate.match(folderFeedName)
+      .feed;
+  }
+
+  /**
+   * Return a fully-qualified organizationFeed resource name string.
+   *
+   * @param {string} organization
+   * @param {string} feed
+   * @returns {string} Resource name string.
+   */
+  organizationFeedPath(organization: string, feed: string) {
+    return this._pathTemplates.organizationFeedPathTemplate.render({
+      organization,
+      feed,
+    });
+  }
+
+  /**
+   * Parse the organization from OrganizationFeed resource.
+   *
+   * @param {string} organizationFeedName
+   *   A fully-qualified path representing organization_feed resource.
+   * @returns {string} A string representing the organization.
+   */
+  matchOrganizationFromOrganizationFeedName(organizationFeedName: string) {
+    return this._pathTemplates.organizationFeedPathTemplate.match(
+      organizationFeedName
+    ).organization;
+  }
+
+  /**
+   * Parse the feed from OrganizationFeed resource.
+   *
+   * @param {string} organizationFeedName
+   *   A fully-qualified path representing organization_feed resource.
+   * @returns {string} A string representing the feed.
+   */
+  matchFeedFromOrganizationFeedName(organizationFeedName: string) {
+    return this._pathTemplates.organizationFeedPathTemplate.match(
+      organizationFeedName
+    ).feed;
   }
 
   /**

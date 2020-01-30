@@ -1,55 +1,23 @@
 {
-<<<<<<< HEAD
-<<<<<<< HEAD
-  "updateTime": "2020-01-28T12:09:25.073655Z",
-  "sources": [
-    {
-      "generator": {
-        "name": "artman",
-        "version": "0.44.3",
-        "dockerImage": "googleapis/artman@sha256:62b8b29acaae54b06a4183aa772e65b106e92d4bc466eb4db07953ab78bdb90c"
-=======
-  "updateTime": "2020-01-24T23:47:20.605516Z",
-=======
-  "updateTime": "2020-01-25T00:00:44.766659Z",
->>>>>>> chore: run generator
+  "updateTime": "2020-01-30T00:43:09.789391Z",
   "sources": [
     {
       "git": {
         "name": ".",
         "remote": "git@github.com:googleapis/nodejs-asset.git",
-<<<<<<< HEAD
-        "sha": "01ec02b45863ce91e0a0fcd7144c75bd2a2d37cf"
->>>>>>> feat!: converts library to TypeScript adding v1p1beta1 surface
-=======
-        "sha": "1efeaa951c43a34519fc97b13951d5d6fd0846fe"
->>>>>>> chore: run generator
+        "sha": "87d7dad69f2ac514c5041de8bf98157394725074"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-<<<<<<< HEAD
-        "sha": "8e981acfd9b97ea2f312f11bbaa7b6c16e412dea",
-        "internalRef": "291821782",
-        "log": "8e981acfd9b97ea2f312f11bbaa7b6c16e412dea\nBeta launch for PersonDetection and FaceDetection features.\n\nPiperOrigin-RevId: 291821782\n\n994e067fae3b21e195f7da932b08fff806d70b5d\nasset: add annotations to v1p2beta1\n\nPiperOrigin-RevId: 291815259\n\n244e1d2c89346ca2e0701b39e65552330d68545a\nAdd Playable Locations service\n\nPiperOrigin-RevId: 291806349\n\n909f8f67963daf45dd88d020877fb9029b76788d\nasset: add annotations to v1beta2\n\nPiperOrigin-RevId: 291805301\n\n3c39a1d6e23c1ef63c7fba4019c25e76c40dfe19\nKMS: add file-level message for CryptoKeyPath, it is defined in gapic yaml but not\nin proto files.\n\nPiperOrigin-RevId: 291420695\n\nc6f3f350b8387f8d1b85ed4506f30187ebaaddc3\ncontaineranalysis: update v1beta1 and bazel build with annotations\n\nPiperOrigin-RevId: 291401900\n\n92887d74b44e4e636252b7b8477d0d2570cd82db\nfix: fix the location of grpc config file.\n\nPiperOrigin-RevId: 291396015\n\n"
-      }
-    },
-    {
-      "template": {
-        "name": "node_library",
-        "origin": "synthtool.gcp",
-        "version": "2019.10.17"
-      }
-=======
-        "sha": "3c39a1d6e23c1ef63c7fba4019c25e76c40dfe19",
-        "internalRef": "291420695"
+        "sha": "af3400a8cb6110025198b59a0f7d018ae3cda700",
+        "internalRef": "292243997"
       }
     },
     {
       "git": {}
->>>>>>> feat!: converts library to TypeScript adding v1p1beta1 surface
     }
   ],
   "destinations": [
@@ -58,14 +26,8 @@
         "source": "googleapis",
         "apiName": "asset",
         "apiVersion": "v1beta1",
-<<<<<<< HEAD
-        "language": "nodejs",
-        "generator": "gapic",
-        "config": "google/cloud/asset/artman_cloudasset_v1beta1.yaml"
-=======
         "language": "typescript",
         "generator": "gapic-generator-typescript"
->>>>>>> feat!: converts library to TypeScript adding v1p1beta1 surface
       }
     },
     {
@@ -73,14 +35,8 @@
         "source": "googleapis",
         "apiName": "asset",
         "apiVersion": "v1",
-<<<<<<< HEAD
-        "language": "nodejs",
-        "generator": "gapic",
-        "config": "google/cloud/asset/artman_cloudasset_v1.yaml"
-=======
         "language": "typescript",
         "generator": "gapic-generator-typescript"
->>>>>>> feat!: converts library to TypeScript adding v1p1beta1 surface
       }
     },
     {
@@ -88,11 +44,6 @@
         "source": "googleapis",
         "apiName": "asset",
         "apiVersion": "v1p2beta1",
-<<<<<<< HEAD
-        "language": "nodejs",
-        "generator": "gapic",
-        "config": "google/cloud/asset/artman_cloudasset_v1p2beta1.yaml"
-=======
         "language": "typescript",
         "generator": "gapic-generator-typescript"
       }
@@ -104,7 +55,6 @@
         "apiVersion": "v1p1beta1",
         "language": "typescript",
         "generator": "gapic-generator-typescript"
->>>>>>> feat!: converts library to TypeScript adding v1p1beta1 surface
       }
     }
   ],
@@ -131,21 +81,9 @@
       "path": ".github/release-please.yml"
     },
     {
-<<<<<<< HEAD
-      "path": ".gitignore"
-    },
-    {
       "path": ".jsdoc.js"
     },
     {
-      "path": ".kokoro/.gitattributes"
-    },
-    {
-=======
-      "path": ".jsdoc.js"
-    },
-    {
->>>>>>> feat!: converts library to TypeScript adding v1p1beta1 surface
       "path": ".kokoro/common.cfg"
     },
     {
@@ -224,12 +162,6 @@
       "path": ".kokoro/publish.sh"
     },
     {
-<<<<<<< HEAD
-      "path": ".kokoro/release/common.cfg"
-    },
-    {
-=======
->>>>>>> feat!: converts library to TypeScript adding v1p1beta1 surface
       "path": ".kokoro/release/docs.cfg"
     },
     {
@@ -263,15 +195,6 @@
       "path": ".prettierrc"
     },
     {
-<<<<<<< HEAD
-      "path": ".repo-metadata.json"
-    },
-    {
-      "path": "CHANGELOG.md"
-    },
-    {
-=======
->>>>>>> feat!: converts library to TypeScript adding v1p1beta1 surface
       "path": "CODE_OF_CONDUCT.md"
     },
     {
@@ -290,29 +213,22 @@
       "path": "linkinator.config.json"
     },
     {
-<<<<<<< HEAD
-      "path": "package.json"
-    },
-    {
-=======
->>>>>>> feat!: converts library to TypeScript adding v1p1beta1 surface
       "path": "protos/google/cloud/asset/v1/asset_service.proto"
     },
     {
       "path": "protos/google/cloud/asset/v1/assets.proto"
     },
     {
-<<<<<<< HEAD
       "path": "protos/google/cloud/asset/v1beta1/asset_service.proto"
     },
     {
       "path": "protos/google/cloud/asset/v1beta1/assets.proto"
-=======
+    },
+    {
       "path": "protos/google/cloud/asset/v1p1beta1/asset_service.proto"
     },
     {
       "path": "protos/google/cloud/asset/v1p1beta1/assets.proto"
->>>>>>> feat!: converts library to TypeScript adding v1p1beta1 surface
     },
     {
       "path": "protos/google/cloud/asset/v1p2beta1/asset_service.proto"
@@ -333,56 +249,10 @@
       "path": "renovate.json"
     },
     {
-<<<<<<< HEAD
-      "path": "samples/.eslintrc.yml"
-    },
-    {
-      "path": "samples/README.md"
-    },
-    {
-      "path": "samples/createFeed.js"
-    },
-    {
-      "path": "samples/deleteFeed.js"
-    },
-    {
-      "path": "samples/exportAssets.js"
-    },
-    {
-      "path": "samples/getBatchAssetHistory.js"
-    },
-    {
-      "path": "samples/getFeed.js"
-    },
-    {
-      "path": "samples/listFeeds.js"
-    },
-    {
-      "path": "samples/package.json"
-    },
-    {
-      "path": "samples/quickstart.js"
-    },
-    {
-      "path": "samples/test/sample.test.js"
-    },
-    {
-      "path": "samples/updateFeed.js"
-    },
-    {
-      "path": "src/browser.js"
-    },
-    {
-      "path": "src/index.js"
-    },
-    {
-      "path": "src/v1/asset_service_client.js"
-=======
       "path": "samples/README.md"
     },
     {
       "path": "src/v1/asset_service_client.ts"
->>>>>>> feat!: converts library to TypeScript adding v1p1beta1 surface
     },
     {
       "path": "src/v1/asset_service_client_config.json"
@@ -391,44 +261,10 @@
       "path": "src/v1/asset_service_proto_list.json"
     },
     {
-<<<<<<< HEAD
-      "path": "src/v1/doc/google/cloud/asset/v1/doc_asset_service.js"
+      "path": "src/v1/index.ts"
     },
     {
-      "path": "src/v1/doc/google/cloud/asset/v1/doc_assets.js"
-    },
-    {
-      "path": "src/v1/doc/google/iam/v1/doc_policy.js"
-    },
-    {
-      "path": "src/v1/doc/google/longrunning/doc_operations.js"
-    },
-    {
-      "path": "src/v1/doc/google/protobuf/doc_any.js"
-    },
-    {
-      "path": "src/v1/doc/google/protobuf/doc_empty.js"
-    },
-    {
-      "path": "src/v1/doc/google/protobuf/doc_field_mask.js"
-    },
-    {
-      "path": "src/v1/doc/google/protobuf/doc_struct.js"
-    },
-    {
-      "path": "src/v1/doc/google/protobuf/doc_timestamp.js"
-    },
-    {
-      "path": "src/v1/doc/google/rpc/doc_status.js"
-    },
-    {
-      "path": "src/v1/doc/google/type/doc_expr.js"
-    },
-    {
-      "path": "src/v1/index.js"
-    },
-    {
-      "path": "src/v1beta1/asset_service_client.js"
+      "path": "src/v1beta1/asset_service_client.ts"
     },
     {
       "path": "src/v1beta1/asset_service_client_config.json"
@@ -437,39 +273,7 @@
       "path": "src/v1beta1/asset_service_proto_list.json"
     },
     {
-      "path": "src/v1beta1/doc/google/cloud/asset/v1beta1/doc_asset_service.js"
-    },
-    {
-      "path": "src/v1beta1/doc/google/cloud/asset/v1beta1/doc_assets.js"
-    },
-    {
-      "path": "src/v1beta1/doc/google/iam/v1/doc_policy.js"
-    },
-    {
-      "path": "src/v1beta1/doc/google/longrunning/doc_operations.js"
-    },
-    {
-      "path": "src/v1beta1/doc/google/protobuf/doc_any.js"
-    },
-    {
-      "path": "src/v1beta1/doc/google/protobuf/doc_struct.js"
-    },
-    {
-      "path": "src/v1beta1/doc/google/protobuf/doc_timestamp.js"
-    },
-    {
-      "path": "src/v1beta1/doc/google/rpc/doc_status.js"
-    },
-    {
-      "path": "src/v1beta1/doc/google/type/doc_expr.js"
-    },
-    {
-      "path": "src/v1beta1/index.js"
-    },
-    {
-      "path": "src/v1p2beta1/asset_service_client.js"
-=======
-      "path": "src/v1/index.ts"
+      "path": "src/v1beta1/index.ts"
     },
     {
       "path": "src/v1p1beta1/asset_service_client.ts"
@@ -485,7 +289,6 @@
     },
     {
       "path": "src/v1p2beta1/asset_service_client.ts"
->>>>>>> feat!: converts library to TypeScript adding v1p1beta1 surface
     },
     {
       "path": "src/v1p2beta1/asset_service_client_config.json"
@@ -494,63 +297,6 @@
       "path": "src/v1p2beta1/asset_service_proto_list.json"
     },
     {
-<<<<<<< HEAD
-      "path": "src/v1p2beta1/doc/google/cloud/asset/v1p2beta1/doc_asset_service.js"
-    },
-    {
-      "path": "src/v1p2beta1/doc/google/cloud/asset/v1p2beta1/doc_assets.js"
-    },
-    {
-      "path": "src/v1p2beta1/doc/google/iam/v1/doc_policy.js"
-    },
-    {
-      "path": "src/v1p2beta1/doc/google/longrunning/doc_operations.js"
-    },
-    {
-      "path": "src/v1p2beta1/doc/google/protobuf/doc_any.js"
-    },
-    {
-      "path": "src/v1p2beta1/doc/google/protobuf/doc_empty.js"
-    },
-    {
-      "path": "src/v1p2beta1/doc/google/protobuf/doc_field_mask.js"
-    },
-    {
-      "path": "src/v1p2beta1/doc/google/protobuf/doc_struct.js"
-    },
-    {
-      "path": "src/v1p2beta1/doc/google/protobuf/doc_timestamp.js"
-    },
-    {
-      "path": "src/v1p2beta1/doc/google/rpc/doc_status.js"
-    },
-    {
-      "path": "src/v1p2beta1/doc/google/type/doc_expr.js"
-    },
-    {
-      "path": "src/v1p2beta1/index.js"
-    },
-    {
-      "path": "synth.metadata"
-    },
-    {
-      "path": "synth.py"
-    },
-    {
-      "path": "system-test/.eslintrc.yml"
-    },
-    {
-      "path": "system-test/no-tests.js"
-    },
-    {
-      "path": "test/gapic-v1.js"
-    },
-    {
-      "path": "test/gapic-v1beta1.js"
-    },
-    {
-      "path": "test/gapic-v1p2beta1.js"
-=======
       "path": "src/v1p2beta1/index.ts"
     },
     {
@@ -566,6 +312,9 @@
       "path": "test/gapic-asset_service-v1.ts"
     },
     {
+      "path": "test/gapic-asset_service-v1beta1.ts"
+    },
+    {
       "path": "test/gapic-asset_service-v1p1beta1.ts"
     },
     {
@@ -576,7 +325,6 @@
     },
     {
       "path": "tslint.json"
->>>>>>> feat!: converts library to TypeScript adding v1p1beta1 surface
     },
     {
       "path": "webpack.config.js"
