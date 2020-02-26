@@ -4,6 +4,13 @@
 
 [1]: https://www.npmjs.com/package/@google-cloud/asset?activeTab=versions
 
+### [2.1.1](https://www.github.com/googleapis/nodejs-asset/compare/v2.1.0...v2.1.1) (2020-02-26)
+
+
+### Bug Fixes
+
+* **deps:** update dependency uuid to v7 ([d83c322](https://www.github.com/googleapis/nodejs-asset/commit/d83c322d75e0b607cf019a837a040137a8925356))
+
 ## [2.1.0](https://www.github.com/googleapis/nodejs-asset/compare/v2.0.1...v2.1.0) (2020-02-13)
 
 
