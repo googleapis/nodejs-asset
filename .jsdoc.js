@@ -42,7 +42,7 @@ module.exports = {
     systemName: '@google-cloud/asset',
     theme: 'lumen',
     default: {
-      "outputSourceFiles": false
+      outputSourceFiles: false
     }
   },
   markdown: {
