@@ -55,32 +55,32 @@ npm install @google-cloud/asset
 ### Using the client library
 
 ```javascript
-  const util = require('util');
-  const {AssetServiceClient} = require('@google-cloud/asset');
+const util = require('util');
+const {AssetServiceClient} = require('@google-cloud/asset');
 
-  const client = new AssetServiceClient();
+const client = new AssetServiceClient();
 
-  async function quickstart() {
-    const projectId = await client.getProjectId();
-    const projectResource = `projects/${projectId}`;
-    // TODO(developer): Choose asset names, such as //storage.googleapis.com/[YOUR_BUCKET_NAME].
-    // const assetNames = ['ASSET_NAME1', 'ASSET_NAME2', ...];
+async function quickstart() {
+  const projectId = await client.getProjectId();
+  const projectResource = `projects/${projectId}`;
+  // TODO(developer): Choose asset names, such as //storage.googleapis.com/[YOUR_BUCKET_NAME].
+  // const assetNames = ['ASSET_NAME1', 'ASSET_NAME2', ...];
 
-    const request = {
-      parent: projectResource,
-      assetNames: assetNames.split(','),
-      contentType: 'RESOURCE',
-      readTimeWindow: {
-        startTime: {
-          seconds: Math.floor(new Date().getTime() / 1000),
-        },
+  const request = {
+    parent: projectResource,
+    assetNames: assetNames.split(','),
+    contentType: 'RESOURCE',
+    readTimeWindow: {
+      startTime: {
+        seconds: Math.floor(new Date().getTime() / 1000),
       },
-    };
+    },
+  };
 
-    // Handle the operation using the promise pattern.
-    const result = await client.batchGetAssetsHistory(request);
-    // Do things with with the response.
-    console.log(util.inspect(result, {depth: null}));
+  // Handle the operation using the promise pattern.
+  const result = await client.batchGetAssetsHistory(request);
+  // Do things with with the response.
+  console.log(util.inspect(result, {depth: null}));
 
 ```
 
@@ -130,11 +130,13 @@ More Information: [Google Cloud Platform Launch Stages][launch_stages]
 
 Contributions welcome! See the [Contributing Guide](https://github.com/googleapis/nodejs-asset/blob/master/CONTRIBUTING.md).
 
-Please note that this `README.md`, the `samples/README.md`,
+Please note that this [README.md](README.md), the [samples/README.md](samples/README.md),
 and a variety of configuration files in this repository (including `.nycrc` and `tsconfig.json`)
-are generated from a central template. To edit one of these files, make an edit
-to its template in this
-[directory](https://github.com/googleapis/synthtool/tree/master/synthtool/gcp/templates/node_library).
+are generated from a central template.
+
+If you would like to make edits to one of those files
+(or if you aren't certain if the file you're changing is one, check in the template repository before making changes),
+look for the file in the [template](https://github.com/googleapis/synthtool/tree/master/synthtool/gcp/templates/node_library).
 
 ## License
 
