@@ -18,196 +18,172 @@
 
 import * as protosTypes from '../protos/protos';
 import * as assert from 'assert';
-import {describe, it} from 'mocha';
-/* eslint-disable @typescript-eslint/no-var-requires */
+import { describe, it } from 'mocha';
 const assetserviceModule = require('../src');
 
-class FakeError {
-  name: string;
-  message: string;
-  code: number;
-  constructor(n: number) {
-    this.name = 'fakeName';
-    this.message = 'fake message';
-    this.code = n;
-  }
+
+const FAKE_STATUS_CODE = 1;
+class FakeError{
+    name: string;
+    message: string;
+    code: number;
+    constructor(n: number){
+        this.name = 'fakeName';
+        this.message = 'fake message';
+        this.code = n;
+    }
 }
+const error = new FakeError(FAKE_STATUS_CODE);
 export interface Callback {
-  (err: FakeError | null, response?: {} | null): void;
+  (err: FakeError|null, response?: {} | null): void;
 }
 
-export class Operation {
-  /* eslint-disable @typescript-eslint/no-empty-function */
-  constructor() {}
-  /* eslint-disable @typescript-eslint/no-empty-function */
-  promise() {}
+export class Operation{
+    constructor(){};
+    promise() {};
 }
 describe('v1p1beta1.AssetServiceClient', () => {
-  it('has servicePath', () => {
-    const servicePath =
-      assetserviceModule.v1p1beta1.AssetServiceClient.servicePath;
-    assert(servicePath);
-  });
-  it('has apiEndpoint', () => {
-    const apiEndpoint =
-      assetserviceModule.v1p1beta1.AssetServiceClient.apiEndpoint;
-    assert(apiEndpoint);
-  });
-  it('has port', () => {
-    const port = assetserviceModule.v1p1beta1.AssetServiceClient.port;
-    assert(port);
-    assert(typeof port === 'number');
-  });
-  it('should create a client with no option', () => {
-    const client = new assetserviceModule.v1p1beta1.AssetServiceClient();
-    assert(client);
-  });
-  it('should create a client with gRPC fallback', () => {
-    const client = new assetserviceModule.v1p1beta1.AssetServiceClient({
-      fallback: true,
+    it('has servicePath', () => {
+        const servicePath = assetserviceModule.v1p1beta1.AssetServiceClient.servicePath;
+        assert(servicePath);
     });
-    assert(client);
-  });
-  it('has initialize method and supports deferred initialization', async () => {
-    const client = new assetserviceModule.v1p1beta1.AssetServiceClient({
-      credentials: {client_email: 'bogus', private_key: 'bogus'},
-      projectId: 'bogus',
+    it('has apiEndpoint', () => {
+        const apiEndpoint = assetserviceModule.v1p1beta1.AssetServiceClient.apiEndpoint;
+        assert(apiEndpoint);
     });
-    assert.strictEqual(client.assetServiceStub, undefined);
-    await client.initialize();
-    assert(client.assetServiceStub);
-  });
-  it('has close method', () => {
-    const client = new assetserviceModule.v1p1beta1.AssetServiceClient({
-      credentials: {client_email: 'bogus', private_key: 'bogus'},
-      projectId: 'bogus',
+    it('has port', () => {
+        const port = assetserviceModule.v1p1beta1.AssetServiceClient.port;
+        assert(port);
+        assert(typeof port === 'number');
     });
-    client.close();
-  });
-  describe('searchAllResources', () => {
-    it('invokes searchAllResources without error', done => {
-      const client = new assetserviceModule.v1p1beta1.AssetServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.asset.v1p1beta1.ISearchAllResourcesRequest = {};
-      request.scope = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock Grpc layer
-      client._innerApiCalls.searchAllResources = (
-        actualRequest: {},
-        options: {},
-        callback: Callback
-      ) => {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
-      client.searchAllResources(request, (err: FakeError, response: {}) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
+    it('should create a client with no option', () => {
+        const client = new assetserviceModule.v1p1beta1.AssetServiceClient();
+        assert(client);
     });
-  });
-  describe('searchAllResourcesStream', () => {
-    it('invokes searchAllResourcesStream without error', done => {
-      const client = new assetserviceModule.v1p1beta1.AssetServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.asset.v1p1beta1.ISearchAllResourcesRequest = {};
-      request.scope = '';
-      // Mock response
-      const expectedResponse = {response: 'data'};
-      // Mock Grpc layer
-      client._innerApiCalls.searchAllResources = (
-        actualRequest: {},
-        options: {},
-        callback: Callback
-      ) => {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
-      const stream = client
-        .searchAllResourcesStream(request, {})
-        .on('data', (response: {}) => {
-          assert.deepStrictEqual(response, expectedResponse);
-          done();
-        })
-        .on('error', (err: FakeError) => {
-          done(err);
+    it('should create a client with gRPC fallback', () => {
+        const client = new assetserviceModule.v1p1beta1.AssetServiceClient({
+            fallback: true,
         });
-      stream.write(expectedResponse);
+        assert(client);
     });
-  });
-  describe('searchAllIamPolicies', () => {
-    it('invokes searchAllIamPolicies without error', done => {
-      const client = new assetserviceModule.v1p1beta1.AssetServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.asset.v1p1beta1.ISearchAllIamPoliciesRequest = {};
-      request.scope = '';
-      // Mock response
-      const expectedResponse = {};
-      // Mock Grpc layer
-      client._innerApiCalls.searchAllIamPolicies = (
-        actualRequest: {},
-        options: {},
-        callback: Callback
-      ) => {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
-      client.searchAllIamPolicies(request, (err: FakeError, response: {}) => {
-        assert.ifError(err);
-        assert.deepStrictEqual(response, expectedResponse);
-        done();
-      });
-    });
-  });
-  describe('searchAllIamPoliciesStream', () => {
-    it('invokes searchAllIamPoliciesStream without error', done => {
-      const client = new assetserviceModule.v1p1beta1.AssetServiceClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      // Initialize client before mocking
-      client.initialize();
-      // Mock request
-      const request: protosTypes.google.cloud.asset.v1p1beta1.ISearchAllIamPoliciesRequest = {};
-      request.scope = '';
-      // Mock response
-      const expectedResponse = {response: 'data'};
-      // Mock Grpc layer
-      client._innerApiCalls.searchAllIamPolicies = (
-        actualRequest: {},
-        options: {},
-        callback: Callback
-      ) => {
-        assert.deepStrictEqual(actualRequest, request);
-        callback(null, expectedResponse);
-      };
-      const stream = client
-        .searchAllIamPoliciesStream(request, {})
-        .on('data', (response: {}) => {
-          assert.deepStrictEqual(response, expectedResponse);
-          done();
-        })
-        .on('error', (err: FakeError) => {
-          done(err);
+    it('has initialize method and supports deferred initialization', async () => {
+        const client = new assetserviceModule.v1p1beta1.AssetServiceClient({
+            credentials: { client_email: 'bogus', private_key: 'bogus' },
+            projectId: 'bogus',
         });
-      stream.write(expectedResponse);
+        assert.strictEqual(client.assetServiceStub, undefined);
+        await client.initialize();
+        assert(client.assetServiceStub);
     });
-  });
+    it('has close method', () => {
+        const client = new assetserviceModule.v1p1beta1.AssetServiceClient({
+            credentials: { client_email: 'bogus', private_key: 'bogus' },
+            projectId: 'bogus',
+        });
+        client.close();
+    });
+    describe('searchAllResources', () => {
+        it('invokes searchAllResources without error', done => {
+            const client = new assetserviceModule.v1p1beta1.AssetServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.asset.v1p1beta1.ISearchAllResourcesRequest = {};
+            request.scope = '';
+            // Mock response
+            const expectedResponse = {};
+            // Mock Grpc layer
+            client._innerApiCalls.searchAllResources = (actualRequest: {}, options: {}, callback: Callback) => {
+                assert.deepStrictEqual(actualRequest, request);
+                callback(null, expectedResponse);
+            };
+            client.searchAllResources(request, (err: FakeError, response: {}) => {
+                assert.ifError(err);
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            });
+        });
+    });
+    describe('searchAllResourcesStream', () => {
+        it('invokes searchAllResourcesStream without error', done => {
+            const client = new assetserviceModule.v1p1beta1.AssetServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.asset.v1p1beta1.ISearchAllResourcesRequest = {};
+            request.scope = '';
+            // Mock response
+            const expectedResponse = {response: 'data'};
+            // Mock Grpc layer
+            client._innerApiCalls.searchAllResources = (actualRequest: {}, options: {}, callback: Callback) => {
+                assert.deepStrictEqual(actualRequest, request);
+                callback(null, expectedResponse);
+            };
+            const stream = client.searchAllResourcesStream(request, {}).on('data', (response: {}) =>{
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            }).on('error', (err: FakeError) => {
+                done(err);
+            });
+            stream.write(expectedResponse);
+        });
+    });
+    describe('searchAllIamPolicies', () => {
+        it('invokes searchAllIamPolicies without error', done => {
+            const client = new assetserviceModule.v1p1beta1.AssetServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.asset.v1p1beta1.ISearchAllIamPoliciesRequest = {};
+            request.scope = '';
+            // Mock response
+            const expectedResponse = {};
+            // Mock Grpc layer
+            client._innerApiCalls.searchAllIamPolicies = (actualRequest: {}, options: {}, callback: Callback) => {
+                assert.deepStrictEqual(actualRequest, request);
+                callback(null, expectedResponse);
+            };
+            client.searchAllIamPolicies(request, (err: FakeError, response: {}) => {
+                assert.ifError(err);
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            });
+        });
+    });
+    describe('searchAllIamPoliciesStream', () => {
+        it('invokes searchAllIamPoliciesStream without error', done => {
+            const client = new assetserviceModule.v1p1beta1.AssetServiceClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            // Initialize client before mocking
+            client.initialize();
+            // Mock request
+            const request: protosTypes.google.cloud.asset.v1p1beta1.ISearchAllIamPoliciesRequest = {};
+            request.scope = '';
+            // Mock response
+            const expectedResponse = {response: 'data'};
+            // Mock Grpc layer
+            client._innerApiCalls.searchAllIamPolicies = (actualRequest: {}, options: {}, callback: Callback) => {
+                assert.deepStrictEqual(actualRequest, request);
+                callback(null, expectedResponse);
+            };
+            const stream = client.searchAllIamPoliciesStream(request, {}).on('data', (response: {}) =>{
+                assert.deepStrictEqual(response, expectedResponse);
+                done();
+            }).on('error', (err: FakeError) => {
+                done(err);
+            });
+            stream.write(expectedResponse);
+        });
+    });
 });

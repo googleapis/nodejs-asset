@@ -17,13 +17,7 @@
 // ** All changes to this file may be overwritten. **
 
 import * as gax from 'google-gax';
-import {
-  APICallback,
-  Callback,
-  CallOptions,
-  Descriptors,
-  ClientOptions,
-} from 'google-gax';
+import {APICallback, Callback, CallOptions, Descriptors, ClientOptions} from 'google-gax';
 import * as path from 'path';
 
 import * as protosTypes from '../../protos/protos';
@@ -37,12 +31,7 @@ const version = require('../../../package.json').version;
  * @memberof v1p2beta1
  */
 export class AssetServiceClient {
-  private _descriptors: Descriptors = {
-    page: {},
-    stream: {},
-    longrunning: {},
-    batching: {},
-  };
+  private _descriptors: Descriptors = {page: {}, stream: {}, longrunning: {}, batching: {}};
   private _innerApiCalls: {[name: string]: Function};
   private _pathTemplates: {[name: string]: gax.PathTemplate};
   private _terminated = false;
@@ -83,12 +72,10 @@ export class AssetServiceClient {
   constructor(opts?: ClientOptions) {
     // Ensure that options include the service address and port.
     const staticMembers = this.constructor as typeof AssetServiceClient;
-    const servicePath =
-      opts && opts.servicePath
-        ? opts.servicePath
-        : opts && opts.apiEndpoint
-        ? opts.apiEndpoint
-        : staticMembers.servicePath;
+    const servicePath = opts && opts.servicePath ?
+        opts.servicePath :
+        ((opts && opts.apiEndpoint) ? opts.apiEndpoint :
+                                      staticMembers.servicePath);
     const port = opts && opts.port ? opts.port : staticMembers.port;
 
     if (!opts) {
@@ -98,8 +85,8 @@ export class AssetServiceClient {
     opts.port = opts.port || port;
     opts.clientConfig = opts.clientConfig || {};
 
-    const isBrowser = typeof window !== 'undefined';
-    if (isBrowser) {
+    const isBrowser = (typeof window !== 'undefined');
+    if (isBrowser){
       opts.fallback = true;
     }
     // If we are in browser, we are already using fallback because of the
@@ -116,10 +103,13 @@ export class AssetServiceClient {
     this._opts = opts;
 
     // Save the auth object to the client, for use by other methods.
-    this.auth = this._gaxGrpc.auth as gax.GoogleAuth;
+    this.auth = (this._gaxGrpc.auth as gax.GoogleAuth);
 
     // Determine the client header string.
-    const clientHeader = [`gax/${this._gaxModule.version}`, `gapic/${version}`];
+    const clientHeader = [
+      `gax/${this._gaxModule.version}`,
+      `gapic/${version}`,
+    ];
     if (typeof process !== 'undefined' && 'versions' in process) {
       clientHeader.push(`gl-node/${process.versions.node}`);
     } else {
@@ -135,15 +125,11 @@ export class AssetServiceClient {
     // For Node.js, pass the path to JSON proto file.
     // For browsers, pass the JSON content.
 
-    const nodejsProtoPath = path.join(
-      __dirname,
-      '..',
-      '..',
-      'protos',
-      'protos.json'
-    );
+    const nodejsProtoPath = path.join(__dirname, '..', '..', 'protos', 'protos.json');
     this._protos = this._gaxGrpc.loadProto(
-      opts.fallback ? require('../../protos/protos.json') : nodejsProtoPath
+      opts.fallback ?
+        require("../../protos/protos.json") :
+        nodejsProtoPath
     );
 
     // This API contains "path templates"; forward-slash-separated
@@ -163,11 +149,8 @@ export class AssetServiceClient {
 
     // Put together the default options sent with requests.
     this._defaults = this._gaxGrpc.constructSettings(
-      'google.cloud.asset.v1p2beta1.AssetService',
-      gapicConfig as gax.ClientConfig,
-      opts.clientConfig || {},
-      {'x-goog-api-client': clientHeader.join(' ')}
-    );
+        'google.cloud.asset.v1p2beta1.AssetService', gapicConfig as gax.ClientConfig,
+        opts.clientConfig || {}, {'x-goog-api-client': clientHeader.join(' ')});
 
     // Set up a dictionary of "inner API calls"; the core implementation
     // of calling the API is handled in `google-gax`, with this code
@@ -195,25 +178,16 @@ export class AssetServiceClient {
     // Put together the "service stub" for
     // google.cloud.asset.v1p2beta1.AssetService.
     this.assetServiceStub = this._gaxGrpc.createStub(
-      this._opts.fallback
-        ? (this._protos as protobuf.Root).lookupService(
-            'google.cloud.asset.v1p2beta1.AssetService'
-          )
-        : // tslint:disable-next-line no-any
-          /* eslint-disable @typescript-eslint/no-explicit-any */
+        this._opts.fallback ?
+          (this._protos as protobuf.Root).lookupService('google.cloud.asset.v1p2beta1.AssetService') :
+          // tslint:disable-next-line no-any
           (this._protos as any).google.cloud.asset.v1p2beta1.AssetService,
-      this._opts
-    ) as Promise<{[method: string]: Function}>;
+        this._opts) as Promise<{[method: string]: Function}>;
 
     // Iterate over each of the methods that the service provides
     // and create an API call method for each.
-    const assetServiceStubMethods = [
-      'createFeed',
-      'getFeed',
-      'listFeeds',
-      'updateFeed',
-      'deleteFeed',
-    ];
+    const assetServiceStubMethods =
+        ['createFeed', 'getFeed', 'listFeeds', 'updateFeed', 'deleteFeed'];
 
     for (const methodName of assetServiceStubMethods) {
       const innerCallPromise = this.assetServiceStub.then(
@@ -224,17 +198,16 @@ export class AssetServiceClient {
           const func = stub[methodName];
           return func.apply(stub, args);
         },
-        (err: Error | null | undefined) => () => {
+        (err: Error|null|undefined) => () => {
           throw err;
-        }
-      );
+        });
 
       const apiCall = this._gaxModule.createApiCall(
         innerCallPromise,
         this._defaults[methodName],
         this._descriptors.page[methodName] ||
-          this._descriptors.stream[methodName] ||
-          this._descriptors.longrunning[methodName]
+            this._descriptors.stream[methodName] ||
+            this._descriptors.longrunning[methodName]
       );
 
       this._innerApiCalls[methodName] = (
@@ -276,7 +249,9 @@ export class AssetServiceClient {
    * in this service.
    */
   static get scopes() {
-    return ['https://www.googleapis.com/auth/cloud-platform'];
+    return [
+      'https://www.googleapis.com/auth/cloud-platform'
+    ];
   }
 
   getProjectId(): Promise<string>;
@@ -286,9 +261,8 @@ export class AssetServiceClient {
    * @param {function(Error, string)} callback - the callback to
    *   be called with the current project Id.
    */
-  getProjectId(
-    callback?: Callback<string, undefined, undefined>
-  ): Promise<string> | void {
+  getProjectId(callback?: Callback<string, undefined, undefined>):
+      Promise<string>|void {
     if (callback) {
       this.auth.getProjectId(callback);
       return;
@@ -300,79 +274,66 @@ export class AssetServiceClient {
   // -- Service calls --
   // -------------------
   createFeed(
-    request: protosTypes.google.cloud.asset.v1p2beta1.ICreateFeedRequest,
-    options?: gax.CallOptions
-  ): Promise<
-    [
-      protosTypes.google.cloud.asset.v1p2beta1.IFeed,
-      protosTypes.google.cloud.asset.v1p2beta1.ICreateFeedRequest | undefined,
-      {} | undefined
-    ]
-  >;
+      request: protosTypes.google.cloud.asset.v1p2beta1.ICreateFeedRequest,
+      options?: gax.CallOptions):
+      Promise<[
+        protosTypes.google.cloud.asset.v1p2beta1.IFeed,
+        protosTypes.google.cloud.asset.v1p2beta1.ICreateFeedRequest|undefined, {}|undefined
+      ]>;
   createFeed(
-    request: protosTypes.google.cloud.asset.v1p2beta1.ICreateFeedRequest,
-    options: gax.CallOptions,
-    callback: Callback<
-      protosTypes.google.cloud.asset.v1p2beta1.IFeed,
-      protosTypes.google.cloud.asset.v1p2beta1.ICreateFeedRequest | undefined,
-      {} | undefined
-    >
-  ): void;
-  /**
-   * Creates a feed in a parent project/folder/organization to listen to its
-   * asset updates.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.parent
-   *   Required. The name of the project/folder/organization where this feed
-   *   should be created in. It can only be an organization number (such as
-   *   "organizations/123"), a folder number (such as "folders/123"), a project ID
-   *   (such as "projects/my-project-id")", or a project number (such as
-   *   "projects/12345").
-   * @param {string} request.feedId
-   *   Required. This is the client-assigned asset feed identifier and it needs to
-   *   be unique under a specific parent project/folder/organization.
-   * @param {google.cloud.asset.v1p2beta1.Feed} request.feed
-   *   Required. The feed details. The field `name` must be empty and it will be generated
-   *   in the format of:
-   *   projects/project_number/feeds/feed_id
-   *   folders/folder_number/feeds/feed_id
-   *   organizations/organization_number/feeds/feed_id
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing [Feed]{@link google.cloud.asset.v1p2beta1.Feed}.
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
-   */
-  createFeed(
-    request: protosTypes.google.cloud.asset.v1p2beta1.ICreateFeedRequest,
-    optionsOrCallback?:
-      | gax.CallOptions
-      | Callback<
+      request: protosTypes.google.cloud.asset.v1p2beta1.ICreateFeedRequest,
+      options: gax.CallOptions,
+      callback: Callback<
           protosTypes.google.cloud.asset.v1p2beta1.IFeed,
-          | protosTypes.google.cloud.asset.v1p2beta1.ICreateFeedRequest
-          | undefined,
-          {} | undefined
-        >,
-    callback?: Callback<
-      protosTypes.google.cloud.asset.v1p2beta1.IFeed,
-      protosTypes.google.cloud.asset.v1p2beta1.ICreateFeedRequest | undefined,
-      {} | undefined
-    >
-  ): Promise<
-    [
-      protosTypes.google.cloud.asset.v1p2beta1.IFeed,
-      protosTypes.google.cloud.asset.v1p2beta1.ICreateFeedRequest | undefined,
-      {} | undefined
-    ]
-  > | void {
+          protosTypes.google.cloud.asset.v1p2beta1.ICreateFeedRequest|undefined,
+          {}|undefined>): void;
+/**
+ * Creates a feed in a parent project/folder/organization to listen to its
+ * asset updates.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. The name of the project/folder/organization where this feed
+ *   should be created in. It can only be an organization number (such as
+ *   "organizations/123"), a folder number (such as "folders/123"), a project ID
+ *   (such as "projects/my-project-id")", or a project number (such as
+ *   "projects/12345").
+ * @param {string} request.feedId
+ *   Required. This is the client-assigned asset feed identifier and it needs to
+ *   be unique under a specific parent project/folder/organization.
+ * @param {google.cloud.asset.v1p2beta1.Feed} request.feed
+ *   Required. The feed details. The field `name` must be empty and it will be generated
+ *   in the format of:
+ *   projects/project_number/feeds/feed_id
+ *   folders/folder_number/feeds/feed_id
+ *   organizations/organization_number/feeds/feed_id
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing [Feed]{@link google.cloud.asset.v1p2beta1.Feed}.
+ *   The promise has a method named "cancel" which cancels the ongoing API call.
+ */
+  createFeed(
+      request: protosTypes.google.cloud.asset.v1p2beta1.ICreateFeedRequest,
+      optionsOrCallback?: gax.CallOptions|Callback<
+          protosTypes.google.cloud.asset.v1p2beta1.IFeed,
+          protosTypes.google.cloud.asset.v1p2beta1.ICreateFeedRequest|undefined, {}|undefined>,
+      callback?: Callback<
+          protosTypes.google.cloud.asset.v1p2beta1.IFeed,
+          protosTypes.google.cloud.asset.v1p2beta1.ICreateFeedRequest|undefined,
+          {}|undefined>):
+      Promise<[
+        protosTypes.google.cloud.asset.v1p2beta1.IFeed,
+        protosTypes.google.cloud.asset.v1p2beta1.ICreateFeedRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: gax.CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as gax.CallOptions;
     }
     options = options || {};
@@ -381,73 +342,61 @@ export class AssetServiceClient {
     options.otherArgs.headers[
       'x-goog-request-params'
     ] = gax.routingHeader.fromParams({
-      parent: request.parent || '',
+      'parent': request.parent || '',
     });
     this.initialize();
     return this._innerApiCalls.createFeed(request, options, callback);
   }
   getFeed(
-    request: protosTypes.google.cloud.asset.v1p2beta1.IGetFeedRequest,
-    options?: gax.CallOptions
-  ): Promise<
-    [
-      protosTypes.google.cloud.asset.v1p2beta1.IFeed,
-      protosTypes.google.cloud.asset.v1p2beta1.IGetFeedRequest | undefined,
-      {} | undefined
-    ]
-  >;
+      request: protosTypes.google.cloud.asset.v1p2beta1.IGetFeedRequest,
+      options?: gax.CallOptions):
+      Promise<[
+        protosTypes.google.cloud.asset.v1p2beta1.IFeed,
+        protosTypes.google.cloud.asset.v1p2beta1.IGetFeedRequest|undefined, {}|undefined
+      ]>;
   getFeed(
-    request: protosTypes.google.cloud.asset.v1p2beta1.IGetFeedRequest,
-    options: gax.CallOptions,
-    callback: Callback<
-      protosTypes.google.cloud.asset.v1p2beta1.IFeed,
-      protosTypes.google.cloud.asset.v1p2beta1.IGetFeedRequest | undefined,
-      {} | undefined
-    >
-  ): void;
-  /**
-   * Gets details about an asset feed.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.name
-   *   Required. The name of the Feed and it must be in the format of:
-   *   projects/project_number/feeds/feed_id
-   *   folders/folder_number/feeds/feed_id
-   *   organizations/organization_number/feeds/feed_id
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing [Feed]{@link google.cloud.asset.v1p2beta1.Feed}.
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
-   */
-  getFeed(
-    request: protosTypes.google.cloud.asset.v1p2beta1.IGetFeedRequest,
-    optionsOrCallback?:
-      | gax.CallOptions
-      | Callback<
+      request: protosTypes.google.cloud.asset.v1p2beta1.IGetFeedRequest,
+      options: gax.CallOptions,
+      callback: Callback<
           protosTypes.google.cloud.asset.v1p2beta1.IFeed,
-          protosTypes.google.cloud.asset.v1p2beta1.IGetFeedRequest | undefined,
-          {} | undefined
-        >,
-    callback?: Callback<
-      protosTypes.google.cloud.asset.v1p2beta1.IFeed,
-      protosTypes.google.cloud.asset.v1p2beta1.IGetFeedRequest | undefined,
-      {} | undefined
-    >
-  ): Promise<
-    [
-      protosTypes.google.cloud.asset.v1p2beta1.IFeed,
-      protosTypes.google.cloud.asset.v1p2beta1.IGetFeedRequest | undefined,
-      {} | undefined
-    ]
-  > | void {
+          protosTypes.google.cloud.asset.v1p2beta1.IGetFeedRequest|undefined,
+          {}|undefined>): void;
+/**
+ * Gets details about an asset feed.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.name
+ *   Required. The name of the Feed and it must be in the format of:
+ *   projects/project_number/feeds/feed_id
+ *   folders/folder_number/feeds/feed_id
+ *   organizations/organization_number/feeds/feed_id
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing [Feed]{@link google.cloud.asset.v1p2beta1.Feed}.
+ *   The promise has a method named "cancel" which cancels the ongoing API call.
+ */
+  getFeed(
+      request: protosTypes.google.cloud.asset.v1p2beta1.IGetFeedRequest,
+      optionsOrCallback?: gax.CallOptions|Callback<
+          protosTypes.google.cloud.asset.v1p2beta1.IFeed,
+          protosTypes.google.cloud.asset.v1p2beta1.IGetFeedRequest|undefined, {}|undefined>,
+      callback?: Callback<
+          protosTypes.google.cloud.asset.v1p2beta1.IFeed,
+          protosTypes.google.cloud.asset.v1p2beta1.IGetFeedRequest|undefined,
+          {}|undefined>):
+      Promise<[
+        protosTypes.google.cloud.asset.v1p2beta1.IFeed,
+        protosTypes.google.cloud.asset.v1p2beta1.IGetFeedRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: gax.CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as gax.CallOptions;
     }
     options = options || {};
@@ -456,73 +405,60 @@ export class AssetServiceClient {
     options.otherArgs.headers[
       'x-goog-request-params'
     ] = gax.routingHeader.fromParams({
-      name: request.name || '',
+      'name': request.name || '',
     });
     this.initialize();
     return this._innerApiCalls.getFeed(request, options, callback);
   }
   listFeeds(
-    request: protosTypes.google.cloud.asset.v1p2beta1.IListFeedsRequest,
-    options?: gax.CallOptions
-  ): Promise<
-    [
-      protosTypes.google.cloud.asset.v1p2beta1.IListFeedsResponse,
-      protosTypes.google.cloud.asset.v1p2beta1.IListFeedsRequest | undefined,
-      {} | undefined
-    ]
-  >;
+      request: protosTypes.google.cloud.asset.v1p2beta1.IListFeedsRequest,
+      options?: gax.CallOptions):
+      Promise<[
+        protosTypes.google.cloud.asset.v1p2beta1.IListFeedsResponse,
+        protosTypes.google.cloud.asset.v1p2beta1.IListFeedsRequest|undefined, {}|undefined
+      ]>;
   listFeeds(
-    request: protosTypes.google.cloud.asset.v1p2beta1.IListFeedsRequest,
-    options: gax.CallOptions,
-    callback: Callback<
-      protosTypes.google.cloud.asset.v1p2beta1.IListFeedsResponse,
-      protosTypes.google.cloud.asset.v1p2beta1.IListFeedsRequest | undefined,
-      {} | undefined
-    >
-  ): void;
-  /**
-   * Lists all asset feeds in a parent project/folder/organization.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.parent
-   *   Required. The parent project/folder/organization whose feeds are to be
-   *   listed. It can only be using project/folder/organization number (such as
-   *   "folders/12345")", or a project ID (such as "projects/my-project-id").
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing [ListFeedsResponse]{@link google.cloud.asset.v1p2beta1.ListFeedsResponse}.
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
-   */
-  listFeeds(
-    request: protosTypes.google.cloud.asset.v1p2beta1.IListFeedsRequest,
-    optionsOrCallback?:
-      | gax.CallOptions
-      | Callback<
+      request: protosTypes.google.cloud.asset.v1p2beta1.IListFeedsRequest,
+      options: gax.CallOptions,
+      callback: Callback<
           protosTypes.google.cloud.asset.v1p2beta1.IListFeedsResponse,
-          | protosTypes.google.cloud.asset.v1p2beta1.IListFeedsRequest
-          | undefined,
-          {} | undefined
-        >,
-    callback?: Callback<
-      protosTypes.google.cloud.asset.v1p2beta1.IListFeedsResponse,
-      protosTypes.google.cloud.asset.v1p2beta1.IListFeedsRequest | undefined,
-      {} | undefined
-    >
-  ): Promise<
-    [
-      protosTypes.google.cloud.asset.v1p2beta1.IListFeedsResponse,
-      protosTypes.google.cloud.asset.v1p2beta1.IListFeedsRequest | undefined,
-      {} | undefined
-    ]
-  > | void {
+          protosTypes.google.cloud.asset.v1p2beta1.IListFeedsRequest|undefined,
+          {}|undefined>): void;
+/**
+ * Lists all asset feeds in a parent project/folder/organization.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. The parent project/folder/organization whose feeds are to be
+ *   listed. It can only be using project/folder/organization number (such as
+ *   "folders/12345")", or a project ID (such as "projects/my-project-id").
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing [ListFeedsResponse]{@link google.cloud.asset.v1p2beta1.ListFeedsResponse}.
+ *   The promise has a method named "cancel" which cancels the ongoing API call.
+ */
+  listFeeds(
+      request: protosTypes.google.cloud.asset.v1p2beta1.IListFeedsRequest,
+      optionsOrCallback?: gax.CallOptions|Callback<
+          protosTypes.google.cloud.asset.v1p2beta1.IListFeedsResponse,
+          protosTypes.google.cloud.asset.v1p2beta1.IListFeedsRequest|undefined, {}|undefined>,
+      callback?: Callback<
+          protosTypes.google.cloud.asset.v1p2beta1.IListFeedsResponse,
+          protosTypes.google.cloud.asset.v1p2beta1.IListFeedsRequest|undefined,
+          {}|undefined>):
+      Promise<[
+        protosTypes.google.cloud.asset.v1p2beta1.IListFeedsResponse,
+        protosTypes.google.cloud.asset.v1p2beta1.IListFeedsRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: gax.CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as gax.CallOptions;
     }
     options = options || {};
@@ -531,79 +467,66 @@ export class AssetServiceClient {
     options.otherArgs.headers[
       'x-goog-request-params'
     ] = gax.routingHeader.fromParams({
-      parent: request.parent || '',
+      'parent': request.parent || '',
     });
     this.initialize();
     return this._innerApiCalls.listFeeds(request, options, callback);
   }
   updateFeed(
-    request: protosTypes.google.cloud.asset.v1p2beta1.IUpdateFeedRequest,
-    options?: gax.CallOptions
-  ): Promise<
-    [
-      protosTypes.google.cloud.asset.v1p2beta1.IFeed,
-      protosTypes.google.cloud.asset.v1p2beta1.IUpdateFeedRequest | undefined,
-      {} | undefined
-    ]
-  >;
+      request: protosTypes.google.cloud.asset.v1p2beta1.IUpdateFeedRequest,
+      options?: gax.CallOptions):
+      Promise<[
+        protosTypes.google.cloud.asset.v1p2beta1.IFeed,
+        protosTypes.google.cloud.asset.v1p2beta1.IUpdateFeedRequest|undefined, {}|undefined
+      ]>;
   updateFeed(
-    request: protosTypes.google.cloud.asset.v1p2beta1.IUpdateFeedRequest,
-    options: gax.CallOptions,
-    callback: Callback<
-      protosTypes.google.cloud.asset.v1p2beta1.IFeed,
-      protosTypes.google.cloud.asset.v1p2beta1.IUpdateFeedRequest | undefined,
-      {} | undefined
-    >
-  ): void;
-  /**
-   * Updates an asset feed configuration.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {google.cloud.asset.v1p2beta1.Feed} request.feed
-   *   Required. The new values of feed details. It must match an existing feed and the
-   *   field `name` must be in the format of:
-   *   projects/project_number/feeds/feed_id or
-   *   folders/folder_number/feeds/feed_id or
-   *   organizations/organization_number/feeds/feed_id.
-   * @param {google.protobuf.FieldMask} request.updateMask
-   *   Required. Only updates the `feed` fields indicated by this mask.
-   *   The field mask must not be empty, and it must not contain fields that
-   *   are immutable or only set by the server.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing [Feed]{@link google.cloud.asset.v1p2beta1.Feed}.
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
-   */
-  updateFeed(
-    request: protosTypes.google.cloud.asset.v1p2beta1.IUpdateFeedRequest,
-    optionsOrCallback?:
-      | gax.CallOptions
-      | Callback<
+      request: protosTypes.google.cloud.asset.v1p2beta1.IUpdateFeedRequest,
+      options: gax.CallOptions,
+      callback: Callback<
           protosTypes.google.cloud.asset.v1p2beta1.IFeed,
-          | protosTypes.google.cloud.asset.v1p2beta1.IUpdateFeedRequest
-          | undefined,
-          {} | undefined
-        >,
-    callback?: Callback<
-      protosTypes.google.cloud.asset.v1p2beta1.IFeed,
-      protosTypes.google.cloud.asset.v1p2beta1.IUpdateFeedRequest | undefined,
-      {} | undefined
-    >
-  ): Promise<
-    [
-      protosTypes.google.cloud.asset.v1p2beta1.IFeed,
-      protosTypes.google.cloud.asset.v1p2beta1.IUpdateFeedRequest | undefined,
-      {} | undefined
-    ]
-  > | void {
+          protosTypes.google.cloud.asset.v1p2beta1.IUpdateFeedRequest|undefined,
+          {}|undefined>): void;
+/**
+ * Updates an asset feed configuration.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {google.cloud.asset.v1p2beta1.Feed} request.feed
+ *   Required. The new values of feed details. It must match an existing feed and the
+ *   field `name` must be in the format of:
+ *   projects/project_number/feeds/feed_id or
+ *   folders/folder_number/feeds/feed_id or
+ *   organizations/organization_number/feeds/feed_id.
+ * @param {google.protobuf.FieldMask} request.updateMask
+ *   Required. Only updates the `feed` fields indicated by this mask.
+ *   The field mask must not be empty, and it must not contain fields that
+ *   are immutable or only set by the server.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing [Feed]{@link google.cloud.asset.v1p2beta1.Feed}.
+ *   The promise has a method named "cancel" which cancels the ongoing API call.
+ */
+  updateFeed(
+      request: protosTypes.google.cloud.asset.v1p2beta1.IUpdateFeedRequest,
+      optionsOrCallback?: gax.CallOptions|Callback<
+          protosTypes.google.cloud.asset.v1p2beta1.IFeed,
+          protosTypes.google.cloud.asset.v1p2beta1.IUpdateFeedRequest|undefined, {}|undefined>,
+      callback?: Callback<
+          protosTypes.google.cloud.asset.v1p2beta1.IFeed,
+          protosTypes.google.cloud.asset.v1p2beta1.IUpdateFeedRequest|undefined,
+          {}|undefined>):
+      Promise<[
+        protosTypes.google.cloud.asset.v1p2beta1.IFeed,
+        protosTypes.google.cloud.asset.v1p2beta1.IUpdateFeedRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: gax.CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as gax.CallOptions;
     }
     options = options || {};
@@ -618,68 +541,55 @@ export class AssetServiceClient {
     return this._innerApiCalls.updateFeed(request, options, callback);
   }
   deleteFeed(
-    request: protosTypes.google.cloud.asset.v1p2beta1.IDeleteFeedRequest,
-    options?: gax.CallOptions
-  ): Promise<
-    [
-      protosTypes.google.protobuf.IEmpty,
-      protosTypes.google.cloud.asset.v1p2beta1.IDeleteFeedRequest | undefined,
-      {} | undefined
-    ]
-  >;
+      request: protosTypes.google.cloud.asset.v1p2beta1.IDeleteFeedRequest,
+      options?: gax.CallOptions):
+      Promise<[
+        protosTypes.google.protobuf.IEmpty,
+        protosTypes.google.cloud.asset.v1p2beta1.IDeleteFeedRequest|undefined, {}|undefined
+      ]>;
   deleteFeed(
-    request: protosTypes.google.cloud.asset.v1p2beta1.IDeleteFeedRequest,
-    options: gax.CallOptions,
-    callback: Callback<
-      protosTypes.google.protobuf.IEmpty,
-      protosTypes.google.cloud.asset.v1p2beta1.IDeleteFeedRequest | undefined,
-      {} | undefined
-    >
-  ): void;
-  /**
-   * Deletes an asset feed.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.name
-   *   Required. The name of the feed and it must be in the format of:
-   *   projects/project_number/feeds/feed_id
-   *   folders/folder_number/feeds/feed_id
-   *   organizations/organization_number/feeds/feed_id
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing [Empty]{@link google.protobuf.Empty}.
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
-   */
-  deleteFeed(
-    request: protosTypes.google.cloud.asset.v1p2beta1.IDeleteFeedRequest,
-    optionsOrCallback?:
-      | gax.CallOptions
-      | Callback<
+      request: protosTypes.google.cloud.asset.v1p2beta1.IDeleteFeedRequest,
+      options: gax.CallOptions,
+      callback: Callback<
           protosTypes.google.protobuf.IEmpty,
-          | protosTypes.google.cloud.asset.v1p2beta1.IDeleteFeedRequest
-          | undefined,
-          {} | undefined
-        >,
-    callback?: Callback<
-      protosTypes.google.protobuf.IEmpty,
-      protosTypes.google.cloud.asset.v1p2beta1.IDeleteFeedRequest | undefined,
-      {} | undefined
-    >
-  ): Promise<
-    [
-      protosTypes.google.protobuf.IEmpty,
-      protosTypes.google.cloud.asset.v1p2beta1.IDeleteFeedRequest | undefined,
-      {} | undefined
-    ]
-  > | void {
+          protosTypes.google.cloud.asset.v1p2beta1.IDeleteFeedRequest|undefined,
+          {}|undefined>): void;
+/**
+ * Deletes an asset feed.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.name
+ *   Required. The name of the feed and it must be in the format of:
+ *   projects/project_number/feeds/feed_id
+ *   folders/folder_number/feeds/feed_id
+ *   organizations/organization_number/feeds/feed_id
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing [Empty]{@link google.protobuf.Empty}.
+ *   The promise has a method named "cancel" which cancels the ongoing API call.
+ */
+  deleteFeed(
+      request: protosTypes.google.cloud.asset.v1p2beta1.IDeleteFeedRequest,
+      optionsOrCallback?: gax.CallOptions|Callback<
+          protosTypes.google.protobuf.IEmpty,
+          protosTypes.google.cloud.asset.v1p2beta1.IDeleteFeedRequest|undefined, {}|undefined>,
+      callback?: Callback<
+          protosTypes.google.protobuf.IEmpty,
+          protosTypes.google.cloud.asset.v1p2beta1.IDeleteFeedRequest|undefined,
+          {}|undefined>):
+      Promise<[
+        protosTypes.google.protobuf.IEmpty,
+        protosTypes.google.cloud.asset.v1p2beta1.IDeleteFeedRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: gax.CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as gax.CallOptions;
     }
     options = options || {};
@@ -688,7 +598,7 @@ export class AssetServiceClient {
     options.otherArgs.headers[
       'x-goog-request-params'
     ] = gax.routingHeader.fromParams({
-      name: request.name || '',
+      'name': request.name || '',
     });
     this.initialize();
     return this._innerApiCalls.deleteFeed(request, options, callback);
@@ -705,10 +615,10 @@ export class AssetServiceClient {
    * @param {string} feed
    * @returns {string} Resource name string.
    */
-  folderFeedPath(folder: string, feed: string) {
+  folderFeedPath(folder:string,feed:string) {
     return this._pathTemplates.folderFeedPathTemplate.render({
-      folder,
-      feed,
+      folder: folder,
+      feed: feed,
     });
   }
 
@@ -720,8 +630,7 @@ export class AssetServiceClient {
    * @returns {string} A string representing the folder.
    */
   matchFolderFromFolderFeedName(folderFeedName: string) {
-    return this._pathTemplates.folderFeedPathTemplate.match(folderFeedName)
-      .folder;
+    return this._pathTemplates.folderFeedPathTemplate.match(folderFeedName).folder;
   }
 
   /**
@@ -732,8 +641,7 @@ export class AssetServiceClient {
    * @returns {string} A string representing the feed.
    */
   matchFeedFromFolderFeedName(folderFeedName: string) {
-    return this._pathTemplates.folderFeedPathTemplate.match(folderFeedName)
-      .feed;
+    return this._pathTemplates.folderFeedPathTemplate.match(folderFeedName).feed;
   }
 
   /**
@@ -743,10 +651,10 @@ export class AssetServiceClient {
    * @param {string} feed
    * @returns {string} Resource name string.
    */
-  organizationFeedPath(organization: string, feed: string) {
+  organizationFeedPath(organization:string,feed:string) {
     return this._pathTemplates.organizationFeedPathTemplate.render({
-      organization,
-      feed,
+      organization: organization,
+      feed: feed,
     });
   }
 
@@ -758,9 +666,7 @@ export class AssetServiceClient {
    * @returns {string} A string representing the organization.
    */
   matchOrganizationFromOrganizationFeedName(organizationFeedName: string) {
-    return this._pathTemplates.organizationFeedPathTemplate.match(
-      organizationFeedName
-    ).organization;
+    return this._pathTemplates.organizationFeedPathTemplate.match(organizationFeedName).organization;
   }
 
   /**
@@ -771,9 +677,7 @@ export class AssetServiceClient {
    * @returns {string} A string representing the feed.
    */
   matchFeedFromOrganizationFeedName(organizationFeedName: string) {
-    return this._pathTemplates.organizationFeedPathTemplate.match(
-      organizationFeedName
-    ).feed;
+    return this._pathTemplates.organizationFeedPathTemplate.match(organizationFeedName).feed;
   }
 
   /**
@@ -783,10 +687,10 @@ export class AssetServiceClient {
    * @param {string} feed
    * @returns {string} Resource name string.
    */
-  projectFeedPath(project: string, feed: string) {
+  projectFeedPath(project:string,feed:string) {
     return this._pathTemplates.projectFeedPathTemplate.render({
-      project,
-      feed,
+      project: project,
+      feed: feed,
     });
   }
 
@@ -798,8 +702,7 @@ export class AssetServiceClient {
    * @returns {string} A string representing the project.
    */
   matchProjectFromProjectFeedName(projectFeedName: string) {
-    return this._pathTemplates.projectFeedPathTemplate.match(projectFeedName)
-      .project;
+    return this._pathTemplates.projectFeedPathTemplate.match(projectFeedName).project;
   }
 
   /**
@@ -810,8 +713,7 @@ export class AssetServiceClient {
    * @returns {string} A string representing the feed.
    */
   matchFeedFromProjectFeedName(projectFeedName: string) {
-    return this._pathTemplates.projectFeedPathTemplate.match(projectFeedName)
-      .feed;
+    return this._pathTemplates.projectFeedPathTemplate.match(projectFeedName).feed;
   }
 
   /**
