@@ -200,6 +200,7 @@ export class AssetServiceClient {
             'google.cloud.asset.v1p2beta1.AssetService'
           )
         : // tslint:disable-next-line no-any
+          /* eslint-disable @typescript-eslint/no-explicit-any */
           (this._protos as any).google.cloud.asset.v1p2beta1.AssetService,
       this._opts
     ) as Promise<{[method: string]: Function}>;

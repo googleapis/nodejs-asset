@@ -23,8 +23,6 @@ import {
   CallOptions,
   Descriptors,
   ClientOptions,
-  PaginationCallback,
-  PaginationResponse,
 } from 'google-gax';
 import * as path from 'path';
 
@@ -203,6 +201,7 @@ export class AssetServiceClient {
             'google.cloud.asset.v1p1beta1.AssetService'
           )
         : // tslint:disable-next-line no-any
+          /* eslint-disable @typescript-eslint/no-explicit-any */
           (this._protos as any).google.cloud.asset.v1p1beta1.AssetService,
       this._opts
     ) as Promise<{[method: string]: Function}>;
