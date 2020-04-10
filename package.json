@@ -43,8 +43,7 @@
     "prelint": "cd samples; npm link ../; npm install"
   },
   "dependencies": {
-    "google-gax": "^2.1.0",
-    "protobufjs": "^6.8.9"
+    "google-gax": "^2.1.0"
   },
   "devDependencies": {
     "@types/mocha": "^7.0.2",
