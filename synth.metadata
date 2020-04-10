@@ -1,6 +1,12 @@
 {
-  "updateTime": "2020-04-04T11:12:42.743409Z",
   "sources": [
+    {
+      "git": {
+        "name": ".",
+        "remote": "https://github.com/googleapis/nodejs-asset.git",
+        "sha": "d4235e7adca2b15aa2c60d1575774f3e6f555229"
+      }
+    },
     {
       "git": {
         "name": "googleapis",
