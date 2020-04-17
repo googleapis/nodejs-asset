@@ -16,6 +16,7 @@
 import json
 import synthtool as s
 import synthtool.gcp as gcp
+import synthtool.languages.node as node
 import subprocess
 import logging
 
@@ -64,7 +65,4 @@ for file in proto_lists:
   with open(file, 'w') as f:
     f.write(new_file)
 
-# Node.js specific cleanup
-subprocess.run(['npm', 'install'])
-subprocess.run(['npm', 'run', 'fix'])
-subprocess.run(['npx', 'compileProtos', 'src'])
+node.postprocess_gapic_library()
