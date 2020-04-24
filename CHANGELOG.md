@@ -4,6 +4,13 @@
 
 [1]: https://www.npmjs.com/package/@google-cloud/asset?activeTab=versions
 
+### [3.0.1](https://www.github.com/googleapis/nodejs-asset/compare/v3.0.0...v3.0.1) (2020-04-24)
+
+
+### Bug Fixes
+
+* remove eslint, update gax, fix generated protos, run the generator ([#311](https://www.github.com/googleapis/nodejs-asset/issues/311)) ([999b782](https://www.github.com/googleapis/nodejs-asset/commit/999b7824a2acb1538b1502029d7055aef930206c))
+
 ## [3.0.0](https://www.github.com/googleapis/nodejs-asset/compare/v2.2.0...v3.0.0) (2020-04-10)
 
 
