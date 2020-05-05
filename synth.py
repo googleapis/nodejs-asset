@@ -37,17 +37,19 @@ for version in versions:
         },
         # This API has dependencies outside of its own folder so we list them here.
         # Switching to bazel build should help get rid of this.
-        extra_proto_files=['google/cloud/common_resources.proto', 'google/cloud/orgpolicy/v1', 'google/identity/accesscontextmanager'],
+        extra_proto_files=['google/cloud/common_resources.proto',
+                           'google/cloud/orgpolicy/v1', 'google/identity/accesscontextmanager'],
         version=version),
     # skip index, protos, package.json, and README.md
     s.copy(
         library,
-        excludes=['package.json', 'src/index.ts']
+        excludes=['package.json']
     )
 
 # Copy common templates
 common_templates = gcp.CommonTemplates()
-templates = common_templates.node_library(source_location='build/src')
+templates = common_templates.node_library(
+    source_location='build/src', versions=versions, default_version='v1')
 s.copy(templates)
 
 node.postprocess_gapic_library()
