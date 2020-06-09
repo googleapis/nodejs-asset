@@ -23,20 +23,23 @@ async function main() {
   // [START asset_quickstart_search_all_iam_policies]
   const util = require('util');
   const {AssetServiceClient} = require('@google-cloud/asset');
-  const argv = require('yargs').argv;
+  const argv = require('yargs').boolean(['autoPaginate']).argv;
 
   const client = new AssetServiceClient();
 
   async function searchAllIamPolicies() {
     const request = {
-          scope: argv.scope,
-          query: argv.query,
-          pageSize: argv.pageSize,
-          pageToken: argv.pageToken,
-        };
+      scope: argv.scope,
+      query: argv.query,
+      pageSize: argv.pageSize,
+      pageToken: argv.pageToken,
+    };
+    const options = {
+      autoPaginate: argv.autoPaginate,
+    }
 
     // Handle the operation using the promise pattern.
-    const result = await client.searchAllIamPolicies(request);
+    const result = await client.searchAllIamPolicies(request, options);
     // Do things with with the response.
     console.log(util.inspect(result, {depth: null}));
   }
