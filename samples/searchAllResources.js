@@ -23,10 +23,7 @@ async function main() {
   // [START asset_quickstart_search_all_resources]
   const util = require('util');
   const {AssetServiceClient} = require('@google-cloud/asset');
-  const argv = require('yargs')
-    .array(['assetTypes'])
-    .number(['pageSize'])
-    .argv;
+  const argv = require('yargs').array(['assetTypes']).argv;
 
   const client = new AssetServiceClient();
 
