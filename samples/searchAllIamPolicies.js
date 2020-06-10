@@ -36,7 +36,7 @@ async function main() {
     };
     const options = {
       autoPaginate: argv.autoPaginate,
-    }
+    };
 
     // Handle the operation using the promise pattern.
     const result = await client.searchAllIamPolicies(request, options);
