@@ -17,25 +17,33 @@
 // sample-metadata:
 //   title: Search All Iam Policies
 //   description: Search All Iam Policies.
-//   usage: node searchAllIamPolicies --scope=<SCOPE> --query=<QUERY> --pageSize=<PAGE_SIZE> --pageToken=<PAGE_TOKEN>
+//   usage: node searchAllIamPolicies <SCOPE> <QUERY> <PAGE_SIZE> <PAGE_TOKEN>
 
-async function main() {
+async function main(scope, query, pageSize, pageToken) {
   // [START asset_quickstart_search_all_iam_policies]
+  /**
+   * TODO(developer): Uncomment these variables before running the sample.
+   */
+  // const scope = '';
+  // const query = '';
+  // const pageSize = 0;
+  // const pageToken = '';
+
   const util = require('util');
   const {AssetServiceClient} = require('@google-cloud/asset');
-  const argv = require('yargs').boolean(['autoPaginate']).argv;
 
   const client = new AssetServiceClient();
+  const projectId = await client.getProjectId();
 
   async function searchAllIamPolicies() {
     const request = {
-      scope: argv.scope,
-      query: argv.query,
-      pageSize: argv.pageSize,
-      pageToken: argv.pageToken,
+      scope: `projects/${projectId}`,
+      query: query,
+      pageSize: pageSize,
+      pageToken: pageToken,
     };
     const options = {
-      autoPaginate: argv.autoPaginate,
+      autoPaginate: false,
     };
 
     // Handle the operation using the promise pattern.

@@ -17,28 +17,37 @@
 // sample-metadata:
 //   title: Search All Resources
 //   description: Search All Resources.
-//   usage: node searchAllResources --scope=<SCOPE> --query=<QUERY> --assetTypes=<ASSET_TYPE1> <ASSET_TYPE2> ... --pageSize=<PAGE_SIZE> --pageToken=<PAGE_TOKEN> --orderBy=<ORDER_BY>
+//   usage: node searchAllResources <SCOPE> <QUERY> <ASSET_TYPE1, ASSET_TYPE2, ...> <PAGE_SIZE> <PAGE_TOKEN> <ORDER_BY>
 
-async function main() {
+async function main(scope, query, assetTypes, pageSize, pageToken, orderBy) {
   // [START asset_quickstart_search_all_resources]
+  /**
+   * TODO(developer): Uncomment these variables before running the sample.
+   */
+  // const scope = '';
+  // const query = '';
+  // const assetTypes = [];
+  // const pageSize = 0;
+  // const pageToken = '';
+  // const orderBy = '';
+
   const util = require('util');
   const {AssetServiceClient} = require('@google-cloud/asset');
-  const argv = require('yargs').array(['assetTypes']).boolean(['autoPaginate'])
-    .argv;
 
   const client = new AssetServiceClient();
+  const projectId = await client.getProjectId();
 
   async function searchAllResources() {
     const request = {
-      scope: argv.scope,
-      query: argv.query,
-      assetTypes: argv.assetTypes,
-      pageSize: argv.pageSize,
-      pageToken: argv.pageToken,
-      orderBy: argv.orderBy,
+      scope: `projects/${projectId}`,
+      query: query,
+      assetTypes: assetTypes,
+      pageSize: pageSize,
+      pageToken: pageToken,
+      orderBy: orderBy,
     };
     const options = {
-      autoPaginate: argv.autoPaginate,
+      autoPaginate: false,
     };
 
     // Handle the operation using the promise pattern.

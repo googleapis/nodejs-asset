@@ -81,20 +81,18 @@ describe('quickstart sample tests', () => {
   });
 
   it('should search all resources successfully', async () => {
-    const scope = `projects/${process.env.GCLOUD_PROJECT}`;
     const query = `name:${vmName}`;
     const stdout = execSync(
-      `node searchAllResources --scope=${scope} --query=${query}`
+      `node searchAllResources '' ${query}`
     );
     assert.include(stdout, vmName);
   });
 
   it('should search all iam policies successfully', async () => {
-    const scope = `projects/${process.env.GCLOUD_PROJECT}`;
     const query = 'policy:roles/owner';
     const stdout = execSync(
-      `node searchAllIamPolicies --scope=${scope} --query=${query}`
+      `node searchAllIamPolicies '' ${query}`
     );
-    assert.isAtLeast(stdout[0].length, 1);
+    assert.include(stdout, 'roles/owner');
   });
 });
