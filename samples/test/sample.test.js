@@ -82,13 +82,17 @@ describe('quickstart sample tests', () => {
 
   it('should search all resources successfully', async () => {
     const query = `name:${vmName}`;
-    const stdout = execSync(`node searchAllResources '' ${query}`);
+    const stdout = execSync(
+      `node searchAllResources '' ${query}`
+    );
     assert.include(stdout, vmName);
   });
 
   it('should search all iam policies successfully', async () => {
     const query = 'policy:roles/owner';
-    const stdout = execSync(`node searchAllIamPolicies '' ${query}`);
+    const stdout = execSync(
+      `node searchAllIamPolicies '' ${query}`
+    );
     assert.include(stdout, 'roles/owner');
   });
 });
