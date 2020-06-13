@@ -17,7 +17,7 @@
 // sample-metadata:
 //   title: Search All Resources
 //   description: Search All Resources.
-//   usage: node searchAllResources <SCOPE> <QUERY> <ASSET_TYPE1, ASSET_TYPE2, ...> <PAGE_SIZE> <PAGE_TOKEN> <ORDER_BY>
+//   usage: node searchAllResources <SCOPE> <QUERY> <ASSET_TYPES> <PAGE_SIZE> <PAGE_TOKEN> <ORDER_BY>
 
 async function main(scope, query, assetTypes, pageSize, pageToken, orderBy) {
   // [START asset_quickstart_search_all_resources]
