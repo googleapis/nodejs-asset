@@ -32,7 +32,7 @@ async function main(assetTypes) {
   //   const assetTypesList = ['storage.googleapis.com/Bucket', 'bigquery.googleapis.com/Table'];
   // Or simply use empty list to list all types of assets:
   //   const assetTypesList = [];
-  const assetTypesList = assetTypes? assetTypes.split(',') : [];
+  const assetTypesList = assetTypes ? assetTypes.split(',') : [];
 
   async function listAssets() {
     const request = {

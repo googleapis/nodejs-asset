@@ -93,7 +93,7 @@ describe('quickstart sample tests', () => {
   });
 
   it('should list assets successfully', async () => {
-    const assetType = `storage.googleapis.com/Bucket`;
+    const assetType = 'storage.googleapis.com/Bucket';
     const stdout = execSync(`node listAssets ${assetType}`);
     assert.include(stdout, assetType);
   });
