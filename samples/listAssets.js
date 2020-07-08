@@ -29,9 +29,9 @@ async function main(assetTypes) {
   const projectId = await client.getProjectId();
   const projectResource = `projects/${projectId}`;
   // TODO(developer): Choose types of assets to list, such as 'storage.googleapis.com/Bucket':
-  //   const assetTypesList = ['storage.googleapis.com/Bucket', 'bigquery.googleapis.com/Table'];
-  // Or simply use empty list to list all types of assets:
-  //   const assetTypesList = [];
+  //   const assetTypes = 'storage.googleapis.com/Bucket,bigquery.googleapis.com/Table';
+  // Or simply use empty string to list all types of assets:
+  //   const assetTypes = '';
   const assetTypesList = assetTypes ? assetTypes.split(',') : [];
 
   async function listAssets() {
@@ -47,9 +47,9 @@ async function main(assetTypes) {
     const result = await client.listAssets(request);
     // Handle the response.
     console.log(util.inspect(result, {depth: null}));
-    // [END asset_quickstart_list_assets]
   }
   listAssets();
+  // [END asset_quickstart_list_assets]
 }
 
 main(...process.argv.slice(2)).catch(err => {
