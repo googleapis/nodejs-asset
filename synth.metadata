@@ -3,8 +3,8 @@
     {
       "git": {
         "name": ".",
-        "remote": "git@github.com:googleapis/nodejs-asset.git",
-        "sha": "1c34573510622fa114248f4f1682d910ef738905"
+        "remote": "https://github.com/googleapis/nodejs-asset.git",
+        "sha": "1f4cef8af558cc000aec52c4e92afc1774141c53"
       }
     },
     {
