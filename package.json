@@ -1,7 +1,7 @@
 {
   "name": "@google-cloud/asset",
   "description": "Cloud Asset API client for Node.js",
-  "version": "3.4.0",
+  "version": "3.5.0",
   "license": "Apache-2.0",
   "author": "Google LLC",
   "engines": {
@@ -61,7 +61,7 @@
     "null-loader": "^4.0.0",
     "pack-n-play": "^1.0.0-2",
     "sinon": "^9.0.1",
-    "ts-loader": "^7.0.0",
+    "ts-loader": "^8.0.0",
     "typescript": "^3.8.3",
     "webpack": "^4.42.0",
     "webpack-cli": "^3.3.11"
