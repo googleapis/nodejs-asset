@@ -4,6 +4,18 @@
 
 [1]: https://www.npmjs.com/package/@google-cloud/asset?activeTab=versions
 
+## [4.0.0](https://www.github.com/googleapis/nodejs-asset/compare/v3.7.0...v4.0.0) (2020-09-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove unused AnalyzeIamPolicy and ExportIamPolicyAnalysis RPCs (#393)
+
+### Bug Fixes
+
+* remove unused AnalyzeIamPolicy and ExportIamPolicyAnalysis RPCs ([#393](https://www.github.com/googleapis/nodejs-asset/issues/393)) ([5994b6c](https://www.github.com/googleapis/nodejs-asset/commit/5994b6c74705e71d660f60fbbbfa55fa21b6251f))
+* **deps:** update dependency yargs to v16 ([#391](https://www.github.com/googleapis/nodejs-asset/issues/391)) ([ee124ce](https://www.github.com/googleapis/nodejs-asset/commit/ee124ce650607387263f432adcd2afdb1d6065ee))
+
 ## [3.7.0](https://www.github.com/googleapis/nodejs-asset/compare/v3.6.0...v3.7.0) (2020-08-24)
 
 
