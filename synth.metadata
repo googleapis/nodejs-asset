@@ -3,23 +3,15 @@
     {
       "git": {
         "name": ".",
-        "remote": "https://github.com/googleapis/nodejs-asset.git",
-        "sha": "43dde85f123d0716b5c3b5aad3b3d1d8018399a6"
-      }
-    },
-    {
-      "git": {
-        "name": "googleapis",
-        "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "00bbad4dfd6633cf4b5f9596c1f93b756bb5c776",
-        "internalRef": "339708980"
+        "remote": "git@github.com:googleapis/nodejs-asset.git",
+        "sha": "3c1cb89c136232bf9b5c8a22e62124f7d48c7303"
       }
     },
     {
       "git": {
         "name": "synthtool",
         "remote": "https://github.com/googleapis/synthtool.git",
-        "sha": "ba9918cd22874245b55734f57470c719b577e591"
+        "sha": "1f1148d3c7a7a52f0c98077f976bd9b3c948ee2b"
       }
     }
   ],
@@ -132,6 +124,7 @@
     "README.md",
     "api-extractor.json",
     "linkinator.config.json",
+    "package-lock.json.160311084",
     "protos/google/cloud/asset/v1/asset_service.proto",
     "protos/google/cloud/asset/v1/assets.proto",
     "protos/google/cloud/asset/v1beta1/asset_service.proto",
@@ -149,6 +142,7 @@
     "protos/protos.json",
     "renovate.json",
     "samples/README.md",
+    "samples/package-lock.json.2464353656",
     "src/index.ts",
     "src/v1/asset_service_client.ts",
     "src/v1/asset_service_client_config.json",
