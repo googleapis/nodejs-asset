@@ -3,8 +3,16 @@
     {
       "git": {
         "name": ".",
-        "remote": "git@github.com:googleapis/nodejs-asset.git",
+        "remote": "https://github.com/googleapis/nodejs-asset.git",
         "sha": "3c1cb89c136232bf9b5c8a22e62124f7d48c7303"
+      }
+    },
+    {
+      "git": {
+        "name": "googleapis",
+        "remote": "https://github.com/googleapis/googleapis.git",
+        "sha": "00bbad4dfd6633cf4b5f9596c1f93b756bb5c776",
+        "internalRef": "339708980"
       }
     },
     {
