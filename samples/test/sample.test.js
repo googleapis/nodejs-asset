@@ -68,7 +68,7 @@ describe('quickstart sample tests', () => {
     await file.delete();
   });
 
-  it('should get assets history successfully', async () => {
+  it('should get assets history successfully', async function () {
     this.retries(2);
     await delay(this.test);
     const assetName = `//storage.googleapis.com/${bucketName}`;
@@ -76,7 +76,7 @@ describe('quickstart sample tests', () => {
     assert.include(stdout, assetName);
   });
 
-  it('should run the quickstart', async () => {
+  it('should run the quickstart', async function () {
     this.retries(2);
     await delay(this.test);
     const assetName = `//storage.googleapis.com/${bucketName}`;
