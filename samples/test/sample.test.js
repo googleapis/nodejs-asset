@@ -69,12 +69,16 @@ describe('quickstart sample tests', () => {
   });
 
   it('should get assets history successfully', async () => {
+    this.retries(2);
+    await delay(this.test);
     const assetName = `//storage.googleapis.com/${bucketName}`;
     const stdout = execSync(`node getBatchAssetHistory ${assetName}`);
     assert.include(stdout, assetName);
   });
 
   it('should run the quickstart', async () => {
+    this.retries(2);
+    await delay(this.test);
     const assetName = `//storage.googleapis.com/${bucketName}`;
     const stdout = execSync(`node quickstart ${assetName}`);
     assert.include(stdout, assetName);
