@@ -82,7 +82,7 @@ describe('quickstart sample tests', () => {
     assert.include(stdout, assetName);
   });
 
-  it.skip('should search all resources successfully', async function () {
+  it.skip('should search all resources successfully', async () => {
     const query = `name:${vmName}`;
     const stdout = execSync(`node searchAllResources '' ${query}`);
     assert.include(stdout, vmName);
