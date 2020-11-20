@@ -26,23 +26,7 @@ import * as v1 from './v1';
 const AssetServiceClient = v1.AssetServiceClient;
 type AssetServiceClient = v1.AssetServiceClient;
 
-export {
-  v1beta1,
-  v1p1beta1,
-  v1p2beta1,
-  v1p4beta1,
-  v1p5beta1,
-  v1,
-  AssetServiceClient,
-};
-export default {
-  v1beta1,
-  v1p1beta1,
-  v1p2beta1,
-  v1p4beta1,
-  v1p5beta1,
-  v1,
-  AssetServiceClient,
-};
+export {v1beta1, v1p1beta1, v1p2beta1, v1p4beta1, v1p5beta1, v1, AssetServiceClient};
+export default {v1beta1, v1p1beta1, v1p2beta1, v1p4beta1, v1p5beta1, v1, AssetServiceClient};
 import * as protos from '../protos/protos';
 export {protos};
