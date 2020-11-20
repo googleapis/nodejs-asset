@@ -37,7 +37,7 @@ let vm;
 // "Timeout of 180000ms exceeded. For async tests and hooks".
 const delay = async test => {
   const retries = test.currentRetry();
-  if (retries === 0) return; // no retry on the first failure.
+  if (retries === 0) return;  // no retry on the first failure.
   // see: https://cloud.google.com/storage/docs/exponential-backoff:
   const ms = Math.pow(2, retries) * 1000 + Math.random() * 2000;
   return new Promise(done => {
@@ -57,7 +57,7 @@ describe('quickstart sample tests', () => {
     await vm.delete();
   });
 
-  it('should export assets to specified path', async function () {
+  it('should export assets to specified path', async function() {
     this.retries(2);
     await delay(this.test);
     const dumpFilePath = `gs://${bucketName}/my-assets.txt`;
@@ -104,5 +104,17 @@ describe('quickstart sample tests', () => {
     const stdout = execSync(`node analyzeIamPolicy`);
     assert.include(stdout, '//cloudresourcemanager.googleapis.com/projects');
   });
+
+  it('should analyze iam policy and write analysis results to gcs successfully',
+     async function() {
+       this.retries(2);
+       await delay(this.test);
+       const uri = `gs://${bucketName}/my-analysis.json`;
+       execSync(`node analyzeIamPolicyLongrunningGcs ${uri}`);
+       const file = await bucket.file('my-analysis.json');
+       const exists = await file.exists();
+       assert.ok(exists);
+       await file.delete();
+     });
 });
 
