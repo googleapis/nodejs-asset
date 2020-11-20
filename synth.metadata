@@ -4,15 +4,15 @@
       "git": {
         "name": ".",
         "remote": "https://github.com/googleapis/nodejs-asset.git",
-        "sha": "678ce5433f478b81698c68e0ffc52ff7a21ce692"
+        "sha": "e05a3168955f8590db9581766530ef546d61a363"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "1f8a5144b52f7677dc43c55b21ccaf9e1b425ceb",
-        "internalRef": "342689216"
+        "sha": "b759c563bacf9cd15749be4d2bdd276d3f48ee29",
+        "internalRef": "341102751"
       }
     },
     {
@@ -144,6 +144,9 @@
     "protos/google/cloud/asset/v1p4beta1/assets.proto",
     "protos/google/cloud/asset/v1p5beta1/asset_service.proto",
     "protos/google/cloud/asset/v1p5beta1/assets.proto",
+    "protos/protos.d.ts",
+    "protos/protos.js",
+    "protos/protos.json",
     "renovate.json",
     "samples/README.md",
     "src/index.ts",
