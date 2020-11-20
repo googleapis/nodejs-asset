@@ -99,4 +99,10 @@ describe('quickstart sample tests', () => {
     const stdout = execSync(`node listAssets ${assetType}`);
     assert.include(stdout, assetType);
   });
+
+  it('should analyze iam policy successfully', async () => {
+    const stdout = execSync(`node analyzeIamPolicy`);
+    assert.include(stdout, '//cloudresourcemanager.googleapis.com/projects');
+  });
 });
+
