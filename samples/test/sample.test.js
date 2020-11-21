@@ -111,7 +111,7 @@ describe('quickstart sample tests', () => {
   });
 
   it('should analyze iam policy successfully', async () => {
-    const stdout = execSync(`node analyzeIamPolicy`);
+    const stdout = execSync('node analyzeIamPolicy');
     assert.include(stdout, '//cloudresourcemanager.googleapis.com/projects');
   });
 
