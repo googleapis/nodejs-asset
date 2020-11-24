@@ -17,18 +17,17 @@
 // ** All changes to this file may be overwritten. **
 
 import * as gax from 'google-gax';
-import {
-  Callback,
-  CallOptions,
-  Descriptors,
-  ClientOptions,
-  LROperation,
-} from 'google-gax';
+import {Callback, CallOptions, Descriptors, ClientOptions, LROperation} from 'google-gax';
 import * as path from 'path';
 
 import * as protos from '../../protos/protos';
+/**
+ * Client JSON configuration object, loaded from
+ * `src/v1beta1/asset_service_client_config.json`.
+ * This file defines retry strategy and timeouts for all API methods in this library.
+ */
 import * as gapicConfig from './asset_service_client_config.json';
-import {operationsProtos} from 'google-gax';
+import { operationsProtos } from 'google-gax';
 const version = require('../../../package.json').version;
 
 /**
@@ -80,9 +79,9 @@ export class AssetServiceClient {
    *     your project ID will be detected automatically.
    * @param {string} [options.apiEndpoint] - The domain name of the
    *     API remote host.
-   * @param {gax.ClientConfig} [options.clientConfig] - client configuration override.
-   *     Follows the structure of `asset_service_client_config.json`.
-   * @param {boolean} fallback - Use HTTP fallback mode.
+   * @param {gax.ClientConfig} [options.clientConfig] - Client configuration override.
+   *     Follows the structure of {@link gapicConfig}.
+   * @param {boolean} [options.fallback] - Use HTTP fallback mode.
    *     In fallback mode, a special browser-compatible transport implementation is used
    *     instead of gRPC transport. In browser context (if the `window` object is defined)
    *     the fallback mode is enabled automatically; set `options.fallback` to `false`
@@ -91,13 +90,11 @@ export class AssetServiceClient {
   constructor(opts?: ClientOptions) {
     // Ensure that options include all the required fields.
     const staticMembers = this.constructor as typeof AssetServiceClient;
-    const servicePath =
-      opts?.servicePath || opts?.apiEndpoint || staticMembers.servicePath;
+    const servicePath = opts?.servicePath || opts?.apiEndpoint || staticMembers.servicePath;
     const port = opts?.port || staticMembers.port;
     const clientConfig = opts?.clientConfig ?? {};
-    const fallback =
-      opts?.fallback ??
-      (typeof window !== 'undefined' && typeof window.fetch !== 'undefined');
+    // eslint-disable-next-line no-undef
+    const fallback = opts?.fallback ?? (typeof window !== 'undefined' && typeof window.fetch !== 'undefined');
     opts = Object.assign({servicePath, port, clientConfig, fallback}, opts);
 
     // If scopes are unset in options and we're connecting to a non-default endpoint, set scopes just in case.
@@ -115,7 +112,7 @@ export class AssetServiceClient {
     this._opts = opts;
 
     // Save the auth object to the client, for use by other methods.
-    this.auth = this._gaxGrpc.auth as gax.GoogleAuth;
+    this.auth = (this._gaxGrpc.auth as gax.GoogleAuth);
 
     // Set the default scopes in auth client if needed.
     if (servicePath === staticMembers.servicePath) {
@@ -123,7 +120,10 @@ export class AssetServiceClient {
     }
 
     // Determine the client header string.
-    const clientHeader = [`gax/${this._gaxModule.version}`, `gapic/${version}`];
+    const clientHeader = [
+      `gax/${this._gaxModule.version}`,
+      `gapic/${version}`,
+    ];
     if (typeof process !== 'undefined' && 'versions' in process) {
       clientHeader.push(`gl-node/${process.versions.node}`);
     } else {
@@ -139,58 +139,43 @@ export class AssetServiceClient {
     // For Node.js, pass the path to JSON proto file.
     // For browsers, pass the JSON content.
 
-    const nodejsProtoPath = path.join(
-      __dirname,
-      '..',
-      '..',
-      'protos',
-      'protos.json'
-    );
+    const nodejsProtoPath = path.join(__dirname, '..', '..', 'protos', 'protos.json');
     this._protos = this._gaxGrpc.loadProto(
-      opts.fallback
-        ? // eslint-disable-next-line @typescript-eslint/no-var-requires
-          require('../../protos/protos.json')
-        : nodejsProtoPath
+      opts.fallback ?
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
+        require("../../protos/protos.json") :
+        nodejsProtoPath
     );
 
     // This API contains "long-running operations", which return a
     // an Operation object that allows for tracking of the operation,
     // rather than holding a request open.
-    const protoFilesRoot = opts.fallback
-      ? this._gaxModule.protobuf.Root.fromJSON(
-          // eslint-disable-next-line @typescript-eslint/no-var-requires
-          require('../../protos/protos.json')
-        )
-      : this._gaxModule.protobuf.loadSync(nodejsProtoPath);
+    const protoFilesRoot = opts.fallback ?
+      this._gaxModule.protobuf.Root.fromJSON(
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
+        require("../../protos/protos.json")) :
+      this._gaxModule.protobuf.loadSync(nodejsProtoPath);
 
-    this.operationsClient = this._gaxModule
-      .lro({
-        auth: this.auth,
-        grpc: 'grpc' in this._gaxGrpc ? this._gaxGrpc.grpc : undefined,
-      })
-      .operationsClient(opts);
+    this.operationsClient = this._gaxModule.lro({
+      auth: this.auth,
+      grpc: 'grpc' in this._gaxGrpc ? this._gaxGrpc.grpc : undefined
+    }).operationsClient(opts);
     const exportAssetsResponse = protoFilesRoot.lookup(
-      '.google.cloud.asset.v1beta1.ExportAssetsResponse'
-    ) as gax.protobuf.Type;
+      '.google.cloud.asset.v1beta1.ExportAssetsResponse') as gax.protobuf.Type;
     const exportAssetsMetadata = protoFilesRoot.lookup(
-      '.google.cloud.asset.v1beta1.ExportAssetsRequest'
-    ) as gax.protobuf.Type;
+      '.google.cloud.asset.v1beta1.ExportAssetsRequest') as gax.protobuf.Type;
 
     this.descriptors.longrunning = {
       exportAssets: new this._gaxModule.LongrunningDescriptor(
         this.operationsClient,
         exportAssetsResponse.decode.bind(exportAssetsResponse),
-        exportAssetsMetadata.decode.bind(exportAssetsMetadata)
-      ),
+        exportAssetsMetadata.decode.bind(exportAssetsMetadata))
     };
 
     // Put together the default options sent with requests.
     this._defaults = this._gaxGrpc.constructSettings(
-      'google.cloud.asset.v1beta1.AssetService',
-      gapicConfig as gax.ClientConfig,
-      opts.clientConfig || {},
-      {'x-goog-api-client': clientHeader.join(' ')}
-    );
+        'google.cloud.asset.v1beta1.AssetService', gapicConfig as gax.ClientConfig,
+        opts.clientConfig || {}, {'x-goog-api-client': clientHeader.join(' ')});
 
     // Set up a dictionary of "inner API calls"; the core implementation
     // of calling the API is handled in `google-gax`, with this code
@@ -218,18 +203,16 @@ export class AssetServiceClient {
     // Put together the "service stub" for
     // google.cloud.asset.v1beta1.AssetService.
     this.assetServiceStub = this._gaxGrpc.createStub(
-      this._opts.fallback
-        ? (this._protos as protobuf.Root).lookupService(
-            'google.cloud.asset.v1beta1.AssetService'
-          )
-        : // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        this._opts.fallback ?
+          (this._protos as protobuf.Root).lookupService('google.cloud.asset.v1beta1.AssetService') :
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           (this._protos as any).google.cloud.asset.v1beta1.AssetService,
-      this._opts
-    ) as Promise<{[method: string]: Function}>;
+        this._opts) as Promise<{[method: string]: Function}>;
 
     // Iterate over each of the methods that the service provides
     // and create an API call method for each.
-    const assetServiceStubMethods = ['exportAssets', 'batchGetAssetsHistory'];
+    const assetServiceStubMethods =
+        ['exportAssets', 'batchGetAssetsHistory'];
     for (const methodName of assetServiceStubMethods) {
       const callPromise = this.assetServiceStub.then(
         stub => (...args: Array<{}>) => {
@@ -239,12 +222,13 @@ export class AssetServiceClient {
           const func = stub[methodName];
           return func.apply(stub, args);
         },
-        (err: Error | null | undefined) => () => {
+        (err: Error|null|undefined) => () => {
           throw err;
-        }
-      );
+        });
 
-      const descriptor = this.descriptors.longrunning[methodName] || undefined;
+      const descriptor =
+        this.descriptors.longrunning[methodName] ||
+        undefined;
       const apiCall = this._gaxModule.createApiCall(
         callPromise,
         this._defaults[methodName],
@@ -288,7 +272,9 @@ export class AssetServiceClient {
    * @returns {string[]} List of default scopes.
    */
   static get scopes() {
-    return ['https://www.googleapis.com/auth/cloud-platform'];
+    return [
+      'https://www.googleapis.com/auth/cloud-platform'
+    ];
   }
 
   getProjectId(): Promise<string>;
@@ -297,9 +283,8 @@ export class AssetServiceClient {
    * Return the project ID used by this class.
    * @returns {Promise} A promise that resolves to string containing the project ID.
    */
-  getProjectId(
-    callback?: Callback<string, undefined, undefined>
-  ): Promise<string> | void {
+  getProjectId(callback?: Callback<string, undefined, undefined>):
+      Promise<string>|void {
     if (callback) {
       this.auth.getProjectId(callback);
       return;
@@ -311,117 +296,90 @@ export class AssetServiceClient {
   // -- Service calls --
   // -------------------
   batchGetAssetsHistory(
-    request: protos.google.cloud.asset.v1beta1.IBatchGetAssetsHistoryRequest,
-    options?: gax.CallOptions
-  ): Promise<
-    [
-      protos.google.cloud.asset.v1beta1.IBatchGetAssetsHistoryResponse,
-      (
-        | protos.google.cloud.asset.v1beta1.IBatchGetAssetsHistoryRequest
-        | undefined
-      ),
-      {} | undefined
-    ]
-  >;
+      request: protos.google.cloud.asset.v1beta1.IBatchGetAssetsHistoryRequest,
+      options?: CallOptions):
+      Promise<[
+        protos.google.cloud.asset.v1beta1.IBatchGetAssetsHistoryResponse,
+        protos.google.cloud.asset.v1beta1.IBatchGetAssetsHistoryRequest|undefined, {}|undefined
+      ]>;
   batchGetAssetsHistory(
-    request: protos.google.cloud.asset.v1beta1.IBatchGetAssetsHistoryRequest,
-    options: gax.CallOptions,
-    callback: Callback<
-      protos.google.cloud.asset.v1beta1.IBatchGetAssetsHistoryResponse,
-      | protos.google.cloud.asset.v1beta1.IBatchGetAssetsHistoryRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  batchGetAssetsHistory(
-    request: protos.google.cloud.asset.v1beta1.IBatchGetAssetsHistoryRequest,
-    callback: Callback<
-      protos.google.cloud.asset.v1beta1.IBatchGetAssetsHistoryResponse,
-      | protos.google.cloud.asset.v1beta1.IBatchGetAssetsHistoryRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  /**
-   * Batch gets the update history of assets that overlap a time window.
-   * For RESOURCE content, this API outputs history with asset in both
-   * non-delete or deleted status.
-   * For IAM_POLICY content, this API outputs history when the asset and its
-   * attached IAM POLICY both exist. This can create gaps in the output history.
-   * If a specified asset does not exist, this API returns an INVALID_ARGUMENT
-   * error.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.parent
-   *   Required. The relative name of the root asset. It can only be an
-   *   organization number (such as "organizations/123"), a project ID (such as
-   *   "projects/my-project-id")", or a project number (such as "projects/12345").
-   * @param {string[]} request.assetNames
-   *   A list of the full names of the assets. For example:
-   *   `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
-   *   See [Resource
-   *   Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
-   *   for more info.
-   *
-   *   The request becomes a no-op if the asset name list is empty, and the max
-   *   size of the asset name list is 100 in one request.
-   * @param {google.cloud.asset.v1beta1.ContentType} [request.contentType]
-   *   Optional. The content type.
-   * @param {google.cloud.asset.v1beta1.TimeWindow} [request.readTimeWindow]
-   *   Optional. The time window for the asset history. Both start_time and
-   *   end_time are optional and if set, it must be after 2018-10-02 UTC. If
-   *   end_time is not set, it is default to current timestamp. If start_time is
-   *   not set, the snapshot of the assets at end_time will be returned. The
-   *   returned results contain all temporal assets whose time window overlap with
-   *   read_time_window.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing [BatchGetAssetsHistoryResponse]{@link google.cloud.asset.v1beta1.BatchGetAssetsHistoryResponse}.
-   *   Please see the
-   *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods)
-   *   for more details and examples.
-   * @example
-   * const [response] = await client.batchGetAssetsHistory(request);
-   */
-  batchGetAssetsHistory(
-    request: protos.google.cloud.asset.v1beta1.IBatchGetAssetsHistoryRequest,
-    optionsOrCallback?:
-      | gax.CallOptions
-      | Callback<
+      request: protos.google.cloud.asset.v1beta1.IBatchGetAssetsHistoryRequest,
+      options: CallOptions,
+      callback: Callback<
           protos.google.cloud.asset.v1beta1.IBatchGetAssetsHistoryResponse,
-          | protos.google.cloud.asset.v1beta1.IBatchGetAssetsHistoryRequest
-          | null
-          | undefined,
-          {} | null | undefined
-        >,
-    callback?: Callback<
-      protos.google.cloud.asset.v1beta1.IBatchGetAssetsHistoryResponse,
-      | protos.google.cloud.asset.v1beta1.IBatchGetAssetsHistoryRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): Promise<
-    [
-      protos.google.cloud.asset.v1beta1.IBatchGetAssetsHistoryResponse,
-      (
-        | protos.google.cloud.asset.v1beta1.IBatchGetAssetsHistoryRequest
-        | undefined
-      ),
-      {} | undefined
-    ]
-  > | void {
+          protos.google.cloud.asset.v1beta1.IBatchGetAssetsHistoryRequest|null|undefined,
+          {}|null|undefined>): void;
+  batchGetAssetsHistory(
+      request: protos.google.cloud.asset.v1beta1.IBatchGetAssetsHistoryRequest,
+      callback: Callback<
+          protos.google.cloud.asset.v1beta1.IBatchGetAssetsHistoryResponse,
+          protos.google.cloud.asset.v1beta1.IBatchGetAssetsHistoryRequest|null|undefined,
+          {}|null|undefined>): void;
+/**
+ * Batch gets the update history of assets that overlap a time window.
+ * For RESOURCE content, this API outputs history with asset in both
+ * non-delete or deleted status.
+ * For IAM_POLICY content, this API outputs history when the asset and its
+ * attached IAM POLICY both exist. This can create gaps in the output history.
+ * If a specified asset does not exist, this API returns an INVALID_ARGUMENT
+ * error.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. The relative name of the root asset. It can only be an
+ *   organization number (such as "organizations/123"), a project ID (such as
+ *   "projects/my-project-id")", or a project number (such as "projects/12345").
+ * @param {string[]} request.assetNames
+ *   A list of the full names of the assets. For example:
+ *   `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
+ *   See [Resource
+ *   Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
+ *   for more info.
+ *
+ *   The request becomes a no-op if the asset name list is empty, and the max
+ *   size of the asset name list is 100 in one request.
+ * @param {google.cloud.asset.v1beta1.ContentType} [request.contentType]
+ *   Optional. The content type.
+ * @param {google.cloud.asset.v1beta1.TimeWindow} [request.readTimeWindow]
+ *   Optional. The time window for the asset history. Both start_time and
+ *   end_time are optional and if set, it must be after 2018-10-02 UTC. If
+ *   end_time is not set, it is default to current timestamp. If start_time is
+ *   not set, the snapshot of the assets at end_time will be returned. The
+ *   returned results contain all temporal assets whose time window overlap with
+ *   read_time_window.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing [BatchGetAssetsHistoryResponse]{@link google.cloud.asset.v1beta1.BatchGetAssetsHistoryResponse}.
+ *   Please see the
+ *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods)
+ *   for more details and examples.
+ * @example
+ * const [response] = await client.batchGetAssetsHistory(request);
+ */
+  batchGetAssetsHistory(
+      request: protos.google.cloud.asset.v1beta1.IBatchGetAssetsHistoryRequest,
+      optionsOrCallback?: CallOptions|Callback<
+          protos.google.cloud.asset.v1beta1.IBatchGetAssetsHistoryResponse,
+          protos.google.cloud.asset.v1beta1.IBatchGetAssetsHistoryRequest|null|undefined,
+          {}|null|undefined>,
+      callback?: Callback<
+          protos.google.cloud.asset.v1beta1.IBatchGetAssetsHistoryResponse,
+          protos.google.cloud.asset.v1beta1.IBatchGetAssetsHistoryRequest|null|undefined,
+          {}|null|undefined>):
+      Promise<[
+        protos.google.cloud.asset.v1beta1.IBatchGetAssetsHistoryResponse,
+        protos.google.cloud.asset.v1beta1.IBatchGetAssetsHistoryRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
-    let options: gax.CallOptions;
+    let options: CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
-      options = optionsOrCallback as gax.CallOptions;
+    }
+    else {
+      options = optionsOrCallback as CallOptions;
     }
     options = options || {};
     options.otherArgs = options.otherArgs || {};
@@ -429,130 +387,99 @@ export class AssetServiceClient {
     options.otherArgs.headers[
       'x-goog-request-params'
     ] = gax.routingHeader.fromParams({
-      parent: request.parent || '',
+      'parent': request.parent || '',
     });
     this.initialize();
     return this.innerApiCalls.batchGetAssetsHistory(request, options, callback);
   }
 
   exportAssets(
-    request: protos.google.cloud.asset.v1beta1.IExportAssetsRequest,
-    options?: gax.CallOptions
-  ): Promise<
-    [
-      LROperation<
-        protos.google.cloud.asset.v1beta1.IExportAssetsResponse,
-        protos.google.cloud.asset.v1beta1.IExportAssetsRequest
-      >,
-      protos.google.longrunning.IOperation | undefined,
-      {} | undefined
-    ]
-  >;
+      request: protos.google.cloud.asset.v1beta1.IExportAssetsRequest,
+      options?: CallOptions):
+      Promise<[
+        LROperation<protos.google.cloud.asset.v1beta1.IExportAssetsResponse, protos.google.cloud.asset.v1beta1.IExportAssetsRequest>,
+        protos.google.longrunning.IOperation|undefined, {}|undefined
+      ]>;
   exportAssets(
-    request: protos.google.cloud.asset.v1beta1.IExportAssetsRequest,
-    options: gax.CallOptions,
-    callback: Callback<
-      LROperation<
-        protos.google.cloud.asset.v1beta1.IExportAssetsResponse,
-        protos.google.cloud.asset.v1beta1.IExportAssetsRequest
-      >,
-      protos.google.longrunning.IOperation | null | undefined,
-      {} | null | undefined
-    >
-  ): void;
+      request: protos.google.cloud.asset.v1beta1.IExportAssetsRequest,
+      options: CallOptions,
+      callback: Callback<
+          LROperation<protos.google.cloud.asset.v1beta1.IExportAssetsResponse, protos.google.cloud.asset.v1beta1.IExportAssetsRequest>,
+          protos.google.longrunning.IOperation|null|undefined,
+          {}|null|undefined>): void;
   exportAssets(
-    request: protos.google.cloud.asset.v1beta1.IExportAssetsRequest,
-    callback: Callback<
-      LROperation<
-        protos.google.cloud.asset.v1beta1.IExportAssetsResponse,
-        protos.google.cloud.asset.v1beta1.IExportAssetsRequest
-      >,
-      protos.google.longrunning.IOperation | null | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  /**
-   * Exports assets with time and resource types to a given Cloud Storage
-   * location. The output format is newline-delimited JSON.
-   * This API implements the
-   * {@link google.longrunning.Operation|google.longrunning.Operation} API allowing
-   * you to keep track of the export.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.parent
-   *   Required. The relative name of the root asset. This can only be an
-   *   organization number (such as "organizations/123"), a project ID (such as
-   *   "projects/my-project-id"), a project number (such as "projects/12345"), or
-   *   a folder number (such as "folders/123").
-   * @param {google.protobuf.Timestamp} request.readTime
-   *   Timestamp to take an asset snapshot. This can only be set to a timestamp
-   *   between 2018-10-02 UTC (inclusive) and the current time. If not specified,
-   *   the current time will be used. Due to delays in resource data collection
-   *   and indexing, there is a volatile window during which running the same
-   *   query may get different results.
-   * @param {string[]} request.assetTypes
-   *   A list of asset types of which to take a snapshot for. For example:
-   *   "google.compute.Disk". If specified, only matching assets will be returned.
-   *   See [Introduction to Cloud Asset
-   *   Inventory](https://cloud.google.com/resource-manager/docs/cloud-asset-inventory/overview)
-   *   for all supported asset types.
-   * @param {google.cloud.asset.v1beta1.ContentType} request.contentType
-   *   Asset content type. If not specified, no content but the asset name will be
-   *   returned.
-   * @param {google.cloud.asset.v1beta1.OutputConfig} request.outputConfig
-   *   Required. Output configuration indicating where the results will be output
-   *   to. All results will be in newline delimited JSON format.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing
-   *   a long running operation. Its `promise()` method returns a promise
-   *   you can `await` for.
-   *   Please see the
-   *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#long-running-operations)
-   *   for more details and examples.
-   * @example
-   * const [operation] = await client.exportAssets(request);
-   * const [response] = await operation.promise();
-   */
+      request: protos.google.cloud.asset.v1beta1.IExportAssetsRequest,
+      callback: Callback<
+          LROperation<protos.google.cloud.asset.v1beta1.IExportAssetsResponse, protos.google.cloud.asset.v1beta1.IExportAssetsRequest>,
+          protos.google.longrunning.IOperation|null|undefined,
+          {}|null|undefined>): void;
+/**
+ * Exports assets with time and resource types to a given Cloud Storage
+ * location. The output format is newline-delimited JSON.
+ * This API implements the
+ * {@link google.longrunning.Operation|google.longrunning.Operation} API allowing
+ * you to keep track of the export.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. The relative name of the root asset. This can only be an
+ *   organization number (such as "organizations/123"), a project ID (such as
+ *   "projects/my-project-id"), a project number (such as "projects/12345"), or
+ *   a folder number (such as "folders/123").
+ * @param {google.protobuf.Timestamp} request.readTime
+ *   Timestamp to take an asset snapshot. This can only be set to a timestamp
+ *   between 2018-10-02 UTC (inclusive) and the current time. If not specified,
+ *   the current time will be used. Due to delays in resource data collection
+ *   and indexing, there is a volatile window during which running the same
+ *   query may get different results.
+ * @param {string[]} request.assetTypes
+ *   A list of asset types of which to take a snapshot for. For example:
+ *   "google.compute.Disk". If specified, only matching assets will be returned.
+ *   See [Introduction to Cloud Asset
+ *   Inventory](https://cloud.google.com/resource-manager/docs/cloud-asset-inventory/overview)
+ *   for all supported asset types.
+ * @param {google.cloud.asset.v1beta1.ContentType} request.contentType
+ *   Asset content type. If not specified, no content but the asset name will be
+ *   returned.
+ * @param {google.cloud.asset.v1beta1.OutputConfig} request.outputConfig
+ *   Required. Output configuration indicating where the results will be output
+ *   to. All results will be in newline delimited JSON format.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing
+ *   a long running operation. Its `promise()` method returns a promise
+ *   you can `await` for.
+ *   Please see the
+ *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#long-running-operations)
+ *   for more details and examples.
+ * @example
+ * const [operation] = await client.exportAssets(request);
+ * const [response] = await operation.promise();
+ */
   exportAssets(
-    request: protos.google.cloud.asset.v1beta1.IExportAssetsRequest,
-    optionsOrCallback?:
-      | gax.CallOptions
-      | Callback<
-          LROperation<
-            protos.google.cloud.asset.v1beta1.IExportAssetsResponse,
-            protos.google.cloud.asset.v1beta1.IExportAssetsRequest
-          >,
-          protos.google.longrunning.IOperation | null | undefined,
-          {} | null | undefined
-        >,
-    callback?: Callback<
-      LROperation<
-        protos.google.cloud.asset.v1beta1.IExportAssetsResponse,
-        protos.google.cloud.asset.v1beta1.IExportAssetsRequest
-      >,
-      protos.google.longrunning.IOperation | null | undefined,
-      {} | null | undefined
-    >
-  ): Promise<
-    [
-      LROperation<
-        protos.google.cloud.asset.v1beta1.IExportAssetsResponse,
-        protos.google.cloud.asset.v1beta1.IExportAssetsRequest
-      >,
-      protos.google.longrunning.IOperation | undefined,
-      {} | undefined
-    ]
-  > | void {
+      request: protos.google.cloud.asset.v1beta1.IExportAssetsRequest,
+      optionsOrCallback?: CallOptions|Callback<
+          LROperation<protos.google.cloud.asset.v1beta1.IExportAssetsResponse, protos.google.cloud.asset.v1beta1.IExportAssetsRequest>,
+          protos.google.longrunning.IOperation|null|undefined,
+          {}|null|undefined>,
+      callback?: Callback<
+          LROperation<protos.google.cloud.asset.v1beta1.IExportAssetsResponse, protos.google.cloud.asset.v1beta1.IExportAssetsRequest>,
+          protos.google.longrunning.IOperation|null|undefined,
+          {}|null|undefined>):
+      Promise<[
+        LROperation<protos.google.cloud.asset.v1beta1.IExportAssetsResponse, protos.google.cloud.asset.v1beta1.IExportAssetsRequest>,
+        protos.google.longrunning.IOperation|undefined, {}|undefined
+      ]>|void {
     request = request || {};
-    let options: gax.CallOptions;
+    let options: CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
-      options = optionsOrCallback as gax.CallOptions;
+    }
+    else {
+      options = optionsOrCallback as CallOptions;
     }
     options = options || {};
     options.otherArgs = options.otherArgs || {};
@@ -560,47 +487,31 @@ export class AssetServiceClient {
     options.otherArgs.headers[
       'x-goog-request-params'
     ] = gax.routingHeader.fromParams({
-      parent: request.parent || '',
+      'parent': request.parent || '',
     });
     this.initialize();
     return this.innerApiCalls.exportAssets(request, options, callback);
   }
-  /**
-   * Check the status of the long running operation returned by `exportAssets()`.
-   * @param {String} name
-   *   The operation name that will be passed.
-   * @returns {Promise} - The promise which resolves to an object.
-   *   The decoded operation object has result and metadata field to get information from.
-   *   Please see the
-   *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#long-running-operations)
-   *   for more details and examples.
-   * @example
-   * const decodedOperation = await checkExportAssetsProgress(name);
-   * console.log(decodedOperation.result);
-   * console.log(decodedOperation.done);
-   * console.log(decodedOperation.metadata);
-   */
-  async checkExportAssetsProgress(
-    name: string
-  ): Promise<
-    LROperation<
-      protos.google.cloud.asset.v1beta1.ExportAssetsResponse,
-      protos.google.cloud.asset.v1beta1.ExportAssetsRequest
-    >
-  > {
-    const request = new operationsProtos.google.longrunning.GetOperationRequest(
-      {name}
-    );
+/**
+ * Check the status of the long running operation returned by `exportAssets()`.
+ * @param {String} name
+ *   The operation name that will be passed.
+ * @returns {Promise} - The promise which resolves to an object.
+ *   The decoded operation object has result and metadata field to get information from.
+ *   Please see the
+ *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#long-running-operations)
+ *   for more details and examples.
+ * @example
+ * const decodedOperation = await checkExportAssetsProgress(name);
+ * console.log(decodedOperation.result);
+ * console.log(decodedOperation.done);
+ * console.log(decodedOperation.metadata);
+ */
+  async checkExportAssetsProgress(name: string): Promise<LROperation<protos.google.cloud.asset.v1beta1.ExportAssetsResponse, protos.google.cloud.asset.v1beta1.ExportAssetsRequest>>{
+    const request = new operationsProtos.google.longrunning.GetOperationRequest({name});
     const [operation] = await this.operationsClient.getOperation(request);
-    const decodeOperation = new gax.Operation(
-      operation,
-      this.descriptors.longrunning.exportAssets,
-      gax.createDefaultBackoffSettings()
-    );
-    return decodeOperation as LROperation<
-      protos.google.cloud.asset.v1beta1.ExportAssetsResponse,
-      protos.google.cloud.asset.v1beta1.ExportAssetsRequest
-    >;
+    const decodeOperation = new gax.Operation(operation, this.descriptors.longrunning.exportAssets, gax.createDefaultBackoffSettings());
+    return decodeOperation as LROperation<protos.google.cloud.asset.v1beta1.ExportAssetsResponse, protos.google.cloud.asset.v1beta1.ExportAssetsRequest>;
   }
 
   /**
