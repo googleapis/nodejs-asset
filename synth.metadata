@@ -4,35 +4,26 @@
       "git": {
         "name": ".",
         "remote": "https://github.com/googleapis/nodejs-asset.git",
-        "sha": "3d6d4cea05c0f87f9780a63ec59d4f17cf5667d1"
+        "sha": "1b5d4c8601ede3a8796123c558ee1f65cb4168f5"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "b759c563bacf9cd15749be4d2bdd276d3f48ee29",
-        "internalRef": "341102751"
+        "sha": "360a0e177316b7e9811f2ccbbef11e5f83377f3f",
+        "internalRef": "347849179"
       }
     },
     {
       "git": {
         "name": "synthtool",
         "remote": "https://github.com/googleapis/synthtool.git",
-        "sha": "15013eff642a7e7e855aed5a29e6e83c39beba2a"
+        "sha": "57c23fa5705499a4181095ced81f0ee0933b64f6"
       }
     }
   ],
   "destinations": [
-    {
-      "client": {
-        "source": "googleapis",
-        "apiName": "asset",
-        "apiVersion": "v1beta1",
-        "language": "nodejs",
-        "generator": "bazel"
-      }
-    },
     {
       "client": {
         "source": "googleapis",

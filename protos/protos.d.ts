@@ -1,4 +1,4 @@
-// Copyright 2020 Google LLC
+// Copyright 2021 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -3888,7 +3888,8 @@ export namespace google {
                     RESOURCE = 1,
                     IAM_POLICY = 2,
                     ORG_POLICY = 4,
-                    ACCESS_POLICY = 5
+                    ACCESS_POLICY = 5,
+                    OS_INVENTORY = 6
                 }
 
                 /** Properties of a TemporalAsset. */
@@ -4143,6 +4144,9 @@ export namespace google {
                     /** Asset servicePerimeter */
                     servicePerimeter?: (google.identity.accesscontextmanager.v1.IServicePerimeter|null);
 
+                    /** Asset osInventory */
+                    osInventory?: (google.cloud.osconfig.v1.IInventory|null);
+
                     /** Asset ancestors */
                     ancestors?: (string[]|null);
                 }
@@ -4182,6 +4186,9 @@ export namespace google {
 
                     /** Asset servicePerimeter. */
                     public servicePerimeter?: (google.identity.accesscontextmanager.v1.IServicePerimeter|null);
+
+                    /** Asset osInventory. */
+                    public osInventory?: (google.cloud.osconfig.v1.IInventory|null);
 
                     /** Asset ancestors. */
                     public ancestors: string[];
@@ -5620,1109 +5627,6 @@ export namespace google {
                          */
                         public toJSON(): { [k: string]: any };
                     }
-                }
-            }
-
-            /** Namespace v1beta1. */
-            namespace v1beta1 {
-
-                /** Represents an AssetService */
-                class AssetService extends $protobuf.rpc.Service {
-
-                    /**
-                     * Constructs a new AssetService service.
-                     * @param rpcImpl RPC implementation
-                     * @param [requestDelimited=false] Whether requests are length-delimited
-                     * @param [responseDelimited=false] Whether responses are length-delimited
-                     */
-                    constructor(rpcImpl: $protobuf.RPCImpl, requestDelimited?: boolean, responseDelimited?: boolean);
-
-                    /**
-                     * Creates new AssetService service using the specified rpc implementation.
-                     * @param rpcImpl RPC implementation
-                     * @param [requestDelimited=false] Whether requests are length-delimited
-                     * @param [responseDelimited=false] Whether responses are length-delimited
-                     * @returns RPC service. Useful where requests and/or responses are streamed.
-                     */
-                    public static create(rpcImpl: $protobuf.RPCImpl, requestDelimited?: boolean, responseDelimited?: boolean): AssetService;
-
-                    /**
-                     * Calls ExportAssets.
-                     * @param request ExportAssetsRequest message or plain object
-                     * @param callback Node-style callback called with the error, if any, and Operation
-                     */
-                    public exportAssets(request: google.cloud.asset.v1beta1.IExportAssetsRequest, callback: google.cloud.asset.v1beta1.AssetService.ExportAssetsCallback): void;
-
-                    /**
-                     * Calls ExportAssets.
-                     * @param request ExportAssetsRequest message or plain object
-                     * @returns Promise
-                     */
-                    public exportAssets(request: google.cloud.asset.v1beta1.IExportAssetsRequest): Promise<google.longrunning.Operation>;
-
-                    /**
-                     * Calls BatchGetAssetsHistory.
-                     * @param request BatchGetAssetsHistoryRequest message or plain object
-                     * @param callback Node-style callback called with the error, if any, and BatchGetAssetsHistoryResponse
-                     */
-                    public batchGetAssetsHistory(request: google.cloud.asset.v1beta1.IBatchGetAssetsHistoryRequest, callback: google.cloud.asset.v1beta1.AssetService.BatchGetAssetsHistoryCallback): void;
-
-                    /**
-                     * Calls BatchGetAssetsHistory.
-                     * @param request BatchGetAssetsHistoryRequest message or plain object
-                     * @returns Promise
-                     */
-                    public batchGetAssetsHistory(request: google.cloud.asset.v1beta1.IBatchGetAssetsHistoryRequest): Promise<google.cloud.asset.v1beta1.BatchGetAssetsHistoryResponse>;
-                }
-
-                namespace AssetService {
-
-                    /**
-                     * Callback as used by {@link google.cloud.asset.v1beta1.AssetService#exportAssets}.
-                     * @param error Error, if any
-                     * @param [response] Operation
-                     */
-                    type ExportAssetsCallback = (error: (Error|null), response?: google.longrunning.Operation) => void;
-
-                    /**
-                     * Callback as used by {@link google.cloud.asset.v1beta1.AssetService#batchGetAssetsHistory}.
-                     * @param error Error, if any
-                     * @param [response] BatchGetAssetsHistoryResponse
-                     */
-                    type BatchGetAssetsHistoryCallback = (error: (Error|null), response?: google.cloud.asset.v1beta1.BatchGetAssetsHistoryResponse) => void;
-                }
-
-                /** Properties of an ExportAssetsRequest. */
-                interface IExportAssetsRequest {
-
-                    /** ExportAssetsRequest parent */
-                    parent?: (string|null);
-
-                    /** ExportAssetsRequest readTime */
-                    readTime?: (google.protobuf.ITimestamp|null);
-
-                    /** ExportAssetsRequest assetTypes */
-                    assetTypes?: (string[]|null);
-
-                    /** ExportAssetsRequest contentType */
-                    contentType?: (google.cloud.asset.v1beta1.ContentType|keyof typeof google.cloud.asset.v1beta1.ContentType|null);
-
-                    /** ExportAssetsRequest outputConfig */
-                    outputConfig?: (google.cloud.asset.v1beta1.IOutputConfig|null);
-                }
-
-                /** Represents an ExportAssetsRequest. */
-                class ExportAssetsRequest implements IExportAssetsRequest {
-
-                    /**
-                     * Constructs a new ExportAssetsRequest.
-                     * @param [properties] Properties to set
-                     */
-                    constructor(properties?: google.cloud.asset.v1beta1.IExportAssetsRequest);
-
-                    /** ExportAssetsRequest parent. */
-                    public parent: string;
-
-                    /** ExportAssetsRequest readTime. */
-                    public readTime?: (google.protobuf.ITimestamp|null);
-
-                    /** ExportAssetsRequest assetTypes. */
-                    public assetTypes: string[];
-
-                    /** ExportAssetsRequest contentType. */
-                    public contentType: (google.cloud.asset.v1beta1.ContentType|keyof typeof google.cloud.asset.v1beta1.ContentType);
-
-                    /** ExportAssetsRequest outputConfig. */
-                    public outputConfig?: (google.cloud.asset.v1beta1.IOutputConfig|null);
-
-                    /**
-                     * Creates a new ExportAssetsRequest instance using the specified properties.
-                     * @param [properties] Properties to set
-                     * @returns ExportAssetsRequest instance
-                     */
-                    public static create(properties?: google.cloud.asset.v1beta1.IExportAssetsRequest): google.cloud.asset.v1beta1.ExportAssetsRequest;
-
-                    /**
-                     * Encodes the specified ExportAssetsRequest message. Does not implicitly {@link google.cloud.asset.v1beta1.ExportAssetsRequest.verify|verify} messages.
-                     * @param message ExportAssetsRequest message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encode(message: google.cloud.asset.v1beta1.IExportAssetsRequest, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Encodes the specified ExportAssetsRequest message, length delimited. Does not implicitly {@link google.cloud.asset.v1beta1.ExportAssetsRequest.verify|verify} messages.
-                     * @param message ExportAssetsRequest message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encodeDelimited(message: google.cloud.asset.v1beta1.IExportAssetsRequest, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Decodes an ExportAssetsRequest message from the specified reader or buffer.
-                     * @param reader Reader or buffer to decode from
-                     * @param [length] Message length if known beforehand
-                     * @returns ExportAssetsRequest
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.asset.v1beta1.ExportAssetsRequest;
-
-                    /**
-                     * Decodes an ExportAssetsRequest message from the specified reader or buffer, length delimited.
-                     * @param reader Reader or buffer to decode from
-                     * @returns ExportAssetsRequest
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.asset.v1beta1.ExportAssetsRequest;
-
-                    /**
-                     * Verifies an ExportAssetsRequest message.
-                     * @param message Plain object to verify
-                     * @returns `null` if valid, otherwise the reason why it is not
-                     */
-                    public static verify(message: { [k: string]: any }): (string|null);
-
-                    /**
-                     * Creates an ExportAssetsRequest message from a plain object. Also converts values to their respective internal types.
-                     * @param object Plain object
-                     * @returns ExportAssetsRequest
-                     */
-                    public static fromObject(object: { [k: string]: any }): google.cloud.asset.v1beta1.ExportAssetsRequest;
-
-                    /**
-                     * Creates a plain object from an ExportAssetsRequest message. Also converts values to other types if specified.
-                     * @param message ExportAssetsRequest
-                     * @param [options] Conversion options
-                     * @returns Plain object
-                     */
-                    public static toObject(message: google.cloud.asset.v1beta1.ExportAssetsRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                    /**
-                     * Converts this ExportAssetsRequest to JSON.
-                     * @returns JSON object
-                     */
-                    public toJSON(): { [k: string]: any };
-                }
-
-                /** Properties of an ExportAssetsResponse. */
-                interface IExportAssetsResponse {
-
-                    /** ExportAssetsResponse readTime */
-                    readTime?: (google.protobuf.ITimestamp|null);
-
-                    /** ExportAssetsResponse outputConfig */
-                    outputConfig?: (google.cloud.asset.v1beta1.IOutputConfig|null);
-                }
-
-                /** Represents an ExportAssetsResponse. */
-                class ExportAssetsResponse implements IExportAssetsResponse {
-
-                    /**
-                     * Constructs a new ExportAssetsResponse.
-                     * @param [properties] Properties to set
-                     */
-                    constructor(properties?: google.cloud.asset.v1beta1.IExportAssetsResponse);
-
-                    /** ExportAssetsResponse readTime. */
-                    public readTime?: (google.protobuf.ITimestamp|null);
-
-                    /** ExportAssetsResponse outputConfig. */
-                    public outputConfig?: (google.cloud.asset.v1beta1.IOutputConfig|null);
-
-                    /**
-                     * Creates a new ExportAssetsResponse instance using the specified properties.
-                     * @param [properties] Properties to set
-                     * @returns ExportAssetsResponse instance
-                     */
-                    public static create(properties?: google.cloud.asset.v1beta1.IExportAssetsResponse): google.cloud.asset.v1beta1.ExportAssetsResponse;
-
-                    /**
-                     * Encodes the specified ExportAssetsResponse message. Does not implicitly {@link google.cloud.asset.v1beta1.ExportAssetsResponse.verify|verify} messages.
-                     * @param message ExportAssetsResponse message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encode(message: google.cloud.asset.v1beta1.IExportAssetsResponse, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Encodes the specified ExportAssetsResponse message, length delimited. Does not implicitly {@link google.cloud.asset.v1beta1.ExportAssetsResponse.verify|verify} messages.
-                     * @param message ExportAssetsResponse message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encodeDelimited(message: google.cloud.asset.v1beta1.IExportAssetsResponse, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Decodes an ExportAssetsResponse message from the specified reader or buffer.
-                     * @param reader Reader or buffer to decode from
-                     * @param [length] Message length if known beforehand
-                     * @returns ExportAssetsResponse
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.asset.v1beta1.ExportAssetsResponse;
-
-                    /**
-                     * Decodes an ExportAssetsResponse message from the specified reader or buffer, length delimited.
-                     * @param reader Reader or buffer to decode from
-                     * @returns ExportAssetsResponse
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.asset.v1beta1.ExportAssetsResponse;
-
-                    /**
-                     * Verifies an ExportAssetsResponse message.
-                     * @param message Plain object to verify
-                     * @returns `null` if valid, otherwise the reason why it is not
-                     */
-                    public static verify(message: { [k: string]: any }): (string|null);
-
-                    /**
-                     * Creates an ExportAssetsResponse message from a plain object. Also converts values to their respective internal types.
-                     * @param object Plain object
-                     * @returns ExportAssetsResponse
-                     */
-                    public static fromObject(object: { [k: string]: any }): google.cloud.asset.v1beta1.ExportAssetsResponse;
-
-                    /**
-                     * Creates a plain object from an ExportAssetsResponse message. Also converts values to other types if specified.
-                     * @param message ExportAssetsResponse
-                     * @param [options] Conversion options
-                     * @returns Plain object
-                     */
-                    public static toObject(message: google.cloud.asset.v1beta1.ExportAssetsResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                    /**
-                     * Converts this ExportAssetsResponse to JSON.
-                     * @returns JSON object
-                     */
-                    public toJSON(): { [k: string]: any };
-                }
-
-                /** Properties of a BatchGetAssetsHistoryRequest. */
-                interface IBatchGetAssetsHistoryRequest {
-
-                    /** BatchGetAssetsHistoryRequest parent */
-                    parent?: (string|null);
-
-                    /** BatchGetAssetsHistoryRequest assetNames */
-                    assetNames?: (string[]|null);
-
-                    /** BatchGetAssetsHistoryRequest contentType */
-                    contentType?: (google.cloud.asset.v1beta1.ContentType|keyof typeof google.cloud.asset.v1beta1.ContentType|null);
-
-                    /** BatchGetAssetsHistoryRequest readTimeWindow */
-                    readTimeWindow?: (google.cloud.asset.v1beta1.ITimeWindow|null);
-                }
-
-                /** Represents a BatchGetAssetsHistoryRequest. */
-                class BatchGetAssetsHistoryRequest implements IBatchGetAssetsHistoryRequest {
-
-                    /**
-                     * Constructs a new BatchGetAssetsHistoryRequest.
-                     * @param [properties] Properties to set
-                     */
-                    constructor(properties?: google.cloud.asset.v1beta1.IBatchGetAssetsHistoryRequest);
-
-                    /** BatchGetAssetsHistoryRequest parent. */
-                    public parent: string;
-
-                    /** BatchGetAssetsHistoryRequest assetNames. */
-                    public assetNames: string[];
-
-                    /** BatchGetAssetsHistoryRequest contentType. */
-                    public contentType: (google.cloud.asset.v1beta1.ContentType|keyof typeof google.cloud.asset.v1beta1.ContentType);
-
-                    /** BatchGetAssetsHistoryRequest readTimeWindow. */
-                    public readTimeWindow?: (google.cloud.asset.v1beta1.ITimeWindow|null);
-
-                    /**
-                     * Creates a new BatchGetAssetsHistoryRequest instance using the specified properties.
-                     * @param [properties] Properties to set
-                     * @returns BatchGetAssetsHistoryRequest instance
-                     */
-                    public static create(properties?: google.cloud.asset.v1beta1.IBatchGetAssetsHistoryRequest): google.cloud.asset.v1beta1.BatchGetAssetsHistoryRequest;
-
-                    /**
-                     * Encodes the specified BatchGetAssetsHistoryRequest message. Does not implicitly {@link google.cloud.asset.v1beta1.BatchGetAssetsHistoryRequest.verify|verify} messages.
-                     * @param message BatchGetAssetsHistoryRequest message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encode(message: google.cloud.asset.v1beta1.IBatchGetAssetsHistoryRequest, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Encodes the specified BatchGetAssetsHistoryRequest message, length delimited. Does not implicitly {@link google.cloud.asset.v1beta1.BatchGetAssetsHistoryRequest.verify|verify} messages.
-                     * @param message BatchGetAssetsHistoryRequest message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encodeDelimited(message: google.cloud.asset.v1beta1.IBatchGetAssetsHistoryRequest, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Decodes a BatchGetAssetsHistoryRequest message from the specified reader or buffer.
-                     * @param reader Reader or buffer to decode from
-                     * @param [length] Message length if known beforehand
-                     * @returns BatchGetAssetsHistoryRequest
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.asset.v1beta1.BatchGetAssetsHistoryRequest;
-
-                    /**
-                     * Decodes a BatchGetAssetsHistoryRequest message from the specified reader or buffer, length delimited.
-                     * @param reader Reader or buffer to decode from
-                     * @returns BatchGetAssetsHistoryRequest
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.asset.v1beta1.BatchGetAssetsHistoryRequest;
-
-                    /**
-                     * Verifies a BatchGetAssetsHistoryRequest message.
-                     * @param message Plain object to verify
-                     * @returns `null` if valid, otherwise the reason why it is not
-                     */
-                    public static verify(message: { [k: string]: any }): (string|null);
-
-                    /**
-                     * Creates a BatchGetAssetsHistoryRequest message from a plain object. Also converts values to their respective internal types.
-                     * @param object Plain object
-                     * @returns BatchGetAssetsHistoryRequest
-                     */
-                    public static fromObject(object: { [k: string]: any }): google.cloud.asset.v1beta1.BatchGetAssetsHistoryRequest;
-
-                    /**
-                     * Creates a plain object from a BatchGetAssetsHistoryRequest message. Also converts values to other types if specified.
-                     * @param message BatchGetAssetsHistoryRequest
-                     * @param [options] Conversion options
-                     * @returns Plain object
-                     */
-                    public static toObject(message: google.cloud.asset.v1beta1.BatchGetAssetsHistoryRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                    /**
-                     * Converts this BatchGetAssetsHistoryRequest to JSON.
-                     * @returns JSON object
-                     */
-                    public toJSON(): { [k: string]: any };
-                }
-
-                /** Properties of a BatchGetAssetsHistoryResponse. */
-                interface IBatchGetAssetsHistoryResponse {
-
-                    /** BatchGetAssetsHistoryResponse assets */
-                    assets?: (google.cloud.asset.v1beta1.ITemporalAsset[]|null);
-                }
-
-                /** Represents a BatchGetAssetsHistoryResponse. */
-                class BatchGetAssetsHistoryResponse implements IBatchGetAssetsHistoryResponse {
-
-                    /**
-                     * Constructs a new BatchGetAssetsHistoryResponse.
-                     * @param [properties] Properties to set
-                     */
-                    constructor(properties?: google.cloud.asset.v1beta1.IBatchGetAssetsHistoryResponse);
-
-                    /** BatchGetAssetsHistoryResponse assets. */
-                    public assets: google.cloud.asset.v1beta1.ITemporalAsset[];
-
-                    /**
-                     * Creates a new BatchGetAssetsHistoryResponse instance using the specified properties.
-                     * @param [properties] Properties to set
-                     * @returns BatchGetAssetsHistoryResponse instance
-                     */
-                    public static create(properties?: google.cloud.asset.v1beta1.IBatchGetAssetsHistoryResponse): google.cloud.asset.v1beta1.BatchGetAssetsHistoryResponse;
-
-                    /**
-                     * Encodes the specified BatchGetAssetsHistoryResponse message. Does not implicitly {@link google.cloud.asset.v1beta1.BatchGetAssetsHistoryResponse.verify|verify} messages.
-                     * @param message BatchGetAssetsHistoryResponse message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encode(message: google.cloud.asset.v1beta1.IBatchGetAssetsHistoryResponse, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Encodes the specified BatchGetAssetsHistoryResponse message, length delimited. Does not implicitly {@link google.cloud.asset.v1beta1.BatchGetAssetsHistoryResponse.verify|verify} messages.
-                     * @param message BatchGetAssetsHistoryResponse message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encodeDelimited(message: google.cloud.asset.v1beta1.IBatchGetAssetsHistoryResponse, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Decodes a BatchGetAssetsHistoryResponse message from the specified reader or buffer.
-                     * @param reader Reader or buffer to decode from
-                     * @param [length] Message length if known beforehand
-                     * @returns BatchGetAssetsHistoryResponse
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.asset.v1beta1.BatchGetAssetsHistoryResponse;
-
-                    /**
-                     * Decodes a BatchGetAssetsHistoryResponse message from the specified reader or buffer, length delimited.
-                     * @param reader Reader or buffer to decode from
-                     * @returns BatchGetAssetsHistoryResponse
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.asset.v1beta1.BatchGetAssetsHistoryResponse;
-
-                    /**
-                     * Verifies a BatchGetAssetsHistoryResponse message.
-                     * @param message Plain object to verify
-                     * @returns `null` if valid, otherwise the reason why it is not
-                     */
-                    public static verify(message: { [k: string]: any }): (string|null);
-
-                    /**
-                     * Creates a BatchGetAssetsHistoryResponse message from a plain object. Also converts values to their respective internal types.
-                     * @param object Plain object
-                     * @returns BatchGetAssetsHistoryResponse
-                     */
-                    public static fromObject(object: { [k: string]: any }): google.cloud.asset.v1beta1.BatchGetAssetsHistoryResponse;
-
-                    /**
-                     * Creates a plain object from a BatchGetAssetsHistoryResponse message. Also converts values to other types if specified.
-                     * @param message BatchGetAssetsHistoryResponse
-                     * @param [options] Conversion options
-                     * @returns Plain object
-                     */
-                    public static toObject(message: google.cloud.asset.v1beta1.BatchGetAssetsHistoryResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                    /**
-                     * Converts this BatchGetAssetsHistoryResponse to JSON.
-                     * @returns JSON object
-                     */
-                    public toJSON(): { [k: string]: any };
-                }
-
-                /** Properties of an OutputConfig. */
-                interface IOutputConfig {
-
-                    /** OutputConfig gcsDestination */
-                    gcsDestination?: (google.cloud.asset.v1beta1.IGcsDestination|null);
-                }
-
-                /** Represents an OutputConfig. */
-                class OutputConfig implements IOutputConfig {
-
-                    /**
-                     * Constructs a new OutputConfig.
-                     * @param [properties] Properties to set
-                     */
-                    constructor(properties?: google.cloud.asset.v1beta1.IOutputConfig);
-
-                    /** OutputConfig gcsDestination. */
-                    public gcsDestination?: (google.cloud.asset.v1beta1.IGcsDestination|null);
-
-                    /** OutputConfig destination. */
-                    public destination?: "gcsDestination";
-
-                    /**
-                     * Creates a new OutputConfig instance using the specified properties.
-                     * @param [properties] Properties to set
-                     * @returns OutputConfig instance
-                     */
-                    public static create(properties?: google.cloud.asset.v1beta1.IOutputConfig): google.cloud.asset.v1beta1.OutputConfig;
-
-                    /**
-                     * Encodes the specified OutputConfig message. Does not implicitly {@link google.cloud.asset.v1beta1.OutputConfig.verify|verify} messages.
-                     * @param message OutputConfig message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encode(message: google.cloud.asset.v1beta1.IOutputConfig, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Encodes the specified OutputConfig message, length delimited. Does not implicitly {@link google.cloud.asset.v1beta1.OutputConfig.verify|verify} messages.
-                     * @param message OutputConfig message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encodeDelimited(message: google.cloud.asset.v1beta1.IOutputConfig, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Decodes an OutputConfig message from the specified reader or buffer.
-                     * @param reader Reader or buffer to decode from
-                     * @param [length] Message length if known beforehand
-                     * @returns OutputConfig
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.asset.v1beta1.OutputConfig;
-
-                    /**
-                     * Decodes an OutputConfig message from the specified reader or buffer, length delimited.
-                     * @param reader Reader or buffer to decode from
-                     * @returns OutputConfig
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.asset.v1beta1.OutputConfig;
-
-                    /**
-                     * Verifies an OutputConfig message.
-                     * @param message Plain object to verify
-                     * @returns `null` if valid, otherwise the reason why it is not
-                     */
-                    public static verify(message: { [k: string]: any }): (string|null);
-
-                    /**
-                     * Creates an OutputConfig message from a plain object. Also converts values to their respective internal types.
-                     * @param object Plain object
-                     * @returns OutputConfig
-                     */
-                    public static fromObject(object: { [k: string]: any }): google.cloud.asset.v1beta1.OutputConfig;
-
-                    /**
-                     * Creates a plain object from an OutputConfig message. Also converts values to other types if specified.
-                     * @param message OutputConfig
-                     * @param [options] Conversion options
-                     * @returns Plain object
-                     */
-                    public static toObject(message: google.cloud.asset.v1beta1.OutputConfig, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                    /**
-                     * Converts this OutputConfig to JSON.
-                     * @returns JSON object
-                     */
-                    public toJSON(): { [k: string]: any };
-                }
-
-                /** Properties of a GcsDestination. */
-                interface IGcsDestination {
-
-                    /** GcsDestination uri */
-                    uri?: (string|null);
-
-                    /** GcsDestination uriPrefix */
-                    uriPrefix?: (string|null);
-                }
-
-                /** Represents a GcsDestination. */
-                class GcsDestination implements IGcsDestination {
-
-                    /**
-                     * Constructs a new GcsDestination.
-                     * @param [properties] Properties to set
-                     */
-                    constructor(properties?: google.cloud.asset.v1beta1.IGcsDestination);
-
-                    /** GcsDestination uri. */
-                    public uri: string;
-
-                    /** GcsDestination uriPrefix. */
-                    public uriPrefix: string;
-
-                    /** GcsDestination objectUri. */
-                    public objectUri?: ("uri"|"uriPrefix");
-
-                    /**
-                     * Creates a new GcsDestination instance using the specified properties.
-                     * @param [properties] Properties to set
-                     * @returns GcsDestination instance
-                     */
-                    public static create(properties?: google.cloud.asset.v1beta1.IGcsDestination): google.cloud.asset.v1beta1.GcsDestination;
-
-                    /**
-                     * Encodes the specified GcsDestination message. Does not implicitly {@link google.cloud.asset.v1beta1.GcsDestination.verify|verify} messages.
-                     * @param message GcsDestination message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encode(message: google.cloud.asset.v1beta1.IGcsDestination, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Encodes the specified GcsDestination message, length delimited. Does not implicitly {@link google.cloud.asset.v1beta1.GcsDestination.verify|verify} messages.
-                     * @param message GcsDestination message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encodeDelimited(message: google.cloud.asset.v1beta1.IGcsDestination, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Decodes a GcsDestination message from the specified reader or buffer.
-                     * @param reader Reader or buffer to decode from
-                     * @param [length] Message length if known beforehand
-                     * @returns GcsDestination
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.asset.v1beta1.GcsDestination;
-
-                    /**
-                     * Decodes a GcsDestination message from the specified reader or buffer, length delimited.
-                     * @param reader Reader or buffer to decode from
-                     * @returns GcsDestination
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.asset.v1beta1.GcsDestination;
-
-                    /**
-                     * Verifies a GcsDestination message.
-                     * @param message Plain object to verify
-                     * @returns `null` if valid, otherwise the reason why it is not
-                     */
-                    public static verify(message: { [k: string]: any }): (string|null);
-
-                    /**
-                     * Creates a GcsDestination message from a plain object. Also converts values to their respective internal types.
-                     * @param object Plain object
-                     * @returns GcsDestination
-                     */
-                    public static fromObject(object: { [k: string]: any }): google.cloud.asset.v1beta1.GcsDestination;
-
-                    /**
-                     * Creates a plain object from a GcsDestination message. Also converts values to other types if specified.
-                     * @param message GcsDestination
-                     * @param [options] Conversion options
-                     * @returns Plain object
-                     */
-                    public static toObject(message: google.cloud.asset.v1beta1.GcsDestination, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                    /**
-                     * Converts this GcsDestination to JSON.
-                     * @returns JSON object
-                     */
-                    public toJSON(): { [k: string]: any };
-                }
-
-                /** ContentType enum. */
-                enum ContentType {
-                    CONTENT_TYPE_UNSPECIFIED = 0,
-                    RESOURCE = 1,
-                    IAM_POLICY = 2
-                }
-
-                /** Properties of a TemporalAsset. */
-                interface ITemporalAsset {
-
-                    /** TemporalAsset window */
-                    window?: (google.cloud.asset.v1beta1.ITimeWindow|null);
-
-                    /** TemporalAsset deleted */
-                    deleted?: (boolean|null);
-
-                    /** TemporalAsset asset */
-                    asset?: (google.cloud.asset.v1beta1.IAsset|null);
-                }
-
-                /** Represents a TemporalAsset. */
-                class TemporalAsset implements ITemporalAsset {
-
-                    /**
-                     * Constructs a new TemporalAsset.
-                     * @param [properties] Properties to set
-                     */
-                    constructor(properties?: google.cloud.asset.v1beta1.ITemporalAsset);
-
-                    /** TemporalAsset window. */
-                    public window?: (google.cloud.asset.v1beta1.ITimeWindow|null);
-
-                    /** TemporalAsset deleted. */
-                    public deleted: boolean;
-
-                    /** TemporalAsset asset. */
-                    public asset?: (google.cloud.asset.v1beta1.IAsset|null);
-
-                    /**
-                     * Creates a new TemporalAsset instance using the specified properties.
-                     * @param [properties] Properties to set
-                     * @returns TemporalAsset instance
-                     */
-                    public static create(properties?: google.cloud.asset.v1beta1.ITemporalAsset): google.cloud.asset.v1beta1.TemporalAsset;
-
-                    /**
-                     * Encodes the specified TemporalAsset message. Does not implicitly {@link google.cloud.asset.v1beta1.TemporalAsset.verify|verify} messages.
-                     * @param message TemporalAsset message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encode(message: google.cloud.asset.v1beta1.ITemporalAsset, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Encodes the specified TemporalAsset message, length delimited. Does not implicitly {@link google.cloud.asset.v1beta1.TemporalAsset.verify|verify} messages.
-                     * @param message TemporalAsset message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encodeDelimited(message: google.cloud.asset.v1beta1.ITemporalAsset, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Decodes a TemporalAsset message from the specified reader or buffer.
-                     * @param reader Reader or buffer to decode from
-                     * @param [length] Message length if known beforehand
-                     * @returns TemporalAsset
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.asset.v1beta1.TemporalAsset;
-
-                    /**
-                     * Decodes a TemporalAsset message from the specified reader or buffer, length delimited.
-                     * @param reader Reader or buffer to decode from
-                     * @returns TemporalAsset
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.asset.v1beta1.TemporalAsset;
-
-                    /**
-                     * Verifies a TemporalAsset message.
-                     * @param message Plain object to verify
-                     * @returns `null` if valid, otherwise the reason why it is not
-                     */
-                    public static verify(message: { [k: string]: any }): (string|null);
-
-                    /**
-                     * Creates a TemporalAsset message from a plain object. Also converts values to their respective internal types.
-                     * @param object Plain object
-                     * @returns TemporalAsset
-                     */
-                    public static fromObject(object: { [k: string]: any }): google.cloud.asset.v1beta1.TemporalAsset;
-
-                    /**
-                     * Creates a plain object from a TemporalAsset message. Also converts values to other types if specified.
-                     * @param message TemporalAsset
-                     * @param [options] Conversion options
-                     * @returns Plain object
-                     */
-                    public static toObject(message: google.cloud.asset.v1beta1.TemporalAsset, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                    /**
-                     * Converts this TemporalAsset to JSON.
-                     * @returns JSON object
-                     */
-                    public toJSON(): { [k: string]: any };
-                }
-
-                /** Properties of a TimeWindow. */
-                interface ITimeWindow {
-
-                    /** TimeWindow startTime */
-                    startTime?: (google.protobuf.ITimestamp|null);
-
-                    /** TimeWindow endTime */
-                    endTime?: (google.protobuf.ITimestamp|null);
-                }
-
-                /** Represents a TimeWindow. */
-                class TimeWindow implements ITimeWindow {
-
-                    /**
-                     * Constructs a new TimeWindow.
-                     * @param [properties] Properties to set
-                     */
-                    constructor(properties?: google.cloud.asset.v1beta1.ITimeWindow);
-
-                    /** TimeWindow startTime. */
-                    public startTime?: (google.protobuf.ITimestamp|null);
-
-                    /** TimeWindow endTime. */
-                    public endTime?: (google.protobuf.ITimestamp|null);
-
-                    /**
-                     * Creates a new TimeWindow instance using the specified properties.
-                     * @param [properties] Properties to set
-                     * @returns TimeWindow instance
-                     */
-                    public static create(properties?: google.cloud.asset.v1beta1.ITimeWindow): google.cloud.asset.v1beta1.TimeWindow;
-
-                    /**
-                     * Encodes the specified TimeWindow message. Does not implicitly {@link google.cloud.asset.v1beta1.TimeWindow.verify|verify} messages.
-                     * @param message TimeWindow message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encode(message: google.cloud.asset.v1beta1.ITimeWindow, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Encodes the specified TimeWindow message, length delimited. Does not implicitly {@link google.cloud.asset.v1beta1.TimeWindow.verify|verify} messages.
-                     * @param message TimeWindow message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encodeDelimited(message: google.cloud.asset.v1beta1.ITimeWindow, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Decodes a TimeWindow message from the specified reader or buffer.
-                     * @param reader Reader or buffer to decode from
-                     * @param [length] Message length if known beforehand
-                     * @returns TimeWindow
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.asset.v1beta1.TimeWindow;
-
-                    /**
-                     * Decodes a TimeWindow message from the specified reader or buffer, length delimited.
-                     * @param reader Reader or buffer to decode from
-                     * @returns TimeWindow
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.asset.v1beta1.TimeWindow;
-
-                    /**
-                     * Verifies a TimeWindow message.
-                     * @param message Plain object to verify
-                     * @returns `null` if valid, otherwise the reason why it is not
-                     */
-                    public static verify(message: { [k: string]: any }): (string|null);
-
-                    /**
-                     * Creates a TimeWindow message from a plain object. Also converts values to their respective internal types.
-                     * @param object Plain object
-                     * @returns TimeWindow
-                     */
-                    public static fromObject(object: { [k: string]: any }): google.cloud.asset.v1beta1.TimeWindow;
-
-                    /**
-                     * Creates a plain object from a TimeWindow message. Also converts values to other types if specified.
-                     * @param message TimeWindow
-                     * @param [options] Conversion options
-                     * @returns Plain object
-                     */
-                    public static toObject(message: google.cloud.asset.v1beta1.TimeWindow, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                    /**
-                     * Converts this TimeWindow to JSON.
-                     * @returns JSON object
-                     */
-                    public toJSON(): { [k: string]: any };
-                }
-
-                /** Properties of an Asset. */
-                interface IAsset {
-
-                    /** Asset name */
-                    name?: (string|null);
-
-                    /** Asset assetType */
-                    assetType?: (string|null);
-
-                    /** Asset resource */
-                    resource?: (google.cloud.asset.v1beta1.IResource|null);
-
-                    /** Asset iamPolicy */
-                    iamPolicy?: (google.iam.v1.IPolicy|null);
-                }
-
-                /** Represents an Asset. */
-                class Asset implements IAsset {
-
-                    /**
-                     * Constructs a new Asset.
-                     * @param [properties] Properties to set
-                     */
-                    constructor(properties?: google.cloud.asset.v1beta1.IAsset);
-
-                    /** Asset name. */
-                    public name: string;
-
-                    /** Asset assetType. */
-                    public assetType: string;
-
-                    /** Asset resource. */
-                    public resource?: (google.cloud.asset.v1beta1.IResource|null);
-
-                    /** Asset iamPolicy. */
-                    public iamPolicy?: (google.iam.v1.IPolicy|null);
-
-                    /**
-                     * Creates a new Asset instance using the specified properties.
-                     * @param [properties] Properties to set
-                     * @returns Asset instance
-                     */
-                    public static create(properties?: google.cloud.asset.v1beta1.IAsset): google.cloud.asset.v1beta1.Asset;
-
-                    /**
-                     * Encodes the specified Asset message. Does not implicitly {@link google.cloud.asset.v1beta1.Asset.verify|verify} messages.
-                     * @param message Asset message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encode(message: google.cloud.asset.v1beta1.IAsset, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Encodes the specified Asset message, length delimited. Does not implicitly {@link google.cloud.asset.v1beta1.Asset.verify|verify} messages.
-                     * @param message Asset message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encodeDelimited(message: google.cloud.asset.v1beta1.IAsset, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Decodes an Asset message from the specified reader or buffer.
-                     * @param reader Reader or buffer to decode from
-                     * @param [length] Message length if known beforehand
-                     * @returns Asset
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.asset.v1beta1.Asset;
-
-                    /**
-                     * Decodes an Asset message from the specified reader or buffer, length delimited.
-                     * @param reader Reader or buffer to decode from
-                     * @returns Asset
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.asset.v1beta1.Asset;
-
-                    /**
-                     * Verifies an Asset message.
-                     * @param message Plain object to verify
-                     * @returns `null` if valid, otherwise the reason why it is not
-                     */
-                    public static verify(message: { [k: string]: any }): (string|null);
-
-                    /**
-                     * Creates an Asset message from a plain object. Also converts values to their respective internal types.
-                     * @param object Plain object
-                     * @returns Asset
-                     */
-                    public static fromObject(object: { [k: string]: any }): google.cloud.asset.v1beta1.Asset;
-
-                    /**
-                     * Creates a plain object from an Asset message. Also converts values to other types if specified.
-                     * @param message Asset
-                     * @param [options] Conversion options
-                     * @returns Plain object
-                     */
-                    public static toObject(message: google.cloud.asset.v1beta1.Asset, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                    /**
-                     * Converts this Asset to JSON.
-                     * @returns JSON object
-                     */
-                    public toJSON(): { [k: string]: any };
-                }
-
-                /** Properties of a Resource. */
-                interface IResource {
-
-                    /** Resource version */
-                    version?: (string|null);
-
-                    /** Resource discoveryDocumentUri */
-                    discoveryDocumentUri?: (string|null);
-
-                    /** Resource discoveryName */
-                    discoveryName?: (string|null);
-
-                    /** Resource resourceUrl */
-                    resourceUrl?: (string|null);
-
-                    /** Resource parent */
-                    parent?: (string|null);
-
-                    /** Resource data */
-                    data?: (google.protobuf.IStruct|null);
-                }
-
-                /** Represents a Resource. */
-                class Resource implements IResource {
-
-                    /**
-                     * Constructs a new Resource.
-                     * @param [properties] Properties to set
-                     */
-                    constructor(properties?: google.cloud.asset.v1beta1.IResource);
-
-                    /** Resource version. */
-                    public version: string;
-
-                    /** Resource discoveryDocumentUri. */
-                    public discoveryDocumentUri: string;
-
-                    /** Resource discoveryName. */
-                    public discoveryName: string;
-
-                    /** Resource resourceUrl. */
-                    public resourceUrl: string;
-
-                    /** Resource parent. */
-                    public parent: string;
-
-                    /** Resource data. */
-                    public data?: (google.protobuf.IStruct|null);
-
-                    /**
-                     * Creates a new Resource instance using the specified properties.
-                     * @param [properties] Properties to set
-                     * @returns Resource instance
-                     */
-                    public static create(properties?: google.cloud.asset.v1beta1.IResource): google.cloud.asset.v1beta1.Resource;
-
-                    /**
-                     * Encodes the specified Resource message. Does not implicitly {@link google.cloud.asset.v1beta1.Resource.verify|verify} messages.
-                     * @param message Resource message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encode(message: google.cloud.asset.v1beta1.IResource, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Encodes the specified Resource message, length delimited. Does not implicitly {@link google.cloud.asset.v1beta1.Resource.verify|verify} messages.
-                     * @param message Resource message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encodeDelimited(message: google.cloud.asset.v1beta1.IResource, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Decodes a Resource message from the specified reader or buffer.
-                     * @param reader Reader or buffer to decode from
-                     * @param [length] Message length if known beforehand
-                     * @returns Resource
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.asset.v1beta1.Resource;
-
-                    /**
-                     * Decodes a Resource message from the specified reader or buffer, length delimited.
-                     * @param reader Reader or buffer to decode from
-                     * @returns Resource
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.asset.v1beta1.Resource;
-
-                    /**
-                     * Verifies a Resource message.
-                     * @param message Plain object to verify
-                     * @returns `null` if valid, otherwise the reason why it is not
-                     */
-                    public static verify(message: { [k: string]: any }): (string|null);
-
-                    /**
-                     * Creates a Resource message from a plain object. Also converts values to their respective internal types.
-                     * @param object Plain object
-                     * @returns Resource
-                     */
-                    public static fromObject(object: { [k: string]: any }): google.cloud.asset.v1beta1.Resource;
-
-                    /**
-                     * Creates a plain object from a Resource message. Also converts values to other types if specified.
-                     * @param message Resource
-                     * @param [options] Conversion options
-                     * @returns Plain object
-                     */
-                    public static toObject(message: google.cloud.asset.v1beta1.Resource, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                    /**
-                     * Converts this Resource to JSON.
-                     * @returns JSON object
-                     */
-                    public toJSON(): { [k: string]: any };
                 }
             }
 
@@ -12437,6 +11341,1080 @@ export namespace google {
                 }
             }
         }
+
+        /** Namespace osconfig. */
+        namespace osconfig {
+
+            /** Namespace v1. */
+            namespace v1 {
+
+                /** Properties of an Inventory. */
+                interface IInventory {
+
+                    /** Inventory osInfo */
+                    osInfo?: (google.cloud.osconfig.v1.Inventory.IOsInfo|null);
+
+                    /** Inventory items */
+                    items?: ({ [k: string]: google.cloud.osconfig.v1.Inventory.IItem }|null);
+                }
+
+                /** Represents an Inventory. */
+                class Inventory implements IInventory {
+
+                    /**
+                     * Constructs a new Inventory.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.osconfig.v1.IInventory);
+
+                    /** Inventory osInfo. */
+                    public osInfo?: (google.cloud.osconfig.v1.Inventory.IOsInfo|null);
+
+                    /** Inventory items. */
+                    public items: { [k: string]: google.cloud.osconfig.v1.Inventory.IItem };
+
+                    /**
+                     * Creates a new Inventory instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns Inventory instance
+                     */
+                    public static create(properties?: google.cloud.osconfig.v1.IInventory): google.cloud.osconfig.v1.Inventory;
+
+                    /**
+                     * Encodes the specified Inventory message. Does not implicitly {@link google.cloud.osconfig.v1.Inventory.verify|verify} messages.
+                     * @param message Inventory message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.osconfig.v1.IInventory, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified Inventory message, length delimited. Does not implicitly {@link google.cloud.osconfig.v1.Inventory.verify|verify} messages.
+                     * @param message Inventory message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.osconfig.v1.IInventory, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an Inventory message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns Inventory
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.osconfig.v1.Inventory;
+
+                    /**
+                     * Decodes an Inventory message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns Inventory
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.osconfig.v1.Inventory;
+
+                    /**
+                     * Verifies an Inventory message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an Inventory message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns Inventory
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.osconfig.v1.Inventory;
+
+                    /**
+                     * Creates a plain object from an Inventory message. Also converts values to other types if specified.
+                     * @param message Inventory
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.osconfig.v1.Inventory, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this Inventory to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+                }
+
+                namespace Inventory {
+
+                    /** Properties of an OsInfo. */
+                    interface IOsInfo {
+
+                        /** OsInfo hostname */
+                        hostname?: (string|null);
+
+                        /** OsInfo longName */
+                        longName?: (string|null);
+
+                        /** OsInfo shortName */
+                        shortName?: (string|null);
+
+                        /** OsInfo version */
+                        version?: (string|null);
+
+                        /** OsInfo architecture */
+                        architecture?: (string|null);
+
+                        /** OsInfo kernelVersion */
+                        kernelVersion?: (string|null);
+
+                        /** OsInfo kernelRelease */
+                        kernelRelease?: (string|null);
+
+                        /** OsInfo osconfigAgentVersion */
+                        osconfigAgentVersion?: (string|null);
+                    }
+
+                    /** Represents an OsInfo. */
+                    class OsInfo implements IOsInfo {
+
+                        /**
+                         * Constructs a new OsInfo.
+                         * @param [properties] Properties to set
+                         */
+                        constructor(properties?: google.cloud.osconfig.v1.Inventory.IOsInfo);
+
+                        /** OsInfo hostname. */
+                        public hostname: string;
+
+                        /** OsInfo longName. */
+                        public longName: string;
+
+                        /** OsInfo shortName. */
+                        public shortName: string;
+
+                        /** OsInfo version. */
+                        public version: string;
+
+                        /** OsInfo architecture. */
+                        public architecture: string;
+
+                        /** OsInfo kernelVersion. */
+                        public kernelVersion: string;
+
+                        /** OsInfo kernelRelease. */
+                        public kernelRelease: string;
+
+                        /** OsInfo osconfigAgentVersion. */
+                        public osconfigAgentVersion: string;
+
+                        /**
+                         * Creates a new OsInfo instance using the specified properties.
+                         * @param [properties] Properties to set
+                         * @returns OsInfo instance
+                         */
+                        public static create(properties?: google.cloud.osconfig.v1.Inventory.IOsInfo): google.cloud.osconfig.v1.Inventory.OsInfo;
+
+                        /**
+                         * Encodes the specified OsInfo message. Does not implicitly {@link google.cloud.osconfig.v1.Inventory.OsInfo.verify|verify} messages.
+                         * @param message OsInfo message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encode(message: google.cloud.osconfig.v1.Inventory.IOsInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Encodes the specified OsInfo message, length delimited. Does not implicitly {@link google.cloud.osconfig.v1.Inventory.OsInfo.verify|verify} messages.
+                         * @param message OsInfo message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encodeDelimited(message: google.cloud.osconfig.v1.Inventory.IOsInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Decodes an OsInfo message from the specified reader or buffer.
+                         * @param reader Reader or buffer to decode from
+                         * @param [length] Message length if known beforehand
+                         * @returns OsInfo
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.osconfig.v1.Inventory.OsInfo;
+
+                        /**
+                         * Decodes an OsInfo message from the specified reader or buffer, length delimited.
+                         * @param reader Reader or buffer to decode from
+                         * @returns OsInfo
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.osconfig.v1.Inventory.OsInfo;
+
+                        /**
+                         * Verifies an OsInfo message.
+                         * @param message Plain object to verify
+                         * @returns `null` if valid, otherwise the reason why it is not
+                         */
+                        public static verify(message: { [k: string]: any }): (string|null);
+
+                        /**
+                         * Creates an OsInfo message from a plain object. Also converts values to their respective internal types.
+                         * @param object Plain object
+                         * @returns OsInfo
+                         */
+                        public static fromObject(object: { [k: string]: any }): google.cloud.osconfig.v1.Inventory.OsInfo;
+
+                        /**
+                         * Creates a plain object from an OsInfo message. Also converts values to other types if specified.
+                         * @param message OsInfo
+                         * @param [options] Conversion options
+                         * @returns Plain object
+                         */
+                        public static toObject(message: google.cloud.osconfig.v1.Inventory.OsInfo, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                        /**
+                         * Converts this OsInfo to JSON.
+                         * @returns JSON object
+                         */
+                        public toJSON(): { [k: string]: any };
+                    }
+
+                    /** Properties of an Item. */
+                    interface IItem {
+
+                        /** Item id */
+                        id?: (string|null);
+
+                        /** Item originType */
+                        originType?: (google.cloud.osconfig.v1.Inventory.Item.OriginType|keyof typeof google.cloud.osconfig.v1.Inventory.Item.OriginType|null);
+
+                        /** Item createTime */
+                        createTime?: (google.protobuf.ITimestamp|null);
+
+                        /** Item updateTime */
+                        updateTime?: (google.protobuf.ITimestamp|null);
+
+                        /** Item type */
+                        type?: (google.cloud.osconfig.v1.Inventory.Item.Type|keyof typeof google.cloud.osconfig.v1.Inventory.Item.Type|null);
+
+                        /** Item installedPackage */
+                        installedPackage?: (google.cloud.osconfig.v1.Inventory.ISoftwarePackage|null);
+
+                        /** Item availablePackage */
+                        availablePackage?: (google.cloud.osconfig.v1.Inventory.ISoftwarePackage|null);
+                    }
+
+                    /** Represents an Item. */
+                    class Item implements IItem {
+
+                        /**
+                         * Constructs a new Item.
+                         * @param [properties] Properties to set
+                         */
+                        constructor(properties?: google.cloud.osconfig.v1.Inventory.IItem);
+
+                        /** Item id. */
+                        public id: string;
+
+                        /** Item originType. */
+                        public originType: (google.cloud.osconfig.v1.Inventory.Item.OriginType|keyof typeof google.cloud.osconfig.v1.Inventory.Item.OriginType);
+
+                        /** Item createTime. */
+                        public createTime?: (google.protobuf.ITimestamp|null);
+
+                        /** Item updateTime. */
+                        public updateTime?: (google.protobuf.ITimestamp|null);
+
+                        /** Item type. */
+                        public type: (google.cloud.osconfig.v1.Inventory.Item.Type|keyof typeof google.cloud.osconfig.v1.Inventory.Item.Type);
+
+                        /** Item installedPackage. */
+                        public installedPackage?: (google.cloud.osconfig.v1.Inventory.ISoftwarePackage|null);
+
+                        /** Item availablePackage. */
+                        public availablePackage?: (google.cloud.osconfig.v1.Inventory.ISoftwarePackage|null);
+
+                        /** Item details. */
+                        public details?: ("installedPackage"|"availablePackage");
+
+                        /**
+                         * Creates a new Item instance using the specified properties.
+                         * @param [properties] Properties to set
+                         * @returns Item instance
+                         */
+                        public static create(properties?: google.cloud.osconfig.v1.Inventory.IItem): google.cloud.osconfig.v1.Inventory.Item;
+
+                        /**
+                         * Encodes the specified Item message. Does not implicitly {@link google.cloud.osconfig.v1.Inventory.Item.verify|verify} messages.
+                         * @param message Item message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encode(message: google.cloud.osconfig.v1.Inventory.IItem, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Encodes the specified Item message, length delimited. Does not implicitly {@link google.cloud.osconfig.v1.Inventory.Item.verify|verify} messages.
+                         * @param message Item message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encodeDelimited(message: google.cloud.osconfig.v1.Inventory.IItem, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Decodes an Item message from the specified reader or buffer.
+                         * @param reader Reader or buffer to decode from
+                         * @param [length] Message length if known beforehand
+                         * @returns Item
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.osconfig.v1.Inventory.Item;
+
+                        /**
+                         * Decodes an Item message from the specified reader or buffer, length delimited.
+                         * @param reader Reader or buffer to decode from
+                         * @returns Item
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.osconfig.v1.Inventory.Item;
+
+                        /**
+                         * Verifies an Item message.
+                         * @param message Plain object to verify
+                         * @returns `null` if valid, otherwise the reason why it is not
+                         */
+                        public static verify(message: { [k: string]: any }): (string|null);
+
+                        /**
+                         * Creates an Item message from a plain object. Also converts values to their respective internal types.
+                         * @param object Plain object
+                         * @returns Item
+                         */
+                        public static fromObject(object: { [k: string]: any }): google.cloud.osconfig.v1.Inventory.Item;
+
+                        /**
+                         * Creates a plain object from an Item message. Also converts values to other types if specified.
+                         * @param message Item
+                         * @param [options] Conversion options
+                         * @returns Plain object
+                         */
+                        public static toObject(message: google.cloud.osconfig.v1.Inventory.Item, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                        /**
+                         * Converts this Item to JSON.
+                         * @returns JSON object
+                         */
+                        public toJSON(): { [k: string]: any };
+                    }
+
+                    namespace Item {
+
+                        /** OriginType enum. */
+                        enum OriginType {
+                            ORIGIN_TYPE_UNSPECIFIED = 0,
+                            INVENTORY_REPORT = 1
+                        }
+
+                        /** Type enum. */
+                        enum Type {
+                            TYPE_UNSPECIFIED = 0,
+                            INSTALLED_PACKAGE = 1,
+                            AVAILABLE_PACKAGE = 2
+                        }
+                    }
+
+                    /** Properties of a SoftwarePackage. */
+                    interface ISoftwarePackage {
+
+                        /** SoftwarePackage yumPackage */
+                        yumPackage?: (google.cloud.osconfig.v1.Inventory.IVersionedPackage|null);
+
+                        /** SoftwarePackage aptPackage */
+                        aptPackage?: (google.cloud.osconfig.v1.Inventory.IVersionedPackage|null);
+
+                        /** SoftwarePackage zypperPackage */
+                        zypperPackage?: (google.cloud.osconfig.v1.Inventory.IVersionedPackage|null);
+
+                        /** SoftwarePackage googetPackage */
+                        googetPackage?: (google.cloud.osconfig.v1.Inventory.IVersionedPackage|null);
+
+                        /** SoftwarePackage zypperPatch */
+                        zypperPatch?: (google.cloud.osconfig.v1.Inventory.IZypperPatch|null);
+
+                        /** SoftwarePackage wuaPackage */
+                        wuaPackage?: (google.cloud.osconfig.v1.Inventory.IWindowsUpdatePackage|null);
+
+                        /** SoftwarePackage qfePackage */
+                        qfePackage?: (google.cloud.osconfig.v1.Inventory.IWindowsQuickFixEngineeringPackage|null);
+
+                        /** SoftwarePackage cosPackage */
+                        cosPackage?: (google.cloud.osconfig.v1.Inventory.IVersionedPackage|null);
+                    }
+
+                    /** Represents a SoftwarePackage. */
+                    class SoftwarePackage implements ISoftwarePackage {
+
+                        /**
+                         * Constructs a new SoftwarePackage.
+                         * @param [properties] Properties to set
+                         */
+                        constructor(properties?: google.cloud.osconfig.v1.Inventory.ISoftwarePackage);
+
+                        /** SoftwarePackage yumPackage. */
+                        public yumPackage?: (google.cloud.osconfig.v1.Inventory.IVersionedPackage|null);
+
+                        /** SoftwarePackage aptPackage. */
+                        public aptPackage?: (google.cloud.osconfig.v1.Inventory.IVersionedPackage|null);
+
+                        /** SoftwarePackage zypperPackage. */
+                        public zypperPackage?: (google.cloud.osconfig.v1.Inventory.IVersionedPackage|null);
+
+                        /** SoftwarePackage googetPackage. */
+                        public googetPackage?: (google.cloud.osconfig.v1.Inventory.IVersionedPackage|null);
+
+                        /** SoftwarePackage zypperPatch. */
+                        public zypperPatch?: (google.cloud.osconfig.v1.Inventory.IZypperPatch|null);
+
+                        /** SoftwarePackage wuaPackage. */
+                        public wuaPackage?: (google.cloud.osconfig.v1.Inventory.IWindowsUpdatePackage|null);
+
+                        /** SoftwarePackage qfePackage. */
+                        public qfePackage?: (google.cloud.osconfig.v1.Inventory.IWindowsQuickFixEngineeringPackage|null);
+
+                        /** SoftwarePackage cosPackage. */
+                        public cosPackage?: (google.cloud.osconfig.v1.Inventory.IVersionedPackage|null);
+
+                        /** SoftwarePackage details. */
+                        public details?: ("yumPackage"|"aptPackage"|"zypperPackage"|"googetPackage"|"zypperPatch"|"wuaPackage"|"qfePackage"|"cosPackage");
+
+                        /**
+                         * Creates a new SoftwarePackage instance using the specified properties.
+                         * @param [properties] Properties to set
+                         * @returns SoftwarePackage instance
+                         */
+                        public static create(properties?: google.cloud.osconfig.v1.Inventory.ISoftwarePackage): google.cloud.osconfig.v1.Inventory.SoftwarePackage;
+
+                        /**
+                         * Encodes the specified SoftwarePackage message. Does not implicitly {@link google.cloud.osconfig.v1.Inventory.SoftwarePackage.verify|verify} messages.
+                         * @param message SoftwarePackage message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encode(message: google.cloud.osconfig.v1.Inventory.ISoftwarePackage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Encodes the specified SoftwarePackage message, length delimited. Does not implicitly {@link google.cloud.osconfig.v1.Inventory.SoftwarePackage.verify|verify} messages.
+                         * @param message SoftwarePackage message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encodeDelimited(message: google.cloud.osconfig.v1.Inventory.ISoftwarePackage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Decodes a SoftwarePackage message from the specified reader or buffer.
+                         * @param reader Reader or buffer to decode from
+                         * @param [length] Message length if known beforehand
+                         * @returns SoftwarePackage
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.osconfig.v1.Inventory.SoftwarePackage;
+
+                        /**
+                         * Decodes a SoftwarePackage message from the specified reader or buffer, length delimited.
+                         * @param reader Reader or buffer to decode from
+                         * @returns SoftwarePackage
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.osconfig.v1.Inventory.SoftwarePackage;
+
+                        /**
+                         * Verifies a SoftwarePackage message.
+                         * @param message Plain object to verify
+                         * @returns `null` if valid, otherwise the reason why it is not
+                         */
+                        public static verify(message: { [k: string]: any }): (string|null);
+
+                        /**
+                         * Creates a SoftwarePackage message from a plain object. Also converts values to their respective internal types.
+                         * @param object Plain object
+                         * @returns SoftwarePackage
+                         */
+                        public static fromObject(object: { [k: string]: any }): google.cloud.osconfig.v1.Inventory.SoftwarePackage;
+
+                        /**
+                         * Creates a plain object from a SoftwarePackage message. Also converts values to other types if specified.
+                         * @param message SoftwarePackage
+                         * @param [options] Conversion options
+                         * @returns Plain object
+                         */
+                        public static toObject(message: google.cloud.osconfig.v1.Inventory.SoftwarePackage, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                        /**
+                         * Converts this SoftwarePackage to JSON.
+                         * @returns JSON object
+                         */
+                        public toJSON(): { [k: string]: any };
+                    }
+
+                    /** Properties of a VersionedPackage. */
+                    interface IVersionedPackage {
+
+                        /** VersionedPackage packageName */
+                        packageName?: (string|null);
+
+                        /** VersionedPackage architecture */
+                        architecture?: (string|null);
+
+                        /** VersionedPackage version */
+                        version?: (string|null);
+                    }
+
+                    /** Represents a VersionedPackage. */
+                    class VersionedPackage implements IVersionedPackage {
+
+                        /**
+                         * Constructs a new VersionedPackage.
+                         * @param [properties] Properties to set
+                         */
+                        constructor(properties?: google.cloud.osconfig.v1.Inventory.IVersionedPackage);
+
+                        /** VersionedPackage packageName. */
+                        public packageName: string;
+
+                        /** VersionedPackage architecture. */
+                        public architecture: string;
+
+                        /** VersionedPackage version. */
+                        public version: string;
+
+                        /**
+                         * Creates a new VersionedPackage instance using the specified properties.
+                         * @param [properties] Properties to set
+                         * @returns VersionedPackage instance
+                         */
+                        public static create(properties?: google.cloud.osconfig.v1.Inventory.IVersionedPackage): google.cloud.osconfig.v1.Inventory.VersionedPackage;
+
+                        /**
+                         * Encodes the specified VersionedPackage message. Does not implicitly {@link google.cloud.osconfig.v1.Inventory.VersionedPackage.verify|verify} messages.
+                         * @param message VersionedPackage message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encode(message: google.cloud.osconfig.v1.Inventory.IVersionedPackage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Encodes the specified VersionedPackage message, length delimited. Does not implicitly {@link google.cloud.osconfig.v1.Inventory.VersionedPackage.verify|verify} messages.
+                         * @param message VersionedPackage message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encodeDelimited(message: google.cloud.osconfig.v1.Inventory.IVersionedPackage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Decodes a VersionedPackage message from the specified reader or buffer.
+                         * @param reader Reader or buffer to decode from
+                         * @param [length] Message length if known beforehand
+                         * @returns VersionedPackage
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.osconfig.v1.Inventory.VersionedPackage;
+
+                        /**
+                         * Decodes a VersionedPackage message from the specified reader or buffer, length delimited.
+                         * @param reader Reader or buffer to decode from
+                         * @returns VersionedPackage
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.osconfig.v1.Inventory.VersionedPackage;
+
+                        /**
+                         * Verifies a VersionedPackage message.
+                         * @param message Plain object to verify
+                         * @returns `null` if valid, otherwise the reason why it is not
+                         */
+                        public static verify(message: { [k: string]: any }): (string|null);
+
+                        /**
+                         * Creates a VersionedPackage message from a plain object. Also converts values to their respective internal types.
+                         * @param object Plain object
+                         * @returns VersionedPackage
+                         */
+                        public static fromObject(object: { [k: string]: any }): google.cloud.osconfig.v1.Inventory.VersionedPackage;
+
+                        /**
+                         * Creates a plain object from a VersionedPackage message. Also converts values to other types if specified.
+                         * @param message VersionedPackage
+                         * @param [options] Conversion options
+                         * @returns Plain object
+                         */
+                        public static toObject(message: google.cloud.osconfig.v1.Inventory.VersionedPackage, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                        /**
+                         * Converts this VersionedPackage to JSON.
+                         * @returns JSON object
+                         */
+                        public toJSON(): { [k: string]: any };
+                    }
+
+                    /** Properties of a WindowsUpdatePackage. */
+                    interface IWindowsUpdatePackage {
+
+                        /** WindowsUpdatePackage title */
+                        title?: (string|null);
+
+                        /** WindowsUpdatePackage description */
+                        description?: (string|null);
+
+                        /** WindowsUpdatePackage categories */
+                        categories?: (google.cloud.osconfig.v1.Inventory.WindowsUpdatePackage.IWindowsUpdateCategory[]|null);
+
+                        /** WindowsUpdatePackage kbArticleIds */
+                        kbArticleIds?: (string[]|null);
+
+                        /** WindowsUpdatePackage supportUrl */
+                        supportUrl?: (string|null);
+
+                        /** WindowsUpdatePackage moreInfoUrls */
+                        moreInfoUrls?: (string[]|null);
+
+                        /** WindowsUpdatePackage updateId */
+                        updateId?: (string|null);
+
+                        /** WindowsUpdatePackage revisionNumber */
+                        revisionNumber?: (number|null);
+
+                        /** WindowsUpdatePackage lastDeploymentChangeTime */
+                        lastDeploymentChangeTime?: (google.protobuf.ITimestamp|null);
+                    }
+
+                    /** Represents a WindowsUpdatePackage. */
+                    class WindowsUpdatePackage implements IWindowsUpdatePackage {
+
+                        /**
+                         * Constructs a new WindowsUpdatePackage.
+                         * @param [properties] Properties to set
+                         */
+                        constructor(properties?: google.cloud.osconfig.v1.Inventory.IWindowsUpdatePackage);
+
+                        /** WindowsUpdatePackage title. */
+                        public title: string;
+
+                        /** WindowsUpdatePackage description. */
+                        public description: string;
+
+                        /** WindowsUpdatePackage categories. */
+                        public categories: google.cloud.osconfig.v1.Inventory.WindowsUpdatePackage.IWindowsUpdateCategory[];
+
+                        /** WindowsUpdatePackage kbArticleIds. */
+                        public kbArticleIds: string[];
+
+                        /** WindowsUpdatePackage supportUrl. */
+                        public supportUrl: string;
+
+                        /** WindowsUpdatePackage moreInfoUrls. */
+                        public moreInfoUrls: string[];
+
+                        /** WindowsUpdatePackage updateId. */
+                        public updateId: string;
+
+                        /** WindowsUpdatePackage revisionNumber. */
+                        public revisionNumber: number;
+
+                        /** WindowsUpdatePackage lastDeploymentChangeTime. */
+                        public lastDeploymentChangeTime?: (google.protobuf.ITimestamp|null);
+
+                        /**
+                         * Creates a new WindowsUpdatePackage instance using the specified properties.
+                         * @param [properties] Properties to set
+                         * @returns WindowsUpdatePackage instance
+                         */
+                        public static create(properties?: google.cloud.osconfig.v1.Inventory.IWindowsUpdatePackage): google.cloud.osconfig.v1.Inventory.WindowsUpdatePackage;
+
+                        /**
+                         * Encodes the specified WindowsUpdatePackage message. Does not implicitly {@link google.cloud.osconfig.v1.Inventory.WindowsUpdatePackage.verify|verify} messages.
+                         * @param message WindowsUpdatePackage message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encode(message: google.cloud.osconfig.v1.Inventory.IWindowsUpdatePackage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Encodes the specified WindowsUpdatePackage message, length delimited. Does not implicitly {@link google.cloud.osconfig.v1.Inventory.WindowsUpdatePackage.verify|verify} messages.
+                         * @param message WindowsUpdatePackage message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encodeDelimited(message: google.cloud.osconfig.v1.Inventory.IWindowsUpdatePackage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Decodes a WindowsUpdatePackage message from the specified reader or buffer.
+                         * @param reader Reader or buffer to decode from
+                         * @param [length] Message length if known beforehand
+                         * @returns WindowsUpdatePackage
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.osconfig.v1.Inventory.WindowsUpdatePackage;
+
+                        /**
+                         * Decodes a WindowsUpdatePackage message from the specified reader or buffer, length delimited.
+                         * @param reader Reader or buffer to decode from
+                         * @returns WindowsUpdatePackage
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.osconfig.v1.Inventory.WindowsUpdatePackage;
+
+                        /**
+                         * Verifies a WindowsUpdatePackage message.
+                         * @param message Plain object to verify
+                         * @returns `null` if valid, otherwise the reason why it is not
+                         */
+                        public static verify(message: { [k: string]: any }): (string|null);
+
+                        /**
+                         * Creates a WindowsUpdatePackage message from a plain object. Also converts values to their respective internal types.
+                         * @param object Plain object
+                         * @returns WindowsUpdatePackage
+                         */
+                        public static fromObject(object: { [k: string]: any }): google.cloud.osconfig.v1.Inventory.WindowsUpdatePackage;
+
+                        /**
+                         * Creates a plain object from a WindowsUpdatePackage message. Also converts values to other types if specified.
+                         * @param message WindowsUpdatePackage
+                         * @param [options] Conversion options
+                         * @returns Plain object
+                         */
+                        public static toObject(message: google.cloud.osconfig.v1.Inventory.WindowsUpdatePackage, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                        /**
+                         * Converts this WindowsUpdatePackage to JSON.
+                         * @returns JSON object
+                         */
+                        public toJSON(): { [k: string]: any };
+                    }
+
+                    namespace WindowsUpdatePackage {
+
+                        /** Properties of a WindowsUpdateCategory. */
+                        interface IWindowsUpdateCategory {
+
+                            /** WindowsUpdateCategory id */
+                            id?: (string|null);
+
+                            /** WindowsUpdateCategory name */
+                            name?: (string|null);
+                        }
+
+                        /** Represents a WindowsUpdateCategory. */
+                        class WindowsUpdateCategory implements IWindowsUpdateCategory {
+
+                            /**
+                             * Constructs a new WindowsUpdateCategory.
+                             * @param [properties] Properties to set
+                             */
+                            constructor(properties?: google.cloud.osconfig.v1.Inventory.WindowsUpdatePackage.IWindowsUpdateCategory);
+
+                            /** WindowsUpdateCategory id. */
+                            public id: string;
+
+                            /** WindowsUpdateCategory name. */
+                            public name: string;
+
+                            /**
+                             * Creates a new WindowsUpdateCategory instance using the specified properties.
+                             * @param [properties] Properties to set
+                             * @returns WindowsUpdateCategory instance
+                             */
+                            public static create(properties?: google.cloud.osconfig.v1.Inventory.WindowsUpdatePackage.IWindowsUpdateCategory): google.cloud.osconfig.v1.Inventory.WindowsUpdatePackage.WindowsUpdateCategory;
+
+                            /**
+                             * Encodes the specified WindowsUpdateCategory message. Does not implicitly {@link google.cloud.osconfig.v1.Inventory.WindowsUpdatePackage.WindowsUpdateCategory.verify|verify} messages.
+                             * @param message WindowsUpdateCategory message or plain object to encode
+                             * @param [writer] Writer to encode to
+                             * @returns Writer
+                             */
+                            public static encode(message: google.cloud.osconfig.v1.Inventory.WindowsUpdatePackage.IWindowsUpdateCategory, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                            /**
+                             * Encodes the specified WindowsUpdateCategory message, length delimited. Does not implicitly {@link google.cloud.osconfig.v1.Inventory.WindowsUpdatePackage.WindowsUpdateCategory.verify|verify} messages.
+                             * @param message WindowsUpdateCategory message or plain object to encode
+                             * @param [writer] Writer to encode to
+                             * @returns Writer
+                             */
+                            public static encodeDelimited(message: google.cloud.osconfig.v1.Inventory.WindowsUpdatePackage.IWindowsUpdateCategory, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                            /**
+                             * Decodes a WindowsUpdateCategory message from the specified reader or buffer.
+                             * @param reader Reader or buffer to decode from
+                             * @param [length] Message length if known beforehand
+                             * @returns WindowsUpdateCategory
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.osconfig.v1.Inventory.WindowsUpdatePackage.WindowsUpdateCategory;
+
+                            /**
+                             * Decodes a WindowsUpdateCategory message from the specified reader or buffer, length delimited.
+                             * @param reader Reader or buffer to decode from
+                             * @returns WindowsUpdateCategory
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.osconfig.v1.Inventory.WindowsUpdatePackage.WindowsUpdateCategory;
+
+                            /**
+                             * Verifies a WindowsUpdateCategory message.
+                             * @param message Plain object to verify
+                             * @returns `null` if valid, otherwise the reason why it is not
+                             */
+                            public static verify(message: { [k: string]: any }): (string|null);
+
+                            /**
+                             * Creates a WindowsUpdateCategory message from a plain object. Also converts values to their respective internal types.
+                             * @param object Plain object
+                             * @returns WindowsUpdateCategory
+                             */
+                            public static fromObject(object: { [k: string]: any }): google.cloud.osconfig.v1.Inventory.WindowsUpdatePackage.WindowsUpdateCategory;
+
+                            /**
+                             * Creates a plain object from a WindowsUpdateCategory message. Also converts values to other types if specified.
+                             * @param message WindowsUpdateCategory
+                             * @param [options] Conversion options
+                             * @returns Plain object
+                             */
+                            public static toObject(message: google.cloud.osconfig.v1.Inventory.WindowsUpdatePackage.WindowsUpdateCategory, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                            /**
+                             * Converts this WindowsUpdateCategory to JSON.
+                             * @returns JSON object
+                             */
+                            public toJSON(): { [k: string]: any };
+                        }
+                    }
+
+                    /** Properties of a ZypperPatch. */
+                    interface IZypperPatch {
+
+                        /** ZypperPatch patchName */
+                        patchName?: (string|null);
+
+                        /** ZypperPatch category */
+                        category?: (string|null);
+
+                        /** ZypperPatch severity */
+                        severity?: (string|null);
+
+                        /** ZypperPatch summary */
+                        summary?: (string|null);
+                    }
+
+                    /** Represents a ZypperPatch. */
+                    class ZypperPatch implements IZypperPatch {
+
+                        /**
+                         * Constructs a new ZypperPatch.
+                         * @param [properties] Properties to set
+                         */
+                        constructor(properties?: google.cloud.osconfig.v1.Inventory.IZypperPatch);
+
+                        /** ZypperPatch patchName. */
+                        public patchName: string;
+
+                        /** ZypperPatch category. */
+                        public category: string;
+
+                        /** ZypperPatch severity. */
+                        public severity: string;
+
+                        /** ZypperPatch summary. */
+                        public summary: string;
+
+                        /**
+                         * Creates a new ZypperPatch instance using the specified properties.
+                         * @param [properties] Properties to set
+                         * @returns ZypperPatch instance
+                         */
+                        public static create(properties?: google.cloud.osconfig.v1.Inventory.IZypperPatch): google.cloud.osconfig.v1.Inventory.ZypperPatch;
+
+                        /**
+                         * Encodes the specified ZypperPatch message. Does not implicitly {@link google.cloud.osconfig.v1.Inventory.ZypperPatch.verify|verify} messages.
+                         * @param message ZypperPatch message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encode(message: google.cloud.osconfig.v1.Inventory.IZypperPatch, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Encodes the specified ZypperPatch message, length delimited. Does not implicitly {@link google.cloud.osconfig.v1.Inventory.ZypperPatch.verify|verify} messages.
+                         * @param message ZypperPatch message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encodeDelimited(message: google.cloud.osconfig.v1.Inventory.IZypperPatch, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Decodes a ZypperPatch message from the specified reader or buffer.
+                         * @param reader Reader or buffer to decode from
+                         * @param [length] Message length if known beforehand
+                         * @returns ZypperPatch
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.osconfig.v1.Inventory.ZypperPatch;
+
+                        /**
+                         * Decodes a ZypperPatch message from the specified reader or buffer, length delimited.
+                         * @param reader Reader or buffer to decode from
+                         * @returns ZypperPatch
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.osconfig.v1.Inventory.ZypperPatch;
+
+                        /**
+                         * Verifies a ZypperPatch message.
+                         * @param message Plain object to verify
+                         * @returns `null` if valid, otherwise the reason why it is not
+                         */
+                        public static verify(message: { [k: string]: any }): (string|null);
+
+                        /**
+                         * Creates a ZypperPatch message from a plain object. Also converts values to their respective internal types.
+                         * @param object Plain object
+                         * @returns ZypperPatch
+                         */
+                        public static fromObject(object: { [k: string]: any }): google.cloud.osconfig.v1.Inventory.ZypperPatch;
+
+                        /**
+                         * Creates a plain object from a ZypperPatch message. Also converts values to other types if specified.
+                         * @param message ZypperPatch
+                         * @param [options] Conversion options
+                         * @returns Plain object
+                         */
+                        public static toObject(message: google.cloud.osconfig.v1.Inventory.ZypperPatch, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                        /**
+                         * Converts this ZypperPatch to JSON.
+                         * @returns JSON object
+                         */
+                        public toJSON(): { [k: string]: any };
+                    }
+
+                    /** Properties of a WindowsQuickFixEngineeringPackage. */
+                    interface IWindowsQuickFixEngineeringPackage {
+
+                        /** WindowsQuickFixEngineeringPackage caption */
+                        caption?: (string|null);
+
+                        /** WindowsQuickFixEngineeringPackage description */
+                        description?: (string|null);
+
+                        /** WindowsQuickFixEngineeringPackage hotFixId */
+                        hotFixId?: (string|null);
+
+                        /** WindowsQuickFixEngineeringPackage installTime */
+                        installTime?: (google.protobuf.ITimestamp|null);
+                    }
+
+                    /** Represents a WindowsQuickFixEngineeringPackage. */
+                    class WindowsQuickFixEngineeringPackage implements IWindowsQuickFixEngineeringPackage {
+
+                        /**
+                         * Constructs a new WindowsQuickFixEngineeringPackage.
+                         * @param [properties] Properties to set
+                         */
+                        constructor(properties?: google.cloud.osconfig.v1.Inventory.IWindowsQuickFixEngineeringPackage);
+
+                        /** WindowsQuickFixEngineeringPackage caption. */
+                        public caption: string;
+
+                        /** WindowsQuickFixEngineeringPackage description. */
+                        public description: string;
+
+                        /** WindowsQuickFixEngineeringPackage hotFixId. */
+                        public hotFixId: string;
+
+                        /** WindowsQuickFixEngineeringPackage installTime. */
+                        public installTime?: (google.protobuf.ITimestamp|null);
+
+                        /**
+                         * Creates a new WindowsQuickFixEngineeringPackage instance using the specified properties.
+                         * @param [properties] Properties to set
+                         * @returns WindowsQuickFixEngineeringPackage instance
+                         */
+                        public static create(properties?: google.cloud.osconfig.v1.Inventory.IWindowsQuickFixEngineeringPackage): google.cloud.osconfig.v1.Inventory.WindowsQuickFixEngineeringPackage;
+
+                        /**
+                         * Encodes the specified WindowsQuickFixEngineeringPackage message. Does not implicitly {@link google.cloud.osconfig.v1.Inventory.WindowsQuickFixEngineeringPackage.verify|verify} messages.
+                         * @param message WindowsQuickFixEngineeringPackage message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encode(message: google.cloud.osconfig.v1.Inventory.IWindowsQuickFixEngineeringPackage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Encodes the specified WindowsQuickFixEngineeringPackage message, length delimited. Does not implicitly {@link google.cloud.osconfig.v1.Inventory.WindowsQuickFixEngineeringPackage.verify|verify} messages.
+                         * @param message WindowsQuickFixEngineeringPackage message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encodeDelimited(message: google.cloud.osconfig.v1.Inventory.IWindowsQuickFixEngineeringPackage, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Decodes a WindowsQuickFixEngineeringPackage message from the specified reader or buffer.
+                         * @param reader Reader or buffer to decode from
+                         * @param [length] Message length if known beforehand
+                         * @returns WindowsQuickFixEngineeringPackage
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.osconfig.v1.Inventory.WindowsQuickFixEngineeringPackage;
+
+                        /**
+                         * Decodes a WindowsQuickFixEngineeringPackage message from the specified reader or buffer, length delimited.
+                         * @param reader Reader or buffer to decode from
+                         * @returns WindowsQuickFixEngineeringPackage
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.osconfig.v1.Inventory.WindowsQuickFixEngineeringPackage;
+
+                        /**
+                         * Verifies a WindowsQuickFixEngineeringPackage message.
+                         * @param message Plain object to verify
+                         * @returns `null` if valid, otherwise the reason why it is not
+                         */
+                        public static verify(message: { [k: string]: any }): (string|null);
+
+                        /**
+                         * Creates a WindowsQuickFixEngineeringPackage message from a plain object. Also converts values to their respective internal types.
+                         * @param object Plain object
+                         * @returns WindowsQuickFixEngineeringPackage
+                         */
+                        public static fromObject(object: { [k: string]: any }): google.cloud.osconfig.v1.Inventory.WindowsQuickFixEngineeringPackage;
+
+                        /**
+                         * Creates a plain object from a WindowsQuickFixEngineeringPackage message. Also converts values to other types if specified.
+                         * @param message WindowsQuickFixEngineeringPackage
+                         * @param [options] Conversion options
+                         * @returns Plain object
+                         */
+                        public static toObject(message: google.cloud.osconfig.v1.Inventory.WindowsQuickFixEngineeringPackage, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                        /**
+                         * Converts this WindowsQuickFixEngineeringPackage to JSON.
+                         * @returns JSON object
+                         */
+                        public toJSON(): { [k: string]: any };
+                    }
+                }
+            }
+        }
     }
 
     /** Namespace api. */
@@ -12811,6 +12789,9 @@ export namespace google {
 
             /** ResourceDescriptor singular */
             singular?: (string|null);
+
+            /** ResourceDescriptor style */
+            style?: (google.api.ResourceDescriptor.Style[]|null);
         }
 
         /** Represents a ResourceDescriptor. */
@@ -12839,6 +12820,9 @@ export namespace google {
 
             /** ResourceDescriptor singular. */
             public singular: string;
+
+            /** ResourceDescriptor style. */
+            public style: google.api.ResourceDescriptor.Style[];
 
             /**
              * Creates a new ResourceDescriptor instance using the specified properties.
@@ -12918,6 +12902,12 @@ export namespace google {
                 HISTORY_UNSPECIFIED = 0,
                 ORIGINALLY_SINGLE_PATTERN = 1,
                 FUTURE_MULTI_PATTERN = 2
+            }
+
+            /** Style enum. */
+            enum Style {
+                STYLE_UNSPECIFIED = 0,
+                DECLARATIVE_FRIENDLY = 1
             }
         }
 
