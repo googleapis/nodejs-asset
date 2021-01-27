@@ -36,8 +36,7 @@ async function main(datasetId, tablePrefix) {
       analysisQuery: {
         scope: `projects/${projectId}`,
         resourceSelector: {
-          fullResourceName:
-              `//cloudresourcemanager.googleapis.com/projects/${projectId}`
+          fullResourceName: `//cloudresourcemanager.googleapis.com/projects/${projectId}`,
         },
         options: {
           expandGroups: true,
@@ -49,7 +48,7 @@ async function main(datasetId, tablePrefix) {
           dataset: `projects/${projectId}/datasets/${datasetId}`,
           tablePrefix: tablePrefix,
         },
-      }
+      },
     };
 
     // Handle the operation using the promise pattern.

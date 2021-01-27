@@ -32,8 +32,7 @@ async function main() {
       analysisQuery: {
         scope: `projects/${projectId}`,
         resourceSelector: {
-          fullResourceName:
-              `//cloudresourcemanager.googleapis.com/projects/${projectId}`,
+          fullResourceName: `//cloudresourcemanager.googleapis.com/projects/${projectId}`,
         },
         options: {
           expandGroups: true,
