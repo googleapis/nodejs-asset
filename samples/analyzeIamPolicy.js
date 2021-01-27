@@ -33,7 +33,7 @@ async function main() {
         scope: `projects/${projectId}`,
         resourceSelector: {
           fullResourceName:
-              `//cloudresourcemanager.googleapis.com/projects/${projectId}`
+              `//cloudresourcemanager.googleapis.com/projects/${projectId}`,
         },
         options: {
           expandGroups: true,
