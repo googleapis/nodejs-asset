@@ -39,7 +39,7 @@ async function main() {
           expandGroups: true,
           outputGroupEdges: true,
         },
-      }
+      },
     };
 
     // Handle the operation using the promise pattern.
