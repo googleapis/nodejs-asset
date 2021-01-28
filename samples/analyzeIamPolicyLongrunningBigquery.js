@@ -61,12 +61,11 @@ async function main(datasetId, tablePrefix) {
     console.log(util.inspect(result, {depth: null}));
   }
   // [END asset_quickstart_analyze_iam_policy_longrunning_bigquery]
-  analyzeIamPolicyLongrunningBigquery().catch(err => {
-    console.error(err.message);
-  });
+  analyzeIamPolicyLongrunningBigquery();
 }
 
-main(...process.argv.slice(2)).catch(err => {
+process.on('unhandledRejection', err => {
   console.error(err.message);
   process.exitCode = 1;
 });
+main(...process.argv.slice(2));
