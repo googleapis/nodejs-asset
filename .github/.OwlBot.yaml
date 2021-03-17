@@ -19,7 +19,6 @@ deep-remove-regex:
 
 deep-preserve-regex:
   - /owl-bot-staging/v1p7beta1
-  - /protos
 
 deep-copy-regex:
   - source: /google/cloud/asset/(.*)/.*-nodejs/(.*)
