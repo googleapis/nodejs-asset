@@ -4,6 +4,35 @@
 
 [1]: https://www.npmjs.com/package/@google-cloud/asset?activeTab=versions
 
+## [3.13.0](https://www.github.com/googleapis/nodejs-asset/compare/v3.12.2...v3.13.0) (2021-05-26)
+
+
+### Features
+
+* add Cloud Asset List API, add access time as condition context in request and evaluation value in response for Cloud Asset AnalyzeIamPolicy API, add more info (folders, organizations, kms_key, create_time, update_time, state, parent_full_resource_name, parent_asset_type) in response for Cloud Asset SearchAllResources API ([#491](https://www.github.com/googleapis/nodejs-asset/issues/491)) ([8eea45f](https://www.github.com/googleapis/nodejs-asset/commit/8eea45fe3e5b528faf85a8ebb96e2c0c35a7e66d))
+
+### [3.12.2](https://www.github.com/googleapis/nodejs-asset/compare/v3.12.1...v3.12.2) (2021-05-25)
+
+
+### Bug Fixes
+
+* GoogleAdsError missing using generator version after 1.3.0 ([#492](https://www.github.com/googleapis/nodejs-asset/issues/492)) ([f8f8ed6](https://www.github.com/googleapis/nodejs-asset/commit/f8f8ed67b1f71d2491c9f54eb2beb09475c5663d))
+
+### [3.12.1](https://www.github.com/googleapis/nodejs-asset/compare/v3.12.0...v3.12.1) (2021-05-12)
+
+
+### Bug Fixes
+
+* **deps:** require google-gax v2.12.0 ([#481](https://www.github.com/googleapis/nodejs-asset/issues/481)) ([f6f890f](https://www.github.com/googleapis/nodejs-asset/commit/f6f890fa49a68b0b67556af8dae0ef9d52c43e34))
+* use require() to load JSON protos ([#484](https://www.github.com/googleapis/nodejs-asset/issues/484)) ([1aa6fa9](https://www.github.com/googleapis/nodejs-asset/commit/1aa6fa96540f94bd51784357186db87b080fdfe5))
+
+## [3.12.0](https://www.github.com/googleapis/nodejs-asset/compare/v3.11.0...v3.12.0) (2021-02-09)
+
+
+### Features
+
+* **samples:** add samples for analyzeIamPolicy and analyzeIamPolicyLongrunning ([#433](https://www.github.com/googleapis/nodejs-asset/issues/433)) ([dfbd75c](https://www.github.com/googleapis/nodejs-asset/commit/dfbd75c98f2977d3a9af06e7637c005b82eda973))
+
 ## [3.11.0](https://www.github.com/googleapis/nodejs-asset/compare/v3.10.0...v3.11.0) (2021-01-09)
 
 

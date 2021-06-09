@@ -580,11 +580,10 @@ export class AssetServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      'feed.name': request.feed!.name || '',
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'feed.name': request.feed!.name || '',
+      });
     this.initialize();
     return this.innerApiCalls.updateFeed(request, options, callback);
   }

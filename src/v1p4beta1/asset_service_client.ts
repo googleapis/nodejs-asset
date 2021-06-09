@@ -351,11 +351,10 @@ export class AssetServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      'analysis_query.parent': request.analysisQuery!.parent || '',
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'analysis_query.parent': request.analysisQuery!.parent || '',
+      });
     this.initialize();
     return this.innerApiCalls.analyzeIamPolicy(request, options, callback);
   }
@@ -433,11 +432,10 @@ export class AssetServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      'analysis_query.parent': request.analysisQuery!.parent || '',
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'analysis_query.parent': request.analysisQuery!.parent || '',
+      });
     this.initialize();
     return this.innerApiCalls.exportIamPolicyAnalysis(request, options, callback);
   }

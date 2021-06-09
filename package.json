@@ -1,7 +1,7 @@
 {
   "name": "@google-cloud/asset",
   "description": "Cloud Asset API client for Node.js",
-  "version": "3.11.0",
+  "version": "3.13.0",
   "license": "Apache-2.0",
   "author": "Google LLC",
   "engines": {
@@ -46,12 +46,12 @@
     "api-documenter": "api-documenter yaml --input-folder=temp"
   },
   "dependencies": {
-    "google-gax": "^2.9.2"
+    "google-gax": "^2.12.0"
   },
   "devDependencies": {
     "@types/mocha": "^8.0.0",
-    "@types/node": "^13.9.3",
-    "@types/sinon": "^9.0.0",
+    "@types/node": "^14.0.0",
+    "@types/sinon": "^10.0.0",
     "c8": "^7.1.0",
     "codecov": "^3.6.5",
     "gts": "^2.0.0",
@@ -62,8 +62,8 @@
     "mocha": "^8.0.0",
     "null-loader": "^4.0.0",
     "pack-n-play": "^1.0.0-2",
-    "sinon": "^9.0.1",
-    "ts-loader": "^8.0.0",
+    "sinon": "^11.0.0",
+    "ts-loader": "^9.0.0",
     "typescript": "^3.8.3",
     "webpack": "^5.0.0",
     "webpack-cli": "^4.0.0",

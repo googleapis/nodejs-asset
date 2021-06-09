@@ -838,7 +838,7 @@ describe('v1.AssetServiceClient', () => {
             assert((client.innerApiCalls.exportAssets as SinonStub)
                 .getCall(0).calledWith(request, expectedOptions /*, callback defined above */));
         });
-
+      
         it('invokes exportAssets with call error', async () => {
             const client = new assetserviceModule.v1.AssetServiceClient({
                 credentials: {client_email: 'bogus', private_key: 'bogus'},

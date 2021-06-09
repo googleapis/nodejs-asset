@@ -724,11 +724,10 @@ export class AssetServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      'feed.name': request.feed!.name || '',
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'feed.name': request.feed!.name || '',
+      });
     this.initialize();
     return this.innerApiCalls.updateFeed(request, options, callback);
   }
@@ -881,11 +880,10 @@ export class AssetServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      'analysis_query.scope': request.analysisQuery!.scope || '',
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'analysis_query.scope': request.analysisQuery!.scope || '',
+      });
     this.initialize();
     return this.innerApiCalls.analyzeIamPolicy(request, options, callback);
   }
@@ -1103,11 +1101,10 @@ export class AssetServiceClient {
     options = options || {};
     options.otherArgs = options.otherArgs || {};
     options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      'analysis_query.scope': request.analysisQuery!.scope || '',
-    });
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        'analysis_query.scope': request.analysisQuery!.scope || '',
+      });
     this.initialize();
     return this.innerApiCalls.analyzeIamPolicyLongrunning(request, options, callback);
   }
@@ -1401,6 +1398,292 @@ export class AssetServiceClient {
     ] = gax.routingHeader.fromParams({
       'parent': request.parent || '',
     });
+    options = options || {};
+    const callSettings = new gax.CallSettings(options);
+    this.initialize();
+    return this.descriptors.page.listAssets.asyncIterate(
+      this.innerApiCalls['listAssets'] as GaxCall,
+      request as unknown as RequestType,
+      callSettings
+    ) as AsyncIterable<protos.google.cloud.asset.v1.IAsset>;
+  }
+  listAssets(
+    request: protos.google.cloud.asset.v1.IListAssetsRequest,
+    options?: CallOptions
+  ): Promise<
+    [
+      protos.google.cloud.asset.v1.IAsset[],
+      protos.google.cloud.asset.v1.IListAssetsRequest | null,
+      protos.google.cloud.asset.v1.IListAssetsResponse
+    ]
+  >;
+  listAssets(
+    request: protos.google.cloud.asset.v1.IListAssetsRequest,
+    options: CallOptions,
+    callback: PaginationCallback<
+      protos.google.cloud.asset.v1.IListAssetsRequest,
+      protos.google.cloud.asset.v1.IListAssetsResponse | null | undefined,
+      protos.google.cloud.asset.v1.IAsset
+    >
+  ): void;
+  listAssets(
+    request: protos.google.cloud.asset.v1.IListAssetsRequest,
+    callback: PaginationCallback<
+      protos.google.cloud.asset.v1.IListAssetsRequest,
+      protos.google.cloud.asset.v1.IListAssetsResponse | null | undefined,
+      protos.google.cloud.asset.v1.IAsset
+    >
+  ): void;
+  /**
+   * Lists assets with time and resource types and returns paged results in
+   * response.
+   *
+   * @param {Object} request
+   *   The request object that will be sent.
+   * @param {string} request.parent
+   *   Required. Name of the organization or project the assets belong to. Format:
+   *   "organizations/[organization-number]" (such as "organizations/123"),
+   *   "projects/[project-id]" (such as "projects/my-project-id"), or
+   *   "projects/[project-number]" (such as "projects/12345").
+   * @param {google.protobuf.Timestamp} request.readTime
+   *   Timestamp to take an asset snapshot. This can only be set to a timestamp
+   *   between the current time and the current time minus 35 days (inclusive).
+   *   If not specified, the current time will be used. Due to delays in resource
+   *   data collection and indexing, there is a volatile window during which
+   *   running the same query may get different results.
+   * @param {string[]} request.assetTypes
+   *   A list of asset types to take a snapshot for. For example:
+   *   "compute.googleapis.com/Disk".
+   *
+   *   Regular expression is also supported. For example:
+   *
+   *   * "compute.googleapis.com.*" snapshots resources whose asset type starts
+   *   with "compute.googleapis.com".
+   *   * ".*Instance" snapshots resources whose asset type ends with "Instance".
+   *   * ".*Instance.*" snapshots resources whose asset type contains "Instance".
+   *
+   *   See [RE2](https://github.com/google/re2/wiki/Syntax) for all supported
+   *   regular expression syntax. If the regular expression does not match any
+   *   supported asset type, an INVALID_ARGUMENT error will be returned.
+   *
+   *   If specified, only matching assets will be returned, otherwise, it will
+   *   snapshot all asset types. See [Introduction to Cloud Asset
+   *   Inventory](https://cloud.google.com/asset-inventory/docs/overview)
+   *   for all supported asset types.
+   * @param {google.cloud.asset.v1.ContentType} request.contentType
+   *   Asset content type. If not specified, no content but the asset name will
+   *   be returned.
+   * @param {number} request.pageSize
+   *   The maximum number of assets to be returned in a single response. Default
+   *   is 100, minimum is 1, and maximum is 1000.
+   * @param {string} request.pageToken
+   *   The `next_page_token` returned from the previous `ListAssetsResponse`, or
+   *   unspecified for the first `ListAssetsRequest`. It is a continuation of a
+   *   prior `ListAssets` call, and the API should return the next page of assets.
+   * @param {object} [options]
+   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+   * @returns {Promise} - The promise which resolves to an array.
+   *   The first element of the array is Array of [Asset]{@link google.cloud.asset.v1.Asset}.
+   *   The client library will perform auto-pagination by default: it will call the API as many
+   *   times as needed and will merge results from all the pages into this array.
+   *   Note that it can affect your quota.
+   *   We recommend using `listAssetsAsync()`
+   *   method described below for async iteration which you can stop as needed.
+   *   Please see the
+   *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination)
+   *   for more details and examples.
+   */
+  listAssets(
+    request: protos.google.cloud.asset.v1.IListAssetsRequest,
+    optionsOrCallback?:
+      | CallOptions
+      | PaginationCallback<
+          protos.google.cloud.asset.v1.IListAssetsRequest,
+          protos.google.cloud.asset.v1.IListAssetsResponse | null | undefined,
+          protos.google.cloud.asset.v1.IAsset
+        >,
+    callback?: PaginationCallback<
+      protos.google.cloud.asset.v1.IListAssetsRequest,
+      protos.google.cloud.asset.v1.IListAssetsResponse | null | undefined,
+      protos.google.cloud.asset.v1.IAsset
+    >
+  ): Promise<
+    [
+      protos.google.cloud.asset.v1.IAsset[],
+      protos.google.cloud.asset.v1.IListAssetsRequest | null,
+      protos.google.cloud.asset.v1.IListAssetsResponse
+    ]
+  > | void {
+    request = request || {};
+    let options: CallOptions;
+    if (typeof optionsOrCallback === 'function' && callback === undefined) {
+      callback = optionsOrCallback;
+      options = {};
+    } else {
+      options = optionsOrCallback as CallOptions;
+    }
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        parent: request.parent || '',
+      });
+    this.initialize();
+    return this.innerApiCalls.listAssets(request, options, callback);
+  }
+
+  /**
+   * Equivalent to `method.name.toCamelCase()`, but returns a NodeJS Stream object.
+   * @param {Object} request
+   *   The request object that will be sent.
+   * @param {string} request.parent
+   *   Required. Name of the organization or project the assets belong to. Format:
+   *   "organizations/[organization-number]" (such as "organizations/123"),
+   *   "projects/[project-id]" (such as "projects/my-project-id"), or
+   *   "projects/[project-number]" (such as "projects/12345").
+   * @param {google.protobuf.Timestamp} request.readTime
+   *   Timestamp to take an asset snapshot. This can only be set to a timestamp
+   *   between the current time and the current time minus 35 days (inclusive).
+   *   If not specified, the current time will be used. Due to delays in resource
+   *   data collection and indexing, there is a volatile window during which
+   *   running the same query may get different results.
+   * @param {string[]} request.assetTypes
+   *   A list of asset types to take a snapshot for. For example:
+   *   "compute.googleapis.com/Disk".
+   *
+   *   Regular expression is also supported. For example:
+   *
+   *   * "compute.googleapis.com.*" snapshots resources whose asset type starts
+   *   with "compute.googleapis.com".
+   *   * ".*Instance" snapshots resources whose asset type ends with "Instance".
+   *   * ".*Instance.*" snapshots resources whose asset type contains "Instance".
+   *
+   *   See [RE2](https://github.com/google/re2/wiki/Syntax) for all supported
+   *   regular expression syntax. If the regular expression does not match any
+   *   supported asset type, an INVALID_ARGUMENT error will be returned.
+   *
+   *   If specified, only matching assets will be returned, otherwise, it will
+   *   snapshot all asset types. See [Introduction to Cloud Asset
+   *   Inventory](https://cloud.google.com/asset-inventory/docs/overview)
+   *   for all supported asset types.
+   * @param {google.cloud.asset.v1.ContentType} request.contentType
+   *   Asset content type. If not specified, no content but the asset name will
+   *   be returned.
+   * @param {number} request.pageSize
+   *   The maximum number of assets to be returned in a single response. Default
+   *   is 100, minimum is 1, and maximum is 1000.
+   * @param {string} request.pageToken
+   *   The `next_page_token` returned from the previous `ListAssetsResponse`, or
+   *   unspecified for the first `ListAssetsRequest`. It is a continuation of a
+   *   prior `ListAssets` call, and the API should return the next page of assets.
+   * @param {object} [options]
+   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+   * @returns {Stream}
+   *   An object stream which emits an object representing [Asset]{@link google.cloud.asset.v1.Asset} on 'data' event.
+   *   The client library will perform auto-pagination by default: it will call the API as many
+   *   times as needed. Note that it can affect your quota.
+   *   We recommend using `listAssetsAsync()`
+   *   method described below for async iteration which you can stop as needed.
+   *   Please see the
+   *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination)
+   *   for more details and examples.
+   */
+  listAssetsStream(
+    request?: protos.google.cloud.asset.v1.IListAssetsRequest,
+    options?: CallOptions
+  ): Transform {
+    request = request || {};
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        parent: request.parent || '',
+      });
+    const callSettings = new gax.CallSettings(options);
+    this.initialize();
+    return this.descriptors.page.listAssets.createStream(
+      this.innerApiCalls.listAssets as gax.GaxCall,
+      request,
+      callSettings
+    );
+  }
+
+  /**
+   * Equivalent to `listAssets`, but returns an iterable object.
+   *
+   * `for`-`await`-`of` syntax is used with the iterable to get response elements on-demand.
+   * @param {Object} request
+   *   The request object that will be sent.
+   * @param {string} request.parent
+   *   Required. Name of the organization or project the assets belong to. Format:
+   *   "organizations/[organization-number]" (such as "organizations/123"),
+   *   "projects/[project-id]" (such as "projects/my-project-id"), or
+   *   "projects/[project-number]" (such as "projects/12345").
+   * @param {google.protobuf.Timestamp} request.readTime
+   *   Timestamp to take an asset snapshot. This can only be set to a timestamp
+   *   between the current time and the current time minus 35 days (inclusive).
+   *   If not specified, the current time will be used. Due to delays in resource
+   *   data collection and indexing, there is a volatile window during which
+   *   running the same query may get different results.
+   * @param {string[]} request.assetTypes
+   *   A list of asset types to take a snapshot for. For example:
+   *   "compute.googleapis.com/Disk".
+   *
+   *   Regular expression is also supported. For example:
+   *
+   *   * "compute.googleapis.com.*" snapshots resources whose asset type starts
+   *   with "compute.googleapis.com".
+   *   * ".*Instance" snapshots resources whose asset type ends with "Instance".
+   *   * ".*Instance.*" snapshots resources whose asset type contains "Instance".
+   *
+   *   See [RE2](https://github.com/google/re2/wiki/Syntax) for all supported
+   *   regular expression syntax. If the regular expression does not match any
+   *   supported asset type, an INVALID_ARGUMENT error will be returned.
+   *
+   *   If specified, only matching assets will be returned, otherwise, it will
+   *   snapshot all asset types. See [Introduction to Cloud Asset
+   *   Inventory](https://cloud.google.com/asset-inventory/docs/overview)
+   *   for all supported asset types.
+   * @param {google.cloud.asset.v1.ContentType} request.contentType
+   *   Asset content type. If not specified, no content but the asset name will
+   *   be returned.
+   * @param {number} request.pageSize
+   *   The maximum number of assets to be returned in a single response. Default
+   *   is 100, minimum is 1, and maximum is 1000.
+   * @param {string} request.pageToken
+   *   The `next_page_token` returned from the previous `ListAssetsResponse`, or
+   *   unspecified for the first `ListAssetsRequest`. It is a continuation of a
+   *   prior `ListAssets` call, and the API should return the next page of assets.
+   * @param {object} [options]
+   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+   * @returns {Object}
+   *   An iterable Object that allows [async iteration](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols).
+   *   When you iterate the returned iterable, each element will be an object representing
+   *   [Asset]{@link google.cloud.asset.v1.Asset}. The API will be called under the hood as needed, once per the page,
+   *   so you can stop the iteration when you don't need more results.
+   *   Please see the
+   *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination)
+   *   for more details and examples.
+   * @example
+   * const iterable = client.listAssetsAsync(request);
+   * for await (const response of iterable) {
+   *   // process response
+   * }
+   */
+  listAssetsAsync(
+    request?: protos.google.cloud.asset.v1.IListAssetsRequest,
+    options?: CallOptions
+  ): AsyncIterable<protos.google.cloud.asset.v1.IAsset> {
+    request = request || {};
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        parent: request.parent || '',
+      });
     options = options || {};
     const callSettings = new gax.CallSettings(options);
     this.initialize();
