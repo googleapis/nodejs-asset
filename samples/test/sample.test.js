@@ -60,14 +60,14 @@ describe('quickstart sample tests', () => {
     await vm.delete();
   });
 
-  it('should export assets to specified path', async function () {
+  it('should export assets to specified path', async () => {
     const dumpFilePath = `gs://${bucketName}/my-assets.txt`;
     execSync(`node exportAssets ${dumpFilePath}`);
     let waitMs = 1000;
     let exists = false;
     let file;
     for (let retry = 0; retry < 3 && !exists; ++retry) {
-      await sleep(waitMs *= 2);
+      await sleep((waitMs *= 2));
       file = await bucket.file('my-assets.txt');
       exists = await file.exists();
     }
@@ -112,14 +112,14 @@ describe('quickstart sample tests', () => {
     assert.include(stdout, '//cloudresourcemanager.googleapis.com/projects');
   });
 
-  it('should analyze iam policy and write analysis results to gcs successfully', async function () {
+  it('should analyze iam policy and write analysis results to gcs successfully', async () => {
     const uri = `gs://${bucketName}/my-analysis.json`;
     execSync(`node analyzeIamPolicyLongrunningGcs ${uri}`);
     let waitMs = 1000;
     let exists = false;
     let file;
     for (let retry = 0; retry < 3 && !exists; ++retry) {
-      await sleep(waitMs *= 2);
+      await sleep((waitMs *= 2));
       file = await bucket.file('my-analysis.json');
       exists = await file.exists();
     }
@@ -127,7 +127,7 @@ describe('quickstart sample tests', () => {
     await file.delete();
   });
 
-  it('should analyze iam policy and write analysis results to bigquery successfully', async function () {
+  it('should analyze iam policy and write analysis results to bigquery successfully', async () => {
     const tablePrefix = 'analysis_nodejs';
     execSync(
       `node analyzeIamPolicyLongrunningBigquery ${datasetId} ${tablePrefix}`
@@ -138,8 +138,12 @@ describe('quickstart sample tests', () => {
     let resultsTable;
     let resultsTable_exists = false;
 
-    for (let retry = 0; retry < 3 && !(metadataTable_exists || resultsTable_exists); ++retry) {
-      await sleep(waitMs *= 2);
+    for (
+      let retry = 0;
+      retry < 3 && !(metadataTable_exists || resultsTable_exists);
+      ++retry
+    ) {
+      await sleep((waitMs *= 2));
       metadataTable = await bigquery
         .dataset(datasetId)
         .table('analysis_nodejs_analysis');
