@@ -1006,6 +1006,117 @@ describe('v1.AssetServiceClient', () => {
     });
   });
 
+  describe('analyzeMove', () => {
+    it('invokes analyzeMove without error', async () => {
+      const client = new assetserviceModule.v1.AssetServiceClient({
+        credentials: {client_email: 'bogus', private_key: 'bogus'},
+        projectId: 'bogus',
+      });
+      client.initialize();
+      const request = generateSampleMessage(
+        new protos.google.cloud.asset.v1.AnalyzeMoveRequest()
+      );
+      request.resource = '';
+      const expectedHeaderRequestParams = 'resource=';
+      const expectedOptions = {
+        otherArgs: {
+          headers: {
+            'x-goog-request-params': expectedHeaderRequestParams,
+          },
+        },
+      };
+      const expectedResponse = generateSampleMessage(
+        new protos.google.cloud.asset.v1.AnalyzeMoveResponse()
+      );
+      client.innerApiCalls.analyzeMove = stubSimpleCall(expectedResponse);
+      const [response] = await client.analyzeMove(request);
+      assert.deepStrictEqual(response, expectedResponse);
+      assert(
+        (client.innerApiCalls.analyzeMove as SinonStub)
+          .getCall(0)
+          .calledWith(request, expectedOptions, undefined)
+      );
+    });
+
+    it('invokes analyzeMove without error using callback', async () => {
+      const client = new assetserviceModule.v1.AssetServiceClient({
+        credentials: {client_email: 'bogus', private_key: 'bogus'},
+        projectId: 'bogus',
+      });
+      client.initialize();
+      const request = generateSampleMessage(
+        new protos.google.cloud.asset.v1.AnalyzeMoveRequest()
+      );
+      request.resource = '';
+      const expectedHeaderRequestParams = 'resource=';
+      const expectedOptions = {
+        otherArgs: {
+          headers: {
+            'x-goog-request-params': expectedHeaderRequestParams,
+          },
+        },
+      };
+      const expectedResponse = generateSampleMessage(
+        new protos.google.cloud.asset.v1.AnalyzeMoveResponse()
+      );
+      client.innerApiCalls.analyzeMove =
+        stubSimpleCallWithCallback(expectedResponse);
+      const promise = new Promise((resolve, reject) => {
+        client.analyzeMove(
+          request,
+          (
+            err?: Error | null,
+            result?: protos.google.cloud.asset.v1.IAnalyzeMoveResponse | null
+          ) => {
+            if (err) {
+              reject(err);
+            } else {
+              resolve(result);
+            }
+          }
+        );
+      });
+      const response = await promise;
+      assert.deepStrictEqual(response, expectedResponse);
+      assert(
+        (client.innerApiCalls.analyzeMove as SinonStub)
+          .getCall(0)
+          .calledWith(request, expectedOptions /*, callback defined above */)
+      );
+    });
+
+    it('invokes analyzeMove with error', async () => {
+      const client = new assetserviceModule.v1.AssetServiceClient({
+        credentials: {client_email: 'bogus', private_key: 'bogus'},
+        projectId: 'bogus',
+      });
+      client.initialize();
+      const request = generateSampleMessage(
+        new protos.google.cloud.asset.v1.AnalyzeMoveRequest()
+      );
+      request.resource = '';
+      const expectedHeaderRequestParams = 'resource=';
+      const expectedOptions = {
+        otherArgs: {
+          headers: {
+            'x-goog-request-params': expectedHeaderRequestParams,
+          },
+        },
+      };
+      const expectedError = new Error('expected');
+      client.innerApiCalls.analyzeMove = stubSimpleCall(
+        undefined,
+        expectedError
+      );
+      await assert.rejects(client.analyzeMove(request), expectedError);
+      assert(
+        (client.innerApiCalls.analyzeMove as SinonStub)
+          .getCall(0)
+          .calledWith(request, expectedOptions, undefined)
+      );
+    });
+  });
+
   describe('exportAssets', () => {
     it('invokes exportAssets without error', async () => {
       const client = new assetserviceModule.v1.AssetServiceClient({
@@ -1262,7 +1373,7 @@ describe('v1.AssetServiceClient', () => {
             err?: Error | null,
             result?: LROperation<
               protos.google.cloud.asset.v1.IAnalyzeIamPolicyLongrunningResponse,
-              protos.google.cloud.asset.v1.IAnalyzeIamPolicyLongrunningRequest
+              protos.google.cloud.asset.v1.IAnalyzeIamPolicyLongrunningMetadata
             > | null
           ) => {
             if (err) {
@@ -1275,7 +1386,7 @@ describe('v1.AssetServiceClient', () => {
       });
       const operation = (await promise) as LROperation<
         protos.google.cloud.asset.v1.IAnalyzeIamPolicyLongrunningResponse,
-        protos.google.cloud.asset.v1.IAnalyzeIamPolicyLongrunningRequest
+        protos.google.cloud.asset.v1.IAnalyzeIamPolicyLongrunningMetadata
       >;
       const [response] = await operation.promise();
       assert.deepStrictEqual(response, expectedResponse);
