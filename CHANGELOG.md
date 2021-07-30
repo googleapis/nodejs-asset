@@ -4,6 +4,48 @@
 
 [1]: https://www.npmjs.com/package/@google-cloud/asset?activeTab=versions
 
+### [3.15.3](https://www.github.com/googleapis/nodejs-asset/compare/v3.15.2...v3.15.3) (2021-07-16)
+
+
+### Bug Fixes
+
+* Updating WORKSPACE files to use the newest version of the Typescript generator. ([#522](https://www.github.com/googleapis/nodejs-asset/issues/522)) ([015b801](https://www.github.com/googleapis/nodejs-asset/commit/015b80196ecd3b6a0cba17ea0971f4c585b8f972))
+
+### [3.15.2](https://www.github.com/googleapis/nodejs-asset/compare/v3.15.1...v3.15.2) (2021-07-12)
+
+
+### Bug Fixes
+
+* **deps:** google-gax v2.17.1 ([#520](https://www.github.com/googleapis/nodejs-asset/issues/520)) ([24afa66](https://www.github.com/googleapis/nodejs-asset/commit/24afa6682619539c472da03ac813d915d62576b9))
+
+### [3.15.1](https://www.github.com/googleapis/nodejs-asset/compare/v3.15.0...v3.15.1) (2021-06-30)
+
+
+### Bug Fixes
+
+* **deps:** google-gax v2.17.0 with mTLS ([#514](https://www.github.com/googleapis/nodejs-asset/issues/514)) ([85e0ebd](https://www.github.com/googleapis/nodejs-asset/commit/85e0ebd92f326ce52f3a920a8cea9d392ff821b5))
+
+## [3.15.0](https://www.github.com/googleapis/nodejs-asset/compare/v3.14.1...v3.15.0) (2021-06-30)
+
+
+### Features
+
+* add new searchable fields (memberTypes, roles, project, folders and organization), new request fields (assetTypes and orderBy) and new response fields (assetType, folders and organization) in SearchAllIamPolicies ([#511](https://www.github.com/googleapis/nodejs-asset/issues/511)) ([1dfb0e9](https://www.github.com/googleapis/nodejs-asset/commit/1dfb0e95c58fdfbca2807744ea22c52d3c6e7651))
+
+### [3.14.1](https://www.github.com/googleapis/nodejs-asset/compare/v3.14.0...v3.14.1) (2021-06-22)
+
+
+### Bug Fixes
+
+* make request optional in all cases ([#507](https://www.github.com/googleapis/nodejs-asset/issues/507)) ([07b6827](https://www.github.com/googleapis/nodejs-asset/commit/07b68273ea5522ae4c3a94b714f05ee7d32391ef))
+
+## [3.14.0](https://www.github.com/googleapis/nodejs-asset/compare/v3.13.0...v3.14.0) (2021-06-21)
+
+
+### Features
+
+* generate new surface for v1 ([#504](https://www.github.com/googleapis/nodejs-asset/issues/504)) ([e1c6350](https://www.github.com/googleapis/nodejs-asset/commit/e1c6350f09adb6ab1e420de4ce5a3a4fd4c8c252))
+
 ## [3.13.0](https://www.github.com/googleapis/nodejs-asset/compare/v3.12.2...v3.13.0) (2021-05-26)
 
 

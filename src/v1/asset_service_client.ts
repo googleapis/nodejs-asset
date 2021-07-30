@@ -49,6 +49,7 @@ const version = require('../../../package.json').version;
 export class AssetServiceClient {
   private _terminated = false;
   private _opts: ClientOptions;
+  private _providedCustomServicePath: boolean;
   private _gaxModule: typeof gax | typeof gax.fallback;
   private _gaxGrpc: gax.GrpcClient | gax.fallback.GrpcClient;
   private _protos: {};
@@ -60,6 +61,7 @@ export class AssetServiceClient {
     longrunning: {},
     batching: {},
   };
+  warn: (code: string, message: string, warnType?: string) => void;
   innerApiCalls: {[name: string]: Function};
   pathTemplates: {[name: string]: gax.PathTemplate};
   operationsClient: gax.OperationsClient;
@@ -104,6 +106,9 @@ export class AssetServiceClient {
     const staticMembers = this.constructor as typeof AssetServiceClient;
     const servicePath =
       opts?.servicePath || opts?.apiEndpoint || staticMembers.servicePath;
+    this._providedCustomServicePath = !!(
+      opts?.servicePath || opts?.apiEndpoint
+    );
     const port = opts?.port || staticMembers.port;
     const clientConfig = opts?.clientConfig ?? {};
     const fallback =
@@ -241,6 +246,9 @@ export class AssetServiceClient {
     // of calling the API is handled in `google-gax`, with this code
     // merely providing the destination and request information.
     this.innerApiCalls = {};
+
+    // Add a warn function to the client constructor so it can be easily tested.
+    this.warn = gax.warn;
   }
 
   /**
@@ -269,7 +277,8 @@ export class AssetServiceClient {
           )
         : // eslint-disable-next-line @typescript-eslint/no-explicit-any
           (this._protos as any).google.cloud.asset.v1.AssetService,
-      this._opts
+      this._opts,
+      this._providedCustomServicePath
     ) as Promise<{[method: string]: Function}>;
 
     // Iterate over each of the methods that the service provides
@@ -373,7 +382,7 @@ export class AssetServiceClient {
   // -- Service calls --
   // -------------------
   batchGetAssetsHistory(
-    request: protos.google.cloud.asset.v1.IBatchGetAssetsHistoryRequest,
+    request?: protos.google.cloud.asset.v1.IBatchGetAssetsHistoryRequest,
     options?: CallOptions
   ): Promise<
     [
@@ -447,7 +456,7 @@ export class AssetServiceClient {
    * const [response] = await client.batchGetAssetsHistory(request);
    */
   batchGetAssetsHistory(
-    request: protos.google.cloud.asset.v1.IBatchGetAssetsHistoryRequest,
+    request?: protos.google.cloud.asset.v1.IBatchGetAssetsHistoryRequest,
     optionsOrCallback?:
       | CallOptions
       | Callback<
@@ -490,7 +499,7 @@ export class AssetServiceClient {
     return this.innerApiCalls.batchGetAssetsHistory(request, options, callback);
   }
   createFeed(
-    request: protos.google.cloud.asset.v1.ICreateFeedRequest,
+    request?: protos.google.cloud.asset.v1.ICreateFeedRequest,
     options?: CallOptions
   ): Promise<
     [
@@ -548,7 +557,7 @@ export class AssetServiceClient {
    * const [response] = await client.createFeed(request);
    */
   createFeed(
-    request: protos.google.cloud.asset.v1.ICreateFeedRequest,
+    request?: protos.google.cloud.asset.v1.ICreateFeedRequest,
     optionsOrCallback?:
       | CallOptions
       | Callback<
@@ -587,7 +596,7 @@ export class AssetServiceClient {
     return this.innerApiCalls.createFeed(request, options, callback);
   }
   getFeed(
-    request: protos.google.cloud.asset.v1.IGetFeedRequest,
+    request?: protos.google.cloud.asset.v1.IGetFeedRequest,
     options?: CallOptions
   ): Promise<
     [
@@ -634,7 +643,7 @@ export class AssetServiceClient {
    * const [response] = await client.getFeed(request);
    */
   getFeed(
-    request: protos.google.cloud.asset.v1.IGetFeedRequest,
+    request?: protos.google.cloud.asset.v1.IGetFeedRequest,
     optionsOrCallback?:
       | CallOptions
       | Callback<
@@ -673,7 +682,7 @@ export class AssetServiceClient {
     return this.innerApiCalls.getFeed(request, options, callback);
   }
   listFeeds(
-    request: protos.google.cloud.asset.v1.IListFeedsRequest,
+    request?: protos.google.cloud.asset.v1.IListFeedsRequest,
     options?: CallOptions
   ): Promise<
     [
@@ -719,7 +728,7 @@ export class AssetServiceClient {
    * const [response] = await client.listFeeds(request);
    */
   listFeeds(
-    request: protos.google.cloud.asset.v1.IListFeedsRequest,
+    request?: protos.google.cloud.asset.v1.IListFeedsRequest,
     optionsOrCallback?:
       | CallOptions
       | Callback<
@@ -758,7 +767,7 @@ export class AssetServiceClient {
     return this.innerApiCalls.listFeeds(request, options, callback);
   }
   updateFeed(
-    request: protos.google.cloud.asset.v1.IUpdateFeedRequest,
+    request?: protos.google.cloud.asset.v1.IUpdateFeedRequest,
     options?: CallOptions
   ): Promise<
     [
@@ -810,7 +819,7 @@ export class AssetServiceClient {
    * const [response] = await client.updateFeed(request);
    */
   updateFeed(
-    request: protos.google.cloud.asset.v1.IUpdateFeedRequest,
+    request?: protos.google.cloud.asset.v1.IUpdateFeedRequest,
     optionsOrCallback?:
       | CallOptions
       | Callback<
@@ -849,7 +858,7 @@ export class AssetServiceClient {
     return this.innerApiCalls.updateFeed(request, options, callback);
   }
   deleteFeed(
-    request: protos.google.cloud.asset.v1.IDeleteFeedRequest,
+    request?: protos.google.cloud.asset.v1.IDeleteFeedRequest,
     options?: CallOptions
   ): Promise<
     [
@@ -896,7 +905,7 @@ export class AssetServiceClient {
    * const [response] = await client.deleteFeed(request);
    */
   deleteFeed(
-    request: protos.google.cloud.asset.v1.IDeleteFeedRequest,
+    request?: protos.google.cloud.asset.v1.IDeleteFeedRequest,
     optionsOrCallback?:
       | CallOptions
       | Callback<
@@ -935,7 +944,7 @@ export class AssetServiceClient {
     return this.innerApiCalls.deleteFeed(request, options, callback);
   }
   analyzeIamPolicy(
-    request: protos.google.cloud.asset.v1.IAnalyzeIamPolicyRequest,
+    request?: protos.google.cloud.asset.v1.IAnalyzeIamPolicyRequest,
     options?: CallOptions
   ): Promise<
     [
@@ -991,7 +1000,7 @@ export class AssetServiceClient {
    * const [response] = await client.analyzeIamPolicy(request);
    */
   analyzeIamPolicy(
-    request: protos.google.cloud.asset.v1.IAnalyzeIamPolicyRequest,
+    request?: protos.google.cloud.asset.v1.IAnalyzeIamPolicyRequest,
     optionsOrCallback?:
       | CallOptions
       | Callback<
@@ -1033,7 +1042,7 @@ export class AssetServiceClient {
   }
 
   exportAssets(
-    request: protos.google.cloud.asset.v1.IExportAssetsRequest,
+    request?: protos.google.cloud.asset.v1.IExportAssetsRequest,
     options?: CallOptions
   ): Promise<
     [
@@ -1131,7 +1140,7 @@ export class AssetServiceClient {
    * const [response] = await operation.promise();
    */
   exportAssets(
-    request: protos.google.cloud.asset.v1.IExportAssetsRequest,
+    request?: protos.google.cloud.asset.v1.IExportAssetsRequest,
     optionsOrCallback?:
       | CallOptions
       | Callback<
@@ -1216,7 +1225,7 @@ export class AssetServiceClient {
     >;
   }
   analyzeIamPolicyLongrunning(
-    request: protos.google.cloud.asset.v1.IAnalyzeIamPolicyLongrunningRequest,
+    request?: protos.google.cloud.asset.v1.IAnalyzeIamPolicyLongrunningRequest,
     options?: CallOptions
   ): Promise<
     [
@@ -1282,7 +1291,7 @@ export class AssetServiceClient {
    * const [response] = await operation.promise();
    */
   analyzeIamPolicyLongrunning(
-    request: protos.google.cloud.asset.v1.IAnalyzeIamPolicyLongrunningRequest,
+    request?: protos.google.cloud.asset.v1.IAnalyzeIamPolicyLongrunningRequest,
     optionsOrCallback?:
       | CallOptions
       | Callback<
@@ -1371,7 +1380,7 @@ export class AssetServiceClient {
     >;
   }
   listAssets(
-    request: protos.google.cloud.asset.v1.IListAssetsRequest,
+    request?: protos.google.cloud.asset.v1.IListAssetsRequest,
     options?: CallOptions
   ): Promise<
     [
@@ -1457,7 +1466,7 @@ export class AssetServiceClient {
    *   for more details and examples.
    */
   listAssets(
-    request: protos.google.cloud.asset.v1.IListAssetsRequest,
+    request?: protos.google.cloud.asset.v1.IListAssetsRequest,
     optionsOrCallback?:
       | CallOptions
       | PaginationCallback<
@@ -1657,7 +1666,7 @@ export class AssetServiceClient {
     ) as AsyncIterable<protos.google.cloud.asset.v1.IAsset>;
   }
   searchAllResources(
-    request: protos.google.cloud.asset.v1.ISearchAllResourcesRequest,
+    request?: protos.google.cloud.asset.v1.ISearchAllResourcesRequest,
     options?: CallOptions
   ): Promise<
     [
@@ -1808,7 +1817,7 @@ export class AssetServiceClient {
    *   for more details and examples.
    */
   searchAllResources(
-    request: protos.google.cloud.asset.v1.ISearchAllResourcesRequest,
+    request?: protos.google.cloud.asset.v1.ISearchAllResourcesRequest,
     optionsOrCallback?:
       | CallOptions
       | PaginationCallback<
@@ -2130,7 +2139,7 @@ export class AssetServiceClient {
     ) as AsyncIterable<protos.google.cloud.asset.v1.IResourceSearchResult>;
   }
   searchAllIamPolicies(
-    request: protos.google.cloud.asset.v1.ISearchAllIamPoliciesRequest,
+    request?: protos.google.cloud.asset.v1.ISearchAllIamPoliciesRequest,
     options?: CallOptions
   ): Promise<
     [
@@ -2220,6 +2229,10 @@ export class AssetServiceClient {
    *   * `resource:(instance1 OR instance2) policy:amy` to find
    *     IAM policy bindings that are set on resources "instance1" or
    *     "instance2" and also specify user "amy".
+   *   * `roles:roles/compute.admin` to find IAM policy bindings that specify the
+   *     Compute Admin role.
+   *   * `memberTypes:user` to find IAM policy bindings that contain the "user"
+   *     member type.
    * @param {number} [request.pageSize]
    *   Optional. The page size for search result pagination. Page size is capped at 500 even
    *   if a larger value is given. If set to zero, server will pick an appropriate
@@ -2230,6 +2243,34 @@ export class AssetServiceClient {
    *   this method. `page_token` must be the value of `next_page_token` from the
    *   previous response. The values of all other method parameters must be
    *   identical to those in the previous call.
+   * @param {string[]} [request.assetTypes]
+   *   Optional. A list of asset types that the IAM policies are attached to. If empty, it
+   *   will search the IAM policies that are attached to all the [searchable asset
+   *   types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types).
+   *
+   *   Regular expressions are also supported. For example:
+   *
+   *   * "compute.googleapis.com.*" snapshots IAM policies attached to asset type
+   *   starts with "compute.googleapis.com".
+   *   * ".*Instance" snapshots IAM policies attached to asset type ends with
+   *   "Instance".
+   *   * ".*Instance.*" snapshots IAM policies attached to asset type contains
+   *   "Instance".
+   *
+   *   See [RE2](https://github.com/google/re2/wiki/Syntax) for all supported
+   *   regular expression syntax. If the regular expression does not match any
+   *   supported asset type, an INVALID_ARGUMENT error will be returned.
+   * @param {string} [request.orderBy]
+   *   Optional. A comma-separated list of fields specifying the sorting order of the
+   *   results. The default order is ascending. Add " DESC" after the field name
+   *   to indicate descending order. Redundant space characters are ignored.
+   *   Example: "assetType DESC, resource".
+   *   Only singular primitive fields in the response are sortable:
+   *     * resource
+   *     * assetType
+   *     * project
+   *   All the other fields such as repeated fields (e.g., `folders`) and
+   *   non-primitive fields (e.g., `policy`) are not supported.
    * @param {object} [options]
    *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
    * @returns {Promise} - The promise which resolves to an array.
@@ -2244,7 +2285,7 @@ export class AssetServiceClient {
    *   for more details and examples.
    */
   searchAllIamPolicies(
-    request: protos.google.cloud.asset.v1.ISearchAllIamPoliciesRequest,
+    request?: protos.google.cloud.asset.v1.ISearchAllIamPoliciesRequest,
     optionsOrCallback?:
       | CallOptions
       | PaginationCallback<
@@ -2343,6 +2384,10 @@ export class AssetServiceClient {
    *   * `resource:(instance1 OR instance2) policy:amy` to find
    *     IAM policy bindings that are set on resources "instance1" or
    *     "instance2" and also specify user "amy".
+   *   * `roles:roles/compute.admin` to find IAM policy bindings that specify the
+   *     Compute Admin role.
+   *   * `memberTypes:user` to find IAM policy bindings that contain the "user"
+   *     member type.
    * @param {number} [request.pageSize]
    *   Optional. The page size for search result pagination. Page size is capped at 500 even
    *   if a larger value is given. If set to zero, server will pick an appropriate
@@ -2353,6 +2398,34 @@ export class AssetServiceClient {
    *   this method. `page_token` must be the value of `next_page_token` from the
    *   previous response. The values of all other method parameters must be
    *   identical to those in the previous call.
+   * @param {string[]} [request.assetTypes]
+   *   Optional. A list of asset types that the IAM policies are attached to. If empty, it
+   *   will search the IAM policies that are attached to all the [searchable asset
+   *   types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types).
+   *
+   *   Regular expressions are also supported. For example:
+   *
+   *   * "compute.googleapis.com.*" snapshots IAM policies attached to asset type
+   *   starts with "compute.googleapis.com".
+   *   * ".*Instance" snapshots IAM policies attached to asset type ends with
+   *   "Instance".
+   *   * ".*Instance.*" snapshots IAM policies attached to asset type contains
+   *   "Instance".
+   *
+   *   See [RE2](https://github.com/google/re2/wiki/Syntax) for all supported
+   *   regular expression syntax. If the regular expression does not match any
+   *   supported asset type, an INVALID_ARGUMENT error will be returned.
+   * @param {string} [request.orderBy]
+   *   Optional. A comma-separated list of fields specifying the sorting order of the
+   *   results. The default order is ascending. Add " DESC" after the field name
+   *   to indicate descending order. Redundant space characters are ignored.
+   *   Example: "assetType DESC, resource".
+   *   Only singular primitive fields in the response are sortable:
+   *     * resource
+   *     * assetType
+   *     * project
+   *   All the other fields such as repeated fields (e.g., `folders`) and
+   *   non-primitive fields (e.g., `policy`) are not supported.
    * @param {object} [options]
    *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
    * @returns {Stream}
@@ -2444,6 +2517,10 @@ export class AssetServiceClient {
    *   * `resource:(instance1 OR instance2) policy:amy` to find
    *     IAM policy bindings that are set on resources "instance1" or
    *     "instance2" and also specify user "amy".
+   *   * `roles:roles/compute.admin` to find IAM policy bindings that specify the
+   *     Compute Admin role.
+   *   * `memberTypes:user` to find IAM policy bindings that contain the "user"
+   *     member type.
    * @param {number} [request.pageSize]
    *   Optional. The page size for search result pagination. Page size is capped at 500 even
    *   if a larger value is given. If set to zero, server will pick an appropriate
@@ -2454,6 +2531,34 @@ export class AssetServiceClient {
    *   this method. `page_token` must be the value of `next_page_token` from the
    *   previous response. The values of all other method parameters must be
    *   identical to those in the previous call.
+   * @param {string[]} [request.assetTypes]
+   *   Optional. A list of asset types that the IAM policies are attached to. If empty, it
+   *   will search the IAM policies that are attached to all the [searchable asset
+   *   types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types).
+   *
+   *   Regular expressions are also supported. For example:
+   *
+   *   * "compute.googleapis.com.*" snapshots IAM policies attached to asset type
+   *   starts with "compute.googleapis.com".
+   *   * ".*Instance" snapshots IAM policies attached to asset type ends with
+   *   "Instance".
+   *   * ".*Instance.*" snapshots IAM policies attached to asset type contains
+   *   "Instance".
+   *
+   *   See [RE2](https://github.com/google/re2/wiki/Syntax) for all supported
+   *   regular expression syntax. If the regular expression does not match any
+   *   supported asset type, an INVALID_ARGUMENT error will be returned.
+   * @param {string} [request.orderBy]
+   *   Optional. A comma-separated list of fields specifying the sorting order of the
+   *   results. The default order is ascending. Add " DESC" after the field name
+   *   to indicate descending order. Redundant space characters are ignored.
+   *   Example: "assetType DESC, resource".
+   *   Only singular primitive fields in the response are sortable:
+   *     * resource
+   *     * assetType
+   *     * project
+   *   All the other fields such as repeated fields (e.g., `folders`) and
+   *   non-primitive fields (e.g., `policy`) are not supported.
    * @param {object} [options]
    *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
    * @returns {Object}
