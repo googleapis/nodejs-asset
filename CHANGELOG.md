@@ -4,6 +4,41 @@
 
 [1]: https://www.npmjs.com/package/@google-cloud/asset?activeTab=versions
 
+## [3.17.0](https://www.github.com/googleapis/nodejs-asset/compare/v3.16.1...v3.17.0) (2021-08-23)
+
+
+### Features
+
+* turns on self-signed JWT feature flag ([#542](https://www.github.com/googleapis/nodejs-asset/issues/542)) ([4c4137f](https://www.github.com/googleapis/nodejs-asset/commit/4c4137f78ebdd870c027118d2d966149b7beb9b7))
+
+### [3.16.1](https://www.github.com/googleapis/nodejs-asset/compare/v3.16.0...v3.16.1) (2021-08-17)
+
+
+### Bug Fixes
+
+* **deps:** require google-gax v2.24.1 ([#538](https://www.github.com/googleapis/nodejs-asset/issues/538)) ([c6397db](https://www.github.com/googleapis/nodejs-asset/commit/c6397db52e9a6c4b43071c79b9809e9b874097a1))
+
+## [3.16.0](https://www.github.com/googleapis/nodejs-asset/compare/v3.15.5...v3.16.0) (2021-08-16)
+
+
+### Features
+
+* Release of relationships in v1, Add content type Relationship to support relationship export ([#537](https://www.github.com/googleapis/nodejs-asset/issues/537)) ([873aae6](https://www.github.com/googleapis/nodejs-asset/commit/873aae6f9b846a16b5695b692e8ad668d684dc6c))
+
+### [3.15.5](https://www.github.com/googleapis/nodejs-asset/compare/v3.15.4...v3.15.5) (2021-08-13)
+
+
+### Bug Fixes
+
+* failing tests for LRO check methods ([#530](https://www.github.com/googleapis/nodejs-asset/issues/530)) ([c756cd1](https://www.github.com/googleapis/nodejs-asset/commit/c756cd12f9c5b2133c15ddec68936f737c0fa77c))
+
+### [3.15.4](https://www.github.com/googleapis/nodejs-asset/compare/v3.15.3...v3.15.4) (2021-08-11)
+
+
+### Bug Fixes
+
+* **build:** migrate to using main branch ([#534](https://www.github.com/googleapis/nodejs-asset/issues/534)) ([30fa2c4](https://www.github.com/googleapis/nodejs-asset/commit/30fa2c48abe3de2a9482ea5bde9a4f315a726b89))
+
 ### [3.15.3](https://www.github.com/googleapis/nodejs-asset/compare/v3.15.2...v3.15.3) (2021-07-16)
 
 

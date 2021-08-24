@@ -213,6 +213,20 @@ export namespace google {
                      * @returns Promise
                      */
                     public analyzeIamPolicyLongrunning(request: google.cloud.asset.v1.IAnalyzeIamPolicyLongrunningRequest): Promise<google.longrunning.Operation>;
+
+                    /**
+                     * Calls AnalyzeMove.
+                     * @param request AnalyzeMoveRequest message or plain object
+                     * @param callback Node-style callback called with the error, if any, and AnalyzeMoveResponse
+                     */
+                    public analyzeMove(request: google.cloud.asset.v1.IAnalyzeMoveRequest, callback: google.cloud.asset.v1.AssetService.AnalyzeMoveCallback): void;
+
+                    /**
+                     * Calls AnalyzeMove.
+                     * @param request AnalyzeMoveRequest message or plain object
+                     * @returns Promise
+                     */
+                    public analyzeMove(request: google.cloud.asset.v1.IAnalyzeMoveRequest): Promise<google.cloud.asset.v1.AnalyzeMoveResponse>;
                 }
 
                 namespace AssetService {
@@ -300,6 +314,103 @@ export namespace google {
                      * @param [response] Operation
                      */
                     type AnalyzeIamPolicyLongrunningCallback = (error: (Error|null), response?: google.longrunning.Operation) => void;
+
+                    /**
+                     * Callback as used by {@link google.cloud.asset.v1.AssetService#analyzeMove}.
+                     * @param error Error, if any
+                     * @param [response] AnalyzeMoveResponse
+                     */
+                    type AnalyzeMoveCallback = (error: (Error|null), response?: google.cloud.asset.v1.AnalyzeMoveResponse) => void;
+                }
+
+                /** Properties of an AnalyzeIamPolicyLongrunningMetadata. */
+                interface IAnalyzeIamPolicyLongrunningMetadata {
+
+                    /** AnalyzeIamPolicyLongrunningMetadata createTime */
+                    createTime?: (google.protobuf.ITimestamp|null);
+                }
+
+                /** Represents an AnalyzeIamPolicyLongrunningMetadata. */
+                class AnalyzeIamPolicyLongrunningMetadata implements IAnalyzeIamPolicyLongrunningMetadata {
+
+                    /**
+                     * Constructs a new AnalyzeIamPolicyLongrunningMetadata.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.asset.v1.IAnalyzeIamPolicyLongrunningMetadata);
+
+                    /** AnalyzeIamPolicyLongrunningMetadata createTime. */
+                    public createTime?: (google.protobuf.ITimestamp|null);
+
+                    /**
+                     * Creates a new AnalyzeIamPolicyLongrunningMetadata instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns AnalyzeIamPolicyLongrunningMetadata instance
+                     */
+                    public static create(properties?: google.cloud.asset.v1.IAnalyzeIamPolicyLongrunningMetadata): google.cloud.asset.v1.AnalyzeIamPolicyLongrunningMetadata;
+
+                    /**
+                     * Encodes the specified AnalyzeIamPolicyLongrunningMetadata message. Does not implicitly {@link google.cloud.asset.v1.AnalyzeIamPolicyLongrunningMetadata.verify|verify} messages.
+                     * @param message AnalyzeIamPolicyLongrunningMetadata message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.asset.v1.IAnalyzeIamPolicyLongrunningMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified AnalyzeIamPolicyLongrunningMetadata message, length delimited. Does not implicitly {@link google.cloud.asset.v1.AnalyzeIamPolicyLongrunningMetadata.verify|verify} messages.
+                     * @param message AnalyzeIamPolicyLongrunningMetadata message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.asset.v1.IAnalyzeIamPolicyLongrunningMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an AnalyzeIamPolicyLongrunningMetadata message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns AnalyzeIamPolicyLongrunningMetadata
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.asset.v1.AnalyzeIamPolicyLongrunningMetadata;
+
+                    /**
+                     * Decodes an AnalyzeIamPolicyLongrunningMetadata message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns AnalyzeIamPolicyLongrunningMetadata
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.asset.v1.AnalyzeIamPolicyLongrunningMetadata;
+
+                    /**
+                     * Verifies an AnalyzeIamPolicyLongrunningMetadata message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an AnalyzeIamPolicyLongrunningMetadata message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns AnalyzeIamPolicyLongrunningMetadata
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.asset.v1.AnalyzeIamPolicyLongrunningMetadata;
+
+                    /**
+                     * Creates a plain object from an AnalyzeIamPolicyLongrunningMetadata message. Also converts values to other types if specified.
+                     * @param message AnalyzeIamPolicyLongrunningMetadata
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.asset.v1.AnalyzeIamPolicyLongrunningMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this AnalyzeIamPolicyLongrunningMetadata to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
                 }
 
                 /** Properties of an ExportAssetsRequest. */
@@ -319,6 +430,9 @@ export namespace google {
 
                     /** ExportAssetsRequest outputConfig */
                     outputConfig?: (google.cloud.asset.v1.IOutputConfig|null);
+
+                    /** ExportAssetsRequest relationshipTypes */
+                    relationshipTypes?: (string[]|null);
                 }
 
                 /** Represents an ExportAssetsRequest. */
@@ -344,6 +458,9 @@ export namespace google {
 
                     /** ExportAssetsRequest outputConfig. */
                     public outputConfig?: (google.cloud.asset.v1.IOutputConfig|null);
+
+                    /** ExportAssetsRequest relationshipTypes. */
+                    public relationshipTypes: string[];
 
                     /**
                      * Creates a new ExportAssetsRequest instance using the specified properties.
@@ -538,6 +655,9 @@ export namespace google {
 
                     /** ListAssetsRequest pageToken */
                     pageToken?: (string|null);
+
+                    /** ListAssetsRequest relationshipTypes */
+                    relationshipTypes?: (string[]|null);
                 }
 
                 /** Represents a ListAssetsRequest. */
@@ -566,6 +686,9 @@ export namespace google {
 
                     /** ListAssetsRequest pageToken. */
                     public pageToken: string;
+
+                    /** ListAssetsRequest relationshipTypes. */
+                    public relationshipTypes: string[];
 
                     /**
                      * Creates a new ListAssetsRequest instance using the specified properties.
@@ -754,6 +877,9 @@ export namespace google {
 
                     /** BatchGetAssetsHistoryRequest readTimeWindow */
                     readTimeWindow?: (google.cloud.asset.v1.ITimeWindow|null);
+
+                    /** BatchGetAssetsHistoryRequest relationshipTypes */
+                    relationshipTypes?: (string[]|null);
                 }
 
                 /** Represents a BatchGetAssetsHistoryRequest. */
@@ -776,6 +902,9 @@ export namespace google {
 
                     /** BatchGetAssetsHistoryRequest readTimeWindow. */
                     public readTimeWindow?: (google.cloud.asset.v1.ITimeWindow|null);
+
+                    /** BatchGetAssetsHistoryRequest relationshipTypes. */
+                    public relationshipTypes: string[];
 
                     /**
                      * Creates a new BatchGetAssetsHistoryRequest instance using the specified properties.
@@ -2294,6 +2423,9 @@ export namespace google {
 
                     /** Feed condition */
                     condition?: (google.type.IExpr|null);
+
+                    /** Feed relationshipTypes */
+                    relationshipTypes?: (string[]|null);
                 }
 
                 /** Represents a Feed. */
@@ -2322,6 +2454,9 @@ export namespace google {
 
                     /** Feed condition. */
                     public condition?: (google.type.IExpr|null);
+
+                    /** Feed relationshipTypes. */
+                    public relationshipTypes: string[];
 
                     /**
                      * Creates a new Feed instance using the specified properties.
@@ -2414,6 +2549,9 @@ export namespace google {
 
                     /** SearchAllResourcesRequest orderBy */
                     orderBy?: (string|null);
+
+                    /** SearchAllResourcesRequest readMask */
+                    readMask?: (google.protobuf.IFieldMask|null);
                 }
 
                 /** Represents a SearchAllResourcesRequest. */
@@ -2442,6 +2580,9 @@ export namespace google {
 
                     /** SearchAllResourcesRequest orderBy. */
                     public orderBy: string;
+
+                    /** SearchAllResourcesRequest readMask. */
+                    public readMask?: (google.protobuf.IFieldMask|null);
 
                     /**
                      * Creates a new SearchAllResourcesRequest instance using the specified properties.
@@ -4236,6 +4377,499 @@ export namespace google {
                     public toJSON(): { [k: string]: any };
                 }
 
+                /** Properties of an AnalyzeMoveRequest. */
+                interface IAnalyzeMoveRequest {
+
+                    /** AnalyzeMoveRequest resource */
+                    resource?: (string|null);
+
+                    /** AnalyzeMoveRequest destinationParent */
+                    destinationParent?: (string|null);
+
+                    /** AnalyzeMoveRequest view */
+                    view?: (google.cloud.asset.v1.AnalyzeMoveRequest.AnalysisView|keyof typeof google.cloud.asset.v1.AnalyzeMoveRequest.AnalysisView|null);
+                }
+
+                /** Represents an AnalyzeMoveRequest. */
+                class AnalyzeMoveRequest implements IAnalyzeMoveRequest {
+
+                    /**
+                     * Constructs a new AnalyzeMoveRequest.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.asset.v1.IAnalyzeMoveRequest);
+
+                    /** AnalyzeMoveRequest resource. */
+                    public resource: string;
+
+                    /** AnalyzeMoveRequest destinationParent. */
+                    public destinationParent: string;
+
+                    /** AnalyzeMoveRequest view. */
+                    public view: (google.cloud.asset.v1.AnalyzeMoveRequest.AnalysisView|keyof typeof google.cloud.asset.v1.AnalyzeMoveRequest.AnalysisView);
+
+                    /**
+                     * Creates a new AnalyzeMoveRequest instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns AnalyzeMoveRequest instance
+                     */
+                    public static create(properties?: google.cloud.asset.v1.IAnalyzeMoveRequest): google.cloud.asset.v1.AnalyzeMoveRequest;
+
+                    /**
+                     * Encodes the specified AnalyzeMoveRequest message. Does not implicitly {@link google.cloud.asset.v1.AnalyzeMoveRequest.verify|verify} messages.
+                     * @param message AnalyzeMoveRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.asset.v1.IAnalyzeMoveRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified AnalyzeMoveRequest message, length delimited. Does not implicitly {@link google.cloud.asset.v1.AnalyzeMoveRequest.verify|verify} messages.
+                     * @param message AnalyzeMoveRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.asset.v1.IAnalyzeMoveRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an AnalyzeMoveRequest message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns AnalyzeMoveRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.asset.v1.AnalyzeMoveRequest;
+
+                    /**
+                     * Decodes an AnalyzeMoveRequest message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns AnalyzeMoveRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.asset.v1.AnalyzeMoveRequest;
+
+                    /**
+                     * Verifies an AnalyzeMoveRequest message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an AnalyzeMoveRequest message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns AnalyzeMoveRequest
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.asset.v1.AnalyzeMoveRequest;
+
+                    /**
+                     * Creates a plain object from an AnalyzeMoveRequest message. Also converts values to other types if specified.
+                     * @param message AnalyzeMoveRequest
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.asset.v1.AnalyzeMoveRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this AnalyzeMoveRequest to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+                }
+
+                namespace AnalyzeMoveRequest {
+
+                    /** AnalysisView enum. */
+                    enum AnalysisView {
+                        ANALYSIS_VIEW_UNSPECIFIED = 0,
+                        FULL = 1,
+                        BASIC = 2
+                    }
+                }
+
+                /** Properties of an AnalyzeMoveResponse. */
+                interface IAnalyzeMoveResponse {
+
+                    /** AnalyzeMoveResponse moveAnalysis */
+                    moveAnalysis?: (google.cloud.asset.v1.IMoveAnalysis[]|null);
+                }
+
+                /** Represents an AnalyzeMoveResponse. */
+                class AnalyzeMoveResponse implements IAnalyzeMoveResponse {
+
+                    /**
+                     * Constructs a new AnalyzeMoveResponse.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.asset.v1.IAnalyzeMoveResponse);
+
+                    /** AnalyzeMoveResponse moveAnalysis. */
+                    public moveAnalysis: google.cloud.asset.v1.IMoveAnalysis[];
+
+                    /**
+                     * Creates a new AnalyzeMoveResponse instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns AnalyzeMoveResponse instance
+                     */
+                    public static create(properties?: google.cloud.asset.v1.IAnalyzeMoveResponse): google.cloud.asset.v1.AnalyzeMoveResponse;
+
+                    /**
+                     * Encodes the specified AnalyzeMoveResponse message. Does not implicitly {@link google.cloud.asset.v1.AnalyzeMoveResponse.verify|verify} messages.
+                     * @param message AnalyzeMoveResponse message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.asset.v1.IAnalyzeMoveResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified AnalyzeMoveResponse message, length delimited. Does not implicitly {@link google.cloud.asset.v1.AnalyzeMoveResponse.verify|verify} messages.
+                     * @param message AnalyzeMoveResponse message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.asset.v1.IAnalyzeMoveResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an AnalyzeMoveResponse message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns AnalyzeMoveResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.asset.v1.AnalyzeMoveResponse;
+
+                    /**
+                     * Decodes an AnalyzeMoveResponse message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns AnalyzeMoveResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.asset.v1.AnalyzeMoveResponse;
+
+                    /**
+                     * Verifies an AnalyzeMoveResponse message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an AnalyzeMoveResponse message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns AnalyzeMoveResponse
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.asset.v1.AnalyzeMoveResponse;
+
+                    /**
+                     * Creates a plain object from an AnalyzeMoveResponse message. Also converts values to other types if specified.
+                     * @param message AnalyzeMoveResponse
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.asset.v1.AnalyzeMoveResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this AnalyzeMoveResponse to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+                }
+
+                /** Properties of a MoveAnalysis. */
+                interface IMoveAnalysis {
+
+                    /** MoveAnalysis displayName */
+                    displayName?: (string|null);
+
+                    /** MoveAnalysis analysis */
+                    analysis?: (google.cloud.asset.v1.IMoveAnalysisResult|null);
+
+                    /** MoveAnalysis error */
+                    error?: (google.rpc.IStatus|null);
+                }
+
+                /** Represents a MoveAnalysis. */
+                class MoveAnalysis implements IMoveAnalysis {
+
+                    /**
+                     * Constructs a new MoveAnalysis.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.asset.v1.IMoveAnalysis);
+
+                    /** MoveAnalysis displayName. */
+                    public displayName: string;
+
+                    /** MoveAnalysis analysis. */
+                    public analysis?: (google.cloud.asset.v1.IMoveAnalysisResult|null);
+
+                    /** MoveAnalysis error. */
+                    public error?: (google.rpc.IStatus|null);
+
+                    /** MoveAnalysis result. */
+                    public result?: ("analysis"|"error");
+
+                    /**
+                     * Creates a new MoveAnalysis instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns MoveAnalysis instance
+                     */
+                    public static create(properties?: google.cloud.asset.v1.IMoveAnalysis): google.cloud.asset.v1.MoveAnalysis;
+
+                    /**
+                     * Encodes the specified MoveAnalysis message. Does not implicitly {@link google.cloud.asset.v1.MoveAnalysis.verify|verify} messages.
+                     * @param message MoveAnalysis message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.asset.v1.IMoveAnalysis, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified MoveAnalysis message, length delimited. Does not implicitly {@link google.cloud.asset.v1.MoveAnalysis.verify|verify} messages.
+                     * @param message MoveAnalysis message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.asset.v1.IMoveAnalysis, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a MoveAnalysis message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns MoveAnalysis
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.asset.v1.MoveAnalysis;
+
+                    /**
+                     * Decodes a MoveAnalysis message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns MoveAnalysis
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.asset.v1.MoveAnalysis;
+
+                    /**
+                     * Verifies a MoveAnalysis message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a MoveAnalysis message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns MoveAnalysis
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.asset.v1.MoveAnalysis;
+
+                    /**
+                     * Creates a plain object from a MoveAnalysis message. Also converts values to other types if specified.
+                     * @param message MoveAnalysis
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.asset.v1.MoveAnalysis, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this MoveAnalysis to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+                }
+
+                /** Properties of a MoveAnalysisResult. */
+                interface IMoveAnalysisResult {
+
+                    /** MoveAnalysisResult blockers */
+                    blockers?: (google.cloud.asset.v1.IMoveImpact[]|null);
+
+                    /** MoveAnalysisResult warnings */
+                    warnings?: (google.cloud.asset.v1.IMoveImpact[]|null);
+                }
+
+                /** Represents a MoveAnalysisResult. */
+                class MoveAnalysisResult implements IMoveAnalysisResult {
+
+                    /**
+                     * Constructs a new MoveAnalysisResult.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.asset.v1.IMoveAnalysisResult);
+
+                    /** MoveAnalysisResult blockers. */
+                    public blockers: google.cloud.asset.v1.IMoveImpact[];
+
+                    /** MoveAnalysisResult warnings. */
+                    public warnings: google.cloud.asset.v1.IMoveImpact[];
+
+                    /**
+                     * Creates a new MoveAnalysisResult instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns MoveAnalysisResult instance
+                     */
+                    public static create(properties?: google.cloud.asset.v1.IMoveAnalysisResult): google.cloud.asset.v1.MoveAnalysisResult;
+
+                    /**
+                     * Encodes the specified MoveAnalysisResult message. Does not implicitly {@link google.cloud.asset.v1.MoveAnalysisResult.verify|verify} messages.
+                     * @param message MoveAnalysisResult message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.asset.v1.IMoveAnalysisResult, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified MoveAnalysisResult message, length delimited. Does not implicitly {@link google.cloud.asset.v1.MoveAnalysisResult.verify|verify} messages.
+                     * @param message MoveAnalysisResult message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.asset.v1.IMoveAnalysisResult, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a MoveAnalysisResult message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns MoveAnalysisResult
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.asset.v1.MoveAnalysisResult;
+
+                    /**
+                     * Decodes a MoveAnalysisResult message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns MoveAnalysisResult
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.asset.v1.MoveAnalysisResult;
+
+                    /**
+                     * Verifies a MoveAnalysisResult message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a MoveAnalysisResult message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns MoveAnalysisResult
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.asset.v1.MoveAnalysisResult;
+
+                    /**
+                     * Creates a plain object from a MoveAnalysisResult message. Also converts values to other types if specified.
+                     * @param message MoveAnalysisResult
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.asset.v1.MoveAnalysisResult, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this MoveAnalysisResult to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+                }
+
+                /** Properties of a MoveImpact. */
+                interface IMoveImpact {
+
+                    /** MoveImpact detail */
+                    detail?: (string|null);
+                }
+
+                /** Represents a MoveImpact. */
+                class MoveImpact implements IMoveImpact {
+
+                    /**
+                     * Constructs a new MoveImpact.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.asset.v1.IMoveImpact);
+
+                    /** MoveImpact detail. */
+                    public detail: string;
+
+                    /**
+                     * Creates a new MoveImpact instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns MoveImpact instance
+                     */
+                    public static create(properties?: google.cloud.asset.v1.IMoveImpact): google.cloud.asset.v1.MoveImpact;
+
+                    /**
+                     * Encodes the specified MoveImpact message. Does not implicitly {@link google.cloud.asset.v1.MoveImpact.verify|verify} messages.
+                     * @param message MoveImpact message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.asset.v1.IMoveImpact, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified MoveImpact message, length delimited. Does not implicitly {@link google.cloud.asset.v1.MoveImpact.verify|verify} messages.
+                     * @param message MoveImpact message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.asset.v1.IMoveImpact, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a MoveImpact message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns MoveImpact
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.asset.v1.MoveImpact;
+
+                    /**
+                     * Decodes a MoveImpact message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns MoveImpact
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.asset.v1.MoveImpact;
+
+                    /**
+                     * Verifies a MoveImpact message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a MoveImpact message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns MoveImpact
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.asset.v1.MoveImpact;
+
+                    /**
+                     * Creates a plain object from a MoveImpact message. Also converts values to other types if specified.
+                     * @param message MoveImpact
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.asset.v1.MoveImpact, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this MoveImpact to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+                }
+
                 /** ContentType enum. */
                 enum ContentType {
                     CONTENT_TYPE_UNSPECIFIED = 0,
@@ -4243,7 +4877,8 @@ export namespace google {
                     IAM_POLICY = 2,
                     ORG_POLICY = 4,
                     ACCESS_POLICY = 5,
-                    OS_INVENTORY = 6
+                    OS_INVENTORY = 6,
+                    RELATIONSHIP = 7
                 }
 
                 /** Properties of a TemporalAsset. */
@@ -4501,6 +5136,9 @@ export namespace google {
                     /** Asset osInventory */
                     osInventory?: (google.cloud.osconfig.v1.IInventory|null);
 
+                    /** Asset relatedAssets */
+                    relatedAssets?: (google.cloud.asset.v1.IRelatedAssets|null);
+
                     /** Asset ancestors */
                     ancestors?: (string[]|null);
                 }
@@ -4543,6 +5181,9 @@ export namespace google {
 
                     /** Asset osInventory. */
                     public osInventory?: (google.cloud.osconfig.v1.IInventory|null);
+
+                    /** Asset relatedAssets. */
+                    public relatedAssets?: (google.cloud.asset.v1.IRelatedAssets|null);
 
                     /** Asset ancestors. */
                     public ancestors: string[];
@@ -4747,6 +5388,312 @@ export namespace google {
                     public toJSON(): { [k: string]: any };
                 }
 
+                /** Properties of a RelatedAssets. */
+                interface IRelatedAssets {
+
+                    /** RelatedAssets relationshipAttributes */
+                    relationshipAttributes?: (google.cloud.asset.v1.IRelationshipAttributes|null);
+
+                    /** RelatedAssets assets */
+                    assets?: (google.cloud.asset.v1.IRelatedAsset[]|null);
+                }
+
+                /** Represents a RelatedAssets. */
+                class RelatedAssets implements IRelatedAssets {
+
+                    /**
+                     * Constructs a new RelatedAssets.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.asset.v1.IRelatedAssets);
+
+                    /** RelatedAssets relationshipAttributes. */
+                    public relationshipAttributes?: (google.cloud.asset.v1.IRelationshipAttributes|null);
+
+                    /** RelatedAssets assets. */
+                    public assets: google.cloud.asset.v1.IRelatedAsset[];
+
+                    /**
+                     * Creates a new RelatedAssets instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns RelatedAssets instance
+                     */
+                    public static create(properties?: google.cloud.asset.v1.IRelatedAssets): google.cloud.asset.v1.RelatedAssets;
+
+                    /**
+                     * Encodes the specified RelatedAssets message. Does not implicitly {@link google.cloud.asset.v1.RelatedAssets.verify|verify} messages.
+                     * @param message RelatedAssets message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.asset.v1.IRelatedAssets, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified RelatedAssets message, length delimited. Does not implicitly {@link google.cloud.asset.v1.RelatedAssets.verify|verify} messages.
+                     * @param message RelatedAssets message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.asset.v1.IRelatedAssets, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a RelatedAssets message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns RelatedAssets
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.asset.v1.RelatedAssets;
+
+                    /**
+                     * Decodes a RelatedAssets message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns RelatedAssets
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.asset.v1.RelatedAssets;
+
+                    /**
+                     * Verifies a RelatedAssets message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a RelatedAssets message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns RelatedAssets
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.asset.v1.RelatedAssets;
+
+                    /**
+                     * Creates a plain object from a RelatedAssets message. Also converts values to other types if specified.
+                     * @param message RelatedAssets
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.asset.v1.RelatedAssets, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this RelatedAssets to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+                }
+
+                /** Properties of a RelationshipAttributes. */
+                interface IRelationshipAttributes {
+
+                    /** RelationshipAttributes type */
+                    type?: (string|null);
+
+                    /** RelationshipAttributes sourceResourceType */
+                    sourceResourceType?: (string|null);
+
+                    /** RelationshipAttributes targetResourceType */
+                    targetResourceType?: (string|null);
+
+                    /** RelationshipAttributes action */
+                    action?: (string|null);
+                }
+
+                /** Represents a RelationshipAttributes. */
+                class RelationshipAttributes implements IRelationshipAttributes {
+
+                    /**
+                     * Constructs a new RelationshipAttributes.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.asset.v1.IRelationshipAttributes);
+
+                    /** RelationshipAttributes type. */
+                    public type: string;
+
+                    /** RelationshipAttributes sourceResourceType. */
+                    public sourceResourceType: string;
+
+                    /** RelationshipAttributes targetResourceType. */
+                    public targetResourceType: string;
+
+                    /** RelationshipAttributes action. */
+                    public action: string;
+
+                    /**
+                     * Creates a new RelationshipAttributes instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns RelationshipAttributes instance
+                     */
+                    public static create(properties?: google.cloud.asset.v1.IRelationshipAttributes): google.cloud.asset.v1.RelationshipAttributes;
+
+                    /**
+                     * Encodes the specified RelationshipAttributes message. Does not implicitly {@link google.cloud.asset.v1.RelationshipAttributes.verify|verify} messages.
+                     * @param message RelationshipAttributes message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.asset.v1.IRelationshipAttributes, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified RelationshipAttributes message, length delimited. Does not implicitly {@link google.cloud.asset.v1.RelationshipAttributes.verify|verify} messages.
+                     * @param message RelationshipAttributes message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.asset.v1.IRelationshipAttributes, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a RelationshipAttributes message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns RelationshipAttributes
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.asset.v1.RelationshipAttributes;
+
+                    /**
+                     * Decodes a RelationshipAttributes message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns RelationshipAttributes
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.asset.v1.RelationshipAttributes;
+
+                    /**
+                     * Verifies a RelationshipAttributes message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a RelationshipAttributes message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns RelationshipAttributes
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.asset.v1.RelationshipAttributes;
+
+                    /**
+                     * Creates a plain object from a RelationshipAttributes message. Also converts values to other types if specified.
+                     * @param message RelationshipAttributes
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.asset.v1.RelationshipAttributes, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this RelationshipAttributes to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+                }
+
+                /** Properties of a RelatedAsset. */
+                interface IRelatedAsset {
+
+                    /** RelatedAsset asset */
+                    asset?: (string|null);
+
+                    /** RelatedAsset assetType */
+                    assetType?: (string|null);
+
+                    /** RelatedAsset ancestors */
+                    ancestors?: (string[]|null);
+                }
+
+                /** Represents a RelatedAsset. */
+                class RelatedAsset implements IRelatedAsset {
+
+                    /**
+                     * Constructs a new RelatedAsset.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.asset.v1.IRelatedAsset);
+
+                    /** RelatedAsset asset. */
+                    public asset: string;
+
+                    /** RelatedAsset assetType. */
+                    public assetType: string;
+
+                    /** RelatedAsset ancestors. */
+                    public ancestors: string[];
+
+                    /**
+                     * Creates a new RelatedAsset instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns RelatedAsset instance
+                     */
+                    public static create(properties?: google.cloud.asset.v1.IRelatedAsset): google.cloud.asset.v1.RelatedAsset;
+
+                    /**
+                     * Encodes the specified RelatedAsset message. Does not implicitly {@link google.cloud.asset.v1.RelatedAsset.verify|verify} messages.
+                     * @param message RelatedAsset message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.asset.v1.IRelatedAsset, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified RelatedAsset message, length delimited. Does not implicitly {@link google.cloud.asset.v1.RelatedAsset.verify|verify} messages.
+                     * @param message RelatedAsset message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.asset.v1.IRelatedAsset, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a RelatedAsset message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns RelatedAsset
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.asset.v1.RelatedAsset;
+
+                    /**
+                     * Decodes a RelatedAsset message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns RelatedAsset
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.asset.v1.RelatedAsset;
+
+                    /**
+                     * Verifies a RelatedAsset message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a RelatedAsset message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns RelatedAsset
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.asset.v1.RelatedAsset;
+
+                    /**
+                     * Creates a plain object from a RelatedAsset message. Also converts values to other types if specified.
+                     * @param message RelatedAsset
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.asset.v1.RelatedAsset, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this RelatedAsset to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+                }
+
                 /** Properties of a ResourceSearchResult. */
                 interface IResourceSearchResult {
 
@@ -4797,6 +5744,12 @@ export namespace google {
 
                     /** ResourceSearchResult parentFullResourceName */
                     parentFullResourceName?: (string|null);
+
+                    /** ResourceSearchResult versionedResources */
+                    versionedResources?: (google.cloud.asset.v1.IVersionedResource[]|null);
+
+                    /** ResourceSearchResult attachedResources */
+                    attachedResources?: (google.cloud.asset.v1.IAttachedResource[]|null);
 
                     /** ResourceSearchResult parentAssetType */
                     parentAssetType?: (string|null);
@@ -4858,6 +5811,12 @@ export namespace google {
 
                     /** ResourceSearchResult parentFullResourceName. */
                     public parentFullResourceName: string;
+
+                    /** ResourceSearchResult versionedResources. */
+                    public versionedResources: google.cloud.asset.v1.IVersionedResource[];
+
+                    /** ResourceSearchResult attachedResources. */
+                    public attachedResources: google.cloud.asset.v1.IAttachedResource[];
 
                     /** ResourceSearchResult parentAssetType. */
                     public parentAssetType: string;
@@ -4928,6 +5887,198 @@ export namespace google {
 
                     /**
                      * Converts this ResourceSearchResult to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+                }
+
+                /** Properties of a VersionedResource. */
+                interface IVersionedResource {
+
+                    /** VersionedResource version */
+                    version?: (string|null);
+
+                    /** VersionedResource resource */
+                    resource?: (google.protobuf.IStruct|null);
+                }
+
+                /** Represents a VersionedResource. */
+                class VersionedResource implements IVersionedResource {
+
+                    /**
+                     * Constructs a new VersionedResource.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.asset.v1.IVersionedResource);
+
+                    /** VersionedResource version. */
+                    public version: string;
+
+                    /** VersionedResource resource. */
+                    public resource?: (google.protobuf.IStruct|null);
+
+                    /**
+                     * Creates a new VersionedResource instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns VersionedResource instance
+                     */
+                    public static create(properties?: google.cloud.asset.v1.IVersionedResource): google.cloud.asset.v1.VersionedResource;
+
+                    /**
+                     * Encodes the specified VersionedResource message. Does not implicitly {@link google.cloud.asset.v1.VersionedResource.verify|verify} messages.
+                     * @param message VersionedResource message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.asset.v1.IVersionedResource, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified VersionedResource message, length delimited. Does not implicitly {@link google.cloud.asset.v1.VersionedResource.verify|verify} messages.
+                     * @param message VersionedResource message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.asset.v1.IVersionedResource, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a VersionedResource message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns VersionedResource
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.asset.v1.VersionedResource;
+
+                    /**
+                     * Decodes a VersionedResource message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns VersionedResource
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.asset.v1.VersionedResource;
+
+                    /**
+                     * Verifies a VersionedResource message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a VersionedResource message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns VersionedResource
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.asset.v1.VersionedResource;
+
+                    /**
+                     * Creates a plain object from a VersionedResource message. Also converts values to other types if specified.
+                     * @param message VersionedResource
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.asset.v1.VersionedResource, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this VersionedResource to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+                }
+
+                /** Properties of an AttachedResource. */
+                interface IAttachedResource {
+
+                    /** AttachedResource assetType */
+                    assetType?: (string|null);
+
+                    /** AttachedResource versionedResources */
+                    versionedResources?: (google.cloud.asset.v1.IVersionedResource[]|null);
+                }
+
+                /** Represents an AttachedResource. */
+                class AttachedResource implements IAttachedResource {
+
+                    /**
+                     * Constructs a new AttachedResource.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.asset.v1.IAttachedResource);
+
+                    /** AttachedResource assetType. */
+                    public assetType: string;
+
+                    /** AttachedResource versionedResources. */
+                    public versionedResources: google.cloud.asset.v1.IVersionedResource[];
+
+                    /**
+                     * Creates a new AttachedResource instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns AttachedResource instance
+                     */
+                    public static create(properties?: google.cloud.asset.v1.IAttachedResource): google.cloud.asset.v1.AttachedResource;
+
+                    /**
+                     * Encodes the specified AttachedResource message. Does not implicitly {@link google.cloud.asset.v1.AttachedResource.verify|verify} messages.
+                     * @param message AttachedResource message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.asset.v1.IAttachedResource, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified AttachedResource message, length delimited. Does not implicitly {@link google.cloud.asset.v1.AttachedResource.verify|verify} messages.
+                     * @param message AttachedResource message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.asset.v1.IAttachedResource, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an AttachedResource message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns AttachedResource
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.asset.v1.AttachedResource;
+
+                    /**
+                     * Decodes an AttachedResource message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns AttachedResource
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.asset.v1.AttachedResource;
+
+                    /**
+                     * Verifies an AttachedResource message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an AttachedResource message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns AttachedResource
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.asset.v1.AttachedResource;
+
+                    /**
+                     * Creates a plain object from an AttachedResource message. Also converts values to other types if specified.
+                     * @param message AttachedResource
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.asset.v1.AttachedResource, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this AttachedResource to JSON.
                      * @returns JSON object
                      */
                     public toJSON(): { [k: string]: any };
