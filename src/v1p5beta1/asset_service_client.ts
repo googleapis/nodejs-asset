@@ -48,6 +48,7 @@ const version = require('../../../package.json').version;
 export class AssetServiceClient {
   private _terminated = false;
   private _opts: ClientOptions;
+  private _providedCustomServicePath: boolean;
   private _gaxModule: typeof gax | typeof gax.fallback;
   private _gaxGrpc: gax.GrpcClient | gax.fallback.GrpcClient;
   private _protos: {};
@@ -59,7 +60,9 @@ export class AssetServiceClient {
     longrunning: {},
     batching: {},
   };
+  warn: (code: string, message: string, warnType?: string) => void;
   innerApiCalls: {[name: string]: Function};
+  pathTemplates: {[name: string]: gax.PathTemplate};
   assetServiceStub?: Promise<{[name: string]: Function}>;
 
   /**
@@ -101,6 +104,9 @@ export class AssetServiceClient {
     const staticMembers = this.constructor as typeof AssetServiceClient;
     const servicePath =
       opts?.servicePath || opts?.apiEndpoint || staticMembers.servicePath;
+    this._providedCustomServicePath = !!(
+      opts?.servicePath || opts?.apiEndpoint
+    );
     const port = opts?.port || staticMembers.port;
     const clientConfig = opts?.clientConfig ?? {};
     const fallback =
@@ -125,6 +131,12 @@ export class AssetServiceClient {
     // Save the auth object to the client, for use by other methods.
     this.auth = this._gaxGrpc.auth as gax.GoogleAuth;
 
+    // Set useJWTAccessWithScope on the auth object.
+    this.auth.useJWTAccessWithScope = true;
+
+    // Set defaultServicePath on the auth object.
+    this.auth.defaultServicePath = staticMembers.servicePath;
+
     // Set the default scopes in auth client if needed.
     if (servicePath === staticMembers.servicePath) {
       this.auth.defaultScopes = staticMembers.scopes;
@@ -147,6 +159,21 @@ export class AssetServiceClient {
     }
     // Load the applicable protos.
     this._protos = this._gaxGrpc.loadProtoJSON(jsonProtos);
+
+    // This API contains "path templates"; forward-slash-separated
+    // identifiers to uniquely identify resources within the API.
+    // Create useful helper objects for these.
+    this.pathTemplates = {
+      accessLevelPathTemplate: new this._gaxModule.PathTemplate(
+        'accessPolicies/{access_policy}/accessLevels/{access_level}'
+      ),
+      accessPolicyPathTemplate: new this._gaxModule.PathTemplate(
+        'accessPolicies/{access_policy}'
+      ),
+      servicePerimeterPathTemplate: new this._gaxModule.PathTemplate(
+        'accessPolicies/{access_policy}/servicePerimeters/{service_perimeter}'
+      ),
+    };
 
     // Some of the methods on this service return "paged" results,
     // (e.g. 50 results at a time, with tokens to get subsequent
@@ -171,6 +198,9 @@ export class AssetServiceClient {
     // of calling the API is handled in `google-gax`, with this code
     // merely providing the destination and request information.
     this.innerApiCalls = {};
+
+    // Add a warn function to the client constructor so it can be easily tested.
+    this.warn = gax.warn;
   }
 
   /**
@@ -199,7 +229,8 @@ export class AssetServiceClient {
           )
         : // eslint-disable-next-line @typescript-eslint/no-explicit-any
           (this._protos as any).google.cloud.asset.v1p5beta1.AssetService,
-      this._opts
+      this._opts,
+      this._providedCustomServicePath
     ) as Promise<{[method: string]: Function}>;
 
     // Iterate over each of the methods that the service provides
@@ -288,7 +319,7 @@ export class AssetServiceClient {
   // -------------------
 
   listAssets(
-    request: protos.google.cloud.asset.v1p5beta1.IListAssetsRequest,
+    request?: protos.google.cloud.asset.v1p5beta1.IListAssetsRequest,
     options?: CallOptions
   ): Promise<
     [
@@ -365,7 +396,7 @@ export class AssetServiceClient {
    *   for more details and examples.
    */
   listAssets(
-    request: protos.google.cloud.asset.v1p5beta1.IListAssetsRequest,
+    request?: protos.google.cloud.asset.v1p5beta1.IListAssetsRequest,
     optionsOrCallback?:
       | CallOptions
       | PaginationCallback<
@@ -541,6 +572,111 @@ export class AssetServiceClient {
       request as unknown as RequestType,
       callSettings
     ) as AsyncIterable<protos.google.cloud.asset.v1p5beta1.IAsset>;
+  }
+  // --------------------
+  // -- Path templates --
+  // --------------------
+
+  /**
+   * Return a fully-qualified accessLevel resource name string.
+   *
+   * @param {string} access_policy
+   * @param {string} access_level
+   * @returns {string} Resource name string.
+   */
+  accessLevelPath(accessPolicy: string, accessLevel: string) {
+    return this.pathTemplates.accessLevelPathTemplate.render({
+      access_policy: accessPolicy,
+      access_level: accessLevel,
+    });
+  }
+
+  /**
+   * Parse the access_policy from AccessLevel resource.
+   *
+   * @param {string} accessLevelName
+   *   A fully-qualified path representing AccessLevel resource.
+   * @returns {string} A string representing the access_policy.
+   */
+  matchAccessPolicyFromAccessLevelName(accessLevelName: string) {
+    return this.pathTemplates.accessLevelPathTemplate.match(accessLevelName)
+      .access_policy;
+  }
+
+  /**
+   * Parse the access_level from AccessLevel resource.
+   *
+   * @param {string} accessLevelName
+   *   A fully-qualified path representing AccessLevel resource.
+   * @returns {string} A string representing the access_level.
+   */
+  matchAccessLevelFromAccessLevelName(accessLevelName: string) {
+    return this.pathTemplates.accessLevelPathTemplate.match(accessLevelName)
+      .access_level;
+  }
+
+  /**
+   * Return a fully-qualified accessPolicy resource name string.
+   *
+   * @param {string} access_policy
+   * @returns {string} Resource name string.
+   */
+  accessPolicyPath(accessPolicy: string) {
+    return this.pathTemplates.accessPolicyPathTemplate.render({
+      access_policy: accessPolicy,
+    });
+  }
+
+  /**
+   * Parse the access_policy from AccessPolicy resource.
+   *
+   * @param {string} accessPolicyName
+   *   A fully-qualified path representing AccessPolicy resource.
+   * @returns {string} A string representing the access_policy.
+   */
+  matchAccessPolicyFromAccessPolicyName(accessPolicyName: string) {
+    return this.pathTemplates.accessPolicyPathTemplate.match(accessPolicyName)
+      .access_policy;
+  }
+
+  /**
+   * Return a fully-qualified servicePerimeter resource name string.
+   *
+   * @param {string} access_policy
+   * @param {string} service_perimeter
+   * @returns {string} Resource name string.
+   */
+  servicePerimeterPath(accessPolicy: string, servicePerimeter: string) {
+    return this.pathTemplates.servicePerimeterPathTemplate.render({
+      access_policy: accessPolicy,
+      service_perimeter: servicePerimeter,
+    });
+  }
+
+  /**
+   * Parse the access_policy from ServicePerimeter resource.
+   *
+   * @param {string} servicePerimeterName
+   *   A fully-qualified path representing ServicePerimeter resource.
+   * @returns {string} A string representing the access_policy.
+   */
+  matchAccessPolicyFromServicePerimeterName(servicePerimeterName: string) {
+    return this.pathTemplates.servicePerimeterPathTemplate.match(
+      servicePerimeterName
+    ).access_policy;
+  }
+
+  /**
+   * Parse the service_perimeter from ServicePerimeter resource.
+   *
+   * @param {string} servicePerimeterName
+   *   A fully-qualified path representing ServicePerimeter resource.
+   * @returns {string} A string representing the service_perimeter.
+   */
+  matchServicePerimeterFromServicePerimeterName(servicePerimeterName: string) {
+    return this.pathTemplates.servicePerimeterPathTemplate.match(
+      servicePerimeterName
+    ).service_perimeter;
   }
 
   /**

@@ -4,6 +4,76 @@
 
 [1]: https://www.npmjs.com/package/@google-cloud/asset?activeTab=versions
 
+## [3.17.0](https://www.github.com/googleapis/nodejs-asset/compare/v3.16.1...v3.17.0) (2021-08-23)
+
+
+### Features
+
+* turns on self-signed JWT feature flag ([#542](https://www.github.com/googleapis/nodejs-asset/issues/542)) ([4c4137f](https://www.github.com/googleapis/nodejs-asset/commit/4c4137f78ebdd870c027118d2d966149b7beb9b7))
+
+### [3.16.1](https://www.github.com/googleapis/nodejs-asset/compare/v3.16.0...v3.16.1) (2021-08-17)
+
+
+### Bug Fixes
+
+* **deps:** require google-gax v2.24.1 ([#538](https://www.github.com/googleapis/nodejs-asset/issues/538)) ([c6397db](https://www.github.com/googleapis/nodejs-asset/commit/c6397db52e9a6c4b43071c79b9809e9b874097a1))
+
+## [3.16.0](https://www.github.com/googleapis/nodejs-asset/compare/v3.15.5...v3.16.0) (2021-08-16)
+
+
+### Features
+
+* Release of relationships in v1, Add content type Relationship to support relationship export ([#537](https://www.github.com/googleapis/nodejs-asset/issues/537)) ([873aae6](https://www.github.com/googleapis/nodejs-asset/commit/873aae6f9b846a16b5695b692e8ad668d684dc6c))
+
+### [3.15.5](https://www.github.com/googleapis/nodejs-asset/compare/v3.15.4...v3.15.5) (2021-08-13)
+
+
+### Bug Fixes
+
+* failing tests for LRO check methods ([#530](https://www.github.com/googleapis/nodejs-asset/issues/530)) ([c756cd1](https://www.github.com/googleapis/nodejs-asset/commit/c756cd12f9c5b2133c15ddec68936f737c0fa77c))
+
+### [3.15.4](https://www.github.com/googleapis/nodejs-asset/compare/v3.15.3...v3.15.4) (2021-08-11)
+
+
+### Bug Fixes
+
+* **build:** migrate to using main branch ([#534](https://www.github.com/googleapis/nodejs-asset/issues/534)) ([30fa2c4](https://www.github.com/googleapis/nodejs-asset/commit/30fa2c48abe3de2a9482ea5bde9a4f315a726b89))
+
+### [3.15.3](https://www.github.com/googleapis/nodejs-asset/compare/v3.15.2...v3.15.3) (2021-07-16)
+
+
+### Bug Fixes
+
+* Updating WORKSPACE files to use the newest version of the Typescript generator. ([#522](https://www.github.com/googleapis/nodejs-asset/issues/522)) ([015b801](https://www.github.com/googleapis/nodejs-asset/commit/015b80196ecd3b6a0cba17ea0971f4c585b8f972))
+
+### [3.15.2](https://www.github.com/googleapis/nodejs-asset/compare/v3.15.1...v3.15.2) (2021-07-12)
+
+
+### Bug Fixes
+
+* **deps:** google-gax v2.17.1 ([#520](https://www.github.com/googleapis/nodejs-asset/issues/520)) ([24afa66](https://www.github.com/googleapis/nodejs-asset/commit/24afa6682619539c472da03ac813d915d62576b9))
+
+### [3.15.1](https://www.github.com/googleapis/nodejs-asset/compare/v3.15.0...v3.15.1) (2021-06-30)
+
+
+### Bug Fixes
+
+* **deps:** google-gax v2.17.0 with mTLS ([#514](https://www.github.com/googleapis/nodejs-asset/issues/514)) ([85e0ebd](https://www.github.com/googleapis/nodejs-asset/commit/85e0ebd92f326ce52f3a920a8cea9d392ff821b5))
+
+## [3.15.0](https://www.github.com/googleapis/nodejs-asset/compare/v3.14.1...v3.15.0) (2021-06-30)
+
+
+### Features
+
+* add new searchable fields (memberTypes, roles, project, folders and organization), new request fields (assetTypes and orderBy) and new response fields (assetType, folders and organization) in SearchAllIamPolicies ([#511](https://www.github.com/googleapis/nodejs-asset/issues/511)) ([1dfb0e9](https://www.github.com/googleapis/nodejs-asset/commit/1dfb0e95c58fdfbca2807744ea22c52d3c6e7651))
+
+### [3.14.1](https://www.github.com/googleapis/nodejs-asset/compare/v3.14.0...v3.14.1) (2021-06-22)
+
+
+### Bug Fixes
+
+* make request optional in all cases ([#507](https://www.github.com/googleapis/nodejs-asset/issues/507)) ([07b6827](https://www.github.com/googleapis/nodejs-asset/commit/07b68273ea5522ae4c3a94b714f05ee7d32391ef))
+
 ## [3.14.0](https://www.github.com/googleapis/nodejs-asset/compare/v3.13.0...v3.14.0) (2021-06-21)
 
 
