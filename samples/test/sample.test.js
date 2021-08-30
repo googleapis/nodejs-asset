@@ -84,8 +84,6 @@ describe('quickstart sample tests', () => {
     for (let retry = 0; retry < 3 && !included; ++retry) {
       await sleep((waitMs *= 2));
       const stdout = execSync(`node getBatchAssetHistory ${assetName}`);
-      console.log('stdout=%s', stdout);
-      console.log('assetName=%s', assetName);
       included = stdout.includes(assetName);
     }
     assert.ok(included);
