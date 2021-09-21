@@ -4,15 +4,18 @@
 
 # [Cloud Asset Inventory: Node.js Client](https://github.com/googleapis/nodejs-asset)
 
-[![release level](https://img.shields.io/badge/release%20level-beta-yellow.svg?style=flat)](https://cloud.google.com/terms/launch-stages)
+[![release level](https://img.shields.io/badge/release%20level-general%20availability%20%28GA%29-brightgreen.svg?style=flat)](https://cloud.google.com/terms/launch-stages)
 [![npm version](https://img.shields.io/npm/v/@google-cloud/asset.svg)](https://www.npmjs.org/package/@google-cloud/asset)
-[![codecov](https://img.shields.io/codecov/c/github/googleapis/nodejs-asset/master.svg?style=flat)](https://codecov.io/gh/googleapis/nodejs-asset)
+[![codecov](https://img.shields.io/codecov/c/github/googleapis/nodejs-asset/main.svg?style=flat)](https://codecov.io/gh/googleapis/nodejs-asset)
 
 
 
 
 Cloud Asset API client for Node.js
 
+
+A comprehensive list of changes in each version may be found in
+[the CHANGELOG](https://github.com/googleapis/nodejs-asset/blob/main/CHANGELOG.md).
 
 * [Cloud Asset Inventory Node.js Client API Reference][client-docs]
 * [Cloud Asset Inventory Documentation][product-docs]
@@ -55,32 +58,32 @@ npm install @google-cloud/asset
 ### Using the client library
 
 ```javascript
-  const util = require('util');
-  const {AssetServiceClient} = require('@google-cloud/asset');
+const util = require('util');
+const {AssetServiceClient} = require('@google-cloud/asset');
 
-  const client = new AssetServiceClient();
+const client = new AssetServiceClient();
 
-  async function quickstart() {
-    const projectId = await client.getProjectId();
-    const projectResource = client.projectPath(projectId);
-    // TODO(developer): Choose asset names, such as //storage.googleapis.com/[YOUR_BUCKET_NAME].
-    // const assetNames = ['ASSET_NAME1', 'ASSET_NAME2', ...];
+async function quickstart() {
+  const projectId = await client.getProjectId();
+  const projectResource = `projects/${projectId}`;
+  // TODO(developer): Choose asset names, such as //storage.googleapis.com/[YOUR_BUCKET_NAME].
+  // const assetNames = ['ASSET_NAME1', 'ASSET_NAME2', ...];
 
-    const request = {
-      parent: projectResource,
-      assetNames: assetNames.split(','),
-      contentType: 'RESOURCE',
-      readTimeWindow: {
-        startTime: {
-          seconds: Math.floor(new Date().getTime() / 1000),
-        },
+  const request = {
+    parent: projectResource,
+    assetNames: assetNames.split(','),
+    contentType: 'RESOURCE',
+    readTimeWindow: {
+      startTime: {
+        seconds: Math.floor(new Date().getTime() / 1000),
       },
-    };
+    },
+  };
 
-    // Handle the operation using the promise pattern.
-    const result = await client.batchGetAssetsHistory(request);
-    // Do things with with the response.
-    console.log(util.inspect(result, {depth: null}));
+  // Handle the operation using the promise pattern.
+  const result = await client.batchGetAssetsHistory(request);
+  // Do things with with the response.
+  console.log(util.inspect(result, {depth: null}));
 
 ```
 
@@ -88,35 +91,62 @@ npm install @google-cloud/asset
 
 ## Samples
 
-Samples are in the [`samples/`](https://github.com/googleapis/nodejs-asset/tree/master/samples) directory. The samples' `README.md`
-has instructions for running the samples.
+Samples are in the [`samples/`](https://github.com/googleapis/nodejs-asset/tree/main/samples) directory. Each sample's `README.md` has instructions for running its sample.
 
 | Sample                      | Source Code                       | Try it |
 | --------------------------- | --------------------------------- | ------ |
-| Create Feed | [source code](https://github.com/googleapis/nodejs-asset/blob/master/samples/createFeed.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-asset&page=editor&open_in_editor=samples/createFeed.js,samples/README.md) |
-| Delete Feed | [source code](https://github.com/googleapis/nodejs-asset/blob/master/samples/deleteFeed.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-asset&page=editor&open_in_editor=samples/deleteFeed.js,samples/README.md) |
-| Export Assets | [source code](https://github.com/googleapis/nodejs-asset/blob/master/samples/exportAssets.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-asset&page=editor&open_in_editor=samples/exportAssets.js,samples/README.md) |
-| Get Batch Asset History | [source code](https://github.com/googleapis/nodejs-asset/blob/master/samples/getBatchAssetHistory.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-asset&page=editor&open_in_editor=samples/getBatchAssetHistory.js,samples/README.md) |
-| Get Feed | [source code](https://github.com/googleapis/nodejs-asset/blob/master/samples/getFeed.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-asset&page=editor&open_in_editor=samples/getFeed.js,samples/README.md) |
-| List Feeds | [source code](https://github.com/googleapis/nodejs-asset/blob/master/samples/listFeeds.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-asset&page=editor&open_in_editor=samples/listFeeds.js,samples/README.md) |
-| Asset History Quickstart | [source code](https://github.com/googleapis/nodejs-asset/blob/master/samples/quickstart.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-asset&page=editor&open_in_editor=samples/quickstart.js,samples/README.md) |
-| Update Feed | [source code](https://github.com/googleapis/nodejs-asset/blob/master/samples/updateFeed.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-asset&page=editor&open_in_editor=samples/updateFeed.js,samples/README.md) |
+| Analyze Iam Policy | [source code](https://github.com/googleapis/nodejs-asset/blob/main/samples/analyzeIamPolicy.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-asset&page=editor&open_in_editor=samples/analyzeIamPolicy.js,samples/README.md) |
+| Analyze Iam Policy Longrunning and write results to Bigquery | [source code](https://github.com/googleapis/nodejs-asset/blob/main/samples/analyzeIamPolicyLongrunningBigquery.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-asset&page=editor&open_in_editor=samples/analyzeIamPolicyLongrunningBigquery.js,samples/README.md) |
+| Analyze Iam Policy Longrunning and write results to GCS | [source code](https://github.com/googleapis/nodejs-asset/blob/main/samples/analyzeIamPolicyLongrunningGcs.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-asset&page=editor&open_in_editor=samples/analyzeIamPolicyLongrunningGcs.js,samples/README.md) |
+| Create Feed | [source code](https://github.com/googleapis/nodejs-asset/blob/main/samples/createFeed.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-asset&page=editor&open_in_editor=samples/createFeed.js,samples/README.md) |
+| Delete Feed | [source code](https://github.com/googleapis/nodejs-asset/blob/main/samples/deleteFeed.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-asset&page=editor&open_in_editor=samples/deleteFeed.js,samples/README.md) |
+| Export Assets | [source code](https://github.com/googleapis/nodejs-asset/blob/main/samples/exportAssets.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-asset&page=editor&open_in_editor=samples/exportAssets.js,samples/README.md) |
+| Get Batch Asset History | [source code](https://github.com/googleapis/nodejs-asset/blob/main/samples/getBatchAssetHistory.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-asset&page=editor&open_in_editor=samples/getBatchAssetHistory.js,samples/README.md) |
+| Get Feed | [source code](https://github.com/googleapis/nodejs-asset/blob/main/samples/getFeed.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-asset&page=editor&open_in_editor=samples/getFeed.js,samples/README.md) |
+| List Assets | [source code](https://github.com/googleapis/nodejs-asset/blob/main/samples/listAssets.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-asset&page=editor&open_in_editor=samples/listAssets.js,samples/README.md) |
+| List Feeds | [source code](https://github.com/googleapis/nodejs-asset/blob/main/samples/listFeeds.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-asset&page=editor&open_in_editor=samples/listFeeds.js,samples/README.md) |
+| Asset History Quickstart | [source code](https://github.com/googleapis/nodejs-asset/blob/main/samples/quickstart.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-asset&page=editor&open_in_editor=samples/quickstart.js,samples/README.md) |
+| Search All Iam Policies | [source code](https://github.com/googleapis/nodejs-asset/blob/main/samples/searchAllIamPolicies.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-asset&page=editor&open_in_editor=samples/searchAllIamPolicies.js,samples/README.md) |
+| Search All Resources | [source code](https://github.com/googleapis/nodejs-asset/blob/main/samples/searchAllResources.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-asset&page=editor&open_in_editor=samples/searchAllResources.js,samples/README.md) |
+| Update Feed | [source code](https://github.com/googleapis/nodejs-asset/blob/main/samples/updateFeed.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-asset&page=editor&open_in_editor=samples/updateFeed.js,samples/README.md) |
 
 
 
 The [Cloud Asset Inventory Node.js Client API Reference][client-docs] documentation
 also contains samples.
 
+## Supported Node.js Versions
+
+Our client libraries follow the [Node.js release schedule](https://nodejs.org/en/about/releases/).
+Libraries are compatible with all current _active_ and _maintenance_ versions of
+Node.js.
+
+Client libraries targeting some end-of-life versions of Node.js are available, and
+can be installed via npm [dist-tags](https://docs.npmjs.com/cli/dist-tag).
+The dist-tags follow the naming convention `legacy-(version)`.
+
+_Legacy Node.js versions are supported as a best effort:_
+
+* Legacy versions will not be tested in continuous integration.
+* Some security patches may not be able to be backported.
+* Dependencies will not be kept up-to-date, and features will not be backported.
+
+#### Legacy tags available
+
+* `legacy-8`: install client libraries from this dist-tag for versions
+  compatible with Node.js 8.
+
 ## Versioning
 
 This library follows [Semantic Versioning](http://semver.org/).
 
 
+This library is considered to be **General Availability (GA)**. This means it
+is stable; the code surface will not change in backwards-incompatible ways
+unless absolutely necessary (e.g. because of critical security issues) or with
+an extensive deprecation period. Issues and requests against **GA** libraries
+are addressed with the highest priority.
 
-This library is considered to be in **beta**. This means it is expected to be
-mostly stable while we work toward a general availability release; however,
-complete stability is not guaranteed. We will address issues and requests
-against beta libraries with a high priority.
 
 
 
@@ -127,15 +157,21 @@ More Information: [Google Cloud Platform Launch Stages][launch_stages]
 
 ## Contributing
 
-Contributions welcome! See the [Contributing Guide](https://github.com/googleapis/nodejs-asset/blob/master/CONTRIBUTING.md).
+Contributions welcome! See the [Contributing Guide](https://github.com/googleapis/nodejs-asset/blob/main/CONTRIBUTING.md).
+
+Please note that this `README.md`, the `samples/README.md`,
+and a variety of configuration files in this repository (including `.nycrc` and `tsconfig.json`)
+are generated from a central template. To edit one of these files, make an edit
+to its templates in
+[directory](https://github.com/googleapis/synthtool).
 
 ## License
 
 Apache Version 2.0
 
-See [LICENSE](https://github.com/googleapis/nodejs-asset/blob/master/LICENSE)
+See [LICENSE](https://github.com/googleapis/nodejs-asset/blob/main/LICENSE)
 
-[client-docs]: https://googleapis.dev/nodejs/asset/latest
+[client-docs]: https://cloud.google.com/nodejs/docs/reference/asset/latest
 [product-docs]: https://cloud.google.com/resource-manager/docs/cloud-asset-inventory/overview
 [shell_img]: https://gstatic.com/cloudssh/images/open-btn.png
 [projects]: https://console.cloud.google.com/project

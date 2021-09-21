@@ -4,6 +4,319 @@
 
 [1]: https://www.npmjs.com/package/@google-cloud/asset?activeTab=versions
 
+## [3.19.0](https://www.github.com/googleapis/nodejs-asset/compare/v3.18.0...v3.19.0) (2021-09-07)
+
+
+### Features
+
+* add OSConfigZonalService API Committer: [@jaiminsh](https://www.github.com/jaiminsh) ([#553](https://www.github.com/googleapis/nodejs-asset/issues/553)) ([1ab2458](https://www.github.com/googleapis/nodejs-asset/commit/1ab2458b63ebe46b8aa8edbd2b1837e793d531f1))
+* Release of relationships in v1, Add content type Relationship to support relationship search Committer: yuwangyw@ ([#551](https://www.github.com/googleapis/nodejs-asset/issues/551)) ([56526b0](https://www.github.com/googleapis/nodejs-asset/commit/56526b02d14d15fd6fc469cd614bff9098f3789b))
+
+## [3.18.0](https://www.github.com/googleapis/nodejs-asset/compare/v3.17.0...v3.18.0) (2021-08-30)
+
+
+### Features
+
+* Update osconfig v1 and v1alpha with WindowsApplication ([#548](https://www.github.com/googleapis/nodejs-asset/issues/548)) ([c096de8](https://www.github.com/googleapis/nodejs-asset/commit/c096de83a906953a08508a799014a37b2806da61))
+
+## [3.17.0](https://www.github.com/googleapis/nodejs-asset/compare/v3.16.1...v3.17.0) (2021-08-23)
+
+
+### Features
+
+* turns on self-signed JWT feature flag ([#542](https://www.github.com/googleapis/nodejs-asset/issues/542)) ([4c4137f](https://www.github.com/googleapis/nodejs-asset/commit/4c4137f78ebdd870c027118d2d966149b7beb9b7))
+
+### [3.16.1](https://www.github.com/googleapis/nodejs-asset/compare/v3.16.0...v3.16.1) (2021-08-17)
+
+
+### Bug Fixes
+
+* **deps:** require google-gax v2.24.1 ([#538](https://www.github.com/googleapis/nodejs-asset/issues/538)) ([c6397db](https://www.github.com/googleapis/nodejs-asset/commit/c6397db52e9a6c4b43071c79b9809e9b874097a1))
+
+## [3.16.0](https://www.github.com/googleapis/nodejs-asset/compare/v3.15.5...v3.16.0) (2021-08-16)
+
+
+### Features
+
+* Release of relationships in v1, Add content type Relationship to support relationship export ([#537](https://www.github.com/googleapis/nodejs-asset/issues/537)) ([873aae6](https://www.github.com/googleapis/nodejs-asset/commit/873aae6f9b846a16b5695b692e8ad668d684dc6c))
+
+### [3.15.5](https://www.github.com/googleapis/nodejs-asset/compare/v3.15.4...v3.15.5) (2021-08-13)
+
+
+### Bug Fixes
+
+* failing tests for LRO check methods ([#530](https://www.github.com/googleapis/nodejs-asset/issues/530)) ([c756cd1](https://www.github.com/googleapis/nodejs-asset/commit/c756cd12f9c5b2133c15ddec68936f737c0fa77c))
+
+### [3.15.4](https://www.github.com/googleapis/nodejs-asset/compare/v3.15.3...v3.15.4) (2021-08-11)
+
+
+### Bug Fixes
+
+* **build:** migrate to using main branch ([#534](https://www.github.com/googleapis/nodejs-asset/issues/534)) ([30fa2c4](https://www.github.com/googleapis/nodejs-asset/commit/30fa2c48abe3de2a9482ea5bde9a4f315a726b89))
+
+### [3.15.3](https://www.github.com/googleapis/nodejs-asset/compare/v3.15.2...v3.15.3) (2021-07-16)
+
+
+### Bug Fixes
+
+* Updating WORKSPACE files to use the newest version of the Typescript generator. ([#522](https://www.github.com/googleapis/nodejs-asset/issues/522)) ([015b801](https://www.github.com/googleapis/nodejs-asset/commit/015b80196ecd3b6a0cba17ea0971f4c585b8f972))
+
+### [3.15.2](https://www.github.com/googleapis/nodejs-asset/compare/v3.15.1...v3.15.2) (2021-07-12)
+
+
+### Bug Fixes
+
+* **deps:** google-gax v2.17.1 ([#520](https://www.github.com/googleapis/nodejs-asset/issues/520)) ([24afa66](https://www.github.com/googleapis/nodejs-asset/commit/24afa6682619539c472da03ac813d915d62576b9))
+
+### [3.15.1](https://www.github.com/googleapis/nodejs-asset/compare/v3.15.0...v3.15.1) (2021-06-30)
+
+
+### Bug Fixes
+
+* **deps:** google-gax v2.17.0 with mTLS ([#514](https://www.github.com/googleapis/nodejs-asset/issues/514)) ([85e0ebd](https://www.github.com/googleapis/nodejs-asset/commit/85e0ebd92f326ce52f3a920a8cea9d392ff821b5))
+
+## [3.15.0](https://www.github.com/googleapis/nodejs-asset/compare/v3.14.1...v3.15.0) (2021-06-30)
+
+
+### Features
+
+* add new searchable fields (memberTypes, roles, project, folders and organization), new request fields (assetTypes and orderBy) and new response fields (assetType, folders and organization) in SearchAllIamPolicies ([#511](https://www.github.com/googleapis/nodejs-asset/issues/511)) ([1dfb0e9](https://www.github.com/googleapis/nodejs-asset/commit/1dfb0e95c58fdfbca2807744ea22c52d3c6e7651))
+
+### [3.14.1](https://www.github.com/googleapis/nodejs-asset/compare/v3.14.0...v3.14.1) (2021-06-22)
+
+
+### Bug Fixes
+
+* make request optional in all cases ([#507](https://www.github.com/googleapis/nodejs-asset/issues/507)) ([07b6827](https://www.github.com/googleapis/nodejs-asset/commit/07b68273ea5522ae4c3a94b714f05ee7d32391ef))
+
+## [3.14.0](https://www.github.com/googleapis/nodejs-asset/compare/v3.13.0...v3.14.0) (2021-06-21)
+
+
+### Features
+
+* generate new surface for v1 ([#504](https://www.github.com/googleapis/nodejs-asset/issues/504)) ([e1c6350](https://www.github.com/googleapis/nodejs-asset/commit/e1c6350f09adb6ab1e420de4ce5a3a4fd4c8c252))
+
+## [3.13.0](https://www.github.com/googleapis/nodejs-asset/compare/v3.12.2...v3.13.0) (2021-05-26)
+
+
+### Features
+
+* add Cloud Asset List API, add access time as condition context in request and evaluation value in response for Cloud Asset AnalyzeIamPolicy API, add more info (folders, organizations, kms_key, create_time, update_time, state, parent_full_resource_name, parent_asset_type) in response for Cloud Asset SearchAllResources API ([#491](https://www.github.com/googleapis/nodejs-asset/issues/491)) ([8eea45f](https://www.github.com/googleapis/nodejs-asset/commit/8eea45fe3e5b528faf85a8ebb96e2c0c35a7e66d))
+
+### [3.12.2](https://www.github.com/googleapis/nodejs-asset/compare/v3.12.1...v3.12.2) (2021-05-25)
+
+
+### Bug Fixes
+
+* GoogleAdsError missing using generator version after 1.3.0 ([#492](https://www.github.com/googleapis/nodejs-asset/issues/492)) ([f8f8ed6](https://www.github.com/googleapis/nodejs-asset/commit/f8f8ed67b1f71d2491c9f54eb2beb09475c5663d))
+
+### [3.12.1](https://www.github.com/googleapis/nodejs-asset/compare/v3.12.0...v3.12.1) (2021-05-12)
+
+
+### Bug Fixes
+
+* **deps:** require google-gax v2.12.0 ([#481](https://www.github.com/googleapis/nodejs-asset/issues/481)) ([f6f890f](https://www.github.com/googleapis/nodejs-asset/commit/f6f890fa49a68b0b67556af8dae0ef9d52c43e34))
+* use require() to load JSON protos ([#484](https://www.github.com/googleapis/nodejs-asset/issues/484)) ([1aa6fa9](https://www.github.com/googleapis/nodejs-asset/commit/1aa6fa96540f94bd51784357186db87b080fdfe5))
+
+## [3.12.0](https://www.github.com/googleapis/nodejs-asset/compare/v3.11.0...v3.12.0) (2021-02-09)
+
+
+### Features
+
+* **samples:** add samples for analyzeIamPolicy and analyzeIamPolicyLongrunning ([#433](https://www.github.com/googleapis/nodejs-asset/issues/433)) ([dfbd75c](https://www.github.com/googleapis/nodejs-asset/commit/dfbd75c98f2977d3a9af06e7637c005b82eda973))
+
+## [3.11.0](https://www.github.com/googleapis/nodejs-asset/compare/v3.10.0...v3.11.0) (2021-01-09)
+
+
+### Features
+
+* adds style enumeration ([#445](https://www.github.com/googleapis/nodejs-asset/issues/445)) ([28c3612](https://www.github.com/googleapis/nodejs-asset/commit/28c361225ab0cdc2d4b141b5ef02cac5f257a85b))
+
+## [3.10.0](https://www.github.com/googleapis/nodejs-asset/compare/v3.9.1...v3.10.0) (2020-12-02)
+
+
+### Features
+
+* added support OSInventory in Assets ([#436](https://www.github.com/googleapis/nodejs-asset/issues/436)) ([68298fd](https://www.github.com/googleapis/nodejs-asset/commit/68298fd9ebee3ae119bdb7dc6b848276804e2cda))
+
+### [3.9.1](https://www.github.com/googleapis/nodejs-asset/compare/v3.9.0...v3.9.1) (2020-11-12)
+
+
+### Bug Fixes
+
+* do not modify options object, use defaultScopes ([#419](https://www.github.com/googleapis/nodejs-asset/issues/419)) ([790ffd3](https://www.github.com/googleapis/nodejs-asset/commit/790ffd374b3bad580c2ba5dc5a7fd608d590cf32))
+
+## [3.9.0](https://www.github.com/googleapis/nodejs-asset/compare/v3.8.0...v3.9.0) (2020-11-02)
+
+
+### Features
+
+* add AnalyzeIamPolicy and AnalyzeIamPolicyLongrunning RPCs ([#412](https://www.github.com/googleapis/nodejs-asset/issues/412)) ([43dde85](https://www.github.com/googleapis/nodejs-asset/commit/43dde85f123d0716b5c3b5aad3b3d1d8018399a6))
+
+## [3.8.0](https://www.github.com/googleapis/nodejs-asset/compare/v3.7.1...v3.8.0) (2020-09-16)
+
+
+### Features
+
+* added support for per type and partition export for Cloud Asset API ([#398](https://www.github.com/googleapis/nodejs-asset/issues/398)) ([6462767](https://www.github.com/googleapis/nodejs-asset/commit/64627674e3e23e79ff055ea845d884e8714ad023))
+
+### [3.7.1](https://www.github.com/googleapis/nodejs-asset/compare/v3.7.0...v3.7.1) (2020-09-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove unused AnalyzeIamPolicy and ExportIamPolicyAnalysis RPCs (#393)
+
+### Bug Fixes
+
+* remove unused AnalyzeIamPolicy and ExportIamPolicyAnalysis RPCs ([#393](https://www.github.com/googleapis/nodejs-asset/issues/393)) ([5994b6c](https://www.github.com/googleapis/nodejs-asset/commit/5994b6c74705e71d660f60fbbbfa55fa21b6251f))
+* remove unused AnalyzeIamPolicy and ExportIamPolicyAnalysis RPCs ([#395](https://www.github.com/googleapis/nodejs-asset/issues/395)) ([1d45e05](https://www.github.com/googleapis/nodejs-asset/commit/1d45e05b9241ba18fd906d5c9ac87653e1cc795d))
+* **deps:** update dependency yargs to v16 ([#391](https://www.github.com/googleapis/nodejs-asset/issues/391)) ([ee124ce](https://www.github.com/googleapis/nodejs-asset/commit/ee124ce650607387263f432adcd2afdb1d6065ee))
+
+## [3.7.0](https://www.github.com/googleapis/nodejs-asset/compare/v3.6.0...v3.7.0) (2020-08-24)
+
+
+### Features
+
+* add AnalyzeIamPolicy and ExportIamPolicyAnalysis RPCs ([#386](https://www.github.com/googleapis/nodejs-asset/issues/386)) ([fa0981d](https://www.github.com/googleapis/nodejs-asset/commit/fa0981d949705814b790b2943d725ff4c118edc4))
+
+## [3.6.0](https://www.github.com/googleapis/nodejs-asset/compare/v3.5.1...v3.6.0) (2020-08-14)
+
+
+### Features
+
+* added support OutputResult in ExportAssetsResponse. docs: updated existing docs. ([#381](https://www.github.com/googleapis/nodejs-asset/issues/381)) ([fa8aadd](https://www.github.com/googleapis/nodejs-asset/commit/fa8aaddeadc21f1a7c343d208df21561ecb3ac8c))
+
+### [3.5.1](https://www.github.com/googleapis/nodejs-asset/compare/v3.5.0...v3.5.1) (2020-07-27)
+
+
+### Bug Fixes
+
+* move gitattributes files to node templates ([#371](https://www.github.com/googleapis/nodejs-asset/issues/371)) ([e05f810](https://www.github.com/googleapis/nodejs-asset/commit/e05f810f0f15975d52fd9f6d62c8b194c8e96b5a))
+
+## [3.5.0](https://www.github.com/googleapis/nodejs-asset/compare/v3.4.0...v3.5.0) (2020-07-08)
+
+
+### Features
+
+* **samples:** add sample code for ListAssets v1p5beta1 ([#355](https://www.github.com/googleapis/nodejs-asset/issues/355)) ([1f4cef8](https://www.github.com/googleapis/nodejs-asset/commit/1f4cef8af558cc000aec52c4e92afc1774141c53))
+
+## [3.4.0](https://www.github.com/googleapis/nodejs-asset/compare/v3.3.0...v3.4.0) (2020-06-26)
+
+
+### Features
+
+* add v1p5beta1 API surface ([#349](https://www.github.com/googleapis/nodejs-asset/issues/349)) ([12b8ade](https://www.github.com/googleapis/nodejs-asset/commit/12b8ade2dee42b8578b0364d8876a6932288970c))
+
+## [3.3.0](https://www.github.com/googleapis/nodejs-asset/compare/v3.2.0...v3.3.0) (2020-06-17)
+
+
+### Features
+
+* added support for condition in Feed ([#346](https://www.github.com/googleapis/nodejs-asset/issues/346)) ([3508ee5](https://www.github.com/googleapis/nodejs-asset/commit/3508ee5a7cf7eead10e6d3e2c3df91487898d40e))
+
+## [3.2.0](https://www.github.com/googleapis/nodejs-asset/compare/v3.1.0...v3.2.0) (2020-06-16)
+
+
+### Features
+
+* move ts target to es2018 from es2016 ([#337](https://www.github.com/googleapis/nodejs-asset/issues/337)) ([0590785](https://www.github.com/googleapis/nodejs-asset/commit/0590785ac09c2459bc7c6eb77653a1a0696c27fe))
+
+
+### Bug Fixes
+
+* handle fallback option properly ([77f9ca7](https://www.github.com/googleapis/nodejs-asset/commit/77f9ca77f9e2d0ea13964ba61d69e2fac7c5e969))
+
+## [3.1.0](https://www.github.com/googleapis/nodejs-asset/compare/v3.0.0...v3.1.0) (2020-06-04)
+
+
+### Features
+
+* add `SearchAllResources` and `SearchAllIamPolicies` rpcs in asset service proto ([#332](https://www.github.com/googleapis/nodejs-asset/issues/332)) ([2f896c4](https://www.github.com/googleapis/nodejs-asset/commit/2f896c4fc347823549bd0b38df39fa30c25663bc))
+* added support for project id, order_by in SearchAllResources, search on location, labels and networkTags field ([321bc3a](https://www.github.com/googleapis/nodejs-asset/commit/321bc3ae0c187f29231037705a52ca4b805659ba))
+* check status of long running operation by its name ([#328](https://www.github.com/googleapis/nodejs-asset/issues/328)) ([488a18b](https://www.github.com/googleapis/nodejs-asset/commit/488a18ba934dbd3902595a5d4ea783033486b040))
+* clean proto list, add decoded function for longrunning method ([#327](https://www.github.com/googleapis/nodejs-asset/issues/327)) ([9e710b7](https://www.github.com/googleapis/nodejs-asset/commit/9e710b7a58132d2004ea8de0d1afdf2497ff702a))
+
+
+### Bug Fixes
+
+* remove eslint, update gax, fix generated protos, run the generator ([#311](https://www.github.com/googleapis/nodejs-asset/issues/311)) ([999b782](https://www.github.com/googleapis/nodejs-asset/commit/999b7824a2acb1538b1502029d7055aef930206c))
+* synth.py clean up for multiple version ([#326](https://www.github.com/googleapis/nodejs-asset/issues/326)) ([00e33b0](https://www.github.com/googleapis/nodejs-asset/commit/00e33b008089c8c1f7b8fba2eadef9ab744a75a6))
+* **deps:** update dependency @google-cloud/storage to v5 ([#330](https://www.github.com/googleapis/nodejs-asset/issues/330)) ([238c11a](https://www.github.com/googleapis/nodejs-asset/commit/238c11abedd65bc896762383a753e3c9bc4acddf))
+* **deps:** update dependency uuid to v8 ([#325](https://www.github.com/googleapis/nodejs-asset/issues/325)) ([dba0675](https://www.github.com/googleapis/nodejs-asset/commit/dba06757cbbcdcc244ae88197f01447176fc2ee3))
+
+## [3.0.0](https://www.github.com/googleapis/nodejs-asset/compare/v2.2.0...v3.0.0) (2020-04-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* The library now supports Node.js v10+. The last version to support Node.js v8 is tagged legacy-8 on NPM.
+* removed SearchResources and SearchIamPolicies from v1p1beta1 client
+
+### Features
+
+* add org policy and access context manager protos ([#304](https://www.github.com/googleapis/nodejs-asset/issues/304)) ([4d18cc7](https://www.github.com/googleapis/nodejs-asset/commit/4d18cc7ac2fc4d4bae9999291575e8c3a020947f))
+* adds v1p4beta1 API surface ([#285](https://www.github.com/googleapis/nodejs-asset/issues/285)) ([9dee03a](https://www.github.com/googleapis/nodejs-asset/commit/9dee03a546df19ae1fc92f25f07f994e010f4ac4))
+* deferred client initialization ([#281](https://www.github.com/googleapis/nodejs-asset/issues/281)) ([8148ab0](https://www.github.com/googleapis/nodejs-asset/commit/8148ab0e075c36e2c49d2af96791f83398529b87))
+* drop node8 support, support for async iterators ([#299](https://www.github.com/googleapis/nodejs-asset/issues/299)) ([ae14ae8](https://www.github.com/googleapis/nodejs-asset/commit/ae14ae8fc84defbd65b06fdaaef94e07a1294e1b))
+* removed SearchResources and SearchIamPolicies from v1p1beta1 client ([184fd2f](https://www.github.com/googleapis/nodejs-asset/commit/184fd2fd3ee9cc32312f671398992f3b453fb78d))
+
+
+### Bug Fixes
+
+* in rare cases test can take longer than 180,000 timeout ([#307](https://www.github.com/googleapis/nodejs-asset/issues/307)) ([8a528fa](https://www.github.com/googleapis/nodejs-asset/commit/8a528fac934ce8dd1378c06a89b52c5d76286a9b))
+
+## [2.2.0](https://www.github.com/googleapis/nodejs-asset/compare/v2.1.0...v2.2.0) (2020-02-27)
+
+
+### Features
+
+* export protos in src/index.ts ([8f5e942](https://www.github.com/googleapis/nodejs-asset/commit/8f5e942bbe170dd2835c40c1d4354e822e2cbbce))
+
+
+### Bug Fixes
+
+* **deps:** update dependency uuid to v7 ([d83c322](https://www.github.com/googleapis/nodejs-asset/commit/d83c322d75e0b607cf019a837a040137a8925356))
+
+## [2.1.0](https://www.github.com/googleapis/nodejs-asset/compare/v2.0.1...v2.1.0) (2020-02-13)
+
+
+### Features
+
+* bump release level to ga ([#264](https://www.github.com/googleapis/nodejs-asset/issues/264)) ([b432a76](https://www.github.com/googleapis/nodejs-asset/commit/b432a76f80b0499125cd091135bc1f215dbaae64))
+
+### [2.0.1](https://www.github.com/googleapis/nodejs-asset/compare/v2.0.0...v2.0.1) (2020-02-10)
+
+
+### Bug Fixes
+
+* useless path template methods removed ([af1c939](https://www.github.com/googleapis/nodejs-asset/commit/af1c9398a284e62346758a1ce29f88e5f6692e67))
+
+## [2.0.0](https://www.github.com/googleapis/nodejs-asset/compare/v1.6.1...v2.0.0) (2020-01-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* removes projectPath helper, instead use "projects/${project}".
+
+### Features
+
+* converts library to TypeScript adding v1p1beta1 surface ([#250](https://www.github.com/googleapis/nodejs-asset/issues/250)) ([54c1c48](https://www.github.com/googleapis/nodejs-asset/commit/54c1c48ebe364b665763fe056bd89401d11e020b))
+
+### [1.6.1](https://www.github.com/googleapis/nodejs-asset/compare/v1.6.0...v1.6.1) (2020-01-28)
+
+
+### Bug Fixes
+
+* enum, bytes, and Long types now accept strings ([21d58e1](https://www.github.com/googleapis/nodejs-asset/commit/21d58e1398b9af89a632083fa37e29a2157f3992))
+
+## [1.6.0](https://www.github.com/googleapis/nodejs-asset/compare/v1.5.0...v1.6.0) (2020-01-06)
+
+
+### Features
+
+* **samples:** update real time feed api sample code to use v1 API surface ([f15d2e2](https://www.github.com/googleapis/nodejs-asset/commit/f15d2e2cb4ff56bcc0fe5d83a090f5c92e4b25df))
+
 ## [1.5.0](https://www.github.com/googleapis/nodejs-asset/compare/v1.4.2...v1.5.0) (2019-12-06)
 
 
