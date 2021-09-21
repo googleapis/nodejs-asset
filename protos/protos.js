@@ -13839,6 +13839,7 @@
                          * @property {string|null} [parentFullResourceName] ResourceSearchResult parentFullResourceName
                          * @property {Array.<google.cloud.asset.v1.IVersionedResource>|null} [versionedResources] ResourceSearchResult versionedResources
                          * @property {Array.<google.cloud.asset.v1.IAttachedResource>|null} [attachedResources] ResourceSearchResult attachedResources
+                         * @property {Object.<string,google.cloud.asset.v1.IRelatedResources>|null} [relationships] ResourceSearchResult relationships
                          * @property {string|null} [parentAssetType] ResourceSearchResult parentAssetType
                          */
     
@@ -13856,6 +13857,7 @@
                             this.networkTags = [];
                             this.versionedResources = [];
                             this.attachedResources = [];
+                            this.relationships = {};
                             if (properties)
                                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                                     if (properties[keys[i]] != null)
@@ -14007,6 +14009,14 @@
                         ResourceSearchResult.prototype.attachedResources = $util.emptyArray;
     
                         /**
+                         * ResourceSearchResult relationships.
+                         * @member {Object.<string,google.cloud.asset.v1.IRelatedResources>} relationships
+                         * @memberof google.cloud.asset.v1.ResourceSearchResult
+                         * @instance
+                         */
+                        ResourceSearchResult.prototype.relationships = $util.emptyObject;
+    
+                        /**
                          * ResourceSearchResult parentAssetType.
                          * @member {string} parentAssetType
                          * @memberof google.cloud.asset.v1.ResourceSearchResult
@@ -14079,6 +14089,11 @@
                             if (message.attachedResources != null && message.attachedResources.length)
                                 for (var i = 0; i < message.attachedResources.length; ++i)
                                     $root.google.cloud.asset.v1.AttachedResource.encode(message.attachedResources[i], writer.uint32(/* id 20, wireType 2 =*/162).fork()).ldelim();
+                            if (message.relationships != null && Object.hasOwnProperty.call(message, "relationships"))
+                                for (var keys = Object.keys(message.relationships), i = 0; i < keys.length; ++i) {
+                                    writer.uint32(/* id 21, wireType 2 =*/170).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]);
+                                    $root.google.cloud.asset.v1.RelatedResources.encode(message.relationships[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim().ldelim();
+                                }
                             if (message.parentAssetType != null && Object.hasOwnProperty.call(message, "parentAssetType"))
                                 writer.uint32(/* id 103, wireType 2 =*/826).string(message.parentAssetType);
                             return writer;
@@ -14195,6 +14210,28 @@
                                     if (!(message.attachedResources && message.attachedResources.length))
                                         message.attachedResources = [];
                                     message.attachedResources.push($root.google.cloud.asset.v1.AttachedResource.decode(reader, reader.uint32()));
+                                    break;
+                                case 21:
+                                    if (message.relationships === $util.emptyObject)
+                                        message.relationships = {};
+                                    var end2 = reader.uint32() + reader.pos;
+                                    key = "";
+                                    value = null;
+                                    while (reader.pos < end2) {
+                                        var tag2 = reader.uint32();
+                                        switch (tag2 >>> 3) {
+                                        case 1:
+                                            key = reader.string();
+                                            break;
+                                        case 2:
+                                            value = $root.google.cloud.asset.v1.RelatedResources.decode(reader, reader.uint32());
+                                            break;
+                                        default:
+                                            reader.skipType(tag2 & 7);
+                                            break;
+                                        }
+                                    }
+                                    message.relationships[key] = value;
                                     break;
                                 case 103:
                                     message.parentAssetType = reader.string();
@@ -14319,6 +14356,16 @@
                                         return "attachedResources." + error;
                                 }
                             }
+                            if (message.relationships != null && message.hasOwnProperty("relationships")) {
+                                if (!$util.isObject(message.relationships))
+                                    return "relationships: object expected";
+                                var key = Object.keys(message.relationships);
+                                for (var i = 0; i < key.length; ++i) {
+                                    var error = $root.google.cloud.asset.v1.RelatedResources.verify(message.relationships[key[i]]);
+                                    if (error)
+                                        return "relationships." + error;
+                                }
+                            }
                             if (message.parentAssetType != null && message.hasOwnProperty("parentAssetType"))
                                 if (!$util.isString(message.parentAssetType))
                                     return "parentAssetType: string expected";
@@ -14413,6 +14460,16 @@
                                     message.attachedResources[i] = $root.google.cloud.asset.v1.AttachedResource.fromObject(object.attachedResources[i]);
                                 }
                             }
+                            if (object.relationships) {
+                                if (typeof object.relationships !== "object")
+                                    throw TypeError(".google.cloud.asset.v1.ResourceSearchResult.relationships: object expected");
+                                message.relationships = {};
+                                for (var keys = Object.keys(object.relationships), i = 0; i < keys.length; ++i) {
+                                    if (typeof object.relationships[keys[i]] !== "object")
+                                        throw TypeError(".google.cloud.asset.v1.ResourceSearchResult.relationships: object expected");
+                                    message.relationships[keys[i]] = $root.google.cloud.asset.v1.RelatedResources.fromObject(object.relationships[keys[i]]);
+                                }
+                            }
                             if (object.parentAssetType != null)
                                 message.parentAssetType = String(object.parentAssetType);
                             return message;
@@ -14437,8 +14494,10 @@
                                 object.folders = [];
                                 object.attachedResources = [];
                             }
-                            if (options.objects || options.defaults)
+                            if (options.objects || options.defaults) {
                                 object.labels = {};
+                                object.relationships = {};
+                            }
                             if (options.defaults) {
                                 object.name = "";
                                 object.assetType = "";
@@ -14506,6 +14565,11 @@
                                 object.attachedResources = [];
                                 for (var j = 0; j < message.attachedResources.length; ++j)
                                     object.attachedResources[j] = $root.google.cloud.asset.v1.AttachedResource.toObject(message.attachedResources[j], options);
+                            }
+                            if (message.relationships && (keys2 = Object.keys(message.relationships)).length) {
+                                object.relationships = {};
+                                for (var j = 0; j < keys2.length; ++j)
+                                    object.relationships[keys2[j]] = $root.google.cloud.asset.v1.RelatedResources.toObject(message.relationships[keys2[j]], options);
                             }
                             if (message.parentAssetType != null && message.hasOwnProperty("parentAssetType"))
                                 object.parentAssetType = message.parentAssetType;
@@ -14970,6 +15034,424 @@
                         };
     
                         return AttachedResource;
+                    })();
+    
+                    v1.RelatedResources = (function() {
+    
+                        /**
+                         * Properties of a RelatedResources.
+                         * @memberof google.cloud.asset.v1
+                         * @interface IRelatedResources
+                         * @property {Array.<google.cloud.asset.v1.IRelatedResource>|null} [relatedResources] RelatedResources relatedResources
+                         */
+    
+                        /**
+                         * Constructs a new RelatedResources.
+                         * @memberof google.cloud.asset.v1
+                         * @classdesc Represents a RelatedResources.
+                         * @implements IRelatedResources
+                         * @constructor
+                         * @param {google.cloud.asset.v1.IRelatedResources=} [properties] Properties to set
+                         */
+                        function RelatedResources(properties) {
+                            this.relatedResources = [];
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * RelatedResources relatedResources.
+                         * @member {Array.<google.cloud.asset.v1.IRelatedResource>} relatedResources
+                         * @memberof google.cloud.asset.v1.RelatedResources
+                         * @instance
+                         */
+                        RelatedResources.prototype.relatedResources = $util.emptyArray;
+    
+                        /**
+                         * Creates a new RelatedResources instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.asset.v1.RelatedResources
+                         * @static
+                         * @param {google.cloud.asset.v1.IRelatedResources=} [properties] Properties to set
+                         * @returns {google.cloud.asset.v1.RelatedResources} RelatedResources instance
+                         */
+                        RelatedResources.create = function create(properties) {
+                            return new RelatedResources(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified RelatedResources message. Does not implicitly {@link google.cloud.asset.v1.RelatedResources.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.asset.v1.RelatedResources
+                         * @static
+                         * @param {google.cloud.asset.v1.IRelatedResources} message RelatedResources message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        RelatedResources.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.relatedResources != null && message.relatedResources.length)
+                                for (var i = 0; i < message.relatedResources.length; ++i)
+                                    $root.google.cloud.asset.v1.RelatedResource.encode(message.relatedResources[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified RelatedResources message, length delimited. Does not implicitly {@link google.cloud.asset.v1.RelatedResources.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.asset.v1.RelatedResources
+                         * @static
+                         * @param {google.cloud.asset.v1.IRelatedResources} message RelatedResources message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        RelatedResources.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a RelatedResources message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.asset.v1.RelatedResources
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.asset.v1.RelatedResources} RelatedResources
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        RelatedResources.decode = function decode(reader, length) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.asset.v1.RelatedResources();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                switch (tag >>> 3) {
+                                case 1:
+                                    if (!(message.relatedResources && message.relatedResources.length))
+                                        message.relatedResources = [];
+                                    message.relatedResources.push($root.google.cloud.asset.v1.RelatedResource.decode(reader, reader.uint32()));
+                                    break;
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a RelatedResources message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.asset.v1.RelatedResources
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.asset.v1.RelatedResources} RelatedResources
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        RelatedResources.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a RelatedResources message.
+                         * @function verify
+                         * @memberof google.cloud.asset.v1.RelatedResources
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        RelatedResources.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.relatedResources != null && message.hasOwnProperty("relatedResources")) {
+                                if (!Array.isArray(message.relatedResources))
+                                    return "relatedResources: array expected";
+                                for (var i = 0; i < message.relatedResources.length; ++i) {
+                                    var error = $root.google.cloud.asset.v1.RelatedResource.verify(message.relatedResources[i]);
+                                    if (error)
+                                        return "relatedResources." + error;
+                                }
+                            }
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a RelatedResources message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.asset.v1.RelatedResources
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.asset.v1.RelatedResources} RelatedResources
+                         */
+                        RelatedResources.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.asset.v1.RelatedResources)
+                                return object;
+                            var message = new $root.google.cloud.asset.v1.RelatedResources();
+                            if (object.relatedResources) {
+                                if (!Array.isArray(object.relatedResources))
+                                    throw TypeError(".google.cloud.asset.v1.RelatedResources.relatedResources: array expected");
+                                message.relatedResources = [];
+                                for (var i = 0; i < object.relatedResources.length; ++i) {
+                                    if (typeof object.relatedResources[i] !== "object")
+                                        throw TypeError(".google.cloud.asset.v1.RelatedResources.relatedResources: object expected");
+                                    message.relatedResources[i] = $root.google.cloud.asset.v1.RelatedResource.fromObject(object.relatedResources[i]);
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a RelatedResources message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.asset.v1.RelatedResources
+                         * @static
+                         * @param {google.cloud.asset.v1.RelatedResources} message RelatedResources
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        RelatedResources.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.arrays || options.defaults)
+                                object.relatedResources = [];
+                            if (message.relatedResources && message.relatedResources.length) {
+                                object.relatedResources = [];
+                                for (var j = 0; j < message.relatedResources.length; ++j)
+                                    object.relatedResources[j] = $root.google.cloud.asset.v1.RelatedResource.toObject(message.relatedResources[j], options);
+                            }
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this RelatedResources to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.asset.v1.RelatedResources
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        RelatedResources.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        return RelatedResources;
+                    })();
+    
+                    v1.RelatedResource = (function() {
+    
+                        /**
+                         * Properties of a RelatedResource.
+                         * @memberof google.cloud.asset.v1
+                         * @interface IRelatedResource
+                         * @property {string|null} [assetType] RelatedResource assetType
+                         * @property {string|null} [fullResourceName] RelatedResource fullResourceName
+                         */
+    
+                        /**
+                         * Constructs a new RelatedResource.
+                         * @memberof google.cloud.asset.v1
+                         * @classdesc Represents a RelatedResource.
+                         * @implements IRelatedResource
+                         * @constructor
+                         * @param {google.cloud.asset.v1.IRelatedResource=} [properties] Properties to set
+                         */
+                        function RelatedResource(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * RelatedResource assetType.
+                         * @member {string} assetType
+                         * @memberof google.cloud.asset.v1.RelatedResource
+                         * @instance
+                         */
+                        RelatedResource.prototype.assetType = "";
+    
+                        /**
+                         * RelatedResource fullResourceName.
+                         * @member {string} fullResourceName
+                         * @memberof google.cloud.asset.v1.RelatedResource
+                         * @instance
+                         */
+                        RelatedResource.prototype.fullResourceName = "";
+    
+                        /**
+                         * Creates a new RelatedResource instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.asset.v1.RelatedResource
+                         * @static
+                         * @param {google.cloud.asset.v1.IRelatedResource=} [properties] Properties to set
+                         * @returns {google.cloud.asset.v1.RelatedResource} RelatedResource instance
+                         */
+                        RelatedResource.create = function create(properties) {
+                            return new RelatedResource(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified RelatedResource message. Does not implicitly {@link google.cloud.asset.v1.RelatedResource.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.asset.v1.RelatedResource
+                         * @static
+                         * @param {google.cloud.asset.v1.IRelatedResource} message RelatedResource message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        RelatedResource.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.assetType != null && Object.hasOwnProperty.call(message, "assetType"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.assetType);
+                            if (message.fullResourceName != null && Object.hasOwnProperty.call(message, "fullResourceName"))
+                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.fullResourceName);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified RelatedResource message, length delimited. Does not implicitly {@link google.cloud.asset.v1.RelatedResource.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.asset.v1.RelatedResource
+                         * @static
+                         * @param {google.cloud.asset.v1.IRelatedResource} message RelatedResource message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        RelatedResource.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a RelatedResource message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.asset.v1.RelatedResource
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.asset.v1.RelatedResource} RelatedResource
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        RelatedResource.decode = function decode(reader, length) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.asset.v1.RelatedResource();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                switch (tag >>> 3) {
+                                case 1:
+                                    message.assetType = reader.string();
+                                    break;
+                                case 2:
+                                    message.fullResourceName = reader.string();
+                                    break;
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a RelatedResource message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.asset.v1.RelatedResource
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.asset.v1.RelatedResource} RelatedResource
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        RelatedResource.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a RelatedResource message.
+                         * @function verify
+                         * @memberof google.cloud.asset.v1.RelatedResource
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        RelatedResource.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.assetType != null && message.hasOwnProperty("assetType"))
+                                if (!$util.isString(message.assetType))
+                                    return "assetType: string expected";
+                            if (message.fullResourceName != null && message.hasOwnProperty("fullResourceName"))
+                                if (!$util.isString(message.fullResourceName))
+                                    return "fullResourceName: string expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a RelatedResource message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.asset.v1.RelatedResource
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.asset.v1.RelatedResource} RelatedResource
+                         */
+                        RelatedResource.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.asset.v1.RelatedResource)
+                                return object;
+                            var message = new $root.google.cloud.asset.v1.RelatedResource();
+                            if (object.assetType != null)
+                                message.assetType = String(object.assetType);
+                            if (object.fullResourceName != null)
+                                message.fullResourceName = String(object.fullResourceName);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a RelatedResource message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.asset.v1.RelatedResource
+                         * @static
+                         * @param {google.cloud.asset.v1.RelatedResource} message RelatedResource
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        RelatedResource.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.assetType = "";
+                                object.fullResourceName = "";
+                            }
+                            if (message.assetType != null && message.hasOwnProperty("assetType"))
+                                object.assetType = message.assetType;
+                            if (message.fullResourceName != null && message.hasOwnProperty("fullResourceName"))
+                                object.fullResourceName = message.fullResourceName;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this RelatedResource to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.asset.v1.RelatedResource
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        RelatedResource.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        return RelatedResource;
                     })();
     
                     v1.IamPolicySearchResult = (function() {
@@ -31898,8 +32380,10 @@
                          * Properties of an Inventory.
                          * @memberof google.cloud.osconfig.v1
                          * @interface IInventory
+                         * @property {string|null} [name] Inventory name
                          * @property {google.cloud.osconfig.v1.Inventory.IOsInfo|null} [osInfo] Inventory osInfo
                          * @property {Object.<string,google.cloud.osconfig.v1.Inventory.IItem>|null} [items] Inventory items
+                         * @property {google.protobuf.ITimestamp|null} [updateTime] Inventory updateTime
                          */
     
                         /**
@@ -31919,6 +32403,14 @@
                         }
     
                         /**
+                         * Inventory name.
+                         * @member {string} name
+                         * @memberof google.cloud.osconfig.v1.Inventory
+                         * @instance
+                         */
+                        Inventory.prototype.name = "";
+    
+                        /**
                          * Inventory osInfo.
                          * @member {google.cloud.osconfig.v1.Inventory.IOsInfo|null|undefined} osInfo
                          * @memberof google.cloud.osconfig.v1.Inventory
@@ -31933,6 +32425,14 @@
                          * @instance
                          */
                         Inventory.prototype.items = $util.emptyObject;
+    
+                        /**
+                         * Inventory updateTime.
+                         * @member {google.protobuf.ITimestamp|null|undefined} updateTime
+                         * @memberof google.cloud.osconfig.v1.Inventory
+                         * @instance
+                         */
+                        Inventory.prototype.updateTime = null;
     
                         /**
                          * Creates a new Inventory instance using the specified properties.
@@ -31965,6 +32465,10 @@
                                     writer.uint32(/* id 2, wireType 2 =*/18).fork().uint32(/* id 1, wireType 2 =*/10).string(keys[i]);
                                     $root.google.cloud.osconfig.v1.Inventory.Item.encode(message.items[keys[i]], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim().ldelim();
                                 }
+                            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                                writer.uint32(/* id 3, wireType 2 =*/26).string(message.name);
+                            if (message.updateTime != null && Object.hasOwnProperty.call(message, "updateTime"))
+                                $root.google.protobuf.Timestamp.encode(message.updateTime, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
                             return writer;
                         };
     
@@ -31999,6 +32503,9 @@
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
                                 switch (tag >>> 3) {
+                                case 3:
+                                    message.name = reader.string();
+                                    break;
                                 case 1:
                                     message.osInfo = $root.google.cloud.osconfig.v1.Inventory.OsInfo.decode(reader, reader.uint32());
                                     break;
@@ -32023,6 +32530,9 @@
                                         }
                                     }
                                     message.items[key] = value;
+                                    break;
+                                case 4:
+                                    message.updateTime = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
                                     break;
                                 default:
                                     reader.skipType(tag & 7);
@@ -32059,6 +32569,9 @@
                         Inventory.verify = function verify(message) {
                             if (typeof message !== "object" || message === null)
                                 return "object expected";
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                if (!$util.isString(message.name))
+                                    return "name: string expected";
                             if (message.osInfo != null && message.hasOwnProperty("osInfo")) {
                                 var error = $root.google.cloud.osconfig.v1.Inventory.OsInfo.verify(message.osInfo);
                                 if (error)
@@ -32073,6 +32586,11 @@
                                     if (error)
                                         return "items." + error;
                                 }
+                            }
+                            if (message.updateTime != null && message.hasOwnProperty("updateTime")) {
+                                var error = $root.google.protobuf.Timestamp.verify(message.updateTime);
+                                if (error)
+                                    return "updateTime." + error;
                             }
                             return null;
                         };
@@ -32089,6 +32607,8 @@
                             if (object instanceof $root.google.cloud.osconfig.v1.Inventory)
                                 return object;
                             var message = new $root.google.cloud.osconfig.v1.Inventory();
+                            if (object.name != null)
+                                message.name = String(object.name);
                             if (object.osInfo != null) {
                                 if (typeof object.osInfo !== "object")
                                     throw TypeError(".google.cloud.osconfig.v1.Inventory.osInfo: object expected");
@@ -32103,6 +32623,11 @@
                                         throw TypeError(".google.cloud.osconfig.v1.Inventory.items: object expected");
                                     message.items[keys[i]] = $root.google.cloud.osconfig.v1.Inventory.Item.fromObject(object.items[keys[i]]);
                                 }
+                            }
+                            if (object.updateTime != null) {
+                                if (typeof object.updateTime !== "object")
+                                    throw TypeError(".google.cloud.osconfig.v1.Inventory.updateTime: object expected");
+                                message.updateTime = $root.google.protobuf.Timestamp.fromObject(object.updateTime);
                             }
                             return message;
                         };
@@ -32122,8 +32647,11 @@
                             var object = {};
                             if (options.objects || options.defaults)
                                 object.items = {};
-                            if (options.defaults)
+                            if (options.defaults) {
                                 object.osInfo = null;
+                                object.name = "";
+                                object.updateTime = null;
+                            }
                             if (message.osInfo != null && message.hasOwnProperty("osInfo"))
                                 object.osInfo = $root.google.cloud.osconfig.v1.Inventory.OsInfo.toObject(message.osInfo, options);
                             var keys2;
@@ -32132,6 +32660,10 @@
                                 for (var j = 0; j < keys2.length; ++j)
                                     object.items[keys2[j]] = $root.google.cloud.osconfig.v1.Inventory.Item.toObject(message.items[keys2[j]], options);
                             }
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                object.name = message.name;
+                            if (message.updateTime != null && message.hasOwnProperty("updateTime"))
+                                object.updateTime = $root.google.protobuf.Timestamp.toObject(message.updateTime, options);
                             return object;
                         };
     
@@ -33631,6 +34163,260 @@
                             return VersionedPackage;
                         })();
     
+                        Inventory.ZypperPatch = (function() {
+    
+                            /**
+                             * Properties of a ZypperPatch.
+                             * @memberof google.cloud.osconfig.v1.Inventory
+                             * @interface IZypperPatch
+                             * @property {string|null} [patchName] ZypperPatch patchName
+                             * @property {string|null} [category] ZypperPatch category
+                             * @property {string|null} [severity] ZypperPatch severity
+                             * @property {string|null} [summary] ZypperPatch summary
+                             */
+    
+                            /**
+                             * Constructs a new ZypperPatch.
+                             * @memberof google.cloud.osconfig.v1.Inventory
+                             * @classdesc Represents a ZypperPatch.
+                             * @implements IZypperPatch
+                             * @constructor
+                             * @param {google.cloud.osconfig.v1.Inventory.IZypperPatch=} [properties] Properties to set
+                             */
+                            function ZypperPatch(properties) {
+                                if (properties)
+                                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                        if (properties[keys[i]] != null)
+                                            this[keys[i]] = properties[keys[i]];
+                            }
+    
+                            /**
+                             * ZypperPatch patchName.
+                             * @member {string} patchName
+                             * @memberof google.cloud.osconfig.v1.Inventory.ZypperPatch
+                             * @instance
+                             */
+                            ZypperPatch.prototype.patchName = "";
+    
+                            /**
+                             * ZypperPatch category.
+                             * @member {string} category
+                             * @memberof google.cloud.osconfig.v1.Inventory.ZypperPatch
+                             * @instance
+                             */
+                            ZypperPatch.prototype.category = "";
+    
+                            /**
+                             * ZypperPatch severity.
+                             * @member {string} severity
+                             * @memberof google.cloud.osconfig.v1.Inventory.ZypperPatch
+                             * @instance
+                             */
+                            ZypperPatch.prototype.severity = "";
+    
+                            /**
+                             * ZypperPatch summary.
+                             * @member {string} summary
+                             * @memberof google.cloud.osconfig.v1.Inventory.ZypperPatch
+                             * @instance
+                             */
+                            ZypperPatch.prototype.summary = "";
+    
+                            /**
+                             * Creates a new ZypperPatch instance using the specified properties.
+                             * @function create
+                             * @memberof google.cloud.osconfig.v1.Inventory.ZypperPatch
+                             * @static
+                             * @param {google.cloud.osconfig.v1.Inventory.IZypperPatch=} [properties] Properties to set
+                             * @returns {google.cloud.osconfig.v1.Inventory.ZypperPatch} ZypperPatch instance
+                             */
+                            ZypperPatch.create = function create(properties) {
+                                return new ZypperPatch(properties);
+                            };
+    
+                            /**
+                             * Encodes the specified ZypperPatch message. Does not implicitly {@link google.cloud.osconfig.v1.Inventory.ZypperPatch.verify|verify} messages.
+                             * @function encode
+                             * @memberof google.cloud.osconfig.v1.Inventory.ZypperPatch
+                             * @static
+                             * @param {google.cloud.osconfig.v1.Inventory.IZypperPatch} message ZypperPatch message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            ZypperPatch.encode = function encode(message, writer) {
+                                if (!writer)
+                                    writer = $Writer.create();
+                                if (message.category != null && Object.hasOwnProperty.call(message, "category"))
+                                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.category);
+                                if (message.severity != null && Object.hasOwnProperty.call(message, "severity"))
+                                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.severity);
+                                if (message.summary != null && Object.hasOwnProperty.call(message, "summary"))
+                                    writer.uint32(/* id 4, wireType 2 =*/34).string(message.summary);
+                                if (message.patchName != null && Object.hasOwnProperty.call(message, "patchName"))
+                                    writer.uint32(/* id 5, wireType 2 =*/42).string(message.patchName);
+                                return writer;
+                            };
+    
+                            /**
+                             * Encodes the specified ZypperPatch message, length delimited. Does not implicitly {@link google.cloud.osconfig.v1.Inventory.ZypperPatch.verify|verify} messages.
+                             * @function encodeDelimited
+                             * @memberof google.cloud.osconfig.v1.Inventory.ZypperPatch
+                             * @static
+                             * @param {google.cloud.osconfig.v1.Inventory.IZypperPatch} message ZypperPatch message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            ZypperPatch.encodeDelimited = function encodeDelimited(message, writer) {
+                                return this.encode(message, writer).ldelim();
+                            };
+    
+                            /**
+                             * Decodes a ZypperPatch message from the specified reader or buffer.
+                             * @function decode
+                             * @memberof google.cloud.osconfig.v1.Inventory.ZypperPatch
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @param {number} [length] Message length if known beforehand
+                             * @returns {google.cloud.osconfig.v1.Inventory.ZypperPatch} ZypperPatch
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            ZypperPatch.decode = function decode(reader, length) {
+                                if (!(reader instanceof $Reader))
+                                    reader = $Reader.create(reader);
+                                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.osconfig.v1.Inventory.ZypperPatch();
+                                while (reader.pos < end) {
+                                    var tag = reader.uint32();
+                                    switch (tag >>> 3) {
+                                    case 5:
+                                        message.patchName = reader.string();
+                                        break;
+                                    case 2:
+                                        message.category = reader.string();
+                                        break;
+                                    case 3:
+                                        message.severity = reader.string();
+                                        break;
+                                    case 4:
+                                        message.summary = reader.string();
+                                        break;
+                                    default:
+                                        reader.skipType(tag & 7);
+                                        break;
+                                    }
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Decodes a ZypperPatch message from the specified reader or buffer, length delimited.
+                             * @function decodeDelimited
+                             * @memberof google.cloud.osconfig.v1.Inventory.ZypperPatch
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @returns {google.cloud.osconfig.v1.Inventory.ZypperPatch} ZypperPatch
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            ZypperPatch.decodeDelimited = function decodeDelimited(reader) {
+                                if (!(reader instanceof $Reader))
+                                    reader = new $Reader(reader);
+                                return this.decode(reader, reader.uint32());
+                            };
+    
+                            /**
+                             * Verifies a ZypperPatch message.
+                             * @function verify
+                             * @memberof google.cloud.osconfig.v1.Inventory.ZypperPatch
+                             * @static
+                             * @param {Object.<string,*>} message Plain object to verify
+                             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                             */
+                            ZypperPatch.verify = function verify(message) {
+                                if (typeof message !== "object" || message === null)
+                                    return "object expected";
+                                if (message.patchName != null && message.hasOwnProperty("patchName"))
+                                    if (!$util.isString(message.patchName))
+                                        return "patchName: string expected";
+                                if (message.category != null && message.hasOwnProperty("category"))
+                                    if (!$util.isString(message.category))
+                                        return "category: string expected";
+                                if (message.severity != null && message.hasOwnProperty("severity"))
+                                    if (!$util.isString(message.severity))
+                                        return "severity: string expected";
+                                if (message.summary != null && message.hasOwnProperty("summary"))
+                                    if (!$util.isString(message.summary))
+                                        return "summary: string expected";
+                                return null;
+                            };
+    
+                            /**
+                             * Creates a ZypperPatch message from a plain object. Also converts values to their respective internal types.
+                             * @function fromObject
+                             * @memberof google.cloud.osconfig.v1.Inventory.ZypperPatch
+                             * @static
+                             * @param {Object.<string,*>} object Plain object
+                             * @returns {google.cloud.osconfig.v1.Inventory.ZypperPatch} ZypperPatch
+                             */
+                            ZypperPatch.fromObject = function fromObject(object) {
+                                if (object instanceof $root.google.cloud.osconfig.v1.Inventory.ZypperPatch)
+                                    return object;
+                                var message = new $root.google.cloud.osconfig.v1.Inventory.ZypperPatch();
+                                if (object.patchName != null)
+                                    message.patchName = String(object.patchName);
+                                if (object.category != null)
+                                    message.category = String(object.category);
+                                if (object.severity != null)
+                                    message.severity = String(object.severity);
+                                if (object.summary != null)
+                                    message.summary = String(object.summary);
+                                return message;
+                            };
+    
+                            /**
+                             * Creates a plain object from a ZypperPatch message. Also converts values to other types if specified.
+                             * @function toObject
+                             * @memberof google.cloud.osconfig.v1.Inventory.ZypperPatch
+                             * @static
+                             * @param {google.cloud.osconfig.v1.Inventory.ZypperPatch} message ZypperPatch
+                             * @param {$protobuf.IConversionOptions} [options] Conversion options
+                             * @returns {Object.<string,*>} Plain object
+                             */
+                            ZypperPatch.toObject = function toObject(message, options) {
+                                if (!options)
+                                    options = {};
+                                var object = {};
+                                if (options.defaults) {
+                                    object.category = "";
+                                    object.severity = "";
+                                    object.summary = "";
+                                    object.patchName = "";
+                                }
+                                if (message.category != null && message.hasOwnProperty("category"))
+                                    object.category = message.category;
+                                if (message.severity != null && message.hasOwnProperty("severity"))
+                                    object.severity = message.severity;
+                                if (message.summary != null && message.hasOwnProperty("summary"))
+                                    object.summary = message.summary;
+                                if (message.patchName != null && message.hasOwnProperty("patchName"))
+                                    object.patchName = message.patchName;
+                                return object;
+                            };
+    
+                            /**
+                             * Converts this ZypperPatch to JSON.
+                             * @function toJSON
+                             * @memberof google.cloud.osconfig.v1.Inventory.ZypperPatch
+                             * @instance
+                             * @returns {Object.<string,*>} JSON object
+                             */
+                            ZypperPatch.prototype.toJSON = function toJSON() {
+                                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                            };
+    
+                            return ZypperPatch;
+                        })();
+    
                         Inventory.WindowsUpdatePackage = (function() {
     
                             /**
@@ -34265,260 +35051,6 @@
                             return WindowsUpdatePackage;
                         })();
     
-                        Inventory.ZypperPatch = (function() {
-    
-                            /**
-                             * Properties of a ZypperPatch.
-                             * @memberof google.cloud.osconfig.v1.Inventory
-                             * @interface IZypperPatch
-                             * @property {string|null} [patchName] ZypperPatch patchName
-                             * @property {string|null} [category] ZypperPatch category
-                             * @property {string|null} [severity] ZypperPatch severity
-                             * @property {string|null} [summary] ZypperPatch summary
-                             */
-    
-                            /**
-                             * Constructs a new ZypperPatch.
-                             * @memberof google.cloud.osconfig.v1.Inventory
-                             * @classdesc Represents a ZypperPatch.
-                             * @implements IZypperPatch
-                             * @constructor
-                             * @param {google.cloud.osconfig.v1.Inventory.IZypperPatch=} [properties] Properties to set
-                             */
-                            function ZypperPatch(properties) {
-                                if (properties)
-                                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                                        if (properties[keys[i]] != null)
-                                            this[keys[i]] = properties[keys[i]];
-                            }
-    
-                            /**
-                             * ZypperPatch patchName.
-                             * @member {string} patchName
-                             * @memberof google.cloud.osconfig.v1.Inventory.ZypperPatch
-                             * @instance
-                             */
-                            ZypperPatch.prototype.patchName = "";
-    
-                            /**
-                             * ZypperPatch category.
-                             * @member {string} category
-                             * @memberof google.cloud.osconfig.v1.Inventory.ZypperPatch
-                             * @instance
-                             */
-                            ZypperPatch.prototype.category = "";
-    
-                            /**
-                             * ZypperPatch severity.
-                             * @member {string} severity
-                             * @memberof google.cloud.osconfig.v1.Inventory.ZypperPatch
-                             * @instance
-                             */
-                            ZypperPatch.prototype.severity = "";
-    
-                            /**
-                             * ZypperPatch summary.
-                             * @member {string} summary
-                             * @memberof google.cloud.osconfig.v1.Inventory.ZypperPatch
-                             * @instance
-                             */
-                            ZypperPatch.prototype.summary = "";
-    
-                            /**
-                             * Creates a new ZypperPatch instance using the specified properties.
-                             * @function create
-                             * @memberof google.cloud.osconfig.v1.Inventory.ZypperPatch
-                             * @static
-                             * @param {google.cloud.osconfig.v1.Inventory.IZypperPatch=} [properties] Properties to set
-                             * @returns {google.cloud.osconfig.v1.Inventory.ZypperPatch} ZypperPatch instance
-                             */
-                            ZypperPatch.create = function create(properties) {
-                                return new ZypperPatch(properties);
-                            };
-    
-                            /**
-                             * Encodes the specified ZypperPatch message. Does not implicitly {@link google.cloud.osconfig.v1.Inventory.ZypperPatch.verify|verify} messages.
-                             * @function encode
-                             * @memberof google.cloud.osconfig.v1.Inventory.ZypperPatch
-                             * @static
-                             * @param {google.cloud.osconfig.v1.Inventory.IZypperPatch} message ZypperPatch message or plain object to encode
-                             * @param {$protobuf.Writer} [writer] Writer to encode to
-                             * @returns {$protobuf.Writer} Writer
-                             */
-                            ZypperPatch.encode = function encode(message, writer) {
-                                if (!writer)
-                                    writer = $Writer.create();
-                                if (message.category != null && Object.hasOwnProperty.call(message, "category"))
-                                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.category);
-                                if (message.severity != null && Object.hasOwnProperty.call(message, "severity"))
-                                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.severity);
-                                if (message.summary != null && Object.hasOwnProperty.call(message, "summary"))
-                                    writer.uint32(/* id 4, wireType 2 =*/34).string(message.summary);
-                                if (message.patchName != null && Object.hasOwnProperty.call(message, "patchName"))
-                                    writer.uint32(/* id 5, wireType 2 =*/42).string(message.patchName);
-                                return writer;
-                            };
-    
-                            /**
-                             * Encodes the specified ZypperPatch message, length delimited. Does not implicitly {@link google.cloud.osconfig.v1.Inventory.ZypperPatch.verify|verify} messages.
-                             * @function encodeDelimited
-                             * @memberof google.cloud.osconfig.v1.Inventory.ZypperPatch
-                             * @static
-                             * @param {google.cloud.osconfig.v1.Inventory.IZypperPatch} message ZypperPatch message or plain object to encode
-                             * @param {$protobuf.Writer} [writer] Writer to encode to
-                             * @returns {$protobuf.Writer} Writer
-                             */
-                            ZypperPatch.encodeDelimited = function encodeDelimited(message, writer) {
-                                return this.encode(message, writer).ldelim();
-                            };
-    
-                            /**
-                             * Decodes a ZypperPatch message from the specified reader or buffer.
-                             * @function decode
-                             * @memberof google.cloud.osconfig.v1.Inventory.ZypperPatch
-                             * @static
-                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                             * @param {number} [length] Message length if known beforehand
-                             * @returns {google.cloud.osconfig.v1.Inventory.ZypperPatch} ZypperPatch
-                             * @throws {Error} If the payload is not a reader or valid buffer
-                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                             */
-                            ZypperPatch.decode = function decode(reader, length) {
-                                if (!(reader instanceof $Reader))
-                                    reader = $Reader.create(reader);
-                                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.osconfig.v1.Inventory.ZypperPatch();
-                                while (reader.pos < end) {
-                                    var tag = reader.uint32();
-                                    switch (tag >>> 3) {
-                                    case 5:
-                                        message.patchName = reader.string();
-                                        break;
-                                    case 2:
-                                        message.category = reader.string();
-                                        break;
-                                    case 3:
-                                        message.severity = reader.string();
-                                        break;
-                                    case 4:
-                                        message.summary = reader.string();
-                                        break;
-                                    default:
-                                        reader.skipType(tag & 7);
-                                        break;
-                                    }
-                                }
-                                return message;
-                            };
-    
-                            /**
-                             * Decodes a ZypperPatch message from the specified reader or buffer, length delimited.
-                             * @function decodeDelimited
-                             * @memberof google.cloud.osconfig.v1.Inventory.ZypperPatch
-                             * @static
-                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                             * @returns {google.cloud.osconfig.v1.Inventory.ZypperPatch} ZypperPatch
-                             * @throws {Error} If the payload is not a reader or valid buffer
-                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                             */
-                            ZypperPatch.decodeDelimited = function decodeDelimited(reader) {
-                                if (!(reader instanceof $Reader))
-                                    reader = new $Reader(reader);
-                                return this.decode(reader, reader.uint32());
-                            };
-    
-                            /**
-                             * Verifies a ZypperPatch message.
-                             * @function verify
-                             * @memberof google.cloud.osconfig.v1.Inventory.ZypperPatch
-                             * @static
-                             * @param {Object.<string,*>} message Plain object to verify
-                             * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                             */
-                            ZypperPatch.verify = function verify(message) {
-                                if (typeof message !== "object" || message === null)
-                                    return "object expected";
-                                if (message.patchName != null && message.hasOwnProperty("patchName"))
-                                    if (!$util.isString(message.patchName))
-                                        return "patchName: string expected";
-                                if (message.category != null && message.hasOwnProperty("category"))
-                                    if (!$util.isString(message.category))
-                                        return "category: string expected";
-                                if (message.severity != null && message.hasOwnProperty("severity"))
-                                    if (!$util.isString(message.severity))
-                                        return "severity: string expected";
-                                if (message.summary != null && message.hasOwnProperty("summary"))
-                                    if (!$util.isString(message.summary))
-                                        return "summary: string expected";
-                                return null;
-                            };
-    
-                            /**
-                             * Creates a ZypperPatch message from a plain object. Also converts values to their respective internal types.
-                             * @function fromObject
-                             * @memberof google.cloud.osconfig.v1.Inventory.ZypperPatch
-                             * @static
-                             * @param {Object.<string,*>} object Plain object
-                             * @returns {google.cloud.osconfig.v1.Inventory.ZypperPatch} ZypperPatch
-                             */
-                            ZypperPatch.fromObject = function fromObject(object) {
-                                if (object instanceof $root.google.cloud.osconfig.v1.Inventory.ZypperPatch)
-                                    return object;
-                                var message = new $root.google.cloud.osconfig.v1.Inventory.ZypperPatch();
-                                if (object.patchName != null)
-                                    message.patchName = String(object.patchName);
-                                if (object.category != null)
-                                    message.category = String(object.category);
-                                if (object.severity != null)
-                                    message.severity = String(object.severity);
-                                if (object.summary != null)
-                                    message.summary = String(object.summary);
-                                return message;
-                            };
-    
-                            /**
-                             * Creates a plain object from a ZypperPatch message. Also converts values to other types if specified.
-                             * @function toObject
-                             * @memberof google.cloud.osconfig.v1.Inventory.ZypperPatch
-                             * @static
-                             * @param {google.cloud.osconfig.v1.Inventory.ZypperPatch} message ZypperPatch
-                             * @param {$protobuf.IConversionOptions} [options] Conversion options
-                             * @returns {Object.<string,*>} Plain object
-                             */
-                            ZypperPatch.toObject = function toObject(message, options) {
-                                if (!options)
-                                    options = {};
-                                var object = {};
-                                if (options.defaults) {
-                                    object.category = "";
-                                    object.severity = "";
-                                    object.summary = "";
-                                    object.patchName = "";
-                                }
-                                if (message.category != null && message.hasOwnProperty("category"))
-                                    object.category = message.category;
-                                if (message.severity != null && message.hasOwnProperty("severity"))
-                                    object.severity = message.severity;
-                                if (message.summary != null && message.hasOwnProperty("summary"))
-                                    object.summary = message.summary;
-                                if (message.patchName != null && message.hasOwnProperty("patchName"))
-                                    object.patchName = message.patchName;
-                                return object;
-                            };
-    
-                            /**
-                             * Converts this ZypperPatch to JSON.
-                             * @function toJSON
-                             * @memberof google.cloud.osconfig.v1.Inventory.ZypperPatch
-                             * @instance
-                             * @returns {Object.<string,*>} JSON object
-                             */
-                            ZypperPatch.prototype.toJSON = function toJSON() {
-                                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                            };
-    
-                            return ZypperPatch;
-                        })();
-    
                         Inventory.WindowsQuickFixEngineeringPackage = (function() {
     
                             /**
@@ -35060,6 +35592,775 @@
                         })();
     
                         return Inventory;
+                    })();
+    
+                    v1.GetInventoryRequest = (function() {
+    
+                        /**
+                         * Properties of a GetInventoryRequest.
+                         * @memberof google.cloud.osconfig.v1
+                         * @interface IGetInventoryRequest
+                         * @property {string|null} [name] GetInventoryRequest name
+                         * @property {google.cloud.osconfig.v1.InventoryView|null} [view] GetInventoryRequest view
+                         */
+    
+                        /**
+                         * Constructs a new GetInventoryRequest.
+                         * @memberof google.cloud.osconfig.v1
+                         * @classdesc Represents a GetInventoryRequest.
+                         * @implements IGetInventoryRequest
+                         * @constructor
+                         * @param {google.cloud.osconfig.v1.IGetInventoryRequest=} [properties] Properties to set
+                         */
+                        function GetInventoryRequest(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * GetInventoryRequest name.
+                         * @member {string} name
+                         * @memberof google.cloud.osconfig.v1.GetInventoryRequest
+                         * @instance
+                         */
+                        GetInventoryRequest.prototype.name = "";
+    
+                        /**
+                         * GetInventoryRequest view.
+                         * @member {google.cloud.osconfig.v1.InventoryView} view
+                         * @memberof google.cloud.osconfig.v1.GetInventoryRequest
+                         * @instance
+                         */
+                        GetInventoryRequest.prototype.view = 0;
+    
+                        /**
+                         * Creates a new GetInventoryRequest instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.osconfig.v1.GetInventoryRequest
+                         * @static
+                         * @param {google.cloud.osconfig.v1.IGetInventoryRequest=} [properties] Properties to set
+                         * @returns {google.cloud.osconfig.v1.GetInventoryRequest} GetInventoryRequest instance
+                         */
+                        GetInventoryRequest.create = function create(properties) {
+                            return new GetInventoryRequest(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified GetInventoryRequest message. Does not implicitly {@link google.cloud.osconfig.v1.GetInventoryRequest.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.osconfig.v1.GetInventoryRequest
+                         * @static
+                         * @param {google.cloud.osconfig.v1.IGetInventoryRequest} message GetInventoryRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        GetInventoryRequest.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+                            if (message.view != null && Object.hasOwnProperty.call(message, "view"))
+                                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.view);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified GetInventoryRequest message, length delimited. Does not implicitly {@link google.cloud.osconfig.v1.GetInventoryRequest.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.osconfig.v1.GetInventoryRequest
+                         * @static
+                         * @param {google.cloud.osconfig.v1.IGetInventoryRequest} message GetInventoryRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        GetInventoryRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a GetInventoryRequest message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.osconfig.v1.GetInventoryRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.osconfig.v1.GetInventoryRequest} GetInventoryRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        GetInventoryRequest.decode = function decode(reader, length) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.osconfig.v1.GetInventoryRequest();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                switch (tag >>> 3) {
+                                case 1:
+                                    message.name = reader.string();
+                                    break;
+                                case 2:
+                                    message.view = reader.int32();
+                                    break;
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a GetInventoryRequest message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.osconfig.v1.GetInventoryRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.osconfig.v1.GetInventoryRequest} GetInventoryRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        GetInventoryRequest.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a GetInventoryRequest message.
+                         * @function verify
+                         * @memberof google.cloud.osconfig.v1.GetInventoryRequest
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        GetInventoryRequest.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                if (!$util.isString(message.name))
+                                    return "name: string expected";
+                            if (message.view != null && message.hasOwnProperty("view"))
+                                switch (message.view) {
+                                default:
+                                    return "view: enum value expected";
+                                case 0:
+                                case 1:
+                                case 2:
+                                    break;
+                                }
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a GetInventoryRequest message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.osconfig.v1.GetInventoryRequest
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.osconfig.v1.GetInventoryRequest} GetInventoryRequest
+                         */
+                        GetInventoryRequest.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.osconfig.v1.GetInventoryRequest)
+                                return object;
+                            var message = new $root.google.cloud.osconfig.v1.GetInventoryRequest();
+                            if (object.name != null)
+                                message.name = String(object.name);
+                            switch (object.view) {
+                            case "INVENTORY_VIEW_UNSPECIFIED":
+                            case 0:
+                                message.view = 0;
+                                break;
+                            case "BASIC":
+                            case 1:
+                                message.view = 1;
+                                break;
+                            case "FULL":
+                            case 2:
+                                message.view = 2;
+                                break;
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a GetInventoryRequest message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.osconfig.v1.GetInventoryRequest
+                         * @static
+                         * @param {google.cloud.osconfig.v1.GetInventoryRequest} message GetInventoryRequest
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        GetInventoryRequest.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.name = "";
+                                object.view = options.enums === String ? "INVENTORY_VIEW_UNSPECIFIED" : 0;
+                            }
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                object.name = message.name;
+                            if (message.view != null && message.hasOwnProperty("view"))
+                                object.view = options.enums === String ? $root.google.cloud.osconfig.v1.InventoryView[message.view] : message.view;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this GetInventoryRequest to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.osconfig.v1.GetInventoryRequest
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        GetInventoryRequest.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        return GetInventoryRequest;
+                    })();
+    
+                    v1.ListInventoriesRequest = (function() {
+    
+                        /**
+                         * Properties of a ListInventoriesRequest.
+                         * @memberof google.cloud.osconfig.v1
+                         * @interface IListInventoriesRequest
+                         * @property {string|null} [parent] ListInventoriesRequest parent
+                         * @property {google.cloud.osconfig.v1.InventoryView|null} [view] ListInventoriesRequest view
+                         * @property {number|null} [pageSize] ListInventoriesRequest pageSize
+                         * @property {string|null} [pageToken] ListInventoriesRequest pageToken
+                         * @property {string|null} [filter] ListInventoriesRequest filter
+                         */
+    
+                        /**
+                         * Constructs a new ListInventoriesRequest.
+                         * @memberof google.cloud.osconfig.v1
+                         * @classdesc Represents a ListInventoriesRequest.
+                         * @implements IListInventoriesRequest
+                         * @constructor
+                         * @param {google.cloud.osconfig.v1.IListInventoriesRequest=} [properties] Properties to set
+                         */
+                        function ListInventoriesRequest(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * ListInventoriesRequest parent.
+                         * @member {string} parent
+                         * @memberof google.cloud.osconfig.v1.ListInventoriesRequest
+                         * @instance
+                         */
+                        ListInventoriesRequest.prototype.parent = "";
+    
+                        /**
+                         * ListInventoriesRequest view.
+                         * @member {google.cloud.osconfig.v1.InventoryView} view
+                         * @memberof google.cloud.osconfig.v1.ListInventoriesRequest
+                         * @instance
+                         */
+                        ListInventoriesRequest.prototype.view = 0;
+    
+                        /**
+                         * ListInventoriesRequest pageSize.
+                         * @member {number} pageSize
+                         * @memberof google.cloud.osconfig.v1.ListInventoriesRequest
+                         * @instance
+                         */
+                        ListInventoriesRequest.prototype.pageSize = 0;
+    
+                        /**
+                         * ListInventoriesRequest pageToken.
+                         * @member {string} pageToken
+                         * @memberof google.cloud.osconfig.v1.ListInventoriesRequest
+                         * @instance
+                         */
+                        ListInventoriesRequest.prototype.pageToken = "";
+    
+                        /**
+                         * ListInventoriesRequest filter.
+                         * @member {string} filter
+                         * @memberof google.cloud.osconfig.v1.ListInventoriesRequest
+                         * @instance
+                         */
+                        ListInventoriesRequest.prototype.filter = "";
+    
+                        /**
+                         * Creates a new ListInventoriesRequest instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.osconfig.v1.ListInventoriesRequest
+                         * @static
+                         * @param {google.cloud.osconfig.v1.IListInventoriesRequest=} [properties] Properties to set
+                         * @returns {google.cloud.osconfig.v1.ListInventoriesRequest} ListInventoriesRequest instance
+                         */
+                        ListInventoriesRequest.create = function create(properties) {
+                            return new ListInventoriesRequest(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified ListInventoriesRequest message. Does not implicitly {@link google.cloud.osconfig.v1.ListInventoriesRequest.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.osconfig.v1.ListInventoriesRequest
+                         * @static
+                         * @param {google.cloud.osconfig.v1.IListInventoriesRequest} message ListInventoriesRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ListInventoriesRequest.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.parent != null && Object.hasOwnProperty.call(message, "parent"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.parent);
+                            if (message.view != null && Object.hasOwnProperty.call(message, "view"))
+                                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.view);
+                            if (message.pageSize != null && Object.hasOwnProperty.call(message, "pageSize"))
+                                writer.uint32(/* id 3, wireType 0 =*/24).int32(message.pageSize);
+                            if (message.pageToken != null && Object.hasOwnProperty.call(message, "pageToken"))
+                                writer.uint32(/* id 4, wireType 2 =*/34).string(message.pageToken);
+                            if (message.filter != null && Object.hasOwnProperty.call(message, "filter"))
+                                writer.uint32(/* id 5, wireType 2 =*/42).string(message.filter);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified ListInventoriesRequest message, length delimited. Does not implicitly {@link google.cloud.osconfig.v1.ListInventoriesRequest.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.osconfig.v1.ListInventoriesRequest
+                         * @static
+                         * @param {google.cloud.osconfig.v1.IListInventoriesRequest} message ListInventoriesRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ListInventoriesRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a ListInventoriesRequest message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.osconfig.v1.ListInventoriesRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.osconfig.v1.ListInventoriesRequest} ListInventoriesRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ListInventoriesRequest.decode = function decode(reader, length) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.osconfig.v1.ListInventoriesRequest();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                switch (tag >>> 3) {
+                                case 1:
+                                    message.parent = reader.string();
+                                    break;
+                                case 2:
+                                    message.view = reader.int32();
+                                    break;
+                                case 3:
+                                    message.pageSize = reader.int32();
+                                    break;
+                                case 4:
+                                    message.pageToken = reader.string();
+                                    break;
+                                case 5:
+                                    message.filter = reader.string();
+                                    break;
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a ListInventoriesRequest message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.osconfig.v1.ListInventoriesRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.osconfig.v1.ListInventoriesRequest} ListInventoriesRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ListInventoriesRequest.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a ListInventoriesRequest message.
+                         * @function verify
+                         * @memberof google.cloud.osconfig.v1.ListInventoriesRequest
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        ListInventoriesRequest.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.parent != null && message.hasOwnProperty("parent"))
+                                if (!$util.isString(message.parent))
+                                    return "parent: string expected";
+                            if (message.view != null && message.hasOwnProperty("view"))
+                                switch (message.view) {
+                                default:
+                                    return "view: enum value expected";
+                                case 0:
+                                case 1:
+                                case 2:
+                                    break;
+                                }
+                            if (message.pageSize != null && message.hasOwnProperty("pageSize"))
+                                if (!$util.isInteger(message.pageSize))
+                                    return "pageSize: integer expected";
+                            if (message.pageToken != null && message.hasOwnProperty("pageToken"))
+                                if (!$util.isString(message.pageToken))
+                                    return "pageToken: string expected";
+                            if (message.filter != null && message.hasOwnProperty("filter"))
+                                if (!$util.isString(message.filter))
+                                    return "filter: string expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a ListInventoriesRequest message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.osconfig.v1.ListInventoriesRequest
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.osconfig.v1.ListInventoriesRequest} ListInventoriesRequest
+                         */
+                        ListInventoriesRequest.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.osconfig.v1.ListInventoriesRequest)
+                                return object;
+                            var message = new $root.google.cloud.osconfig.v1.ListInventoriesRequest();
+                            if (object.parent != null)
+                                message.parent = String(object.parent);
+                            switch (object.view) {
+                            case "INVENTORY_VIEW_UNSPECIFIED":
+                            case 0:
+                                message.view = 0;
+                                break;
+                            case "BASIC":
+                            case 1:
+                                message.view = 1;
+                                break;
+                            case "FULL":
+                            case 2:
+                                message.view = 2;
+                                break;
+                            }
+                            if (object.pageSize != null)
+                                message.pageSize = object.pageSize | 0;
+                            if (object.pageToken != null)
+                                message.pageToken = String(object.pageToken);
+                            if (object.filter != null)
+                                message.filter = String(object.filter);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a ListInventoriesRequest message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.osconfig.v1.ListInventoriesRequest
+                         * @static
+                         * @param {google.cloud.osconfig.v1.ListInventoriesRequest} message ListInventoriesRequest
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        ListInventoriesRequest.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.parent = "";
+                                object.view = options.enums === String ? "INVENTORY_VIEW_UNSPECIFIED" : 0;
+                                object.pageSize = 0;
+                                object.pageToken = "";
+                                object.filter = "";
+                            }
+                            if (message.parent != null && message.hasOwnProperty("parent"))
+                                object.parent = message.parent;
+                            if (message.view != null && message.hasOwnProperty("view"))
+                                object.view = options.enums === String ? $root.google.cloud.osconfig.v1.InventoryView[message.view] : message.view;
+                            if (message.pageSize != null && message.hasOwnProperty("pageSize"))
+                                object.pageSize = message.pageSize;
+                            if (message.pageToken != null && message.hasOwnProperty("pageToken"))
+                                object.pageToken = message.pageToken;
+                            if (message.filter != null && message.hasOwnProperty("filter"))
+                                object.filter = message.filter;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this ListInventoriesRequest to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.osconfig.v1.ListInventoriesRequest
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        ListInventoriesRequest.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        return ListInventoriesRequest;
+                    })();
+    
+                    v1.ListInventoriesResponse = (function() {
+    
+                        /**
+                         * Properties of a ListInventoriesResponse.
+                         * @memberof google.cloud.osconfig.v1
+                         * @interface IListInventoriesResponse
+                         * @property {Array.<google.cloud.osconfig.v1.IInventory>|null} [inventories] ListInventoriesResponse inventories
+                         * @property {string|null} [nextPageToken] ListInventoriesResponse nextPageToken
+                         */
+    
+                        /**
+                         * Constructs a new ListInventoriesResponse.
+                         * @memberof google.cloud.osconfig.v1
+                         * @classdesc Represents a ListInventoriesResponse.
+                         * @implements IListInventoriesResponse
+                         * @constructor
+                         * @param {google.cloud.osconfig.v1.IListInventoriesResponse=} [properties] Properties to set
+                         */
+                        function ListInventoriesResponse(properties) {
+                            this.inventories = [];
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * ListInventoriesResponse inventories.
+                         * @member {Array.<google.cloud.osconfig.v1.IInventory>} inventories
+                         * @memberof google.cloud.osconfig.v1.ListInventoriesResponse
+                         * @instance
+                         */
+                        ListInventoriesResponse.prototype.inventories = $util.emptyArray;
+    
+                        /**
+                         * ListInventoriesResponse nextPageToken.
+                         * @member {string} nextPageToken
+                         * @memberof google.cloud.osconfig.v1.ListInventoriesResponse
+                         * @instance
+                         */
+                        ListInventoriesResponse.prototype.nextPageToken = "";
+    
+                        /**
+                         * Creates a new ListInventoriesResponse instance using the specified properties.
+                         * @function create
+                         * @memberof google.cloud.osconfig.v1.ListInventoriesResponse
+                         * @static
+                         * @param {google.cloud.osconfig.v1.IListInventoriesResponse=} [properties] Properties to set
+                         * @returns {google.cloud.osconfig.v1.ListInventoriesResponse} ListInventoriesResponse instance
+                         */
+                        ListInventoriesResponse.create = function create(properties) {
+                            return new ListInventoriesResponse(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified ListInventoriesResponse message. Does not implicitly {@link google.cloud.osconfig.v1.ListInventoriesResponse.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.cloud.osconfig.v1.ListInventoriesResponse
+                         * @static
+                         * @param {google.cloud.osconfig.v1.IListInventoriesResponse} message ListInventoriesResponse message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ListInventoriesResponse.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.inventories != null && message.inventories.length)
+                                for (var i = 0; i < message.inventories.length; ++i)
+                                    $root.google.cloud.osconfig.v1.Inventory.encode(message.inventories[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                            if (message.nextPageToken != null && Object.hasOwnProperty.call(message, "nextPageToken"))
+                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.nextPageToken);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified ListInventoriesResponse message, length delimited. Does not implicitly {@link google.cloud.osconfig.v1.ListInventoriesResponse.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.cloud.osconfig.v1.ListInventoriesResponse
+                         * @static
+                         * @param {google.cloud.osconfig.v1.IListInventoriesResponse} message ListInventoriesResponse message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ListInventoriesResponse.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a ListInventoriesResponse message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.cloud.osconfig.v1.ListInventoriesResponse
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.cloud.osconfig.v1.ListInventoriesResponse} ListInventoriesResponse
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ListInventoriesResponse.decode = function decode(reader, length) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.cloud.osconfig.v1.ListInventoriesResponse();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                switch (tag >>> 3) {
+                                case 1:
+                                    if (!(message.inventories && message.inventories.length))
+                                        message.inventories = [];
+                                    message.inventories.push($root.google.cloud.osconfig.v1.Inventory.decode(reader, reader.uint32()));
+                                    break;
+                                case 2:
+                                    message.nextPageToken = reader.string();
+                                    break;
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a ListInventoriesResponse message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.cloud.osconfig.v1.ListInventoriesResponse
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.cloud.osconfig.v1.ListInventoriesResponse} ListInventoriesResponse
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ListInventoriesResponse.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a ListInventoriesResponse message.
+                         * @function verify
+                         * @memberof google.cloud.osconfig.v1.ListInventoriesResponse
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        ListInventoriesResponse.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.inventories != null && message.hasOwnProperty("inventories")) {
+                                if (!Array.isArray(message.inventories))
+                                    return "inventories: array expected";
+                                for (var i = 0; i < message.inventories.length; ++i) {
+                                    var error = $root.google.cloud.osconfig.v1.Inventory.verify(message.inventories[i]);
+                                    if (error)
+                                        return "inventories." + error;
+                                }
+                            }
+                            if (message.nextPageToken != null && message.hasOwnProperty("nextPageToken"))
+                                if (!$util.isString(message.nextPageToken))
+                                    return "nextPageToken: string expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a ListInventoriesResponse message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.cloud.osconfig.v1.ListInventoriesResponse
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.cloud.osconfig.v1.ListInventoriesResponse} ListInventoriesResponse
+                         */
+                        ListInventoriesResponse.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.cloud.osconfig.v1.ListInventoriesResponse)
+                                return object;
+                            var message = new $root.google.cloud.osconfig.v1.ListInventoriesResponse();
+                            if (object.inventories) {
+                                if (!Array.isArray(object.inventories))
+                                    throw TypeError(".google.cloud.osconfig.v1.ListInventoriesResponse.inventories: array expected");
+                                message.inventories = [];
+                                for (var i = 0; i < object.inventories.length; ++i) {
+                                    if (typeof object.inventories[i] !== "object")
+                                        throw TypeError(".google.cloud.osconfig.v1.ListInventoriesResponse.inventories: object expected");
+                                    message.inventories[i] = $root.google.cloud.osconfig.v1.Inventory.fromObject(object.inventories[i]);
+                                }
+                            }
+                            if (object.nextPageToken != null)
+                                message.nextPageToken = String(object.nextPageToken);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a ListInventoriesResponse message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.cloud.osconfig.v1.ListInventoriesResponse
+                         * @static
+                         * @param {google.cloud.osconfig.v1.ListInventoriesResponse} message ListInventoriesResponse
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        ListInventoriesResponse.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.arrays || options.defaults)
+                                object.inventories = [];
+                            if (options.defaults)
+                                object.nextPageToken = "";
+                            if (message.inventories && message.inventories.length) {
+                                object.inventories = [];
+                                for (var j = 0; j < message.inventories.length; ++j)
+                                    object.inventories[j] = $root.google.cloud.osconfig.v1.Inventory.toObject(message.inventories[j], options);
+                            }
+                            if (message.nextPageToken != null && message.hasOwnProperty("nextPageToken"))
+                                object.nextPageToken = message.nextPageToken;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this ListInventoriesResponse to JSON.
+                         * @function toJSON
+                         * @memberof google.cloud.osconfig.v1.ListInventoriesResponse
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        ListInventoriesResponse.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        return ListInventoriesResponse;
+                    })();
+    
+                    /**
+                     * InventoryView enum.
+                     * @name google.cloud.osconfig.v1.InventoryView
+                     * @enum {number}
+                     * @property {number} INVENTORY_VIEW_UNSPECIFIED=0 INVENTORY_VIEW_UNSPECIFIED value
+                     * @property {number} BASIC=1 BASIC value
+                     * @property {number} FULL=2 FULL value
+                     */
+                    v1.InventoryView = (function() {
+                        var valuesById = {}, values = Object.create(valuesById);
+                        values[valuesById[0] = "INVENTORY_VIEW_UNSPECIFIED"] = 0;
+                        values[valuesById[1] = "BASIC"] = 1;
+                        values[valuesById[2] = "FULL"] = 2;
+                        return values;
                     })();
     
                     return v1;

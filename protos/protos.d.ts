@@ -5751,6 +5751,9 @@ export namespace google {
                     /** ResourceSearchResult attachedResources */
                     attachedResources?: (google.cloud.asset.v1.IAttachedResource[]|null);
 
+                    /** ResourceSearchResult relationships */
+                    relationships?: ({ [k: string]: google.cloud.asset.v1.IRelatedResources }|null);
+
                     /** ResourceSearchResult parentAssetType */
                     parentAssetType?: (string|null);
                 }
@@ -5817,6 +5820,9 @@ export namespace google {
 
                     /** ResourceSearchResult attachedResources. */
                     public attachedResources: google.cloud.asset.v1.IAttachedResource[];
+
+                    /** ResourceSearchResult relationships. */
+                    public relationships: { [k: string]: google.cloud.asset.v1.IRelatedResources };
 
                     /** ResourceSearchResult parentAssetType. */
                     public parentAssetType: string;
@@ -6079,6 +6085,192 @@ export namespace google {
 
                     /**
                      * Converts this AttachedResource to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+                }
+
+                /** Properties of a RelatedResources. */
+                interface IRelatedResources {
+
+                    /** RelatedResources relatedResources */
+                    relatedResources?: (google.cloud.asset.v1.IRelatedResource[]|null);
+                }
+
+                /** Represents a RelatedResources. */
+                class RelatedResources implements IRelatedResources {
+
+                    /**
+                     * Constructs a new RelatedResources.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.asset.v1.IRelatedResources);
+
+                    /** RelatedResources relatedResources. */
+                    public relatedResources: google.cloud.asset.v1.IRelatedResource[];
+
+                    /**
+                     * Creates a new RelatedResources instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns RelatedResources instance
+                     */
+                    public static create(properties?: google.cloud.asset.v1.IRelatedResources): google.cloud.asset.v1.RelatedResources;
+
+                    /**
+                     * Encodes the specified RelatedResources message. Does not implicitly {@link google.cloud.asset.v1.RelatedResources.verify|verify} messages.
+                     * @param message RelatedResources message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.asset.v1.IRelatedResources, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified RelatedResources message, length delimited. Does not implicitly {@link google.cloud.asset.v1.RelatedResources.verify|verify} messages.
+                     * @param message RelatedResources message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.asset.v1.IRelatedResources, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a RelatedResources message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns RelatedResources
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.asset.v1.RelatedResources;
+
+                    /**
+                     * Decodes a RelatedResources message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns RelatedResources
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.asset.v1.RelatedResources;
+
+                    /**
+                     * Verifies a RelatedResources message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a RelatedResources message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns RelatedResources
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.asset.v1.RelatedResources;
+
+                    /**
+                     * Creates a plain object from a RelatedResources message. Also converts values to other types if specified.
+                     * @param message RelatedResources
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.asset.v1.RelatedResources, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this RelatedResources to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+                }
+
+                /** Properties of a RelatedResource. */
+                interface IRelatedResource {
+
+                    /** RelatedResource assetType */
+                    assetType?: (string|null);
+
+                    /** RelatedResource fullResourceName */
+                    fullResourceName?: (string|null);
+                }
+
+                /** Represents a RelatedResource. */
+                class RelatedResource implements IRelatedResource {
+
+                    /**
+                     * Constructs a new RelatedResource.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.asset.v1.IRelatedResource);
+
+                    /** RelatedResource assetType. */
+                    public assetType: string;
+
+                    /** RelatedResource fullResourceName. */
+                    public fullResourceName: string;
+
+                    /**
+                     * Creates a new RelatedResource instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns RelatedResource instance
+                     */
+                    public static create(properties?: google.cloud.asset.v1.IRelatedResource): google.cloud.asset.v1.RelatedResource;
+
+                    /**
+                     * Encodes the specified RelatedResource message. Does not implicitly {@link google.cloud.asset.v1.RelatedResource.verify|verify} messages.
+                     * @param message RelatedResource message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.asset.v1.IRelatedResource, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified RelatedResource message, length delimited. Does not implicitly {@link google.cloud.asset.v1.RelatedResource.verify|verify} messages.
+                     * @param message RelatedResource message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.asset.v1.IRelatedResource, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a RelatedResource message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns RelatedResource
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.asset.v1.RelatedResource;
+
+                    /**
+                     * Decodes a RelatedResource message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns RelatedResource
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.asset.v1.RelatedResource;
+
+                    /**
+                     * Verifies a RelatedResource message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a RelatedResource message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns RelatedResource
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.asset.v1.RelatedResource;
+
+                    /**
+                     * Creates a plain object from a RelatedResource message. Also converts values to other types if specified.
+                     * @param message RelatedResource
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.asset.v1.RelatedResource, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this RelatedResource to JSON.
                      * @returns JSON object
                      */
                     public toJSON(): { [k: string]: any };
@@ -13029,11 +13221,17 @@ export namespace google {
                 /** Properties of an Inventory. */
                 interface IInventory {
 
+                    /** Inventory name */
+                    name?: (string|null);
+
                     /** Inventory osInfo */
                     osInfo?: (google.cloud.osconfig.v1.Inventory.IOsInfo|null);
 
                     /** Inventory items */
                     items?: ({ [k: string]: google.cloud.osconfig.v1.Inventory.IItem }|null);
+
+                    /** Inventory updateTime */
+                    updateTime?: (google.protobuf.ITimestamp|null);
                 }
 
                 /** Represents an Inventory. */
@@ -13045,11 +13243,17 @@ export namespace google {
                      */
                     constructor(properties?: google.cloud.osconfig.v1.IInventory);
 
+                    /** Inventory name. */
+                    public name: string;
+
                     /** Inventory osInfo. */
                     public osInfo?: (google.cloud.osconfig.v1.Inventory.IOsInfo|null);
 
                     /** Inventory items. */
                     public items: { [k: string]: google.cloud.osconfig.v1.Inventory.IItem };
+
+                    /** Inventory updateTime. */
+                    public updateTime?: (google.protobuf.ITimestamp|null);
 
                     /**
                      * Creates a new Inventory instance using the specified properties.
@@ -13644,6 +13848,114 @@ export namespace google {
                         public toJSON(): { [k: string]: any };
                     }
 
+                    /** Properties of a ZypperPatch. */
+                    interface IZypperPatch {
+
+                        /** ZypperPatch patchName */
+                        patchName?: (string|null);
+
+                        /** ZypperPatch category */
+                        category?: (string|null);
+
+                        /** ZypperPatch severity */
+                        severity?: (string|null);
+
+                        /** ZypperPatch summary */
+                        summary?: (string|null);
+                    }
+
+                    /** Represents a ZypperPatch. */
+                    class ZypperPatch implements IZypperPatch {
+
+                        /**
+                         * Constructs a new ZypperPatch.
+                         * @param [properties] Properties to set
+                         */
+                        constructor(properties?: google.cloud.osconfig.v1.Inventory.IZypperPatch);
+
+                        /** ZypperPatch patchName. */
+                        public patchName: string;
+
+                        /** ZypperPatch category. */
+                        public category: string;
+
+                        /** ZypperPatch severity. */
+                        public severity: string;
+
+                        /** ZypperPatch summary. */
+                        public summary: string;
+
+                        /**
+                         * Creates a new ZypperPatch instance using the specified properties.
+                         * @param [properties] Properties to set
+                         * @returns ZypperPatch instance
+                         */
+                        public static create(properties?: google.cloud.osconfig.v1.Inventory.IZypperPatch): google.cloud.osconfig.v1.Inventory.ZypperPatch;
+
+                        /**
+                         * Encodes the specified ZypperPatch message. Does not implicitly {@link google.cloud.osconfig.v1.Inventory.ZypperPatch.verify|verify} messages.
+                         * @param message ZypperPatch message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encode(message: google.cloud.osconfig.v1.Inventory.IZypperPatch, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Encodes the specified ZypperPatch message, length delimited. Does not implicitly {@link google.cloud.osconfig.v1.Inventory.ZypperPatch.verify|verify} messages.
+                         * @param message ZypperPatch message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encodeDelimited(message: google.cloud.osconfig.v1.Inventory.IZypperPatch, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Decodes a ZypperPatch message from the specified reader or buffer.
+                         * @param reader Reader or buffer to decode from
+                         * @param [length] Message length if known beforehand
+                         * @returns ZypperPatch
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.osconfig.v1.Inventory.ZypperPatch;
+
+                        /**
+                         * Decodes a ZypperPatch message from the specified reader or buffer, length delimited.
+                         * @param reader Reader or buffer to decode from
+                         * @returns ZypperPatch
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.osconfig.v1.Inventory.ZypperPatch;
+
+                        /**
+                         * Verifies a ZypperPatch message.
+                         * @param message Plain object to verify
+                         * @returns `null` if valid, otherwise the reason why it is not
+                         */
+                        public static verify(message: { [k: string]: any }): (string|null);
+
+                        /**
+                         * Creates a ZypperPatch message from a plain object. Also converts values to their respective internal types.
+                         * @param object Plain object
+                         * @returns ZypperPatch
+                         */
+                        public static fromObject(object: { [k: string]: any }): google.cloud.osconfig.v1.Inventory.ZypperPatch;
+
+                        /**
+                         * Creates a plain object from a ZypperPatch message. Also converts values to other types if specified.
+                         * @param message ZypperPatch
+                         * @param [options] Conversion options
+                         * @returns Plain object
+                         */
+                        public static toObject(message: google.cloud.osconfig.v1.Inventory.ZypperPatch, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                        /**
+                         * Converts this ZypperPatch to JSON.
+                         * @returns JSON object
+                         */
+                        public toJSON(): { [k: string]: any };
+                    }
+
                     /** Properties of a WindowsUpdatePackage. */
                     interface IWindowsUpdatePackage {
 
@@ -13881,114 +14193,6 @@ export namespace google {
                         }
                     }
 
-                    /** Properties of a ZypperPatch. */
-                    interface IZypperPatch {
-
-                        /** ZypperPatch patchName */
-                        patchName?: (string|null);
-
-                        /** ZypperPatch category */
-                        category?: (string|null);
-
-                        /** ZypperPatch severity */
-                        severity?: (string|null);
-
-                        /** ZypperPatch summary */
-                        summary?: (string|null);
-                    }
-
-                    /** Represents a ZypperPatch. */
-                    class ZypperPatch implements IZypperPatch {
-
-                        /**
-                         * Constructs a new ZypperPatch.
-                         * @param [properties] Properties to set
-                         */
-                        constructor(properties?: google.cloud.osconfig.v1.Inventory.IZypperPatch);
-
-                        /** ZypperPatch patchName. */
-                        public patchName: string;
-
-                        /** ZypperPatch category. */
-                        public category: string;
-
-                        /** ZypperPatch severity. */
-                        public severity: string;
-
-                        /** ZypperPatch summary. */
-                        public summary: string;
-
-                        /**
-                         * Creates a new ZypperPatch instance using the specified properties.
-                         * @param [properties] Properties to set
-                         * @returns ZypperPatch instance
-                         */
-                        public static create(properties?: google.cloud.osconfig.v1.Inventory.IZypperPatch): google.cloud.osconfig.v1.Inventory.ZypperPatch;
-
-                        /**
-                         * Encodes the specified ZypperPatch message. Does not implicitly {@link google.cloud.osconfig.v1.Inventory.ZypperPatch.verify|verify} messages.
-                         * @param message ZypperPatch message or plain object to encode
-                         * @param [writer] Writer to encode to
-                         * @returns Writer
-                         */
-                        public static encode(message: google.cloud.osconfig.v1.Inventory.IZypperPatch, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                        /**
-                         * Encodes the specified ZypperPatch message, length delimited. Does not implicitly {@link google.cloud.osconfig.v1.Inventory.ZypperPatch.verify|verify} messages.
-                         * @param message ZypperPatch message or plain object to encode
-                         * @param [writer] Writer to encode to
-                         * @returns Writer
-                         */
-                        public static encodeDelimited(message: google.cloud.osconfig.v1.Inventory.IZypperPatch, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                        /**
-                         * Decodes a ZypperPatch message from the specified reader or buffer.
-                         * @param reader Reader or buffer to decode from
-                         * @param [length] Message length if known beforehand
-                         * @returns ZypperPatch
-                         * @throws {Error} If the payload is not a reader or valid buffer
-                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                         */
-                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.osconfig.v1.Inventory.ZypperPatch;
-
-                        /**
-                         * Decodes a ZypperPatch message from the specified reader or buffer, length delimited.
-                         * @param reader Reader or buffer to decode from
-                         * @returns ZypperPatch
-                         * @throws {Error} If the payload is not a reader or valid buffer
-                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                         */
-                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.osconfig.v1.Inventory.ZypperPatch;
-
-                        /**
-                         * Verifies a ZypperPatch message.
-                         * @param message Plain object to verify
-                         * @returns `null` if valid, otherwise the reason why it is not
-                         */
-                        public static verify(message: { [k: string]: any }): (string|null);
-
-                        /**
-                         * Creates a ZypperPatch message from a plain object. Also converts values to their respective internal types.
-                         * @param object Plain object
-                         * @returns ZypperPatch
-                         */
-                        public static fromObject(object: { [k: string]: any }): google.cloud.osconfig.v1.Inventory.ZypperPatch;
-
-                        /**
-                         * Creates a plain object from a ZypperPatch message. Also converts values to other types if specified.
-                         * @param message ZypperPatch
-                         * @param [options] Conversion options
-                         * @returns Plain object
-                         */
-                        public static toObject(message: google.cloud.osconfig.v1.Inventory.ZypperPatch, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                        /**
-                         * Converts this ZypperPatch to JSON.
-                         * @returns JSON object
-                         */
-                        public toJSON(): { [k: string]: any };
-                    }
-
                     /** Properties of a WindowsQuickFixEngineeringPackage. */
                     interface IWindowsQuickFixEngineeringPackage {
 
@@ -14210,6 +14414,319 @@ export namespace google {
                          */
                         public toJSON(): { [k: string]: any };
                     }
+                }
+
+                /** Properties of a GetInventoryRequest. */
+                interface IGetInventoryRequest {
+
+                    /** GetInventoryRequest name */
+                    name?: (string|null);
+
+                    /** GetInventoryRequest view */
+                    view?: (google.cloud.osconfig.v1.InventoryView|keyof typeof google.cloud.osconfig.v1.InventoryView|null);
+                }
+
+                /** Represents a GetInventoryRequest. */
+                class GetInventoryRequest implements IGetInventoryRequest {
+
+                    /**
+                     * Constructs a new GetInventoryRequest.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.osconfig.v1.IGetInventoryRequest);
+
+                    /** GetInventoryRequest name. */
+                    public name: string;
+
+                    /** GetInventoryRequest view. */
+                    public view: (google.cloud.osconfig.v1.InventoryView|keyof typeof google.cloud.osconfig.v1.InventoryView);
+
+                    /**
+                     * Creates a new GetInventoryRequest instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns GetInventoryRequest instance
+                     */
+                    public static create(properties?: google.cloud.osconfig.v1.IGetInventoryRequest): google.cloud.osconfig.v1.GetInventoryRequest;
+
+                    /**
+                     * Encodes the specified GetInventoryRequest message. Does not implicitly {@link google.cloud.osconfig.v1.GetInventoryRequest.verify|verify} messages.
+                     * @param message GetInventoryRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.osconfig.v1.IGetInventoryRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified GetInventoryRequest message, length delimited. Does not implicitly {@link google.cloud.osconfig.v1.GetInventoryRequest.verify|verify} messages.
+                     * @param message GetInventoryRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.osconfig.v1.IGetInventoryRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a GetInventoryRequest message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns GetInventoryRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.osconfig.v1.GetInventoryRequest;
+
+                    /**
+                     * Decodes a GetInventoryRequest message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns GetInventoryRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.osconfig.v1.GetInventoryRequest;
+
+                    /**
+                     * Verifies a GetInventoryRequest message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a GetInventoryRequest message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns GetInventoryRequest
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.osconfig.v1.GetInventoryRequest;
+
+                    /**
+                     * Creates a plain object from a GetInventoryRequest message. Also converts values to other types if specified.
+                     * @param message GetInventoryRequest
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.osconfig.v1.GetInventoryRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this GetInventoryRequest to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+                }
+
+                /** Properties of a ListInventoriesRequest. */
+                interface IListInventoriesRequest {
+
+                    /** ListInventoriesRequest parent */
+                    parent?: (string|null);
+
+                    /** ListInventoriesRequest view */
+                    view?: (google.cloud.osconfig.v1.InventoryView|keyof typeof google.cloud.osconfig.v1.InventoryView|null);
+
+                    /** ListInventoriesRequest pageSize */
+                    pageSize?: (number|null);
+
+                    /** ListInventoriesRequest pageToken */
+                    pageToken?: (string|null);
+
+                    /** ListInventoriesRequest filter */
+                    filter?: (string|null);
+                }
+
+                /** Represents a ListInventoriesRequest. */
+                class ListInventoriesRequest implements IListInventoriesRequest {
+
+                    /**
+                     * Constructs a new ListInventoriesRequest.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.osconfig.v1.IListInventoriesRequest);
+
+                    /** ListInventoriesRequest parent. */
+                    public parent: string;
+
+                    /** ListInventoriesRequest view. */
+                    public view: (google.cloud.osconfig.v1.InventoryView|keyof typeof google.cloud.osconfig.v1.InventoryView);
+
+                    /** ListInventoriesRequest pageSize. */
+                    public pageSize: number;
+
+                    /** ListInventoriesRequest pageToken. */
+                    public pageToken: string;
+
+                    /** ListInventoriesRequest filter. */
+                    public filter: string;
+
+                    /**
+                     * Creates a new ListInventoriesRequest instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns ListInventoriesRequest instance
+                     */
+                    public static create(properties?: google.cloud.osconfig.v1.IListInventoriesRequest): google.cloud.osconfig.v1.ListInventoriesRequest;
+
+                    /**
+                     * Encodes the specified ListInventoriesRequest message. Does not implicitly {@link google.cloud.osconfig.v1.ListInventoriesRequest.verify|verify} messages.
+                     * @param message ListInventoriesRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.osconfig.v1.IListInventoriesRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified ListInventoriesRequest message, length delimited. Does not implicitly {@link google.cloud.osconfig.v1.ListInventoriesRequest.verify|verify} messages.
+                     * @param message ListInventoriesRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.osconfig.v1.IListInventoriesRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a ListInventoriesRequest message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns ListInventoriesRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.osconfig.v1.ListInventoriesRequest;
+
+                    /**
+                     * Decodes a ListInventoriesRequest message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns ListInventoriesRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.osconfig.v1.ListInventoriesRequest;
+
+                    /**
+                     * Verifies a ListInventoriesRequest message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a ListInventoriesRequest message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns ListInventoriesRequest
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.osconfig.v1.ListInventoriesRequest;
+
+                    /**
+                     * Creates a plain object from a ListInventoriesRequest message. Also converts values to other types if specified.
+                     * @param message ListInventoriesRequest
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.osconfig.v1.ListInventoriesRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this ListInventoriesRequest to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+                }
+
+                /** Properties of a ListInventoriesResponse. */
+                interface IListInventoriesResponse {
+
+                    /** ListInventoriesResponse inventories */
+                    inventories?: (google.cloud.osconfig.v1.IInventory[]|null);
+
+                    /** ListInventoriesResponse nextPageToken */
+                    nextPageToken?: (string|null);
+                }
+
+                /** Represents a ListInventoriesResponse. */
+                class ListInventoriesResponse implements IListInventoriesResponse {
+
+                    /**
+                     * Constructs a new ListInventoriesResponse.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.cloud.osconfig.v1.IListInventoriesResponse);
+
+                    /** ListInventoriesResponse inventories. */
+                    public inventories: google.cloud.osconfig.v1.IInventory[];
+
+                    /** ListInventoriesResponse nextPageToken. */
+                    public nextPageToken: string;
+
+                    /**
+                     * Creates a new ListInventoriesResponse instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns ListInventoriesResponse instance
+                     */
+                    public static create(properties?: google.cloud.osconfig.v1.IListInventoriesResponse): google.cloud.osconfig.v1.ListInventoriesResponse;
+
+                    /**
+                     * Encodes the specified ListInventoriesResponse message. Does not implicitly {@link google.cloud.osconfig.v1.ListInventoriesResponse.verify|verify} messages.
+                     * @param message ListInventoriesResponse message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.cloud.osconfig.v1.IListInventoriesResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified ListInventoriesResponse message, length delimited. Does not implicitly {@link google.cloud.osconfig.v1.ListInventoriesResponse.verify|verify} messages.
+                     * @param message ListInventoriesResponse message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.cloud.osconfig.v1.IListInventoriesResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a ListInventoriesResponse message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns ListInventoriesResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.cloud.osconfig.v1.ListInventoriesResponse;
+
+                    /**
+                     * Decodes a ListInventoriesResponse message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns ListInventoriesResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.cloud.osconfig.v1.ListInventoriesResponse;
+
+                    /**
+                     * Verifies a ListInventoriesResponse message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a ListInventoriesResponse message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns ListInventoriesResponse
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.cloud.osconfig.v1.ListInventoriesResponse;
+
+                    /**
+                     * Creates a plain object from a ListInventoriesResponse message. Also converts values to other types if specified.
+                     * @param message ListInventoriesResponse
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.cloud.osconfig.v1.ListInventoriesResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this ListInventoriesResponse to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+                }
+
+                /** InventoryView enum. */
+                enum InventoryView {
+                    INVENTORY_VIEW_UNSPECIFIED = 0,
+                    BASIC = 1,
+                    FULL = 2
                 }
             }
         }
