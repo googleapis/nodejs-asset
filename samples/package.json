@@ -15,14 +15,15 @@
     "test": "mocha --timeout 180000"
   },
   "dependencies": {
-    "@google-cloud/bigquery": "^4.3.0",
-    "@google-cloud/asset": "^1.5.0",
-    "@google-cloud/storage": "^4.0.0",
-    "uuid": "^3.3.2",
-    "yargs": "^15.0.0"
+    "@google-cloud/asset": "^3.19.0",
+    "@google-cloud/bigquery": "^5.5.0",
+    "@google-cloud/compute": "^2.0.0",
+    "@google-cloud/storage": "^5.0.0",
+    "uuid": "^8.0.0",
+    "yargs": "^16.0.0"
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "mocha": "^6.0.0"
+    "mocha": "^8.0.0"
   }
 }
