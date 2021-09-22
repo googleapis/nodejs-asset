@@ -490,6 +490,10 @@ export class AssetServiceClient {
    *   for more details and examples.
    * @example
    * const [response] = await client.batchGetAssetsHistory(request);
+   *
+   * @example <caption>include:samples/generated/v1/asset_service.batch_get_assets_history.js</caption>
+   * region_tag:asset_batch_get_assets_history_sample
+   *
    */
   batchGetAssetsHistory(
     request?: protos.google.cloud.asset.v1.IBatchGetAssetsHistoryRequest,
@@ -591,6 +595,10 @@ export class AssetServiceClient {
    *   for more details and examples.
    * @example
    * const [response] = await client.createFeed(request);
+   *
+   * @example <caption>include:samples/generated/v1/asset_service.create_feed.js</caption>
+   * region_tag:asset_create_feed_sample
+   *
    */
   createFeed(
     request?: protos.google.cloud.asset.v1.ICreateFeedRequest,
@@ -677,6 +685,10 @@ export class AssetServiceClient {
    *   for more details and examples.
    * @example
    * const [response] = await client.getFeed(request);
+   *
+   * @example <caption>include:samples/generated/v1/asset_service.get_feed.js</caption>
+   * region_tag:asset_get_feed_sample
+   *
    */
   getFeed(
     request?: protos.google.cloud.asset.v1.IGetFeedRequest,
@@ -762,6 +774,10 @@ export class AssetServiceClient {
    *   for more details and examples.
    * @example
    * const [response] = await client.listFeeds(request);
+   *
+   * @example <caption>include:samples/generated/v1/asset_service.list_feeds.js</caption>
+   * region_tag:asset_list_feeds_sample
+   *
    */
   listFeeds(
     request?: protos.google.cloud.asset.v1.IListFeedsRequest,
@@ -853,6 +869,10 @@ export class AssetServiceClient {
    *   for more details and examples.
    * @example
    * const [response] = await client.updateFeed(request);
+   *
+   * @example <caption>include:samples/generated/v1/asset_service.update_feed.js</caption>
+   * region_tag:asset_update_feed_sample
+   *
    */
   updateFeed(
     request?: protos.google.cloud.asset.v1.IUpdateFeedRequest,
@@ -939,6 +959,10 @@ export class AssetServiceClient {
    *   for more details and examples.
    * @example
    * const [response] = await client.deleteFeed(request);
+   *
+   * @example <caption>include:samples/generated/v1/asset_service.delete_feed.js</caption>
+   * region_tag:asset_delete_feed_sample
+   *
    */
   deleteFeed(
     request?: protos.google.cloud.asset.v1.IDeleteFeedRequest,
@@ -1034,6 +1058,10 @@ export class AssetServiceClient {
    *   for more details and examples.
    * @example
    * const [response] = await client.analyzeIamPolicy(request);
+   *
+   * @example <caption>include:samples/generated/v1/asset_service.analyze_iam_policy.js</caption>
+   * region_tag:asset_analyze_iam_policy_sample
+   *
    */
   analyzeIamPolicy(
     request?: protos.google.cloud.asset.v1.IAnalyzeIamPolicyRequest,
@@ -1135,6 +1163,10 @@ export class AssetServiceClient {
    *   for more details and examples.
    * @example
    * const [response] = await client.analyzeMove(request);
+   *
+   * @example <caption>include:samples/generated/v1/asset_service.analyze_move.js</caption>
+   * region_tag:asset_analyze_move_sample
+   *
    */
   analyzeMove(
     request?: protos.google.cloud.asset.v1.IAnalyzeMoveRequest,
@@ -1289,6 +1321,10 @@ export class AssetServiceClient {
    * @example
    * const [operation] = await client.exportAssets(request);
    * const [response] = await operation.promise();
+   *
+   * @example <caption>include:samples/generated/v1/asset_service.export_assets.js</caption>
+   * region_tag:asset_export_assets_sample
+   *
    */
   exportAssets(
     request?: protos.google.cloud.asset.v1.IExportAssetsRequest,
@@ -1352,6 +1388,10 @@ export class AssetServiceClient {
    * console.log(decodedOperation.result);
    * console.log(decodedOperation.done);
    * console.log(decodedOperation.metadata);
+   *
+   * @example <caption>include:samples/generated/v1/asset_service.export_assets.js</caption>
+   * region_tag:asset_export_assets_sample
+   *
    */
   async checkExportAssetsProgress(
     name: string
@@ -1440,6 +1480,10 @@ export class AssetServiceClient {
    * @example
    * const [operation] = await client.analyzeIamPolicyLongrunning(request);
    * const [response] = await operation.promise();
+   *
+   * @example <caption>include:samples/generated/v1/asset_service.analyze_iam_policy_longrunning.js</caption>
+   * region_tag:asset_analyze_iam_policy_longrunning_sample
+   *
    */
   analyzeIamPolicyLongrunning(
     request?: protos.google.cloud.asset.v1.IAnalyzeIamPolicyLongrunningRequest,
@@ -1507,6 +1551,10 @@ export class AssetServiceClient {
    * console.log(decodedOperation.result);
    * console.log(decodedOperation.done);
    * console.log(decodedOperation.metadata);
+   *
+   * @example <caption>include:samples/generated/v1/asset_service.analyze_iam_policy_longrunning.js</caption>
+   * region_tag:asset_analyze_iam_policy_longrunning_sample
+   *
    */
   async checkAnalyzeIamPolicyLongrunningProgress(
     name: string
@@ -1631,6 +1679,10 @@ export class AssetServiceClient {
    *   Please see the
    *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination)
    *   for more details and examples.
+   *
+   * @example <caption>include:samples/generated/v1/asset_service.list_assets.js</caption>
+   * region_tag:asset_list_assets_sample
+   *
    */
   listAssets(
     request?: protos.google.cloud.asset.v1.IListAssetsRequest,
@@ -1743,6 +1795,10 @@ export class AssetServiceClient {
    *   Please see the
    *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination)
    *   for more details and examples.
+   *
+   * @example <caption>include:samples/generated/v1/asset_service.list_assets.js</caption>
+   * region_tag:asset_list_assets_sample
+   *
    */
   listAssetsStream(
     request?: protos.google.cloud.asset.v1.IListAssetsRequest,
@@ -1756,7 +1812,8 @@ export class AssetServiceClient {
       gax.routingHeader.fromParams({
         parent: request.parent || '',
       });
-    const callSettings = new gax.CallSettings(options);
+    const defaultCallSettings = this._defaults['listAssets'];
+    const callSettings = defaultCallSettings.merge(options);
     this.initialize();
     return this.descriptors.page.listAssets.createStream(
       this.innerApiCalls.listAssets as gax.GaxCall,
@@ -1842,6 +1899,10 @@ export class AssetServiceClient {
    * for await (const response of iterable) {
    *   // process response
    * }
+   *
+   * @example <caption>include:samples/generated/v1/asset_service.list_assets.js</caption>
+   * region_tag:asset_list_assets_sample
+   *
    */
   listAssetsAsync(
     request?: protos.google.cloud.asset.v1.IListAssetsRequest,
@@ -1856,7 +1917,8 @@ export class AssetServiceClient {
         parent: request.parent || '',
       });
     options = options || {};
-    const callSettings = new gax.CallSettings(options);
+    const defaultCallSettings = this._defaults['listAssets'];
+    const callSettings = defaultCallSettings.merge(options);
     this.initialize();
     return this.descriptors.page.listAssets.asyncIterate(
       this.innerApiCalls['listAssets'] as GaxCall,
@@ -2045,6 +2107,10 @@ export class AssetServiceClient {
    *   Please see the
    *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination)
    *   for more details and examples.
+   *
+   * @example <caption>include:samples/generated/v1/asset_service.search_all_resources.js</caption>
+   * region_tag:asset_search_all_resources_sample
+   *
    */
   searchAllResources(
     request?: protos.google.cloud.asset.v1.ISearchAllResourcesRequest,
@@ -2235,6 +2301,10 @@ export class AssetServiceClient {
    *   Please see the
    *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination)
    *   for more details and examples.
+   *
+   * @example <caption>include:samples/generated/v1/asset_service.search_all_resources.js</caption>
+   * region_tag:asset_search_all_resources_sample
+   *
    */
   searchAllResourcesStream(
     request?: protos.google.cloud.asset.v1.ISearchAllResourcesRequest,
@@ -2248,7 +2318,8 @@ export class AssetServiceClient {
       gax.routingHeader.fromParams({
         scope: request.scope || '',
       });
-    const callSettings = new gax.CallSettings(options);
+    const defaultCallSettings = this._defaults['searchAllResources'];
+    const callSettings = defaultCallSettings.merge(options);
     this.initialize();
     return this.descriptors.page.searchAllResources.createStream(
       this.innerApiCalls.searchAllResources as gax.GaxCall,
@@ -2408,6 +2479,10 @@ export class AssetServiceClient {
    * for await (const response of iterable) {
    *   // process response
    * }
+   *
+   * @example <caption>include:samples/generated/v1/asset_service.search_all_resources.js</caption>
+   * region_tag:asset_search_all_resources_sample
+   *
    */
   searchAllResourcesAsync(
     request?: protos.google.cloud.asset.v1.ISearchAllResourcesRequest,
@@ -2422,7 +2497,8 @@ export class AssetServiceClient {
         scope: request.scope || '',
       });
     options = options || {};
-    const callSettings = new gax.CallSettings(options);
+    const defaultCallSettings = this._defaults['searchAllResources'];
+    const callSettings = defaultCallSettings.merge(options);
     this.initialize();
     return this.descriptors.page.searchAllResources.asyncIterate(
       this.innerApiCalls['searchAllResources'] as GaxCall,
@@ -2575,6 +2651,10 @@ export class AssetServiceClient {
    *   Please see the
    *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination)
    *   for more details and examples.
+   *
+   * @example <caption>include:samples/generated/v1/asset_service.search_all_iam_policies.js</caption>
+   * region_tag:asset_search_all_iam_policies_sample
+   *
    */
   searchAllIamPolicies(
     request?: protos.google.cloud.asset.v1.ISearchAllIamPoliciesRequest,
@@ -2729,6 +2809,10 @@ export class AssetServiceClient {
    *   Please see the
    *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination)
    *   for more details and examples.
+   *
+   * @example <caption>include:samples/generated/v1/asset_service.search_all_iam_policies.js</caption>
+   * region_tag:asset_search_all_iam_policies_sample
+   *
    */
   searchAllIamPoliciesStream(
     request?: protos.google.cloud.asset.v1.ISearchAllIamPoliciesRequest,
@@ -2742,7 +2826,8 @@ export class AssetServiceClient {
       gax.routingHeader.fromParams({
         scope: request.scope || '',
       });
-    const callSettings = new gax.CallSettings(options);
+    const defaultCallSettings = this._defaults['searchAllIamPolicies'];
+    const callSettings = defaultCallSettings.merge(options);
     this.initialize();
     return this.descriptors.page.searchAllIamPolicies.createStream(
       this.innerApiCalls.searchAllIamPolicies as gax.GaxCall,
@@ -2866,6 +2951,10 @@ export class AssetServiceClient {
    * for await (const response of iterable) {
    *   // process response
    * }
+   *
+   * @example <caption>include:samples/generated/v1/asset_service.search_all_iam_policies.js</caption>
+   * region_tag:asset_search_all_iam_policies_sample
+   *
    */
   searchAllIamPoliciesAsync(
     request?: protos.google.cloud.asset.v1.ISearchAllIamPoliciesRequest,
@@ -2880,7 +2969,8 @@ export class AssetServiceClient {
         scope: request.scope || '',
       });
     options = options || {};
-    const callSettings = new gax.CallSettings(options);
+    const defaultCallSettings = this._defaults['searchAllIamPolicies'];
+    const callSettings = defaultCallSettings.merge(options);
     this.initialize();
     return this.descriptors.page.searchAllIamPolicies.asyncIterate(
       this.innerApiCalls['searchAllIamPolicies'] as GaxCall,

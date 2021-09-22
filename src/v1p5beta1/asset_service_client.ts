@@ -394,6 +394,10 @@ export class AssetServiceClient {
    *   Please see the
    *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination)
    *   for more details and examples.
+   *
+   * @example <caption>include:samples/generated/v1p5beta1/asset_service.list_assets.js</caption>
+   * region_tag:asset_list_assets_sample
+   *
    */
   listAssets(
     request?: protos.google.cloud.asset.v1p5beta1.IListAssetsRequest,
@@ -481,6 +485,10 @@ export class AssetServiceClient {
    *   Please see the
    *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination)
    *   for more details and examples.
+   *
+   * @example <caption>include:samples/generated/v1p5beta1/asset_service.list_assets.js</caption>
+   * region_tag:asset_list_assets_sample
+   *
    */
   listAssetsStream(
     request?: protos.google.cloud.asset.v1p5beta1.IListAssetsRequest,
@@ -494,7 +502,8 @@ export class AssetServiceClient {
       gax.routingHeader.fromParams({
         parent: request.parent || '',
       });
-    const callSettings = new gax.CallSettings(options);
+    const defaultCallSettings = this._defaults['listAssets'];
+    const callSettings = defaultCallSettings.merge(options);
     this.initialize();
     return this.descriptors.page.listAssets.createStream(
       this.innerApiCalls.listAssets as gax.GaxCall,
@@ -551,6 +560,10 @@ export class AssetServiceClient {
    * for await (const response of iterable) {
    *   // process response
    * }
+   *
+   * @example <caption>include:samples/generated/v1p5beta1/asset_service.list_assets.js</caption>
+   * region_tag:asset_list_assets_sample
+   *
    */
   listAssetsAsync(
     request?: protos.google.cloud.asset.v1p5beta1.IListAssetsRequest,
@@ -565,7 +578,8 @@ export class AssetServiceClient {
         parent: request.parent || '',
       });
     options = options || {};
-    const callSettings = new gax.CallSettings(options);
+    const defaultCallSettings = this._defaults['listAssets'];
+    const callSettings = defaultCallSettings.merge(options);
     this.initialize();
     return this.descriptors.page.listAssets.asyncIterate(
       this.innerApiCalls['listAssets'] as GaxCall,
