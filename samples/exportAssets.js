@@ -17,9 +17,9 @@
 // sample-metadata:
 //   title: Export Assets
 //   description: Export asserts to specified dump file path.
-//   usage: node exportAssets.js <gs://my-bucket/my-assets.txt>
+//   usage: node exportAssets.js <gs://my-bucket/my-assets.txt> <content_type>
 
-async function main(dumpFilePath) {
+async function main(dumpFilePath, contentType) {
   // [START asset_quickstart_export_assets]
   const {AssetServiceClient} = require('@google-cloud/asset');
   const client = new AssetServiceClient();
@@ -30,9 +30,9 @@ async function main(dumpFilePath) {
 
     // TODO(developer): choose the dump file path
     // const dumpFilePath = 'Dump file path, e.g.: gs://<my_bucket>/<my_asset_file>'
-
     const request = {
       parent: projectResource,
+      contentType: contentType,
       outputConfig: {
         gcsDestination: {
           uri: dumpFilePath,

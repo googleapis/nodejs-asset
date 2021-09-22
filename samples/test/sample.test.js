@@ -75,6 +75,22 @@ describe('quickstart sample tests', () => {
     await file.delete();
   });
 
+  it('should export asset relationships to specified path', async () => {
+    const dumpFilePath = `gs://${bucketName}/my-relationships.txt`;
+    const contentType = 'RELATIONSHIP'
+    execSync(`node exportAssets ${dumpFilePath} ${contentType}`);
+    let waitMs = 1000;
+    let exists = false;
+    let file;
+    for (let retry = 0; retry < 3 && !exists; ++retry) {
+      await sleep((waitMs *= 2));
+      file = await bucket.file('my-relationships.txt');
+      exists = await file.exists();
+    }
+    assert.ok(exists);
+    await file.delete();
+  });
+
   // The assets returned within 'readTimeWindow' frequently do not include
   // the newly created bucket:
   it('should get assets history successfully', async () => {
@@ -109,8 +125,14 @@ describe('quickstart sample tests', () => {
 
   it('should list assets successfully', async () => {
     const assetType = 'storage.googleapis.com/Bucket';
-    const stdout = execSync(`node listAssets ${assetType}`);
+    const stdout = execSync(`node listAssets ${assetType} 'RESOURCE'`);
     assert.include(stdout, assetType);
+  });
+
+  it('should list asset relationship successfully', async () => {
+    const assetType = 'storage.googleapis.com/Bucket';
+    const stdout = execSync(`node listAssets '' 'RELATIONSHIP'`);
+    assert.include(stdout, 'relatedAsset');
   });
 
   it('should analyze iam policy successfully', async () => {

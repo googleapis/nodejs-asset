@@ -17,10 +17,10 @@
 // sample-metadata:
 //   title: List Assets
 //   description: List assets under the current project.
-//   usage: node listAssets <ASSET_TYPES>
-//   example: node listAssets "storage.googleapis.com/Bucket,bigquery.googleapis.com/Table"
+//   usage: node listAssets <ASSET_TYPES> <content_type>
+//   example: node listAssets "storage.googleapis.com/Bucket,bigquery.googleapis.com/Table" 'RESOURCE'
 
-async function main(assetTypes) {
+async function main(assetTypes, contentType) {
   // [START asset_quickstart_list_assets]
   const util = require('util');
   const {v1} = require('@google-cloud/asset');
@@ -38,7 +38,7 @@ async function main(assetTypes) {
     const request = {
       parent: projectResource,
       assetTypes: assetTypesList,
-      contentType: 'RESOURCE',
+      contentType: contentType,
       // (Optional) Add readTime parameter to list assets at the given time instead of current time:
       //   readTime: { seconds: 1593988758 },
     };
