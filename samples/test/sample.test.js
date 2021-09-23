@@ -77,7 +77,7 @@ describe('quickstart sample tests', () => {
 
   it('should export asset relationships to specified path', async () => {
     const dumpFilePath = `gs://${bucketName}/my-relationships.txt`;
-    const contentType = 'RELATIONSHIP'
+    const contentType = 'RELATIONSHIP';
     execSync(`node exportAssets ${dumpFilePath} ${contentType}`);
     let waitMs = 1000;
     let exists = false;
@@ -99,7 +99,9 @@ describe('quickstart sample tests', () => {
     let included = false;
     for (let retry = 0; retry < 3 && !included; ++retry) {
       await sleep((waitMs *= 2));
-      const stdout = execSync(`node getBatchAssetHistory ${assetName}`);
+      const stdout = execSync(
+        `node getBatchAssetHistory ${assetName} 'RESOURCE'`
+      );
       included = stdout.includes(assetName);
     }
     assert.ok(included);
@@ -130,7 +132,6 @@ describe('quickstart sample tests', () => {
   });
 
   it('should list asset relationship successfully', async () => {
-    const assetType = 'storage.googleapis.com/Bucket';
     const stdout = execSync(`node listAssets '' 'RELATIONSHIP'`);
     assert.include(stdout, 'relatedAsset');
   });

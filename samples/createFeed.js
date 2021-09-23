@@ -17,9 +17,9 @@
 // sample-metadata:
 //   title: Create Feed
 //   description: Create Feed.
-//   usage: node createFeed <FEED_ID> "//storage.googleapis.com/<BUCKET_NAME>", projects/<PROJECT_ID>/topics/<TOPIC_ID>
+//   usage: node createFeed <FEED_ID> "//storage.googleapis.com/<BUCKET_NAME>", projects/<PROJECT_ID>/topics/<TOPIC_ID>, "RESOURCE"
 
-async function main(feedId, assetNames, topicName) {
+async function main(feedId, assetNames, topicName, contentType) {
   // [START asset_quickstart_create_feed]
   const util = require('util');
   const {AssetServiceClient} = require('@google-cloud/asset');
@@ -36,6 +36,7 @@ async function main(feedId, assetNames, topicName) {
       feedId: feedId,
       feed: {
         assetNames: assetNames.split(','),
+        contentType: contentType,
         feedOutputConfig: {
           pubsubDestination: {
             topic: topicName,
