@@ -1,4 +1,4 @@
-// Copyright 2020 Google LLC
+// Copyright 2021 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -22,6 +22,12 @@
 
 async function main(assetTypes, contentType) {
   // [START asset_quickstart_list_assets]
+  /**
+   * TODO(developer): Uncomment these variables before running the sample.
+   */
+  // const assetTypes = 'storage.googleapis.com/Bucket,bigquery.googleapis.com/Table';
+  // const contentType = 'RESOURCE';
+
   const util = require('util');
   const {v1} = require('@google-cloud/asset');
   const client = new v1.AssetServiceClient();

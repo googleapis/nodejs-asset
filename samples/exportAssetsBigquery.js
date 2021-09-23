@@ -1,4 +1,4 @@
-// Copyright 2019 Google LLC
+// Copyright 2021 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -21,6 +21,12 @@
 
 async function main(dataSet, table) {
   // [START asset_quickstart_export_assets_bigquery]
+  /**
+   * TODO(developer): Uncomment these variables before running the sample.
+   */
+  // const dataSet = 'projects/project_id/datasets/dataset_id';
+  // const table = 'mytable';
+
   const {AssetServiceClient} = require('@google-cloud/asset');
   const client = new AssetServiceClient();
 

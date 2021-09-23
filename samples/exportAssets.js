@@ -1,4 +1,4 @@
-// Copyright 2018 Google LLC
+// Copyright 2021 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -21,6 +21,12 @@
 
 async function main(dumpFilePath, contentType) {
   // [START asset_quickstart_export_assets]
+  /**
+   * TODO(developer): Uncomment these variables before running the sample.
+   */
+  // const dumpFilePath = 'gs://my-bucket/my-assets.txt';
+  // const contentType = 'RESOURCE';
+
   const {AssetServiceClient} = require('@google-cloud/asset');
   const client = new AssetServiceClient();
 
