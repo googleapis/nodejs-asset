@@ -25,6 +25,7 @@ const execSync = cmd => cp.execSync(cmd, {encoding: 'utf-8'});
 const storage = new Storage();
 const bucketName = `asset-nodejs-${uuid.v4()}`;
 const bucket = storage.bucket(bucketName);
+const fileSuffix = ${uuid.v4()};
 
 const {BigQuery} = require('@google-cloud/bigquery');
 const bigquery = new BigQuery();
@@ -61,14 +62,14 @@ describe('quickstart sample tests', () => {
   });
 
   it('should export assets to specified path', async () => {
-    const dumpFilePath = `gs://${bucketName}/my-assets.txt`;
+    const dumpFilePath = `gs://${bucketName}/my-assets-${fileSuffix}.txt`;
     execSync(`node exportAssets ${dumpFilePath}`);
     let waitMs = 1000;
     let exists = false;
     let file;
     for (let retry = 0; retry < 3 && !exists; ++retry) {
       await sleep((waitMs *= 2));
-      file = await bucket.file('my-assets.txt');
+      file = await bucket.file('my-assets-${fileSuffix}.txt');
       exists = await file.exists();
     }
     assert.ok(exists);
@@ -76,7 +77,7 @@ describe('quickstart sample tests', () => {
   });
 
   it('should export asset relationships to specified path', async () => {
-    const dumpFilePath = `gs://${bucketName}/my-relationships.txt`;
+    const dumpFilePath = `gs://${bucketName}/my-relationships-${fileSuffix}.txt`;
     const contentType = 'RELATIONSHIP';
     execSync(`node exportAssets ${dumpFilePath} ${contentType}`);
     let waitMs = 1000;
@@ -84,7 +85,7 @@ describe('quickstart sample tests', () => {
     let file;
     for (let retry = 0; retry < 3 && !exists; ++retry) {
       await sleep((waitMs *= 2));
-      file = await bucket.file('my-relationships.txt');
+      file = await bucket.file('my-relationships-${fileSuffix}.txt');
       exists = await file.exists();
     }
     assert.ok(exists);
