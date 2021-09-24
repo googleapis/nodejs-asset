@@ -133,7 +133,7 @@ describe('quickstart sample tests', () => {
   });
 
   it('should list asset relationship successfully', async () => {
-    const stdout = execSync(`node listAssets '' 'RELATIONSHIP'`);
+    const stdout = execSync("node listAssets '' 'RELATIONSHIP'");
     assert.include(stdout, 'relatedAsset');
   });
 
