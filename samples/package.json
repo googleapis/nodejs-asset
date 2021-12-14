@@ -4,7 +4,7 @@
   "license": "Apache-2.0",
   "author": "Google Inc.",
   "engines": {
-    "node": ">=8"
+    "node": ">=10"
   },
   "files": [
     "*.js"
@@ -12,10 +12,10 @@
   "repository": "googleapis/nodejs-asset",
   "private": true,
   "scripts": {
-    "test": "mocha --timeout 180000"
+    "test": "mocha --timeout 360000"
   },
   "dependencies": {
-    "@google-cloud/asset": "^3.19.0",
+    "@google-cloud/asset": "^3.22.0",
     "@google-cloud/bigquery": "^5.5.0",
     "@google-cloud/compute": "^2.0.0",
     "@google-cloud/storage": "^5.0.0",
