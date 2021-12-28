@@ -13,5 +13,5 @@
   "default_version": "v1",
   "codeowner_team": "@googleapis/cloud-asset-team",
   "api_shortname": "asset",
-  "library_type": ""
+  "library_type": "GAPIC_AUTO"
 }
