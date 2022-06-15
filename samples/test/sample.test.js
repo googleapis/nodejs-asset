@@ -52,7 +52,7 @@ describe('quickstart sample tests', () => {
     await bucket.create();
     await bigquery.createDataset(datasetId, options);
     await bigquery.dataset(datasetId).exists();
-    [vm] = await zone.createVM(vmName, {os: 'ubuntu'});
+    [vm] = await zone.vm(vmName, {os: 'ubuntu'});
   });
 
   after(async () => {
