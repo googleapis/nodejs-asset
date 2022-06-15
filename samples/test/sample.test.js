@@ -34,8 +34,8 @@ const options = {
 };
 const datasetId = `asset_nodejs_${uuid.v4()}`.replace(/-/gi, '_');
 
-const Compute = require('@google-cloud/compute');
-const zone = new Compute().zone('us-central1-c');
+const compute = require('@google-cloud/compute');
+const zone = new compute.zone('us-central1-c');
 const vmName = `asset-nodejs-${uuid.v4()}`;
 
 let vm;
