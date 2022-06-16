@@ -44,7 +44,7 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-describe('quickstart sample tests', () => {
+describe.only('quickstart sample tests', () => {
   let projectId;
   let zone;
   let instanceName;
@@ -52,13 +52,14 @@ describe('quickstart sample tests', () => {
   let sourceImage;
   let networkName;
   before(async () => {
-    zone = 'us-central1';
+    zone = 'us-central1-a';
     instanceName = `asset-nodejs-${uuid.v4()}`;
     machineType = 'n1-standard-1';
-    sourceImage = 'projects/ubuntu-cloud/global/images/family/ubuntu-1804-lts';
+    sourceImage =
+      'projects/ubuntu-os-cloud/global/images/family/ubuntu-1804-lts';
     networkName = 'global/networks/default';
+    projectId = await instancesClient.getProjectId();
 
-    await instancesClient.getProjectId();
     await bucket.create();
     await bigquery.createDataset(datasetId, options);
     await bigquery.dataset(datasetId).exists();
