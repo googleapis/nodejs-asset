@@ -44,7 +44,7 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-describe.only('quickstart sample tests', () => {
+describe('quickstart sample tests', () => {
   let projectId;
   let zone;
   let instanceName;
