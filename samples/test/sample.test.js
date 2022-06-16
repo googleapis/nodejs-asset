@@ -162,7 +162,7 @@ describe('quickstart sample tests', () => {
     assert.include(stdout, assetName);
   });
 
-  it.skip('should search all resources successfully', async () => {
+  it('should search all resources successfully', async () => {
     const query = `name:${instanceName}`;
     const stdout = execSync(`node searchAllResources '' ${query}`);
     assert.include(stdout, instanceName);
