@@ -108,7 +108,8 @@
           "retry_params_name": "default"
         },
         "BatchGetEffectiveIamPolicies": {
-          "retry_codes_name": "non_idempotent",
+          "timeout_millis": 300000,
+          "retry_codes_name": "unavailable",
           "retry_params_name": "default"
         }
       }

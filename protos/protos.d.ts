@@ -5818,17 +5818,6 @@ export namespace google {
                     public toJSON(): { [k: string]: any };
                 }
 
-                /** ContentType enum. */
-                enum ContentType {
-                    CONTENT_TYPE_UNSPECIFIED = 0,
-                    RESOURCE = 1,
-                    IAM_POLICY = 2,
-                    ORG_POLICY = 4,
-                    ACCESS_POLICY = 5,
-                    OS_INVENTORY = 6,
-                    RELATIONSHIP = 7
-                }
-
                 /** Properties of a BatchGetEffectiveIamPoliciesRequest. */
                 interface IBatchGetEffectiveIamPoliciesRequest {
 
@@ -6211,6 +6200,17 @@ export namespace google {
                             public toJSON(): { [k: string]: any };
                         }
                     }
+                }
+
+                /** ContentType enum. */
+                enum ContentType {
+                    CONTENT_TYPE_UNSPECIFIED = 0,
+                    RESOURCE = 1,
+                    IAM_POLICY = 2,
+                    ORG_POLICY = 4,
+                    ACCESS_POLICY = 5,
+                    OS_INVENTORY = 6,
+                    RELATIONSHIP = 7
                 }
 
                 /** Properties of a TemporalAsset. */

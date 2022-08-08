@@ -13787,30 +13787,6 @@
                         return MoveImpact;
                     })();
     
-                    /**
-                     * ContentType enum.
-                     * @name google.cloud.asset.v1.ContentType
-                     * @enum {number}
-                     * @property {number} CONTENT_TYPE_UNSPECIFIED=0 CONTENT_TYPE_UNSPECIFIED value
-                     * @property {number} RESOURCE=1 RESOURCE value
-                     * @property {number} IAM_POLICY=2 IAM_POLICY value
-                     * @property {number} ORG_POLICY=4 ORG_POLICY value
-                     * @property {number} ACCESS_POLICY=5 ACCESS_POLICY value
-                     * @property {number} OS_INVENTORY=6 OS_INVENTORY value
-                     * @property {number} RELATIONSHIP=7 RELATIONSHIP value
-                     */
-                    v1.ContentType = (function() {
-                        var valuesById = {}, values = Object.create(valuesById);
-                        values[valuesById[0] = "CONTENT_TYPE_UNSPECIFIED"] = 0;
-                        values[valuesById[1] = "RESOURCE"] = 1;
-                        values[valuesById[2] = "IAM_POLICY"] = 2;
-                        values[valuesById[4] = "ORG_POLICY"] = 4;
-                        values[valuesById[5] = "ACCESS_POLICY"] = 5;
-                        values[valuesById[6] = "OS_INVENTORY"] = 6;
-                        values[valuesById[7] = "RELATIONSHIP"] = 7;
-                        return values;
-                    })();
-    
                     v1.BatchGetEffectiveIamPoliciesRequest = (function() {
     
                         /**
@@ -14689,6 +14665,30 @@
                         })();
     
                         return BatchGetEffectiveIamPoliciesResponse;
+                    })();
+    
+                    /**
+                     * ContentType enum.
+                     * @name google.cloud.asset.v1.ContentType
+                     * @enum {number}
+                     * @property {number} CONTENT_TYPE_UNSPECIFIED=0 CONTENT_TYPE_UNSPECIFIED value
+                     * @property {number} RESOURCE=1 RESOURCE value
+                     * @property {number} IAM_POLICY=2 IAM_POLICY value
+                     * @property {number} ORG_POLICY=4 ORG_POLICY value
+                     * @property {number} ACCESS_POLICY=5 ACCESS_POLICY value
+                     * @property {number} OS_INVENTORY=6 OS_INVENTORY value
+                     * @property {number} RELATIONSHIP=7 RELATIONSHIP value
+                     */
+                    v1.ContentType = (function() {
+                        var valuesById = {}, values = Object.create(valuesById);
+                        values[valuesById[0] = "CONTENT_TYPE_UNSPECIFIED"] = 0;
+                        values[valuesById[1] = "RESOURCE"] = 1;
+                        values[valuesById[2] = "IAM_POLICY"] = 2;
+                        values[valuesById[4] = "ORG_POLICY"] = 4;
+                        values[valuesById[5] = "ACCESS_POLICY"] = 5;
+                        values[valuesById[6] = "OS_INVENTORY"] = 6;
+                        values[valuesById[7] = "RELATIONSHIP"] = 7;
+                        return values;
                     })();
     
                     v1.TemporalAsset = (function() {

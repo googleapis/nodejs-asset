@@ -1517,17 +1517,6 @@
                         }
                       }
                     },
-                    "ContentType": {
-                      "values": {
-                        "CONTENT_TYPE_UNSPECIFIED": 0,
-                        "RESOURCE": 1,
-                        "IAM_POLICY": 2,
-                        "ORG_POLICY": 4,
-                        "ACCESS_POLICY": 5,
-                        "OS_INVENTORY": 6,
-                        "RELATIONSHIP": 7
-                      }
-                    },
                     "BatchGetEffectiveIamPoliciesRequest": {
                       "fields": {
                         "scope": {
@@ -1585,6 +1574,17 @@
                             }
                           }
                         }
+                      }
+                    },
+                    "ContentType": {
+                      "values": {
+                        "CONTENT_TYPE_UNSPECIFIED": 0,
+                        "RESOURCE": 1,
+                        "IAM_POLICY": 2,
+                        "ORG_POLICY": 4,
+                        "ACCESS_POLICY": 5,
+                        "OS_INVENTORY": 6,
+                        "RELATIONSHIP": 7
                       }
                     },
                     "TemporalAsset": {
