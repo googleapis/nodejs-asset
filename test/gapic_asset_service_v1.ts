@@ -1257,6 +1257,132 @@ describe('v1.AssetServiceClient', () => {
     });
   });
 
+  describe('queryAssets', () => {
+    it('invokes queryAssets without error', async () => {
+      const client = new assetserviceModule.v1.AssetServiceClient({
+        credentials: {client_email: 'bogus', private_key: 'bogus'},
+        projectId: 'bogus',
+      });
+      client.initialize();
+      const request = generateSampleMessage(
+        new protos.google.cloud.asset.v1.QueryAssetsRequest()
+      );
+      request.parent = '';
+      const expectedHeaderRequestParams = 'parent=';
+      const expectedOptions = {
+        otherArgs: {
+          headers: {
+            'x-goog-request-params': expectedHeaderRequestParams,
+          },
+        },
+      };
+      const expectedResponse = generateSampleMessage(
+        new protos.google.cloud.asset.v1.QueryAssetsResponse()
+      );
+      client.innerApiCalls.queryAssets = stubSimpleCall(expectedResponse);
+      const [response] = await client.queryAssets(request);
+      assert.deepStrictEqual(response, expectedResponse);
+      assert(
+        (client.innerApiCalls.queryAssets as SinonStub)
+          .getCall(0)
+          .calledWith(request, expectedOptions, undefined)
+      );
+    });
+
+    it('invokes queryAssets without error using callback', async () => {
+      const client = new assetserviceModule.v1.AssetServiceClient({
+        credentials: {client_email: 'bogus', private_key: 'bogus'},
+        projectId: 'bogus',
+      });
+      client.initialize();
+      const request = generateSampleMessage(
+        new protos.google.cloud.asset.v1.QueryAssetsRequest()
+      );
+      request.parent = '';
+      const expectedHeaderRequestParams = 'parent=';
+      const expectedOptions = {
+        otherArgs: {
+          headers: {
+            'x-goog-request-params': expectedHeaderRequestParams,
+          },
+        },
+      };
+      const expectedResponse = generateSampleMessage(
+        new protos.google.cloud.asset.v1.QueryAssetsResponse()
+      );
+      client.innerApiCalls.queryAssets =
+        stubSimpleCallWithCallback(expectedResponse);
+      const promise = new Promise((resolve, reject) => {
+        client.queryAssets(
+          request,
+          (
+            err?: Error | null,
+            result?: protos.google.cloud.asset.v1.IQueryAssetsResponse | null
+          ) => {
+            if (err) {
+              reject(err);
+            } else {
+              resolve(result);
+            }
+          }
+        );
+      });
+      const response = await promise;
+      assert.deepStrictEqual(response, expectedResponse);
+      assert(
+        (client.innerApiCalls.queryAssets as SinonStub)
+          .getCall(0)
+          .calledWith(request, expectedOptions /*, callback defined above */)
+      );
+    });
+
+    it('invokes queryAssets with error', async () => {
+      const client = new assetserviceModule.v1.AssetServiceClient({
+        credentials: {client_email: 'bogus', private_key: 'bogus'},
+        projectId: 'bogus',
+      });
+      client.initialize();
+      const request = generateSampleMessage(
+        new protos.google.cloud.asset.v1.QueryAssetsRequest()
+      );
+      request.parent = '';
+      const expectedHeaderRequestParams = 'parent=';
+      const expectedOptions = {
+        otherArgs: {
+          headers: {
+            'x-goog-request-params': expectedHeaderRequestParams,
+          },
+        },
+      };
+      const expectedError = new Error('expected');
+      client.innerApiCalls.queryAssets = stubSimpleCall(
+        undefined,
+        expectedError
+      );
+      await assert.rejects(client.queryAssets(request), expectedError);
+      assert(
+        (client.innerApiCalls.queryAssets as SinonStub)
+          .getCall(0)
+          .calledWith(request, expectedOptions, undefined)
+      );
+    });
+
+    it('invokes queryAssets with closed client', async () => {
+      const client = new assetserviceModule.v1.AssetServiceClient({
+        credentials: {client_email: 'bogus', private_key: 'bogus'},
+        projectId: 'bogus',
+      });
+      client.initialize();
+      const request = generateSampleMessage(
+        new protos.google.cloud.asset.v1.QueryAssetsRequest()
+      );
+      request.parent = '';
+      const expectedError = new Error('The client has already been closed.');
+      client.close();
+      await assert.rejects(client.queryAssets(request), expectedError);
+    });
+  });
+
   describe('createSavedQuery', () => {
     it('invokes createSavedQuery without error', async () => {
       const client = new assetserviceModule.v1.AssetServiceClient({

@@ -340,6 +340,7 @@ export class AssetServiceClient {
       'analyzeIamPolicy',
       'analyzeIamPolicyLongrunning',
       'analyzeMove',
+      'queryAssets',
       'createSavedQuery',
       'getSavedQuery',
       'listSavedQueries',
@@ -1222,6 +1223,156 @@ export class AssetServiceClient {
       });
     this.initialize();
     return this.innerApiCalls.analyzeMove(request, options, callback);
+  }
+  /**
+   * Issue a job that queries assets using a SQL statement compatible with
+   * [BigQuery Standard
+   * SQL](http://cloud/bigquery/docs/reference/standard-sql/enabling-standard-sql).
+   *
+   * If the query execution finishes within timeout and there's no pagination,
+   * the full query results will be returned in the `QueryAssetsResponse`.
+   *
+   * Otherwise, full query results can be obtained by issuing extra requests
+   * with the `job_reference` from the a previous `QueryAssets` call.
+   *
+   * Note, the query result has approximately 10 GB limitation enforced by
+   * BigQuery
+   * https://cloud.google.com/bigquery/docs/best-practices-performance-output,
+   * queries return larger results will result in errors.
+   *
+   * @param {Object} request
+   *   The request object that will be sent.
+   * @param {string} request.parent
+   *   Required. The relative name of the root asset. This can only be an
+   *   organization number (such as "organizations/123"), a project ID (such as
+   *   "projects/my-project-id"), or a project number (such as "projects/12345"),
+   *   or a folder number (such as "folders/123").
+   *
+   *   Only assets belonging to the `parent` will be returned.
+   * @param {string} [request.statement]
+   *   Optional. A SQL statement that's compatible with [BigQuery Standard
+   *   SQL](http://cloud/bigquery/docs/reference/standard-sql/enabling-standard-sql).
+   * @param {string} [request.jobReference]
+   *   Optional. Reference to the query job, which is from the
+   *   `QueryAssetsResponse` of previous `QueryAssets` call.
+   * @param {number} [request.pageSize]
+   *   Optional. The maximum number of rows to return in the results. Responses
+   *   are limited to 10 MB and 1000 rows.
+   *
+   *   By default, the maximum row count is 1000. When the byte or row count limit
+   *   is reached, the rest of the query results will be paginated.
+   *
+   *   The field will be ignored when [output_config] is specified.
+   * @param {string} [request.pageToken]
+   *   Optional. A page token received from previous `QueryAssets`.
+   *
+   *   The field will be ignored when [output_config] is specified.
+   * @param {google.protobuf.Duration} [request.timeout]
+   *   Optional. Specifies the maximum amount of time that the client is willing
+   *   to wait for the query to complete. By default, this limit is 5 min for the
+   *   first query, and 1 minute for the following queries. If the query is
+   *   complete, the `done` field in the `QueryAssetsResponse` is true, otherwise
+   *   false.
+   *
+   *   Like BigQuery [jobs.query
+   *   API](https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/query#queryrequest)
+   *   The call is not guaranteed to wait for the specified timeout; it typically
+   *   returns after around 200 seconds (200,000 milliseconds), even if the query
+   *   is not complete.
+   *
+   *   The field will be ignored when [output_config] is specified.
+   * @param {google.cloud.asset.v1.TimeWindow} [request.readTimeWindow]
+   *   Optional. [start_time] is required. [start_time] must be less than
+   *   [end_time] Defaults [end_time] to now if [start_time] is set and
+   *   [end_time] isn't. Maximum permitted time range is 7 days.
+   * @param {google.protobuf.Timestamp} [request.readTime]
+   *   Optional. Queries cloud assets as they appeared at the specified point in
+   *   time.
+   * @param {google.cloud.asset.v1.QueryAssetsOutputConfig} [request.outputConfig]
+   *   Optional. Destination where the query results will be saved.
+   *
+   *   When this field is specified, the query results won't be saved in the
+   *   [QueryAssetsResponse.query_result]. Instead
+   *   [QueryAssetsResponse.output_config] will be set.
+   *
+   *   Meanwhile, [QueryAssetsResponse.job_reference] will be set and can be used
+   *   to check the status of the query job when passed to a following
+   *   [QueryAssets] API call.
+   * @param {object} [options]
+   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+   * @returns {Promise} - The promise which resolves to an array.
+   *   The first element of the array is an object representing [QueryAssetsResponse]{@link google.cloud.asset.v1.QueryAssetsResponse}.
+   *   Please see the
+   *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods)
+   *   for more details and examples.
+   * @example <caption>include:samples/generated/v1/asset_service.query_assets.js</caption>
+   * region_tag:cloudasset_v1_generated_AssetService_QueryAssets_async
+   */
+  queryAssets(
+    request?: protos.google.cloud.asset.v1.IQueryAssetsRequest,
+    options?: CallOptions
+  ): Promise<
+    [
+      protos.google.cloud.asset.v1.IQueryAssetsResponse,
+      protos.google.cloud.asset.v1.IQueryAssetsRequest | undefined,
+      {} | undefined
+    ]
+  >;
+  queryAssets(
+    request: protos.google.cloud.asset.v1.IQueryAssetsRequest,
+    options: CallOptions,
+    callback: Callback<
+      protos.google.cloud.asset.v1.IQueryAssetsResponse,
+      protos.google.cloud.asset.v1.IQueryAssetsRequest | null | undefined,
+      {} | null | undefined
+    >
+  ): void;
+  queryAssets(
+    request: protos.google.cloud.asset.v1.IQueryAssetsRequest,
+    callback: Callback<
+      protos.google.cloud.asset.v1.IQueryAssetsResponse,
+      protos.google.cloud.asset.v1.IQueryAssetsRequest | null | undefined,
+      {} | null | undefined
+    >
+  ): void;
+  queryAssets(
+    request?: protos.google.cloud.asset.v1.IQueryAssetsRequest,
+    optionsOrCallback?:
+      | CallOptions
+      | Callback<
+          protos.google.cloud.asset.v1.IQueryAssetsResponse,
+          protos.google.cloud.asset.v1.IQueryAssetsRequest | null | undefined,
+          {} | null | undefined
+        >,
+    callback?: Callback<
+      protos.google.cloud.asset.v1.IQueryAssetsResponse,
+      protos.google.cloud.asset.v1.IQueryAssetsRequest | null | undefined,
+      {} | null | undefined
+    >
+  ): Promise<
+    [
+      protos.google.cloud.asset.v1.IQueryAssetsResponse,
+      protos.google.cloud.asset.v1.IQueryAssetsRequest | undefined,
+      {} | undefined
+    ]
+  > | void {
+    request = request || {};
+    let options: CallOptions;
+    if (typeof optionsOrCallback === 'function' && callback === undefined) {
+      callback = optionsOrCallback;
+      options = {};
+    } else {
+      options = optionsOrCallback as CallOptions;
+    }
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers['x-goog-request-params'] =
+      gax.routingHeader.fromParams({
+        parent: request.parent || '',
+      });
+    this.initialize();
+    return this.innerApiCalls.queryAssets(request, options, callback);
   }
   /**
    * Creates a saved query in a parent project/folder/organization.
