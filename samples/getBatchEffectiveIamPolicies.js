@@ -21,7 +21,6 @@
 
 async function main(assetNames) {
   // [START asset_quickstart_batch_get_effective_iam_policies]
-  const util = require('util');
   const {AssetServiceClient} = require('@google-cloud/asset');
 
   const client = new AssetServiceClient();
@@ -36,7 +35,7 @@ async function main(assetNames) {
     // Handle the operation using the promise pattern.
     const result = await client.batchGetEffectiveIamPolicies(request);
     // Handle the the response.
-    console.log(util.inspect(result, {depth: null}));
+    console.dir(result);
   }
   // [END asset_quickstart_batch_get_effective_iam_policies]
   batchGetEffectiveIamPolicies();

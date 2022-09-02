@@ -188,14 +188,8 @@ describe('quickstart sample tests', () => {
 
   it('should get effective iam policies successfully', async () => {
     const assetName = `//storage.googleapis.com/${bucketName}`;
-    let waitMs = 1000;
-    let included = false;
-    for (let retry = 0; retry < 3 && !included; ++retry) {
-      await sleep((waitMs *= 2));
-      const stdout = execSync(`node getBatchEffectiveIamPolicies ${assetName}`);
-      included = stdout.includes(assetName);
-    }
-    assert.ok(included);
+    const stdout = execSync(`node getBatchEffectiveIamPolicies ${assetName}`);
+    assert.include(stdout, assetName);
   });
 
   it('should analyze iam policy successfully', async () => {
