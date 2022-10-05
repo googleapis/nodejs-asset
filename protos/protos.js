@@ -20194,6 +20194,7 @@
                          * @property {Object.<string,string>|null} [labels] ResourceSearchResult labels
                          * @property {Array.<string>|null} [networkTags] ResourceSearchResult networkTags
                          * @property {string|null} [kmsKey] ResourceSearchResult kmsKey
+                         * @property {Array.<string>|null} [kmsKeys] ResourceSearchResult kmsKeys
                          * @property {google.protobuf.ITimestamp|null} [createTime] ResourceSearchResult createTime
                          * @property {google.protobuf.ITimestamp|null} [updateTime] ResourceSearchResult updateTime
                          * @property {string|null} [state] ResourceSearchResult state
@@ -20220,6 +20221,7 @@
                             this.folders = [];
                             this.labels = {};
                             this.networkTags = [];
+                            this.kmsKeys = [];
                             this.versionedResources = [];
                             this.attachedResources = [];
                             this.relationships = {};
@@ -20319,6 +20321,14 @@
                          * @instance
                          */
                         ResourceSearchResult.prototype.kmsKey = "";
+    
+                        /**
+                         * ResourceSearchResult kmsKeys.
+                         * @member {Array.<string>} kmsKeys
+                         * @memberof google.cloud.asset.v1.ResourceSearchResult
+                         * @instance
+                         */
+                        ResourceSearchResult.prototype.kmsKeys = $util.emptyArray;
     
                         /**
                          * ResourceSearchResult createTime.
@@ -20495,6 +20505,9 @@
                             if (message.tagValueIds != null && message.tagValueIds.length)
                                 for (var i = 0; i < message.tagValueIds.length; ++i)
                                     writer.uint32(/* id 26, wireType 2 =*/210).string(message.tagValueIds[i]);
+                            if (message.kmsKeys != null && message.kmsKeys.length)
+                                for (var i = 0; i < message.kmsKeys.length; ++i)
+                                    writer.uint32(/* id 28, wireType 2 =*/226).string(message.kmsKeys[i]);
                             if (message.parentAssetType != null && Object.hasOwnProperty.call(message, "parentAssetType"))
                                 writer.uint32(/* id 103, wireType 2 =*/826).string(message.parentAssetType);
                             return writer;
@@ -20596,6 +20609,12 @@
                                     }
                                 case 10: {
                                         message.kmsKey = reader.string();
+                                        break;
+                                    }
+                                case 28: {
+                                        if (!(message.kmsKeys && message.kmsKeys.length))
+                                            message.kmsKeys = [];
+                                        message.kmsKeys.push(reader.string());
                                         break;
                                     }
                                 case 11: {
@@ -20756,6 +20775,13 @@
                             if (message.kmsKey != null && message.hasOwnProperty("kmsKey"))
                                 if (!$util.isString(message.kmsKey))
                                     return "kmsKey: string expected";
+                            if (message.kmsKeys != null && message.hasOwnProperty("kmsKeys")) {
+                                if (!Array.isArray(message.kmsKeys))
+                                    return "kmsKeys: array expected";
+                                for (var i = 0; i < message.kmsKeys.length; ++i)
+                                    if (!$util.isString(message.kmsKeys[i]))
+                                        return "kmsKeys: string[] expected";
+                            }
                             if (message.createTime != null && message.hasOwnProperty("createTime")) {
                                 var error = $root.google.protobuf.Timestamp.verify(message.createTime);
                                 if (error)
@@ -20881,6 +20907,13 @@
                             }
                             if (object.kmsKey != null)
                                 message.kmsKey = String(object.kmsKey);
+                            if (object.kmsKeys) {
+                                if (!Array.isArray(object.kmsKeys))
+                                    throw TypeError(".google.cloud.asset.v1.ResourceSearchResult.kmsKeys: array expected");
+                                message.kmsKeys = [];
+                                for (var i = 0; i < object.kmsKeys.length; ++i)
+                                    message.kmsKeys[i] = String(object.kmsKeys[i]);
+                            }
                             if (object.createTime != null) {
                                 if (typeof object.createTime !== "object")
                                     throw TypeError(".google.cloud.asset.v1.ResourceSearchResult.createTime: object expected");
@@ -20977,6 +21010,7 @@
                                 object.tagKeys = [];
                                 object.tagValues = [];
                                 object.tagValueIds = [];
+                                object.kmsKeys = [];
                             }
                             if (options.objects || options.defaults) {
                                 object.labels = {};
@@ -21069,6 +21103,11 @@
                                 object.tagValueIds = [];
                                 for (var j = 0; j < message.tagValueIds.length; ++j)
                                     object.tagValueIds[j] = message.tagValueIds[j];
+                            }
+                            if (message.kmsKeys && message.kmsKeys.length) {
+                                object.kmsKeys = [];
+                                for (var j = 0; j < message.kmsKeys.length; ++j)
+                                    object.kmsKeys[j] = message.kmsKeys[j];
                             }
                             if (message.parentAssetType != null && message.hasOwnProperty("parentAssetType"))
                                 object.parentAssetType = message.parentAssetType;
